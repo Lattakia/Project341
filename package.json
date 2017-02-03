@@ -1,0 +1,9 @@
+{
+  "name": "connect-concordia",
+  "version": "0.2.0",
+  "description": "connect concordia site",
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.7.2"
+  }
+}
