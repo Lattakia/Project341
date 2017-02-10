@@ -39,11 +39,11 @@ Meeting #4 (11:30 AM Till 2:00 PM) Thursday Feb/9
 	      3) Team C (Cynthia/Tashnim) Account creation. 
 	      4) Team D (Fatin/Andrew) Login confirmation  
 • Chart creation. (Cynthia) 
-• Website architecture. (Hanna/Cynthia) 
+• Website architecture. (Cynthia) 
 
 Tutorial meeting (1:30 PM Till 2 PM) Friday Feb/10
-TA feedback: merge before tutorial, have more discussions on github
-	     do more pullrequests and more detail in documentation folder
+TA feedback: merge before tutorial, refrence user story but the message of the commit 
+should include the task number, have more discussions on github, do more pullrequests and more detail in documentation folder
 	     
 • Made team and individual branches
 • Team A will meet on sunday to work on design of login and sign up pages
