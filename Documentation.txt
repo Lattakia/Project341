@@ -48,3 +48,8 @@ should include the task number, have more discussions on github, do more pullreq
 • Made team and individual branches
 • Team A will meet on sunday to work on design of login and sign up pages
 • Ahmed booked a room for the next group meeting
+
+Team B(Claudia/Ali)(7:00 PM Till TBD) meeting #1 Saturday Feb/11
+
+• Setting up the database for our website application.
+• Setting up the automated email service for the login page.
