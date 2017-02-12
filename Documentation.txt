@@ -55,3 +55,13 @@ Team B(Claudia/Ali)(7:00 PM Till 9:45PM) meeting #1 Saturday Feb/11
 • Setting up a "prototype signup and login page" that will be tested with the database we created. The other teams will work  
   on improving the design and overall functinoality of this page.
 
+Team A (Ahmed/Hanna) meeting #1 sunday/feb/12 (1 PM to 4:40 Pm)
+
+• discussing if we include sign in on index page or its own page, agreed to put on its own page
+• discussing the information we need for sign up page (First name, Last name, ID#, E-mail, password, confirmation)
+• deciding on the colors to use (university logo colors)
+• deciding on fonts sizes and positions of elements on pages
+• finished basic layout of pages
+• Added Logo
+• committed changes to individual branches
+
