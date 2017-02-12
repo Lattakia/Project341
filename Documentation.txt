@@ -49,7 +49,7 @@ should include the task number, have more discussions on github, do more pullreq
 • Team A will meet on sunday to work on design of login and sign up pages
 • Ahmed booked a room for the next group meeting
 
-Team B(Claudia/Ali)(7:00 PM Till 9:30PM) meeting #1 Saturday Feb/11
+Team B(Claudia/Ali)(7:00 PM Till 9:45PM) meeting #1 Saturday Feb/11
 
 • Setting up the database for our website application. Used authentication and exploring encryption.
 • Setting up a "prototype signup and login page" that will be tested with the database we created. The other teams will work  
