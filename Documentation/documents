@@ -49,13 +49,14 @@ should include the task number, have more discussions on github, do more pullreq
 • Team A will meet on sunday to work on design of login and sign up pages
 • Ahmed booked a room for the next group meeting
 
-Team B(Claudia/Ali)(7:00 PM Till 9:45PM) meeting #1 Saturday Feb/11
+Team B (Claudia/Ali) meeting #1 Saturday Feb/11 (7:00 PM to 9:45PM)
 
 • Setting up the database for our website application. Used authentication and exploring encryption.
 • Setting up a "prototype signup and login page" that will be tested with the database we created. The other teams will work  
   on improving the design and overall functinoality of this page.
+• Testing sign up page to ensure that the prototype signup and login page work accordingly
 
-Team A (Ahmed/Hanna) meeting #1 sunday/feb/12 (1 PM to 4:40 Pm)
+Team A (Ahmed/Hanna) meeting #1 Sunday Feb/12 (1:00 PM to 4:40 PM)
 
 • discussing if we include sign in on index page or its own page, agreed to put on its own page
 • discussing the information we need for sign up page (First name, Last name, ID#, E-mail, password, confirmation)
@@ -64,3 +65,9 @@ Team A (Ahmed/Hanna) meeting #1 sunday/feb/12 (1 PM to 4:40 Pm)
 • finished basic layout of pages
 • Added Logo
 • committed changes to individual branches
+
+Team B (Claudia/Ali) meeting #2 Monday Feb/13 (3:00 PM to )
+
+• debugging the email solution (mailgun) that we will be using for our application
+• 
+
