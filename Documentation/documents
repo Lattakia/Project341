@@ -66,8 +66,9 @@ Team A (Ahmed/Hanna) meeting #1 Sunday Feb/12 (1:00 PM to 4:40 PM)
 • Added Logo
 • committed changes to individual branches
 
-Team B (Claudia/Ali) meeting #2 Monday Feb/13 (3:00 PM to )
+Team B (Claudia/Ali) meeting #2 Monday Feb/13 (3:00 PM to 3:45 PM)
 
 • debugging the email solution (mailgun) that we will be using for our application
-• 
+• Figured out how to keep our Node.js application website running continously.
+• learning about Mailgun application and figuring out how to integrate code from Mailgun into our application
 
