@@ -6,4 +6,4 @@ This project is a website designed to facilitate communication between Universit
 - An appointment scheduler.
 - And a feature that allows professors to request feedback from students using surveys.
 
-The website is called Connect Concordia. Here is the URL: https://connectconcordia.tk/
+The website is called Connect Concordia. Here is the URL: connectconcordia.tk:3000
