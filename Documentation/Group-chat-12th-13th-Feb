@@ -1,0 +1,243 @@
+Group conversation on the 12th and 13th of February
+
+Hanna: Hey guys we just finished the design of the 2 pages sign in and sign up we committed to our individual branches so you can check them out there. Claudia and Ali you should commit your changes to your individual branches as well
+
+‪Claudia‬: Yes Ali has the code so I guess he can do that?
+
+Hanna: Then on Thursday we will merge all things related into master
+
+Ali‬: I'll take a look
+
+Ahmed: I also separated the CSS from the style tags of the index to its own file.
+
+Hanna: The logo will be modified in the future so that's not the final look of the pages
+
+Cynthia‬: awesome I’ll look at it so we can start our part tonight
+
+Hanna: Cool guys let us know what you need help with
+
+Andrew‬: cool :) yo Fatin, let me know when you'll be free we have to work on our part as well
+‪
+Tashnim‬: Yeah I'm not home yet but I can work on it tonight and tomorrow anytime @Cynthia Cherrier
+
+Cynthia ‬: so... I don't really understand /how/ to work on the project lmao do i just open up the html files for the login/sign up and modify them to include MySQL & stuff and then commit my modified file to my branch ?
+
+Cynthia ‬: also can you guys tell me which task was completed on which day so I can modify the burndown chart?
+
+Cynthia ‬: I guess I need Ali's file for the login thing so I can't start tonight
+
+Ali‬: I'll get it as soon as I can
+‪
+Ali‬: everyone is probably asleep by now
+‪
+Ali: but I got some good news
+
+Ali ‬: login, logout, and signup work properly now
+
+Ali ‬: what's left to do is to make the username display in the main page
+
+Ali ‬: and to save the messages in the db.
+
+Ali ‬: I will post the files now
+
+Ali ‬: there's quite a bit of change
+
+Ali ‬: but hopefully everything makes sense
+
+Andrew ‬: Alright, me and Fatin will be meeting on Wednesday to work on the confirmation, I wish we could meet earlier 
+
+Ali ‬: confirmation is done I believe
+
+Andrew ‬: Oh really?!
+
+Ali ‬: it's part of the passport.js file
+
+Ali ‬: in the Ali branch
+
+Andrew ‬: Welp...what else is there to do left then?
+
+Ali ‬: make sure that it didn't screw up, I guess
+
+Ali ‬: I could very well have made a mistake somewhere in there
+
+Andrew ‬: Alright then
+
+Andrew ‬: We'll find something to do eventually
+
+Ali ‬: there's quite a bit of db stuff to be done
+
+Ali ‬: I'll get to that tomorrow when I get some sleep
+
+Andrew ‬: Alright, we'll talk tmr
+
+Ahmed: Awesome progress @Ali Bakkali
+
+Claudia‬: Let me know if you need anything guys I'm really willing to help out
+
+Fatin‬: I still don't understand what work I and Andrew have to do.
+
+Ali ‬: there's a bit of overlap between the tasks
+
+Ali ‬: next sprint we'll be counting on you guys
+
+Ali ‬: to make sure users are properly set up and that nothing is breaking
+
+Tashnim‬: Ohhh so if I understand this correctly account creation and confirmation is done?
+
+Ali ‬: account creation is done yes, but it's not quite where we want it to be
+
+Ali ‬: right now the accounts are only created with username and password
+
+Ali ‬: what we'd like to do is to have an email sent to confirm that the person truly owns that email address
+
+Ali ‬: that's what Claudia and I are trying to implement
+
+Ali ‬: but I don't believe it's a requirement for this sprint
+
+Cynthia ‬: ok but then there’s 2 team who have nothing to do... we should try to do a little something before the end of the sprint lmao
+
+Ali ‬: sorry about that a lot of the tasks are dependent on other tasks
+
+Ali ‬: but I think next sprint it'll be different
+
+Cynthia ‬: yeah dw I understand!!
+
+Tashnim‬: @Cynthia Cherrier  I guess if it's possible we can add like birthdate to the account and also if they are a teacher or student?
+
+Cynthia‬: hmm yeah maybe but first we need to understand how the database works lol
+
+Ali ‬: for now it just does :|
+
+Ali ‬: that's mongodb for ya
+
+Ali ‬: works well, but works in mysterious ways
+
+Tashnim‬: Ohhh I see, well that's okay! Thank you so much for handling the hard work
+
+Cynthia‬: yeah thank you! :)
+
+Ali ‬: it's about to a bit tougher, but hopefully we'll manage
+
+Claudia: Ye me and Ali are meeting at 3 to work on email stuff but don't worry u guys can add some stuff to the page
+
+Cynthia‬: I have a break from 11:30 to 6:30pm tomorrow so   @Tashnim if you're free i think we could work on the design of the home page ! Its not part of any user story but its still going to be some progress
+
+Claudia: Guys
+
+Claudia: We found a way to continuously run the website
+
+Claudia: It's currently live forever at
+
+Claudia: connectconcordia.tk:3000 check it out
+
+Cynthia‬: Niiice
+
+Claudia: Yup sign up and sign in work
+
+Claudia: It would be cool for u and Tash to check out website and work on it based on what's posted since u said u are meeting tmr
+
+Claudia: If you wanna do Some tests to edit the website u can go on chrome and right click and press inspect u can change the code that way
+
+Claudia: And guys for every meeting please don't forgot to log everything in the documentation folder
+‪
+Fatin‬: Thanks
+
+Claudia: No prob !
+
+Ali ‬: the files are all inside the Ali branch
+
+Ali ‬: once they are downloaded on the machine where you want to run it
+
+Ali ‬: you can run 'npm install' to install the necessary packages found in package.json
+
+Ali ‬: this assuming you're running on linux or macos
+
+Ali ‬: make sure mongodb is running with 'mongod' command
+
+Claudia: Awesome thanks so much !!
+
+Ali ‬: then you can run 'node app.js' to run the site
+
+Claudia: Hey guys I didn't push my stuff tommy own branch I only did the documentation and pushed it to master ... do we need to push to our own branch?
+
+Ali ‬: I believe so
+
+Claudia: As soon as I get home I'll get ur code Ali and I'll look into using mailgun
+
+Ali ‬: then merge everything
+
+Claudia: Yes
+
+Claudia: I'll push to my branch once I'm done with email
+
+Ali ‬: I'd say first commit the changes from Ali branch to yours
+
+Claudia: Yes exactly
+
+Ali ‬: so you may be able to implement email directly
+
+Claudia: U mean pull
+
+Claudia: Not commit
+
+Claudia: Commit only saves pull gets data from the branch
+
+Claudia: Okay so I work on Ali branch and then copy the info into Claudia branch?
+
+Ali ‬: ah yes, pull
+
+Claudia: Loll
+
+Claudia: But I had a question
+
+Claudia: Once I download the files to my local computer
+
+Claudia: Is there a particular directory I need to save them too?
+
+Ali ‬: no, just as long as they're all in the same directory
+
+Claudia: Okay so I'll mkdir
+
+Ali ‬: and you'll need to pull the changes into the Claudia branch
+
+Claudia: And save the files there
+
+Claudia: Yes
+
+Claudia: I will
+
+Ali ‬: and then perform the changes there
+
+Claudia: But I'll do the changes on my computer first
+
+Claudia: Or on GitHub
+
+Ali ‬: computer first to make sure it's working
+
+Ali ‬: at least that's how I do it
+
+Claudia: What if I do this: I download the project files to my local and then I test them and then I push them to my dir ?
+
+Claudia: U finished editing them so pulling from ur code will cause problems cause I'll update the code on my local?
+
+Claudia: Push them to my branch I mean sorry
+
+Ali ‬: it shouldn't cause issues
+
+Ali ‬: it was tested
+
+Claudia: Ye but if I pull
+
+Claudia: I'll pull to get he new code
+
+Claudia: The
+
+Claudia: If anything was added
+
+Claudia: As soon as I get home I'll test the app and keep u updated
+
+Claudia: Cool thanks
+
+Ali ‬: sure
+
+Claudia: Awesome

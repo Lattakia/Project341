@@ -1,0 +1,94 @@
+Meeting #1 (1:30 PM Till 2:05 PM) Friday Jan/27
+
+• Ideas: 1) Appointment booking with availability calendar.
+	 2) Easy access database about professors for students. 
+	 3) Weekly surveys of students (about the pace of the course). 
+	 4) Direct Messaging between students and teachers. 
+	 5) Online quizzes. 
+	 6) Online voting on material that needs to be cut.
+
+• Ideas 1, 3 and 4 are approved by the TA with the addition of a filtered forum
+  that would take key words from the chat to become a subject that can be discussed publicly.
+
+Meeting #2 (7:30 PM Till 10:00 PM) Sunday Jan/29
+
+• Writing 5 user stories. (Everyone) 
+• Setting up our issues and first sprint. (Claudia) 
+• Domain name decided : connectconcordia.tk. (Everyone) 
+• Made an index page and stylized using Wordpress. (Claudia, Ali)
+
+Meeting #3 (11:30 AM Till 1:00 PM) Thursday Feb/2
+
+• Writing 2 user stories. (Everyone) 
+• Discussed how to filter the forum (manual or auto). (Everyone) 
+• Installed required software on dev server. (Ali) 
+• Did final pull request. 
+• Included basic messeging capabilities. 
+• Split Teams: 1) (Fatin, Andrew). 
+	       2) (Hanna, Ahmed). 
+	       3) (Claudia, Ali). 
+	       4) (Cynthia, Tashnim).
+	       
+TA feedback: work on login for sprint 2
+
+Meeting #4 (11:30 AM Till 2:00 PM) Thursday Feb/9
+
+• Splitting user stories into tasks. (Everyone) 
+• Split tasks 1) Team A (Hanna/Ahmed) Html and css design.
+	      2) Team B (Claudia/Ali) Database and email confirmation. 
+	      3) Team C (Cynthia/Tashnim) Account creation. 
+	      4) Team D (Fatin/Andrew) Login confirmation  
+• Chart creation. (Cynthia) 
+• Website architecture. (Cynthia) 
+
+Tutorial meeting (1:30 PM Till 2 PM) Friday Feb/10
+TA feedback: merge before tutorial, refrence user story but the message of the commit 
+should include the task number, have more discussions on github, do more pullrequests and more detail in documentation folder
+	     
+• Made team and individual branches
+• Team A will meet on sunday to work on design of login and sign up pages
+• Ahmed booked a room for the next group meeting
+
+Team B (Claudia/Ali) meeting #1 Saturday Feb/11 (7:00 PM to 9:45PM)
+
+• Setting up the database for our website application. Used authentication and exploring encryption.
+• Setting up a "prototype signup and login page" that will be tested with the database we created. The other teams will work  
+  on improving the design and overall functinoality of this page.
+• Testing sign up page to ensure that the prototype signup and login page work accordingly
+
+Team A (Ahmed/Hanna) meeting #1 Sunday Feb/12 (1:00 PM to 4:40 PM)
+
+• discussing if we include sign in on index page or its own page, agreed to put on its own page
+• discussing the information we need for sign up page (First name, Last name, ID#, E-mail, password, confirmation)
+• deciding on the colors to use (university logo colors)
+• deciding on fonts sizes and positions of elements on pages
+• finished basic layout of pages
+• Added Logo
+• committed changes to individual branches
+
+Team B (Claudia/Ali) meeting #2 Monday Feb/13 (3:00 PM to 4:45 PM)
+
+• Debugging the email solution (mailgun) that we will be using for our application
+• Figured out how to keep our Node.js application website running continously.
+• Learning about Mailgun application and figuring out how to integrate code from Mailgun into our application
+• Setting up Node.js Environment on our Personal laptops.
+• Creating a prototype page of the mailgun application 
+• Testing the prototype page to see if Mailgun API actually worked and sent the emails to the indicated email address
+
+Claudia Feochari Monday Feb/13 (7:20 PM to 7:40 PM)
+
+• Created a YouTube video educating the team on how to set up and run node js files from Github locally
+• Filming Video, editing video and uploading video to Youtube.
+• Link to the video : https://www.youtube.com/watch?v=dYShcWBAWoI
+
+Team C (Cynthia/Tashnim) meeting #1 Feb/14 (11:40AM to 2:30PM)
+
+• Testing of the account creation and login features
+• Clone files from Ali's branch 
+• Installation of Node.js and mongodb on tashnim's computer
+• Cynthia: Design of the home page (index.ejs)
+• Tashnim: Incorporation of Team A's design to login (login.ejs) and sign up (signup.ejs) pages
+• Discussing changes on logo
+• Finding background images of concordia
+
+
