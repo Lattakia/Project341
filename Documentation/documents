@@ -1,4 +1,4 @@
-Meeting #1 (1:30 PM Till 2:05 PM) Friday Jan/27
+﻿Meeting #1 (1:30 PM Till 2:05 PM) Friday Jan/27
 
 • Ideas: 1) Appointment booking with availability calendar.
 	 2) Easy access database about professors for students. 
@@ -91,4 +91,11 @@ Team C (Cynthia/Tashnim) meeting #1 Feb/14 (11:40AM to 2:30PM)
 • Discussing changes on logo
 • Finding background images of concordia
 
+Team D (Andrew/Fatin) Meeting #1 Time 1:50pm - 5:00pm
 
+• Clone Ali's repository from github and made sure it works
+• Also looked at the branches committed from other users
+• Decided to create a page, which allow users to modify their personal information
+• Also added javascript algorithms that limits users to input error-prone information such as letters for ID number
+• We did pair programming, essentially helping each other to help familiarize programming with JQuery
+• Made sure that the user meets the minimum length size for each field
