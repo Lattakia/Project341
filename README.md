@@ -1,4 +1,4 @@
-https://travis-ci.org/travis-ci/travis-web.svg?branch=master
+[![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://travis-ci.org/travis-ci/travis-web)
 
 This project is a website designed to facilitate communication between University staff (professors & teaching assistants) and students. It will include:
 
