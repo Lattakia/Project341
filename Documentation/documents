@@ -142,4 +142,12 @@ Team Meeting #6 Time 11:30am - 1:30pm March 2
 		- Change logo
 		- Make Red bar transparent
 		- Add black semi-transparent <div> box as a background (rgba(0,0,0,0.5)) 
+		
+Team C (Cynthia/Tashnim) meeting #2 Mar/07 (11:40AM to 1:45PM)
+
+• Tashnim: Setting up the environment and design of forum page
+• Cynthia: organizing master branch (github), changes to design of signup and login:
+	- Make top bar transparent
+	- Change link color to gold and hover color to red
+	- Fix background size
 
