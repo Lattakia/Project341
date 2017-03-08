@@ -1,0 +1,202 @@
+<!-- views/chat.ejs -->
+<!doctype html>
+<html>
+
+<head>
+    <title>Connect Concordia Chat</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
+    <style>
+        body {
+            padding-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <style>
+        
+        body {
+            background-image: url("concordia2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        
+        #top_bar {
+            width: 100%;
+            height: 150px;
+            background-color: rgb(143, 37, 57);
+            height: 150px;
+        }
+        
+        #topbar a {
+            text-align: right;
+            padding: 9px;
+            display: inline;
+        }
+        
+        #logo {
+            z-index: 1000;
+            position: relative;
+            width: 300px;
+            height: 150px;
+        }
+        
+        h1 {
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+            color: rgb(255, 255, 255);
+            padding: 2px;
+        }
+        
+        label {
+            color: rgb(255, 255, 255);
+            font-size: 120%;
+            font-weight: bold;
+        }
+        
+        input[type=text],
+        input[type=password],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        span {
+            text-align: center;
+            display: inline-block;
+        }
+        
+        p {
+            margin: 0;
+            padding: 0;
+            color: rgb(255, 255, 255);
+        }
+        
+        a {
+            color: rgb(255, 255, 255);
+        }
+        
+        .small_text {
+            font-size: 17px;
+        }
+        
+        #form_div {
+            margin: auto;
+            width: 100%;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        #other_options {
+            text-align: center;
+        }
+        
+        #button {
+            text-align: right;
+            padding: 20px;
+            display: inline;
+        }
+        
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #messages li {
+            padding: 5px 10px;
+        }
+        
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+        
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 45px;
+            width: 100%;
+        }
+        
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+        
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+        
+        footer {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            background-color: #efefef;
+            text-align: center;
+            color: grey;
+        }
+
+    </style>
+
+    <div id="topbar">
+
+        <img src="logo2.png" id="logo" alt="Logo">
+
+        <a href="/logout" class="button"><span class="fa fa-user"></span>  Logout</a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="col-sm-6 col-sm-offset-3">
+
+            <h1><b>Connect Concordia Chat</b></h1>
+
+        </div>
+    </div>
+
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+
+    <footer>&#169; SOEN 341</footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        var socket = io();
+        $('form').submit(function() {
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+        socket.on('chat message', function(msg) {
+            $('#messages').append($('<li>').text(msg));
+        });
+    </script>
+
+</body>
+
+</html>
