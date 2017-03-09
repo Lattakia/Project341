@@ -160,4 +160,27 @@ Team D (Fatin/Andrew) and Claudia(support) meeting Mar/09 (4:00PM to 6:00PM)
 	- Debugging nodejs set-up on Fatin's computer
 	- Providing support to Team  with their back-end issues.
 	
+Meeting #2 Time 12:30pm - 5:00pm March 4th, 2017
+
+Team D (Andrew/Fatin)
+
+-Setup the environment for to connect with MongoDB
+-Familiarize database syntax commands to look for data
+-Attempt to insert new data
+-Test Claudia's branch to make sure it runs on our laptop
+-Tried to debug the issue where user information would not be
+inserted to database
+-Scheduled for next meeting
+
+Meeting #3 Time 4:00pm - 6:00pm March 8th, 2017
+
+Team D (Andrew/Fatin)
+
+-Attempt to further debug the program
+-Fatin put on hold the debugging task and starts helping with
+the front-end
+-Fatin's current task is essentially designing the profile page
+-Andrew's current task remains to debug the email bug from
+Claudia's code
+
 Team Meeting #8 Time 11:30pm - 1:50pm Feb 16
