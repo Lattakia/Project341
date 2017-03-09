@@ -1,0 +1,92 @@
+@font-face {
+font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: normal;
+src: local('Bebas Neue'), url('BebasNeue.woff') format('woff');
+}
+
+
+body{
+	background: rgb(143,37,57);
+}
+
+#header{
+	font-family:'Bebas Neue';
+	/* color: #c597a0; */
+	color: white;
+	text-align: center;
+	font-size: 40px;
+	border-bottom: 2px solid rgb(202,181,118);
+}
+
+#profilePic{
+	width:120px;
+	height:120px;
+	margin:10px
+}
+
+#wrapper{text-align: center}
+
+#profileContainer{
+	display:inline-block;
+	margin-top:10px;
+	/* background:rgb(234, 221, 224); */
+	background:white;
+	/* width: 50% */
+	padding-left: 10%;
+	padding-right: 10%;
+	 border-radius: 25px;
+	
+	
+	
+}
+
+td.titleColumn{
+	text-align:left;
+	padding-right:20px;
+	color:#black;
+	font-family:Arial, Verdana;
+}
+
+td.dataColumn{
+	
+}
+
+table#tableInfo{
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+div#profileInfo{
+	display:inline-block;
+}
+
+div#buttons{
+	text-align:center;
+}
+
+div#buttons input{
+	width: 100px;
+	background:rgb(147, 36, 57);
+	color:white;
+	border: 1px solid white;
+	font-size:20px;
+	margin:5px;
+}
+
+div#buttons input:hover{
+	-moz-box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.3);
+    -webkit-box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.3);
+	cursor:pointer;
+}
+
+
+.labelLook {
+    background:rgba(0,0,0,0);
+    border:none;
+}
+
+#uploadPic{
+	display:none;
+}
