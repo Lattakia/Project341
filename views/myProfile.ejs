@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>My Profile</title>
+		<link rel="stylesheet" href="../styles/myProfile.css">
+		<script type="text/javascript" src="../libraries/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="../libraries/jquery.numeric.min.js"></script>
+		<script type="text/javascript" src="../scripts/inputRestriction.js"></script>
+		<script type="text/javascript" src="../scripts/profileScript.js"></script>
+	
+		<script type="text/javascript">
+			$(document).ready(function(){
+			
+				
+			});			
+		</script>
+
+	</head>
+		
+	<body>
+	<div id="header">My Profile</div>
+	
+	<form id="uploadPicForm" runat="server">
+	
+
+	<div id="wrapper">
+	
+	<div id="profileContainer">
+		<img id="profilePic" src="profile-icon-300x300.png" alt="Profile Image" /><br/>
+        <input id="uploadPic" type='file' onchange="readURL(this);" /> <br/>
+    
+	
+	
+	
+	<div id="profileInfo">
+	<table id="tableInfo">
+		<tr>
+			<td class="titleColumn">First Name</td>
+			<td class="dataColumn"><input type="text" disabled id="fname" name="firstname" maxlength="25"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Last Name</td>
+			<td class="dataColumn"><input type="text" disabled id="lname" name="lastname" maxlength="25"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">ID Number</td>
+			<td class="dataColumn"><input class="integer" type="text" disabled id="ID" name="ID" maxlength="8"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Major</td>
+			<td class="dataColumn"><input type="text" disabled id="major" name="major"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Email</td>
+			<td class="dataColumn"><input type="text" disabled id="email" name="email"></td>
+		</tr>
+
+	</table>
+	</div>
+	
+	</div>
+	</div>
+	
+<div id="buttons">
+	<input type="submit" id="EditButton" value="Edit">
+</div>
+	
+	</form>
+	</body>
+
+</html>

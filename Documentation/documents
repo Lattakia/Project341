@@ -1,4 +1,4 @@
-Meeting #1 (1:30 PM Till 2:05 PM) Friday Jan/27
+﻿Meeting #1 (1:30 PM Till 2:05 PM) Friday Jan/27
 
 • Ideas: 1) Appointment booking with availability calendar.
 	 2) Easy access database about professors for students. 
@@ -90,5 +90,109 @@ Team C (Cynthia/Tashnim) meeting #1 Feb/14 (11:40AM to 2:30PM)
 • Tashnim: Incorporation of Team A's design to login (login.ejs) and sign up (signup.ejs) pages
 • Discussing changes on logo
 • Finding background images of concordia
+
+Team D (Andrew/Fatin) Meeting #1 Time 1:50pm - 5:00pm
+
+• Clone Ali's repository from github and made sure it works
+• Also looked at the branches committed from other users
+• Decided to create a page, which allow users to modify their personal information
+• Also added javascript algorithms that limits users to input error-prone information such as letters for ID number
+• We did pair programming, essentially helping each other to help familiarize programming with JQuery
+• Made sure that the user meets the minimum length size for each field
+
+
+Team Meeting #5 Time 12:00pm - 1:50pm Feb 16
+
+• Burndown chart finalization (Cynthia)
+• Reasearching validating E-mail (Claudia)
+• Final tweaks and discussion (Everyone)
+• Collected all final sprint 2 files and merged to the master
+• Plan for sprint 3: E-mail integration and validation, account profile, design of forum and profile.
+
+Tutorial Feedback Feb/17
+
+• Use travis for running environmen to test new builds
+• Use the projects tab
+• More parity in the work done by individuals 
+• Bring more comments and energy to git hub (more discussions)
+
+Team Meeting #6 Time 10:30am - 2:00pm Feb 24
+
+• Giving support to team members by helping them set up mongodb database (Claudia)
+• Debugging issues that other team members were having with backend code.(Ali/Claudia)
+• Setting up travis (Hanna)
+• working on chatrooms (Ali)
+• Rewriting tasks and reorganizing user stories (Everyone)
+• Split tasks for sprint #3 1) Team A (Hanna/Ahmed) User story #6 - Task 6 & 7 (Design of the account profile)
+	      		    2) Team B (Claudia/Ali) User Story #3 - Task 3 (Organization of the forum)
+			    			    User Story #1 - Task 2 (Private Chatrooms)
+						    User Story #6 - Task 4 (Emails)
+	      		    3) Team C (Cynthia/Tashnim) User Story #3 - Task 4 (Design of the forum)
+			    				User Story #1 - Task 1 (Design of the chatrooms)
+	      		    4) Team D (Fatin/Andrew) User Story #3 (Forum)
+			    
+Team Meeting #7 Time 11:30am - 1:30pm March 2
+
+• Point distribution for tasks to be done in this Sprint (Hanna/Claudia)
+• Updated latest code files (Ali branch merge) (Ali)
+• Research on ways to do an automatic burndown chart (Claudia/Cynthia)
+• Integration of email api service into our web application. Working copy is available for this Sprint (Claudia)
+• Plan for Front-end Team
+	•Fix design of signup
+		- Change logo
+		- Make Red bar transparent
+		- Add black semi-transparent <div> box as a background (rgba(0,0,0,0.5)) 
+		
+Tutorial Feedback March 3rd
+• Block Diagram needs to be more detailed (Box and Edges)
+• Label columns in projects tab
+		
+Team C (Cynthia/Tashnim) meeting #2 Mar/07 (11:40AM to 1:45PM)
+
+• Tashnim: Setting up the environment and design of forum page
+• Cynthia: organizing master branch (github), changes to design of signup and login:
+	- Make top bar transparent
+	- Change link color to gold and hover color to red
+	- Fix background size
+
+Team D (Fatin/Andrew) and Claudia(support) meeting Mar/09 (4:00PM to 6:00PM)
+	- Debugging mongodb set-up errors on Andrew's computer
+	- Debugging nodejs set-up on Fatin's computer
+	- Providing support to Team  with their back-end issues.
+	
+Meeting #2 Time 12:30pm - 5:00pm March 4th, 2017
+
+Team D (Andrew/Fatin)
+
+-Setup the environment for to connect with MongoDB
+-Familiarize database syntax commands to look for data
+-Attempt to insert new data
+-Test Claudia's branch to make sure it runs on our laptop
+-Tried to debug the issue where user information would not be
+inserted to database
+-Scheduled for next meeting
+
+Meeting #3 Time 4:00pm - 6:00pm March 8th, 2017
+
+Team D (Andrew/Fatin)
+
+-Attempt to further debug the program
+-Fatin put on hold the debugging task and starts helping with
+the front-end
+-Fatin's current task is essentially designing the profile page
+-Andrew's current task remains to debug the email bug from
+Claudia's code
+
+Team Meeting #8 Time 11:30pm - 1:50pm March 9
+
+• Debuging of email service (Claudia/Andrew)
+• Designing profile page (Fatin)
+• Burndown chart and block diagram (Cynthia)
+• Designing the student and teacher profile pages (Hanna/Ahmed)
+• Implementation of chat rooms (Ali)
+• Split tasks for sprint #4: 1) Team A (Hanna/Ahmed) User Story #4 - Task 1 (Design of appointment pages)
+	      		     2) Team B (Claudia/Ali) User Story #1 - Task 2 (Implementation of chat rooms)
+	      		     3) Team C (Cynthia/Tashnim) User Story #5 - Task 1 (Design of survey pages)
+	      		     4) Team D (Fatin/Andrew) User Story #6 - (Account accessibility) 
 
 

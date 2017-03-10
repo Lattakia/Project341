@@ -241,3 +241,190 @@ Claudia: Cool thanks
 Ali ‬: sure
 
 Claudia: Awesome
+
+Hanna: @Cynthia Cherrier @Fatin hey guys I just created a pull request with you 2 as reviewers it includes the conversation on the chat please approve it when u get the chance 
+
+Tashnim‬: @Cynthia Cherrier  yes I can meet you tomorrow morning at 11:30 !
+
+‪Cynthia‬: Ok good :) we can meet in a lab or smth bc i wont have my laptop with me !
+
+‪Cynthia ‬: And ok i'll look at the pull request tonight
+
+Tashnim ‬: Okay no problem!
+
+‪Claudia‬: Guys
+
+Claudia ‬: I made a YouTube tutorial on how to set up the environment
+
+Claudia ‬: Like get the code from github and how to set it up to work on ur computers
+
+Claudia ‬: Here's the link
+
+Claudia ‬: https://www.youtube.com/watch?v=dYShcWBAWoI
+
+Claudia ‬: I hope it helps lol
+
+Claudia ‬: Hahaha no problem ! It took me a while to do but I wanna share with everyone and in case I forget
+
+Hanna: Yeah it's a great idea
+
+Claudia ‬: Great I'm glad it's useful
+
+Claudia ‬: I did it cause I know u guys in the front end want to test the code
+
+Claudia ‬: How's the front end teams going?
+
+Tashnim ‬: I tried to follow the tutorial video, I installed node.js  and when it starts listening an error occurs and it doesn't work anymore
+
+Claudia ‬: Really what's the error
+
+Claudia ‬: Take pic
+
+Tashnim ‬: Is there anything else I should install to make it work?
+
+Tashnim ‬: Okay
+
+Claudia ‬: What did u do?
+
+Tashnim ‬: I downloaded files from Ali's branch and installed npm
+
+Claudia ‬: That's so weird it does that
+
+Claudia ‬: Did you install mongodb
+
+Claudia ‬: I think u need that too
+
+Tashnim ‬: Ohhh okay
+
+Claudia ‬: Sorry I forgot to mention that
+
+Claudia ‬: Install that
+
+Tashnim ‬: Haha ok XD was wondering if I was missing something
+
+Claudia ‬: Ye
+
+Tashnim ‬: Do I just need to install it or do I need to set up the environment for mongodb environment?
+
+
+Tashnim ‬: For now me and Cynthia were implementing styles directly on the index.ejs, signup.ejs files since we couldn't get it to work
+
+Claudia ‬: Okay cool
+
+Claudia ‬: But I think u should install mongo do
+
+Claudia ‬: Do u guys have brew installed
+
+Tashnim ‬: No 
+
+Claudia ‬: Do brew install
+
+Tashnim ‬: Okay
+
+Tashnim ‬: I integrated the dsesign from Hanna and Ahmed's CSS files and put it on the ejs file, idk if that's helpful or we going to change that
+
+Claudia ‬: Okay cool
+
+Claudia ‬: https://m.youtube.com/watch?v=_RQ4lET5ejw
+
+Claudia ‬: Check this out girls
+
+Claudia ‬: I hope this helps
+
+Cynthia ‬: I made a new design for the index page using the .ejs file like tashnim said but i cant really do anything else since im on a computer at school so i cant install stuff :s
+
+Claudia ‬: Oh okay it's okay did u preview it?
+
+Claudia ‬: U can copy the code and preview it
+
+Cynthia ‬: Yeah i can preview it on the web browser so its fine!
+
+Claudia ‬: Okay that's awesome 
+
+Claudia ‬: Take a pic I wanna see how it looks and guys as long as u can view it it's okay we can stitch everything. Together during the group meetings
+
+Cynthia ‬: and yeah exactly ali can just add the file to his thing afterwards :)
+
+Tashnim ‬: Claudia, Hanna, Andrew, and Ahmad you guys are our reviewers for the design
+
+Cynthia ‬: We also updated the documentation for our meeting
+
+Hanna: Ok then we will approve the request tonight and I will include the convo on group in the documentation
+
+Hanna: Great work guys
+
+Hanna: Can you guys tell me what's left to do before friday
+
+Ali ‬: it's on me
+
+Ali‬: gotta make the usernames display on the page
+
+Ali ‬: and private chatroome
+
+‪Ali‬: chatrooms*
+
+Hanna: Awesome guys we are doing great 
+Ali if you need any help let us know
+
+Fatin‬: Guys I don't mind doing nothing or little this sprint if there's no grade reduction. But I'm thinking the team or just me might get penalized for task distribution. If someone does nothing what happens?
+
+Ali ‬: we can mention that the roles some teams play are far more involved in the coming sprints
+
+Ali ‬: he did say he wanted to see near equal contribution from all team members
+
+Ali‬: near the end we will have to make sure there's parity there
+
+Claudia ‬: Oh Cynthia btw
+
+Claudia ‬: I love ur website
+
+Claudia ‬: But I added something to it, I added a black background with a 0.7 opacity I think I commented on the issue on github take a look and let me know what u think
+
+Andrew‬: Hey guys, me and fatin are having a meeting
+
+Andrew‬: So we're wondering what are the tasks left that we can do to help you guys out
+
+Cynthia ‬: i'm not sure but i think we still need to verify if the user enters a valid email when creating an account?
+‪
+Andrew‬: I thought Ali did the validation
+
+Fatin‬: How about we write javascript functions that formats user info fields like student id? For example the user input for id can be only numbers and 8 max
+
+Cynthia ‬: yeah thats what i was thinking like using regexp and stuff
+
+Fatin‬: Where do we find the latest sign up page? Which branch?
+
+Tashnim ‬: Uhhh I took Ali's signup.ejs and added CSS style to it, so I guess it's the one I uploaded. I think I put Andrew as reviewer
+
+Tashnim ‬: And yeah JavaScript functions should be useful!
+
+Fatin‬: Hi Tashnim. I want to download the latest sign up page. Can you help me?
+
+Fatin‬: I cant see such a page on your branch
+
+Tashnim ‬: Maybe cuz it's not approved yet, give me five min sorry I'll upload it to my branch 
+
+Fatin: Kk
+
+Andrew‬: I reviewed and merged it
+
+Andrew‬: So you edited the design inside html file?
+
+Tashnim ‬: Yeah and I think you should write the JavaScript functions on that same ejs file because it's not exactly an HTML file and it's referred to something so I didn't wanna mess it up
+
+Tashnim ‬: We couldn't make direct changes to the site because we didn't know how to set up mongodb on my computer, so hopefully Ali can copy paste our code into the actual site
+
+Andrew‬: Hey guys :)
+
+Andrew ‬: We thought of something to do
+
+Andrew: We can maybe make a profile setting page so that user can modify personal information :)
+
+Andrew ‬: How does that sound?
+
+Tashnim ‬: That sounds like a great idea
+
+Fatin‬: We just finished our meeting. We coded js functions to validate the student id as well as the minimum length of a new password.
+
+Andrew ‬: It's small features but we thought it will be good to have it
+
