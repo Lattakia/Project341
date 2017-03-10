@@ -50,6 +50,13 @@
 			}
 			
 		
+		searchbox
+		{
+			display: inline-block;
+			font-size: 50px;
+			padding-top: 50px; 
+		}
+		
 		ul
 			{
 				font-size: 22px;
@@ -80,18 +87,21 @@
 		<h1>Forum Page</h1>
 	</div>
 	
-	<div class="questions">
-	<div class="center">
-	
-	<ul>
-		<li>What are user stories?</li>
-		<li>How to make a burndown chart?</li>
-		<li>What is the waterfall method?</li>
-		<li>How to make an issue on github?</li>
-		<li>What is a sprint?</li>
-	</ul>
-	
+	<div class="searchbox">
+	<form action="">
+	<input type="text" name="search" placeholder="Search for a post..." size="50">
+	<input type="submit" value="go">
+	</form>
 	</div>
+	
+	<div class="questions">
+	<ul>
+		<li><a href="">What are user stories?</a></li>
+		<li><a href="">How to make a burndown chart?</a></li>
+		<li><a href="">What is the waterfall method?</a></li>
+		<li><a href="">How to make an issue on github?<a></li>
+		<li><a href="">What is a sprint?</a></li>
+	</ul>
 	</div>
 
 </body>
