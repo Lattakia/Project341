@@ -86,7 +86,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 
         res.render('signup.ejs', { message: req.flash('loginMessage') }); 
     });*/
-
+   
     
     app.get('/signup', function(req, res) {
 
@@ -119,6 +119,16 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 	
 	app.get('/logout', function(req, res) {
         res.redirect('/');
+    });
+    
+    app.get('/surveys-students',function(req,res)
+           {
+        res.render('surveys-students.ejs')
+    });
+    
+    app.get('/surveys-validated',function(req,res)
+           {
+        res.render('ss-results')
     });
 
 	app.post('/submitted', function(req,res,next) {
