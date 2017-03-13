@@ -1,0 +1,354 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+
+<head>
+    <title>Connect Concordia</title>
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+    <!-- load bootsrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="cc-favicon.png">
+    <!-- load fontawesome -->
+    <style>
+        .funkyradio div {
+  clear: both;
+  overflow: hidden;
+}
+
+.funkyradio label {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-weight: normal;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+  display: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  text-indent: 3.25em;
+  margin-top: 0em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  background: #8f2539;
+  border-radius: 3px 0 0 3px;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+  color: #888;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #C2C2C2;
+}
+
+.funkyradio input[type="radio"]:checked ~ label,
+.funkyradio input[type="checkbox"]:checked ~ label {
+  color: #FFFFFF;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #FFFFFF;
+}
+
+.funkyradio input[type="radio"]:focus ~ label:before,
+.funkyradio input[type="checkbox"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999;
+}
+
+.funkyradio-default input[type="radio"]:checked ~ label:before,
+.funkyradio-default input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #FFFFFF;
+}
+
+.funkyradio-primary input[type="radio"]:checked ~ label:before,
+.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #FFFFFF;
+}
+
+.funkyradio-success input[type="radio"]:checked ~ label:before,
+.funkyradio-success input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #FFFFFF;
+}
+
+.funkyradio-danger input[type="radio"]:checked ~ label:before,
+.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #d9534f;
+}
+
+.funkyradio-warning input[type="radio"]:checked ~ label:before,
+.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #f0ad4e;
+}
+
+.funkyradio-info input[type="radio"]:checked ~ label:before,
+.funkyradio-info input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5bc0de;
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        form {
+            padding: 3px;
+            width: 100%;
+            font-size:20px;
+        }
+        
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+        
+        
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #messages li {
+            padding: 5px 10px;
+        }
+        
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+        
+        body {
+            background-color: rgb(143,37,57);
+            font: 16px Helvetica, Arial;
+        }
+        
+        nav {
+            text-align: right;
+            padding: 20px;
+        }
+        
+        nav ul li {
+            display: inline;
+        }
+        
+        nav ul li a:link,
+        nav ul li a:visited {
+            color: #555;
+            text-decoration: none;
+            padding: 9px;
+        }
+        
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background: #eee;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border: solid 1px #ddd;
+            font-family: Arial, sans-serif;
+        }
+        
+        footer ul {
+            padding: 13px;
+        }
+        
+        footer ul li {
+            display: inline;
+        }
+        
+        footer ul li a:link,
+        footer ul li a:visited {
+            color: #555;
+            text-decoration: none;
+            padding: 9px;
+        }
+        
+        footer ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        footer ul.right-footer {
+            float: right;
+        }
+        
+        footer ul.left-footer {
+            float: left;
+        }
+	#topbar
+        {
+		width:100%;
+		height:150px;
+		background-color:rgb(143,37,57);
+	}
+            
+	#logo
+	{
+		z-index: 1000;
+		width:700px;
+		height:150px;
+	}
+	.content{
+	    min-height:750px;
+        height:100%;
+        background-image: url("background-students.jpg");
+	    margin:0;
+	    padding:0;
+	    background-attachment:fixed;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	}
+	.info{
+	    width:70%;
+		height:100%;
+        margin: 0 auto;
+	    padding:80px;
+	    font-size:22px;
+	    text-align: justify;
+	    color:white;
+		background:rgba(0,0,0,0.5);
+	}
+	h1{
+		font-size:36px !important ;
+	}
+	.footer {
+	  position: fixed;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  padding: 1rem;
+	  background-color: #efefef;
+	  text-align: center;
+      color:grey;
+	}
+	p {
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
+	.button {
+	    background-color: rgb(143,37,57); 
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    font-size: 16px;
+	}
+	.button:hover {
+	    color: black;
+	    text-decoration: none;
+	-webkit-transition-duration: 0.4s; /* Safari */
+   	transition-duration: 0.4s;
+	}
+    </style>
+</head>
+
+<body>
+
+<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+
+<div class="content">
+		<div class="info">
+	<h1 align="center"><span class="text-center"></span> Survey Questions</h1>
+<!-- show any messages that come back with authentication -->
+            
+     <div id="form">
+        <form>
+		<div class="form-group">
+           <h2>Question 1</h2>
+            <h4>Are the lecture notes written in a clear way?</h4>
+
+    <div class="funkyradio">
+        <div class="funkyradio-default">
+            <input type="radio" name="radio" id="radio1" />
+            <label for="radio1">Strongly Agree</label>
+        </div>
+        <div class="funkyradio-primary">
+            <input type="radio" name="radio" id="radio2"/>
+            <label for="radio2">Agree</label>
+        </div>
+        <div class="funkyradio-success">
+            <input type="radio" name="radio" id="radio3" />
+            <label for="radio3">Somewhat Agree</label>
+        </div>
+        <div class="funkyradio-success">
+            <input type="radio" name="radio" id="radio4" />
+            <label for="radio4">Neither Agree or Disagree</label>
+        </div>   
+        <div class="funkyradio-success">
+            <input type="radio" name="radio" id="radio5" />
+            <label for="radio5">Disagree</label>
+        </div>
+         <div class="funkyradio-success">
+            <input type="radio" name="radio" id="radio6" />
+            <label for="radio6">Strongly Disagree</label>
+             <br/>
+             <br/>
+        <h4>Please include any additional comments below</h4>
+             <br/>
+        <div class="container">
+
+    <div class="form-group">
+      <textarea class="form-control" rows="10" id="comment"></textarea>
+    </div>
+        </div>
+       
+</div>
+    </div>
+            
+        </div>
+		<div id="buttons">
+            <a href="ss-results.ejs"><button class="button">Submit</button></a>
+		</div>	
+    </form>
+
+
+    <hr>
+
+    <p>Return <a href="/">Home</a></p>
+	    </div>
+        </div>
+        </div>
+<div class="footer">&#169; SOEN 341</div>
+
+</body>
+
+</html>
