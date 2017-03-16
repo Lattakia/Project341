@@ -1,0 +1,201 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+
+    <head>
+        <title>Connect Concordia</title>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+        <!-- load bootsrap css -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="cc-favicon.png">
+        <!-- load fontawesome -->
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            form {
+                padding: 3px;
+                width: 100%;
+            }
+            form input {
+                border: 0;
+                padding: 10px;
+                width: 90%;
+                margin-right: .5%;
+            }
+            #messages {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            #messages li {
+                padding: 5px 10px;
+            }
+            #messages li:nth-child(odd) {
+                background: #eee;
+            }
+            body {
+                background-color: rgb(143,37,57);
+                font: 16px Helvetica, Arial;
+            }
+            nav {
+                text-align: right;
+                padding: 20px;
+            }
+            nav ul li {
+                display: inline;
+            }
+            nav ul li a:link,
+            nav ul li a:visited {
+                color: #555;
+                text-decoration: none;
+                padding: 9px;
+            }
+            nav ul li a:hover {
+                text-decoration: underline;
+            }
+            footer {
+                background: #eee;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                border: solid 1px #ddd;
+                font-family: Arial, sans-serif;
+            }
+            footer ul {
+                padding: 13px;
+            }
+            footer ul li {
+                display: inline;
+            }
+            footer ul li a:link,
+            footer ul li a:visited {
+                color: #555;
+                text-decoration: none;
+                padding: 9px;
+            }
+            footer ul li a:hover {
+                text-decoration: underline;
+            }
+            footer ul.right-footer {
+                float: right;
+            }
+            footer ul.left-footer {
+                float: left;
+            }
+            #topbar
+            {
+                width:100%;
+                height:150px;
+                background-color:rgb(143,37,57);
+            }
+            #logo
+            {
+                z-index: 1000;
+                width:700px;
+                height:150px;
+            }
+            .content{
+                min-height:750px;
+                height:100%;
+                background-image: url("concordia2.jpg");
+                margin:0;
+                padding:0;
+                background-attachment:fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .info{
+                width:70%;
+                height:100%;
+                margin: 0 auto;
+                padding:150px;
+                font-size:22px;
+                text-align: justify;
+                color:white;
+                background:rgba(0,0,0,0.5);
+            }
+            h1{
+                font-size:36px !important ;
+            }
+            .footer {
+                position: fixed;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                padding: 1rem;
+                background-color: #efefef;
+                text-align: center;
+                color:grey;
+            }
+            p {
+                margin: 0;
+                padding: 0;
+                color: white;
+            }
+            .button {
+                background-color: rgb(143,37,57); 
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+            }
+            .button:hover {
+                color: black;
+                text-decoration: none;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+
+        <div class="content">
+            <div class="info">
+			            
+                <h1><span class="fa fa-sign-in"></span> Sign in to Connect Concordia</h1>
+				<!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger">
+                    <%= message %>
+                </div>
+                <% } %>
+     <div id="form">
+
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>      
+                <br/>                
+                <div id="buttons">     
+                    <button type="submit" class="button">Login</button>
+                </div>
+                </form>
+                <hr>   
+                <p>Need an account? <a href="/signup">Signup</a></p>
+                <p>Or go <a href="/">home</a>.</p>
+
+            </div>
+                        </div>
+
+            </div>
+
+
+
+            <div class="footer">&#169; SOEN 341</div>
+
+    </body>
+
+</html>
