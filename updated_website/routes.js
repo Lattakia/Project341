@@ -1,3 +1,16 @@
+var MongoClient = require('mongodb').MongoClient
+
+var URL = 'mongodb://localhost:27017/mydatabase'
+MongoClient.connect(URL, function(err, db) {
+  if (err) return
+  var collection = db.collection('food')
+  collection.insert({name: "FF", tasty: true}, function(err, result) {
+    collection.find({name: 'taco'}).toArray(function(err, docs) {
+      db.close()
+    })
+  })
+});
+
 passport = require('passport');
 app = require('express')();
 
@@ -46,7 +59,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     }), function(req, res) {
     var username = req.body.email;
     var collection = db.collection('emails_tester');
- 
         
    /* collection.insert({email:username}, function(err, docs) {
         collection.count(function(err, count) {
@@ -124,11 +136,52 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     app.get('/surveys-students',function(req,res)
            {
         res.render('surveys-students.ejs')
+    
+/*var MongoClient = require('mongodb').MongoClient
+
+var URL = 'mongodb://localhost:27017/mydatabase'
+MongoClient.connect(URL, function(err, db) {
+  if (err) return
+
+  var collection = db.collection('foods')
+  collection.insert({name: req.body, tasty: true}, function(err, result) {
+    collection.find({name: 'taco'}).toArray(function(err, docs) {
+      console.log(docs[0])
+      db.close()
+    })
+  })
+});*/
     });
     
-    app.get('/surveys-validated',function(req,res)
+    app.post('/surveys-students',function(req,res)
            {
+        //res.redirect('ss-results.ejs')
+
+    });
+    
+
+    
+    app.get('/surveys',function(req,res)
+        {
         res.render('ss-results')
+        console.log(req.query.radioo)// works!!
+        //console.log(req.query.firstname)
+    });
+    
+var bodyParser = require('body-parser'); 
+app.use(bodyParser.json()); // to support JSON bodies
+app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
+
+app.post('/surveys',function(req,res){
+//console.log(req.body.radioo);
+
+});
+    
+   
+    
+    app.get('/forum',function(req,res)
+           {
+        res.render('forum')
     });
 
 	app.post('/submitted', function(req,res,next) {
@@ -152,7 +205,8 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 		
     //Subject and text data  
       subject: 'Successful Account Creation Connect Concordia',
-      html: 'Hi, <br/> <script>document.write(req.params.mail)</script><br/>This is just to confirm that you have successfully created an account with Connect Concordia. You will now be able to enjoy a state of the art service designed to faciliate communication between school faculty.'
+      html: 'Hi,'+
+        '<br/>This is just to confirm that you have successfully created an account with Connect Concordia. You will now be able to enjoy a state of the art service designed to faciliate communication between school faculty.'
     }
      
 
