@@ -180,7 +180,7 @@
         footer {
             background: #eee;
             position: fixed;
-            bottom: 0;
+            bottom: 0; 
             width: 100%;
             border: solid 1px #ddd;
             font-family: Arial, sans-serif;
@@ -291,34 +291,41 @@
 <!-- show any messages that come back with authentication -->
             
      <div id="form">
-        <form>
+        <form action="/surveys">
 		<div class="form-group">
            <h2>Question 1</h2>
             <h4>Are the lecture notes written in a clear way?</h4>
-
+            
+         
+            
     <div class="funkyradio">
         <div class="funkyradio-default">
-            <input type="radio" name="radio" id="radio1" />
+            <input type="radio" name="radioo" id="radio1" value="StronglyAgree" />
             <label for="radio1">Strongly Agree</label>
         </div>
         <div class="funkyradio-primary">
-            <input type="radio" name="radio" id="radio2"/>
+            <input type="radio" name="radioo" id="radio2" 
+            value="Agree"/>
             <label for="radio2">Agree</label>
         </div>
         <div class="funkyradio-success">
-            <input type="radio" name="radio" id="radio3" />
+            <input type="radio" name="radioo" id="radio3" 
+            value="SomewhatAgree"/>
             <label for="radio3">Somewhat Agree</label>
         </div>
         <div class="funkyradio-success">
-            <input type="radio" name="radio" id="radio4" />
+            <input type="radio" name="radioo" id="radio4" 
+            value="Neither Agree or Disagree"/>
             <label for="radio4">Neither Agree or Disagree</label>
         </div>   
         <div class="funkyradio-success">
-            <input type="radio" name="radio" id="radio5" />
+            <input type="radio" name="radioo" id="radio5"
+            value="Disagree"/>
             <label for="radio5">Disagree</label>
         </div>
          <div class="funkyradio-success">
-            <input type="radio" name="radio" id="radio6" />
+            <input type="radio" name="radioo" id="radio6" 
+            value="Strongly Disagree"/>
             <label for="radio6">Strongly Disagree</label>
              <br/>
              <br/>
@@ -336,7 +343,7 @@
             
         </div>
 		<div id="buttons">
-            <a href="ss-results.ejs"><button class="button">Submit</button></a>
+            <a href="/surveys-students?"><button class="button">Submit</button></a>
 		</div>	
     </form>
 
