@@ -1,15 +1,15 @@
-var MongoClient = require('mongodb').MongoClient
+/*var MongoClient = require('mongodb').MongoClient
 
 var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('food')
-  collection.insert({name: "FF", tasty: true}, function(err, result) {
+  collection.insert({name: "helloclau", tasty: true}, function(err, result) {
     collection.find({name: 'taco'}).toArray(function(err, docs) {
       db.close()
     })
   })
-});
+});*/
 
 passport = require('passport');
 app = require('express')();
@@ -136,21 +136,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     app.get('/surveys-students',function(req,res)
            {
         res.render('surveys-students.ejs')
-    
-/*var MongoClient = require('mongodb').MongoClient
 
-var URL = 'mongodb://localhost:27017/mydatabase'
-MongoClient.connect(URL, function(err, db) {
-  if (err) return
-
-  var collection = db.collection('foods')
-  collection.insert({name: req.body, tasty: true}, function(err, result) {
-    collection.find({name: 'taco'}).toArray(function(err, docs) {
-      console.log(docs[0])
-      db.close()
-    })
-  })
-});*/
     });
     
     app.post('/surveys-students',function(req,res)
@@ -165,6 +151,22 @@ MongoClient.connect(URL, function(err, db) {
         {
         res.render('ss-results')
         console.log(req.query.radioo)// works!!
+         console.log(req.query.mylittletextbox)// works!!
+        //console.log(a);
+    var MongoClient = require('mongodb').MongoClient
+
+var URL = 'mongodb://localhost:27017/mydatabase'
+MongoClient.connect(URL, function(err, db) {
+  if (err) return
+
+  var collection = db.collection('surveysvalues')
+  collection.insert({question1:req.query.radioo, comments: req.query.mylittletextbox}, function(err, result) {
+    collection.find({name: req.query.radioo}).toArray(function(err, docs) {
+      console.log(docs[0])
+      db.close()
+    })
+  })
+});
         //console.log(req.query.firstname)
     });
     
@@ -188,6 +190,7 @@ app.post('/surveys',function(req,res){
 
     passport.authenticate('local-signup',function(err,user,info)
     { 
+        var a = req.body.email;
         if (err) { return next(err); }
     // Redirect if it fails
     if (!user) { return res.redirect('/signup'); }
