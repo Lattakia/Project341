@@ -106,35 +106,76 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
     
-    app.get('/chat', isLoggedIn, function(req, res) {
-        res.render('chat.ejs', {
+    
+    app.get('/chat', checkAuthentication, function(req, res) {
+        res.render('chat.ejs', { email:req.session.session
             //user : req.user // get the user out of session and pass to template
         });
+    
+        
+        console.log(req.session.session);
+        // passing data from one page to the other
+    
     });
+    function checkAuthentication(req,res,next){
+    if(req.isAuthenticated()){
+        //if user is looged in, req.isAuthenticated() will return true 
+        next();
+    } else{
+        res.redirect("/");
+    }
+}
 	
-
      app.get('/login', function(req, res) {
 
-        res.render('login.ejs', { message: req.flash('loginMessage') }); 
+        res.render('login.ejs', { message: req.flash('loginMessage')
+        }); 
     });
 
 	app.get('/submitted', function(req, res) {
 
-        res.render('chat.ejs', { message: req.flash('loginMessage') }); 
+        res.render('chat.ejs', { message: req.flash('loginMessage')}); 
+        
     });
     // process the login form
-    app.post('/login', passport.authenticate('local-login', {
+    /*app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/chat', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         //failureFlash : true // allow flash messages
-    }));
+    }));*/
+  var session = require('express-session'); 
+ app.post('/login', function(req, res, next) {
+  passport.authenticate('local-login', function(err, user, info) {
+      console.log(req.body.email);
+    if (err) { return next(err); }
+    // Redirect if it fails
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      // Redirect if it succeeds
+        req.session.session = {
+            title: req.body.email
+        };
+      return res.redirect('chat');
+    });
+  })(req, res, next);
+});
+   
 	
 	app.get('/logout', function(req, res) {
+        req.logout();
         res.redirect('/');
+   
     });
+  
     
-    app.get('/surveys-students',function(req,res)
-           {
+    app.get('/surveys-students',checkAuthentication,function(req,res)
+    {
+        
+        req.session.session = {
+            title: req.body.email
+        };
+        console.log(req.session.session);
         res.render('surveys-students.ejs')
 
     });
@@ -145,13 +186,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 
     });
     
-
-    
-    app.get('/surveys',function(req,res)
+    app.get('/surveys-s2',checkAuthentication,function(req,res)
         {
         res.render('ss-results')
         console.log(req.query.radioo)// works!!
          console.log(req.query.mylittletextbox)// works!!
+          console.log(req.query.fname)// works!!
         //console.log(a);
     var MongoClient = require('mongodb').MongoClient
 
@@ -160,7 +200,7 @@ MongoClient.connect(URL, function(err, db) {
   if (err) return
 
   var collection = db.collection('surveysvalues')
-  collection.insert({question1:req.query.radioo, comments: req.query.mylittletextbox}, function(err, result) {
+  collection.insert({question1:req.query.radioo, comments: req.query.mylittletextbox, input:req.query.fname}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
       console.log(docs[0])
       db.close()
@@ -175,7 +215,8 @@ app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
 app.post('/surveys',function(req,res){
-//console.log(req.body.radioo);
+
+    //console.log(req.body.radioo);
 
 });
     
@@ -247,9 +288,17 @@ function isLoggedIn(req, res, next) {
 
     // if user is authenticated, continue
     if (req.isAuthenticated())
-        return next();
+        {
+           return next();  
+        }
+       
 
-    // otherwise redirect them to the home page
-    res.redirect('/');
+    else
+        { // otherwise redirect them to the home page
+   
+            res.redirect('/');
+            
+        }
+   
 }
 
