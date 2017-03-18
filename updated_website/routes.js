@@ -111,10 +111,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         res.render('chat.ejs', { email:req.session.session
             //user : req.user // get the user out of session and pass to template
         });
+        
     
         
         console.log(req.session.session);
         // passing data from one page to the other
+        app.set('data', req.session.session);
     
     });
     function checkAuthentication(req,res,next){
@@ -169,16 +171,70 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     });
   
     
-    app.get('/surveys-students',checkAuthentication,function(req,res)
+    app.get('/surveys-students',checkAuthentication,checkperson,function(req,res)
     {
         
         req.session.session = {
             title: req.body.email
         };
-        console.log(req.session.session);
-        res.render('surveys-students.ejs')
+        /*res.render('surveys-students.ejs',{retrievedData : app.get('data')})*/
+        var temp = app.get('data').title;
+        console.log(app.get('data'));
+       
+        //app.set('d', req.session);
 
     });
+    function checkperson(req, res,db)
+    {
+  var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
+
+MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('users');
+    var person = app.get('data').title;
+
+    // Locate all the entries using find
+    collection.find().toArray(function(err, results) {
+        var resa = results;
+        var saveindex = 10;
+        for(i=0;i<resa.length;i++)
+        {
+            if(person == resa[i]['local']['email'])
+            {
+                    saveindex = i;
+            }
+           
+        }
+         
+       
+        var emailofuser = resa[saveindex]['local']['email'];
+        var accounttypeuser = resa[saveindex]['local']['accounttype'];
+        console.log("HEH");
+        console.log(emailofuser);  
+
+        // Andrew, Ali and Ahmad, look here
+       
+        if(accounttypeuser == "student")
+        {
+           // here, we replace the email with the values returned from the find query above. For the query, we need to select 
+           res.render('surveys-students.ejs');     
+        }
+        else if (accounttypeuser == "teacherta")
+        {
+            res.render('surveys-teachers.ejs');
+            // render prof page if account is a teacher/ta
+            // Andrew, please edit the surveys-teachers.ejs page, add your code !!!
+            
+        }
+        db.close();
+        });
+   
+});
+    
+    
+    }
     
     app.post('/surveys-students',function(req,res)
            {
