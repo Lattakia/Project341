@@ -58,6 +58,7 @@ module.exports = function(passport) {
 
         var firstname = req.body.firstname;
         var lastname = req.body.lastname;
+        var accounttype = req.body.accounttype;
         process.nextTick(function() {
 
      
@@ -79,6 +80,7 @@ module.exports = function(passport) {
                 newUser.local.firstname = firstname;
                 newUser.local.lastname = lastname;
                 newUser.local.email    = email;
+                newUser.local.accounttype = accounttype;
                 newUser.local.password = newUser.generateHash(password);
 
                 // save the user
