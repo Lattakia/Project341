@@ -1,93 +1,104 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var mongoose = require('mongoose');
-var db = require('./database.js');
+// load passport-local as a strategy
+var LocalStrategy   = require('passport-local').Strategy;
 
-var passport = require('passport');
-var flash    = require('connect-flash');
+// load the user model
+var User = require('./user.js');
 
-var morgan       = require('morgan');
-var passportSocketIo = require('passport.socketio');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
-var redisStore = require('connect-redis')(session);
-var sessionStore = new redisStore({
-        host: 'localhost',
-        port: 6379,
-        client: require('redis').createClient(),
-        ttl: 300
+// expose this function to our app using module.exports
+module.exports = function(passport) {
+    
+    // passport session setup
+
+    // function to serialize the user for the session
+    passport.serializeUser(function(user, done) {
+        done(null, user.id);
     });
 
-mongoose.connect(db.url);
+    // function to deserialize the user
+    passport.deserializeUser(function(id, done) {
+        User.findById(id, function(err, user) {
+            done(err, user);
+        });
+    });
 
-require('./passport')(passport)
-
-app.use(morgan('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
-
-app.set('view engine', 'ejs'); // set up ejs for templating
-
-// required for passport
-app.use(session({
     
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: process.env.ENVIRONMENT !== 'development' && process.env.ENVIRONMENT !== 'test',
-        maxAge: 2419200000
-  },
-    secret: 'goodheavenslookatthetime'
-}));
+    // Local login auth
 
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+    passport.use('local-login', new LocalStrategy({
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true 
+    },
+    function(req, email, password, done) { 
 
-// routes ======================================================================
-require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+        User.findOne({ 'local.email' :  email }, function(err, user) {
+            
+            if (err)
+                return done(err);
 
-app.get('/', function(req, res){
-  res.sendfile('./views/index.ejs');
-});
+            // when no user is found
+            if (!user)
+                return done(null, false, req.flash('loginMessage', 'No user found.'));
 
-// NEW
-app.use(function(req, res, next) {
-    if(req.url.match('./views/profile.ejs'))
-       passport.session()(req, res, next)
-    else
-        next();
-});
+            // if user is found but password is incorrect
+            if (!user.validPassword(password))
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 
-io.use(passportSocketIo.authorize({
-  key: 'connect.sid',
-  secret: 'goodheavenslookatthetime',
-  store: sessionStore,
-  passport: passport,
-  cookieParser: cookieParser
-}));
+            return done(null, user);
+        });
 
-io.on('connection', function(socket) {
+    }));
+    
+    passport.use('local-signup', new LocalStrategy({
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true 
+    },
+    function(req, email, password, done) {
 
-  socket.on('chat message', function(msg) {
-  	// user data from the socket.io passport middleware
-    if (socket.request.user && socket.request.user.logged_in) {
-      io.emit('chat message', msg);
-        console.log('user is authenticated!');
-    }
-  });
-});
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
+        var accounttype = req.body.accounttype;
+        process.nextTick(function() {
 
-//io.on('connection', function(socket){
-//socket.on('chat message', function(msg){
-//io.emit('chat message', msg);
-//  });
-//});
+     
+        User.findOne({ 'local.email' :  email }, function(err, user) {
+            // if there are any errors, return the error
+            if (err)
+                return done(err);
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
+            // verify if there is already a user with that email
+            if (user) {
+                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+            } else {
+
+                // if there is no user with that email
+                // create the user
+                var newUser            = new User();
+
+                // set the user's local credentials
+                newUser.local.firstname = firstname;
+                newUser.local.lastname = lastname;
+                newUser.local.email    = email;
+                newUser.local.accounttype = accounttype;
+                newUser.local.password = newUser.generateHash(password);
+
+                // save the user
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
+            }
+
+        });    
+
+        });
+
+    }));
+  
+
+};
+
+
 
