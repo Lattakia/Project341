@@ -4,6 +4,10 @@
 
 <head>
     <title>Connect Concordia</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -170,6 +174,35 @@
 	-webkit-transition-duration: 0.4s; /* Safari */
    	transition-duration: 0.4s;
 	}
+        
+select {
+  background: transparent;
+  width: 150px;
+  font-size: 16px;
+  border: 1px solid #111;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last:center;
+  color:#000000;
+  background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEEEEE;
+}
+
+/* CAUTION: IE hackery ahead */
+select::-ms-expand { 
+    display: none; /* remove default arrow on ie10 and ie11 */
+}
+
+/* target Internet Explorer 9 to undo the custom arrow */
+@media screen and (min-width:0\0) {
+    select {
+        text-indent: 5px; 
+        background:none\9;
+    } 
+}
+
+
     </style>
 </head>
 
@@ -188,7 +221,7 @@
                 <% } %>
                         <!-- SIGNUP FORM -->
      <div id="form">
-        <form action="/signup" method="post">
+        <form action="/submitted" method="post">
 		<div class="form-group">
             <label>First Name</label>
             <input type="text" class="form-control" name="firstname">
@@ -213,6 +246,18 @@
             <label>Confirm Password</label>
             <input type="password" class="form-control" name="confirmpassword">
         </div>
+            
+        <div class="form-group">
+            <label>Account Type</label>
+            <br/>
+        <select name="accounttype">
+            <label>Password</label>
+            <option value="student">Student</option>
+            <option value="teacherta">Teacher/TA</option>
+        </select>
+      
+        </div>        
+    
 		<div id="buttons">
 			<button type="submit" class="button">Create Account</button><br/>
 			<br/>
