@@ -158,7 +158,7 @@
         margin: 0;
         padding: 0;
         color: white;
-    }
+    	}
 	.button {
 	    background-color: rgb(143,37,57); 
 	    border: none;
@@ -175,19 +175,17 @@
    	transition-duration: 0.4s;
 	}
         
-select {
-  background: transparent;
-  width: 150px;
-  font-size: 16px;
-  border: 1px solid #111;
-  height: 34px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  text-align-last:center;
-  color:#000000;
-  background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEEEEE;
-}
+	select {
+	  width: 150px;
+	  font-size: 16px;
+	  border: 1px solid #111;
+	  height: 34px;
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	  appearance: none;
+	  text-align-last:center;
+	  color:#000000;
+	}
 
 /* CAUTION: IE hackery ahead */
 select::-ms-expand { 
@@ -251,12 +249,11 @@ select::-ms-expand {
             <label>Account Type</label>
             <br/>
         <select name="accounttype">
-            <label>Password</label>
             <option value="student">Student</option>
             <option value="teacherta">Teacher/TA</option>
         </select>
-      
-        </div>        
+        </div>     
+	<br>
     
 		<div id="buttons">
 			<button type="submit" class="button">Create Account</button><br/>

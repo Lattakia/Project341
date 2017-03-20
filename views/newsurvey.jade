@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h3= title
+  form#form_add_survey(name="addsurvey", method="post", action="/addsurvey")
+    span Name
+    span &nbsp;
+    input#input_name(type="text", placeholder="survey", name="survey")
+    br
+    br
+    span Question1
+    span &nbsp;
+    input#input_question1(type="text", placeholder="question1", name="question1")
+    br
+    br
+
+    button#submit_survey(type="submit") submit

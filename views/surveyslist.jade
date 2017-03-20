@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h3.
+    Surveys
+  ul
+    each survey, i in surveyslist
+      li#survey_list_item
+        a(href='#') #{survey.comments} answer was #{survey.question1}

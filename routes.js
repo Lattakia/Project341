@@ -92,6 +92,8 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     app.get('/', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
     });
+
+
     
      // Login page
     /*app.get('/signup', function(req, res) {
@@ -275,12 +277,56 @@ app.post('/surveys',function(req,res){
     //console.log(req.body.radioo);
 
 });
+
+router.get('/thelist', function(req, res){
+
+  // Get a Mongo client to work with the Mongo server
+  var MongoClient = mongodb.MongoClient;
+
+  // Define where the MongoDB server is
+  var url = 'mongodb://localhost:27017/sampsite';
+
+  // Connect to the server
+  MongoClient.connect(url, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the Server', err);
+  } else {
+    // We are connected
+    console.log('Connection established to', url);
+
+    // Get the documents collection
+    var collection = db.collection('students');
+
+    // Find all students
+    collection.find({}).toArray(function (err, result) {
+      if (err) {
+        res.send(err);
+      } else if (result.length) {
+        res.render('studentlist',{
+
+          // Pass the returned database documents to Jade
+          "studentlist" : result
+        });
+      } else {
+        res.send('No documents found');
+      }
+      //Close connection
+      db.close();
+    });
+  }
+  });
+});
+
+    app.get('/account-student', function (req, res) 
+    {
+        res.render('account-student');
+    });
     
    
     
     app.get('/forum',function(req,res)
-           {
-        res.render('forum')
+    {
+         res.render('forum')
     });
 
 	app.post('/submitted', function(req,res,next) {
