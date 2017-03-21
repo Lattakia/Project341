@@ -1,0 +1,356 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+
+<head>
+    <title>Connect Concordia</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootsrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="cc-favicon.png">
+    <!-- load fontawesome -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+	
+		html {
+			height: 100%;
+		}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: rgb(143,37,57);
+            font: 16px Helvetica, Arial;
+			background:url('https://c1.staticflickr.com/6/5006/5279916243_96267b8e32_b.jpg');
+		    background-attachment:fixed;
+	        background-repeat: no-repeat;
+	        background-size: cover;
+        }
+        
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 45px;
+            width: 100%;
+        }
+        
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+        
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+        
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #messages li {
+            padding: 5px 10px;
+        }
+        
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+        
+        
+        nav {
+            text-align: right;
+            padding: 20px;
+        }
+        
+        nav ul li {
+            display: inline;
+        }
+        
+        nav ul li a:link,
+        nav ul li a:visited {
+            color: #555;
+            text-decoration: none;
+            padding: 9px;
+        }
+        
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background: #eee;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border: solid 1px #ddd;
+            font-family: Arial, sans-serif;
+        }
+        
+        footer ul {
+            padding: 13px;
+        }
+        
+        footer ul li {
+            display: inline;
+        }
+        
+        footer ul li a:link,
+        footer ul li a:visited {
+            color: #555;
+            text-decoration: none;
+            padding: 9px;
+        }
+        
+        footer ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        footer ul.right-footer {
+            float: right;
+        }
+        
+        footer ul.left-footer {
+            float: left;
+        }
+        
+        #topbar{
+            width:100%;
+            height:150px;
+            background-color:rgb(143,37,57);
+            z-index:1000;
+            position:fixed;
+            font: 16px Helvetica, Arial;
+        }
+
+        #logo{
+            z-index: 1000;
+            width:700px;
+            height:150px;
+            z-index:1000;
+        }
+        
+        #user{
+            color:white;
+            float:right;
+            position:relative;
+            font: 16px Helvetica, Arial;
+        }
+        
+        .content{
+            min-height:750px;
+            height:100%;
+            color:black;
+            margin:0;
+            padding:0;
+        }
+        .info{
+            width:70%;
+            height:1000px;
+            margin: 0 auto;
+            padding:200px;
+            font-size:22px;
+            text-align: justify;
+            color:white;
+            background:rgba(0,0,0,0.5);
+        }
+        h1{
+            font-size:36px !important ;
+            text-align:center;
+        }
+        .info ul{
+            list-style-type: square;
+        }
+        .footer {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 1rem;
+          background-color: #efefef;
+          text-align: center;
+          color:grey;
+        }
+        
+        .button {
+            background-color: rgb(143,37,57); 
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        
+        .button:hover {
+            color: black;
+            text-decoration: none;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+        
+        /* USER TAB */
+        
+        .dropdown button{
+            color: white;
+           background-color:rgb(143,37,57);
+            border:none;
+        }
+        
+        
+        .dropdown-toggle:active, .open .dropdown-toggle {
+            background-color:rgb(143,37,57) !important; 
+            border:none !important;
+        }
+        
+        .dropdown-toggle:hover, .open .caret {
+            background-color:rgb(143,37,57) !important; 
+            border:none !important;
+        }
+        
+        
+        /***** SIDEBAR *****/
+         .tab {
+            position: fixed; 
+            border: none;
+            background-color: #24292E;
+            width: 15%;
+            height: 100%;
+            top: 0;
+            left:0;
+            z-index:0;
+        }
+
+        /* Style the buttons inside the tab */
+        .tablinks {
+            position:relative;
+            display: block;
+            background-color: inherit;
+            color: #eee;
+            font-weight:bold;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index:0;
+        }
+        
+        /* Change background color of buttons on hover */
+        .tablinks:hover {
+            background-color: #5F5F5F;
+            color:#e6ac00;
+            text-decoration:none;
+        }
+
+        #logout{
+            position:relative;
+            display: block;
+            background-color: #5F5F5F;
+            color: white;
+            font-weight:bold;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        #logout:hover{
+            color: #e6ac00;
+			text-decoration: none;
+			-webkit-transition-duration: 0.4s; /* Safari */
+			transition-duration: 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+    
+     <!--- SIDE MENU -----> 
+<div class="tab">
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <a href="/logout" id="logout"><span class="fa fa-user"></span>  Logout</a>
+    <br><br>
+    <a class="tablinks" href="/account-professor">Find a professor</a><br>
+    <a class="tablinks" href="/forum">Forum</a><br>
+    <a class="tablinks" href="/surveys-students">Survey</a><br>
+    <a class="tablinks" href="/surveys-students">Book Appointments</a>
+     <a class="tablinks" href="/chat">Chat</a><br>
+</div>
+
+    <!---- TOP BAR ------> 
+<div id="topbar">
+    <img src="logo2.png" id="logo" alt="Logo">
+    <div id="user">
+    
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"> Signed in as [username]
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="#">Profile Page</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+</div>
+    
+    <script>
+        $('#user1').onclick(function() {
+    $('#user1').css({
+        'background-color':'rgb(143,37,57)',
+        'border':'none',
+    });
+});
+    </script>
+    
+
+
+<div class="content">
+	
+	<div class="info">
+
+	<h1> <b>Welcome to Connect Concordia!</b></h1>
+
+	<br/>
+	 <ul>
+		<li>An appointment scheduler.</li>
+		<li>An instant messaging system between students and teachers.</li>
+		<li>A feature that allows professors to request feedback from students using surveys.</li>
+		<li>A forum section, where professors can post public questions using keywords denoted with hash tags.</li>
+        </ul>
+	<br>
+	</div>
+
+
+</div>
+
+
+<div class="footer">&#169; 2017 SOEN 341</div>
+
+
+</body>
+
+</html>

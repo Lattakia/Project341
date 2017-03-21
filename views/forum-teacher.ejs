@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Connect Concordia</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+    <!-- load bootsrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="cc-favicon.png">
+    <!-- load fontawesome -->
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<style>
+		#topbar{
+                width:100%;
+                height:150px;
+				background-color: rgb(143,37,57);
+        }
+		
+        #logo{
+                z-index: 1000;
+                width:700px;
+                height:150px;
+        }
+			
+		.title{
+				width:100%;
+				text-align:center;
+				display:inline-block;
+				/*background:rgba(143,37,57,0.8);*/
+				background:rgba(0,0,0,0.5);
+		}
+			
+		.questions{
+				width: 600px;
+				padding: 50px;
+				margin-top: 50px;
+				margin-bottom: 50px;
+				margin-left: auto;
+				margin-right: auto;
+				background:rgba(143,37,57,0.8);
+				position:relative;
+		}
+		
+		h1{
+				font-size: 50px;
+				color:rgb(202,181,118);
+		}
+			
+		
+		.searchbox{
+			/*display: inline-block;
+			padding-top: 50px; 
+			position: fixed;
+			background-color:black;
+			width: 20%;
+            top: 0;
+            left:0;
+            z-index:0;
+			*/
+			width: 300px;
+			padding: 50px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+			/*margin-left: auto;
+			margin-right: auto;*/
+			background:rgba(143,37,57,0.8);
+			position:relative;
+			
+		}
+		
+		.col-sm-4{
+			background-color:rgba(143,37,57,0.8);
+			padding:20px;
+			width:300px;
+			margin-right:60px;
+			border-radius: 10px;
+		}
+		
+		.col-sm-6{
+			background-color:rgba(143,37,57,0.8);
+			padding:20px;
+			border-radius:10px;
+		}
+		
+		a{
+			text-decoration:none;
+			color:#e6ac00;
+		}
+		
+		a:hover{
+			color:#24292E;
+			text-decoration:none;
+		}
+		
+		ul{
+				font-size: 22px;
+				
+		}
+		
+		.footer {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 1rem;
+          background-color: #efefef;
+          text-align: center;
+          color:grey;
+        }
+			
+		
+		body{
+                background-image: url("forum.jpg");
+                background-attachment:fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+				font-family: "Lato", sans-serif;
+				color: white;
+				
+        }
+		
+		#custom-search-input{
+			padding: 3px;
+			border: solid 1px #E4E4E4;
+			border-radius: 6px;
+			background-color: #fff;
+		}
+
+		#custom-search-input input{
+			border: 0;
+			box-shadow: none;
+			font-size: 14px;
+			height:20px;
+		}
+
+		#custom-search-input button{
+			margin: 2px 0 0 0;
+			background: none;
+			box-shadow: none;
+			border: 0;
+			color: #666666;
+			padding: 0 5px 0 10px;
+			border-left: solid 1px #ccc;
+		}
+
+		#custom-search-input button:hover{
+			border: 0;
+			box-shadow: none;
+			border-left: solid 1px #ccc;
+		}
+
+		#custom-search-input .glyphicon-search{
+			font-size: 14px;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<!-- topbar -->
+	<div id="topbar">
+		<img src="logo2.png" id="logo" alt="Logo">
+	</div>
+	
+	<!-- Title -->
+	<div class="title">
+		<h1>Forum</h1>
+	</div>
+	
+	<br><br>
+	<!-- Search bar -->
+    <form action="/forum-submitted">
+	<div class="col-sm-4">
+		
+		<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
+		<br>
+		<input type="submit" name = "tags" class="btn btn-default" value="Search">
+        
+		<h3>Want to find information on a certain topic?</h3>
+		See what your professors posted on the subject!
+		<br><br>
+		<div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="Search a post"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+        </div>
+	</div>
+    </form>
+    
+	<!-- Post column -->
+    <form action="/forum-submitted-2">
+	<div class="col-sm-6">
+	<label><span class="glyphicon glyphicon-pencil"></span> Create a Post</label>
+	<form>
+	  <div class="form-group">
+		
+		 <textarea class="form-control" rows="10" id="comment" name="mylittletextbox" placeholder="Add Your Post Here..."></textarea>
+          
+           
+	<br><br>
+	  </div>
+	  <div class="form-group">
+		<label>tags:</label>
+           <textarea class="form-control" rows="1" cols="50" name="tags" name="tags" placeholder="#tags"></textarea>
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+	
+	</div>
+	
+	<div class="footer">&#169; 2017 SOEN 341</div>
+        </form>
+
+</body>
+
+</html>
