@@ -133,6 +133,20 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         res.render('login.ejs', { message: req.flash('loginMessage')
         }); 
     });
+    function checkAuthentication(req,res,next){
+    if(req.isAuthenticated()){
+        //if user is looged in, req.isAuthenticated() will return true 
+        next();
+    } else{
+        res.redirect("/");
+    }
+}
+	
+     app.get('/login', function(req, res) {
+
+        res.render('login.ejs', { message: req.flash('loginMessage')
+        }); 
+    });
 
 	app.get('/submitted', function(req, res) {
 
@@ -181,7 +195,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         res.redirect('/');
    
     });
-  
+
     app.get('/account-professor',function(req, res) {
         res.render('account-professor.ejs');
    
@@ -198,7 +212,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         console.log(app.get('data'));
        
         //app.set('d', req.session);
-
     });
     function checkperson(req, res,db)
     {
@@ -358,7 +371,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
     
     
     }
-    
+
     //h
     app.get('/forum-submitted-2',checkAuthentication,function(req,res)
         {
@@ -551,5 +564,3 @@ function isLoggedIn(req, res, next) {
         }
    
 }
-
-
