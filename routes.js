@@ -133,6 +133,20 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         res.render('login.ejs', { message: req.flash('loginMessage')
         }); 
     });
+    function checkAuthentication(req,res,next){
+    if(req.isAuthenticated()){
+        //if user is looged in, req.isAuthenticated() will return true 
+        next();
+    } else{
+        res.redirect("/");
+    }
+}
+	
+     app.get('/login', function(req, res) {
+
+        res.render('login.ejs', { message: req.flash('loginMessage')
+        }); 
+    });
 
 	app.get('/submitted', function(req, res) {
 
@@ -145,6 +159,18 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         //failureFlash : true // allow flash messages
     }));*/
+ app.get('/main', checkAuthentication, function(req, res) {
+        res.render('main.ejs', { email:req.session.session
+            //user : req.user // get the user out of session and pass to template
+        });
+        
+    
+        
+        console.log(req.session.session);
+        // passing data from one page to the other
+        app.set('data', req.session.session);
+    
+    });
   var session = require('express-session'); 
  app.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
@@ -158,7 +184,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         req.session.session = {
             title: req.body.email
         };
-      return res.redirect('chat');
+      return res.redirect('main');
     });
   })(req, res, next);
 });
@@ -169,7 +195,11 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         res.redirect('/');
    
     });
-  
+
+    app.get('/account-professor',function(req, res) {
+        res.render('account-professor.ejs');
+   
+    });
     
     app.get('/surveys-students',checkAuthentication,checkperson,function(req,res)
     {
@@ -182,7 +212,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         console.log(app.get('data'));
        
         //app.set('d', req.session);
-
     });
     function checkperson(req, res,db)
     {
@@ -256,7 +285,7 @@ MongoClient.connect(URL, function(err, db) {
   if (err) return
 
   var collection = db.collection('surveysvalues')
-  collection.insert({question1:req.query.radioo, comments: req.query.mylittletextbox, input:req.query.fname}, function(err, result) {
+  collection.insert({question1:req.query.radioo, comments: req.query.mylittletextbox}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
       console.log(docs[0])
       db.close()
@@ -276,12 +305,190 @@ app.post('/surveys',function(req,res){
 
 });
     
-   
-    
-    app.get('/forum',function(req,res)
-           {
-        res.render('forum')
+   //here
+    app.get('/forum',checkAuthentication,haha,function(req,res)
+    {
+        
+        req.session.session = {
+            title: req.body.email
+        };
+        
+        var temp = app.get('data').title;
+        console.log(app.get('data'));
+       
+        //app.set('d', req.session);
+
     });
+
+    function haha(req, res,db)
+    {
+  var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
+
+MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('users');
+    var person = app.get('data').title;
+
+    // Locate all the entries using find
+    collection.find().toArray(function(err, results) {
+        var resa = results;
+        var saveindex = 10;
+        for(i=0;i<resa.length;i++)
+        {
+            if(person == resa[i]['local']['email'])
+            {
+                    saveindex = i;
+            }
+           
+        }
+         
+       
+        var emailofuser = resa[saveindex]['local']['email'];
+        var accounttypeuser = resa[saveindex]['local']['accounttype'];
+        console.log("HEH");
+        console.log(emailofuser);  
+
+        // Andrew, Ali and Ahmad, look here
+       
+        if(accounttypeuser == "student")
+        {
+           // here, we replace the email with the values returned from the find query above. For the query, we need to select 
+           res.render('forum-student.ejs');     
+        }
+        else if (accounttypeuser == "teacherta")
+        {
+           res.render('forum-teacher.ejs');
+            // render prof page if account is a teacher/ta
+            // Andrew, please edit the surveys-teachers.ejs page, add your code !!!
+            
+        }
+        db.close();
+        });
+   
+});
+    
+    
+    }
+
+    //h
+    app.get('/forum-submitted-2',checkAuthentication,function(req,res)
+        {
+        // Please display values of 
+       res.render('forum-results-2.ejs');
+        // display values of search in forum-results.ejs
+        console.log("search result");
+        console.log(req.query.mylittletextbox);
+         //console.log(req.query.tags)
+
+    var MongoClient = require('mongodb').MongoClient
+
+var URL = 'mongodb://localhost:27017/mydatabase'
+MongoClient.connect(URL, function(err, db) {
+  if (err) return
+  var collection = db.collection('forumvalues')
+  collection.insert({posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
+    collection.find({name: req.query.radioo}).toArray(function(err, docs) {
+      //console.log(docs[0])
+      db.close()
+    })
+  })
+  // Grab a cursor
+  
+      var cursor = collection.find({"tags":req.query.search});
+      
+      // Execute the each command, triggers for each document
+      cursor.each(function(err,item) {
+          if(item == null) {
+
+          // Show that the cursor is closed
+          cursor.toArray(function(err, items) {
+
+
+            // Let's close the db
+            db.close();
+          });
+        }
+          else{
+              console.log("HH");
+          console.log(req.query.search);
+           // display these values in forum-results-2.ejs
+           // Guys
+          console.log("HH");
+          }
+          //console.log(req.query.tags);
+          
+        //console.log("penguins");
+          //console.log(item.posted);
+      });
+});
+         
+        //console.log(req.query.firstname)
+    });
+    //h
+    //here
+    
+    app.get('/forum-submitted',checkAuthentication,function(req,res)
+        {
+        // Please display values of 
+       res.render('forum-results.ejs');
+        // display values of search in forum-results.ejs
+        console.log("search result");
+        console.log(req.query.mylittletextbox);
+         //console.log(req.query.tags)
+
+    var MongoClient = require('mongodb').MongoClient
+
+var URL = 'mongodb://localhost:27017/mydatabase'
+MongoClient.connect(URL, function(err, db) {
+  if (err) return
+  var collection = db.collection('forumvalues')
+  collection.insert({posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
+    collection.find({name: req.query.radioo}).toArray(function(err, docs) {
+      //console.log(docs[0])
+      db.close()
+    })
+  })
+  // Grab a cursor
+  
+      var cursor = collection.find({"tags":req.query.search});
+      
+      // Execute the each command, triggers for each document
+      cursor.each(function(err,item) {
+          if(item == null) {
+
+          // Show that the cursor is closed
+          cursor.toArray(function(err, items) {
+
+
+            // Let's close the db
+            db.close();
+          });
+        }
+          else{
+              console.log("HH");
+          console.log(item.tags);
+          console.log(item.posted);
+           // display these values in forum-results.ejs
+           // Guys
+          console.log("HH");
+          }
+          //console.log(req.query.tags);
+          
+        //console.log("penguins");
+          //console.log(item.posted);
+      });
+});
+         
+        //console.log(req.query.firstname)
+    });
+    /*app.get('/forum',checkAuthentication,function(req,res)
+    {
+            res.render('forum-teacher')
+    });*/
+    
+    
 
 	app.post('/submitted', function(req,res,next) {
 
@@ -357,4 +564,3 @@ function isLoggedIn(req, res, next) {
         }
    
 }
-
