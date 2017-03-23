@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Connect Concordia</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+    <!-- load bootsrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="cc-favicon.png">
+    <!-- load fontawesome -->
+	
+	<style>
+		#topbar{
+                width:100%;
+                height:150px;
+				background-color: rgb(143,37,57);
+        }
+		
+        #logo{
+                z-index: 1000;
+                width:700px;
+                height:150px;
+        }
+			
+		.title{
+				width:100%;
+				text-align:center;
+				display:inline-block;
+				/*background:rgba(143,37,57,0.8);*/
+				background:rgba(0,0,0,0.5);
+		}
+			
+		.questions{
+				width: 600px;
+				padding: 50px;
+				margin-top: 50px;
+				margin-bottom: 50px;
+				margin-left: auto;
+				margin-right: auto;
+				background:rgba(143,37,57,0.8);
+				position:relative;
+		}
+		
+		h1{
+				font-size: 50px;
+				color:rgb(202,181,118);
+		}
+		
+		h2{
+			font-size: 30px;
+			color:rgb(202,181,118);
+		}
+			
+		
+		.searchbox{
+			width: 300px;
+			padding: 50px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+			background:rgba(143,37,57,0.8);
+			position:relative;
+		}
+		
+		#sideinfo{
+			color:grey;
+			font-style: italic;
+		}
+		
+		.col-sm-4{
+			background-color:rgba(143,37,57,0.8);
+			padding:20px;
+			width:300px;
+			border-radius: 10px;
+			position:relative;
+		}
+		
+		.col-sm-6{
+			background-color:rgba(143,37,57,0.8);
+			padding:20px;
+			border-radius:10px;
+			margin-bottom:50px;
+			margin-left:400px;
+			padding-top:30px;
+			margin:30px 0;
+			position:relative;
+			width:600px;
+
+		}
+		
+		.posts{
+			    display:inline-block;
+				float:none;
+				position:absolute;
+				margin-left: 200px;
+		}
+		
+		a{
+			text-decoration:none;
+			color:#e6ac00;
+		}
+		
+		a:hover{
+			color:#24292E;
+			text-decoration:none;
+		}
+		
+		ul{
+				font-size: 22px;		
+		}
+		
+		.footer {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 1rem;
+          background-color: #efefef;
+          text-align: center;
+          color:grey;
+        }
+			
+		
+		body{
+			background-image: url("forum.jpg");
+			background-attachment:fixed;
+			background-repeat: no-repeat;
+			background-size: cover;
+			font-family: "Lato", sans-serif;
+			color: white;
+				
+        }
+		
+		#topic{
+			color:white;
+		}
+		
+		#tags{
+			color:rgb(202,181,118);
+		}
+		
+		#custom-search-input{
+			padding: 3px;
+			border: solid 1px #E4E4E4;
+			border-radius: 6px;
+			background-color: #fff;
+		}
+
+		#custom-search-input input{
+			border: 0;
+			box-shadow: none;
+			font-size: 14px;
+			height:20px;
+		}
+
+		#custom-search-input button{
+			margin: 2px 0 0 0;
+			background: none;
+			box-shadow: none;
+			border: 0;
+			color: #666666;
+			padding: 0 5px 0 10px;
+			border-left: solid 1px #ccc;
+		}
+
+		#custom-search-input button:hover{
+			border: 0;
+			box-shadow: none;
+			border-left: solid 1px #ccc;
+		}
+
+		#custom-search-input .glyphicon-search{
+			font-size: 14px;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<!-- Topbar --> 
+	<div id="topbar">
+		<img src="logo2.png" id="logo" alt="Logo">
+	</div>
+	<div class="title">
+		<h2>Search Results for : <span id="topic">[topic]</span></h2> 
+	</div>
+	
+	
+		<!-- Sidebar --> 
+		<br><br><br>
+		<div class="col-sm-4">
+			<h3>Want to find information on a certain topic?</h3>
+			See what your professors posted on the subject!
+			<br><br>
+			<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="form-control input-lg" placeholder="Search a post"/>
+						<span class="input-group-btn">
+							<button class="btn btn-info btn-lg" type="button">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</span>
+					</div>
+			</div>
+			<br>
+			<div id="sideinfo">Use # + the subject you're looking for.</div>
+		</div>
+	
+	 
+	<!-- Posts --> 
+	<div class="posts">
+		<!-- Row 1 -->
+		<div class="col-sm-6">
+				<p> Lorem ipsum dolor sit amet, adipiscing ultricies, duis at, 
+				pulvinar adipiscing nunc ut vehicula gravida, 
+				eget consequat sit iaculis. Nunc vestibulum. Sapien parturient, fringilla velit, 
+				eget ut bibendum id vulputate senectus, in quis nulla quis interdum felis felis. 
+				Pede turpis lectus litora, morbi ac. Ac nec lectus congue eget sociis libero, 
+				ornare aliquet ut felis amet, rhoncus rhoncus, wisi pulvinar mauris elit facilisis suspendisse, 
+				in iaculis.
+				<hr>
+				<span id="tags">#soen341</span>
+				</p>	
+		</div>
+		
+		<!-- Row 2 -->
+		<div class="col-sm-6">
+				<p> Lorem ipsum dolor sit amet, adipiscing ultricies, duis at, 
+				pulvinar adipiscing nunc ut vehicula gravida, 
+				eget consequat sit iaculis. Nunc vestibulum. Sapien parturient, fringilla velit, 
+				eget ut bibendum id vulputate senectus, in quis nulla quis interdum felis felis. 
+				Pede turpis lectus litora, morbi ac. Ac nec lectus congue eget sociis libero, 
+				ornare aliquet ut felis amet, rhoncus rhoncus, wisi pulvinar mauris elit facilisis suspendisse, 
+				in iaculis.
+				<hr>
+				<span id="tags">#soen341</span>
+				</p>
+		</div>
+
+			
+		<!-- Row 3 -->
+		<div class="col-sm-6">
+				<p> Lorem ipsum dolor sit amet, adipiscing ultricies, duis at, 
+				pulvinar adipiscing nunc ut vehicula gravida, 
+				eget consequat sit iaculis. Nunc vestibulum. Sapien parturient, fringilla velit, 
+				eget ut bibendum id vulputate senectus, in quis nulla quis interdum felis felis. 
+				Pede turpis lectus litora, morbi ac. Ac nec lectus congue eget sociis libero, 
+				ornare aliquet ut felis amet, rhoncus rhoncus, wisi pulvinar mauris elit facilisis suspendisse, 
+				in iaculis.
+				<hr>
+				<span id="tags">#soen341</span>
+				</p>
+		</div>
+	</div>
+	
+	<div class="footer">&#169; 2017 SOEN 341</div>
+	
+</body>
+
+</html>
