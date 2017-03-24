@@ -308,12 +308,16 @@
     <div class="dropdown">
 
       <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
-      Signed in as [username]
+      
+          <script>
+              var email = <%- JSON.stringify(email)%>;
+              document.write("Signed in as "+email);
+          </script>
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
             <li><a href="#">Profile Page</a></li>
             <li class="divider"></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
 </div>
