@@ -1,3 +1,15 @@
+/*var MongoClient = require('mongodb').MongoClient
+
+var URL = 'mongodb://localhost:27017/mydatabase'
+MongoClient.connect(URL, function(err, db) {
+  if (err) return
+  var collection = db.collection('food')
+  collection.insert({name: "helloclau", tasty: true}, function(err, result) {
+    collection.find({name: 'taco'}).toArray(function(err, docs) {
+      db.close()
+    })
+  })
+});*/
 
 passport = require('passport');
 app = require('express')();
@@ -125,13 +137,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     });
    
  app.get('/main', checkAuthentication, function(req, res) {
-        res.render('main.ejs', { email:req.session.session
+        res.render('main.ejs', { email:req.session.session.title
             //user : req.user // get the user out of session and pass to template
         });
         
-    
-        
-        console.log(req.session.session);
+       
+        console.log(req.body);
         // passing data from one page to the other
         app.set('data', req.session.session);
     
