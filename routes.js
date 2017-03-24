@@ -31,7 +31,7 @@ var app = express();
 //Your api key, from Mailgun’s Control Panel
 var api_key = 'key-e63cfbbb0bb500d1b5428053228f6360';
 
-
+ 
 //Your domain, from the Mailgun Control Panel
 var domain = 'connectconcordia.tk';
 
@@ -55,10 +55,10 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     }), function(req, res) {
     var username = req.body.email;
     var collection = db.collection('emails_tester');
-
-
+        
+ 
 });
-
+    
 });
 
 var MongoClient = require('mongodb').MongoClient
@@ -81,73 +81,73 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         res.render('index.ejs'); // load the index.ejs file
     });
 
-
+    
     app.get('/signup', function(req, res) {
 
         // render the page and pass in any flash data if it exists
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
-
-
+    
+    
     app.get('/chat', checkAuthentication, function(req, res) {
         res.render('chat.ejs', { email:req.session.session
 
         });
-
-
-
+        
+    
+        
         console.log(req.session.session);
         // passing data from one page to the other
         app.set('data', req.session.session);
-
+    
     });
     function checkAuthentication(req,res,next){
     if(req.isAuthenticated()){
-        //if user is looged in, req.isAuthenticated() will return true
+        //if user is looged in, req.isAuthenticated() will return true 
         next();
     } else{
         res.redirect("/");
     }
 }
-
+	
      app.get('/login', function(req, res) {
 
         res.render('login.ejs', { message: req.flash('loginMessage')
-        });
+        }); 
     });
     function checkAuthentication(req,res,next){
     if(req.isAuthenticated()){
-        //if user is looged in, req.isAuthenticated() will return true
+        //if user is looged in, req.isAuthenticated() will return true 
         next();
     } else{
         res.redirect("/");
     }
 }
-
+	
      app.get('/login', function(req, res) {
 
         res.render('login.ejs', { message: req.flash('loginMessage')
-        });
+        }); 
     });
 
 	app.get('/submitted', function(req, res) {
 
-        res.render('chat.ejs', { message: req.flash('loginMessage')});
-
+        res.render('chat.ejs', { message: req.flash('loginMessage')}); 
+        
     });
-
+   
  app.get('/main', checkAuthentication, function(req, res) {
         res.render('main.ejs', { email:req.session.session.title
             //user : req.user // get the user out of session and pass to template
         });
-
-
+        
+       
         console.log(req.body);
         // passing data from one page to the other
         app.set('data', req.session.session);
-
+    
     });
-  var session = require('express-session');
+  var session = require('express-session'); 
  app.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
       console.log(req.body.email);
@@ -164,29 +164,29 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     });
   })(req, res, next);
 });
-
-
+   
+	
 	app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
-
+   
     });
 
     app.get('/account-professor',function(req, res) {
         res.render('account-professor.ejs');
-
+   
     });
-
+    
     app.get('/surveys-students',checkAuthentication,checkperson,function(req,res)
     {
-
+        
         req.session.session = {
             title: req.body.email
         };
-
+     
         var temp = app.get('data').title;
         console.log(app.get('data'));
-
+       
     });
 
     app.get('/myProfile',checkAuthentication,function(req,res)
@@ -202,7 +202,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         console.log(app.get('data'));
 
     });
-
 
 
     function checkperson(req, res,db)
@@ -226,16 +225,16 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
             {
                     saveindex = i;
             }
-
+           
         }
-
-
+         
+       
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
-
+       
         if(accounttypeuser == "student")
         {
-           res.render('surveys-students.ejs');
+           res.render('surveys-students.ejs');     
         }
         else if (accounttypeuser == "teacherta")
         {
@@ -253,24 +252,24 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
                     // Send the documents from the database collection to the client to process.
                     res.render('survey-results.ejs', {docs: docs});
               });
-
+              
             });
 
         }
         db.close();
         });
-
+   
 });
-
-
+    
+    
     }
-
+    
     app.post('/surveys-students',function(req,res)
            {
         //res.redirect('ss-results.ejs')
 
     });
-
+    
     app.get('/surveys-s2',checkAuthentication,function(req,res)
         {
         res.render('ss-results')
@@ -292,8 +291,10 @@ MongoClient.connect(URL, function(err, db) {
   })
 });
     });
-
-
+    
+var bodyParser = require('body-parser'); 
+app.use(bodyParser.json()); // to support JSON bodies
+app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
     var profileSchema = new mongoose.Schema({
       firstName: String,
@@ -330,32 +331,24 @@ app.get('/submitProfileInfo',checkAuthentication,function(req,res)
 
 
      });
-
-
-
-var bodyParser = require('body-parser');
-app.use(bodyParser.json()); // to support JSON bodies
-app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
-
 app.post('/surveys',function(req,res){
 
 
 });
-
+    
 
     app.get('/forum',checkAuthentication,getuseremail,function(req,res)
     {
-
+        
         req.session.session = {
             title: req.body.email
         };
-
+        
         var temp = app.get('data').title;
         console.log(app.get('data'));
-
+       
 
     });
-
 
     function getuseremail(req, res,db)
     {
@@ -378,37 +371,37 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
             {
                     saveindex = i;
             }
-
+           
         }
-
-
+         
+       
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
         console.log(emailofuser);
 
-
+       
         if(accounttypeuser == "student")
         {
-           // here, we replace the email with the values returned from the find query above. For the query, we need to select
-           res.render('forum-student.ejs');
+           // here, we replace the email with the values returned from the find query above. For the query, we need to select 
+           res.render('forum-student.ejs');     
         }
         else if (accounttypeuser == "teacherta")
         {
            res.render('forum-teacher.ejs');
             // render prof page if account is a teacher/ta
-
+            
         }
         db.close();
         });
-
+   
 });
-
-
+    
+    
     }
 
     app.get('/forum-submitted-2',checkAuthentication,function(req,res)
         {
-        // Please display values of
+        // Please display values of 
        res.render('forum-results-2.ejs');
         // display values of search in forum-results.ejs
         console.log("search result");
@@ -428,9 +421,9 @@ MongoClient.connect(URL, function(err, db) {
     })
   })
   // Grab a cursor
-
+  
       var cursor = collection.find({"tags":req.query.search});
-
+      
       // Execute the each command, triggers for each document
       cursor.each(function(err,item) {
           if(item == null) {
@@ -451,23 +444,19 @@ MongoClient.connect(URL, function(err, db) {
           console.log("HH");
           }
           //console.log(req.query.tags);
-
+          
         //console.log("penguins");
           //console.log(item.posted);
       });
 });
-
+         
         //console.log(req.query.firstname)
     });
 
 
-
+    
     app.get('/forum-submitted',checkAuthentication,function(req,res)
         {
-
-        // Please display values of
-       res.render('forum-results.ejs');
-
         console.log(req.query.search);
         // Please display values of
       
@@ -487,13 +476,6 @@ MongoClient.connect(URL, function(err, db) {
       db.close()
     })
   })
-
-
-      var cursor = collection.find({"tags":req.query.search});
-
-      // Execute the each command, triggers for each document
-      cursor.each(function(err,item) {
-
   
   var path;
 db.collection('forumvalues', function(err, collection) {
@@ -504,7 +486,7 @@ db.collection('forumvalues', function(err, collection) {
     });
 })
      
-      /*var cursor = collection.find({"tags":req.query.search});
+      var cursor = collection.find({"tags":req.query.search});
      
     
     
@@ -513,7 +495,6 @@ db.collection('forumvalues', function(err, collection) {
         
           var a= cursor.each(function(err,item) {
          
-
           if(item == null) {
 
           // Show that the cursor is closed
@@ -528,18 +509,11 @@ db.collection('forumvalues', function(err, collection) {
 
       });
            
-          });*/
+          });
         })
    
     
 });
-
-
-    });
-
-
-
-
         
          
     };
@@ -547,11 +521,10 @@ db.collection('forumvalues', function(err, collection) {
     
   
 
-
 	app.post('/submitted', function(req,res,next) {
 
     passport.authenticate('local-signup',function(err,user,info)
-    {
+    { 
         var a = req.body.email;
         if (err) { return next(err); }
     // Redirect if it fails
@@ -567,13 +540,13 @@ db.collection('forumvalues', function(err, collection) {
       from: from_who,
     //The email to contact
       to: req.body.email,
-
-    //Subject and text data
+		
+    //Subject and text data  
       subject: 'Successful Account Creation Connect Concordia',
       html: 'Hi,'+
         '<br/>This is just to confirm that you have successfully created an account with Connect Concordia. You will now be able to enjoy a state of the art service designed to faciliate communication between school faculty.'
     }
-
+     
 
     mailgun.messages().send(data, function (err, body) {
         //If there is an error, render the error page
@@ -583,7 +556,7 @@ db.collection('forumvalues', function(err, collection) {
         }
         else {
             // chat page rendered here
-            res.render('chat');
+            res.render('chat'); 
             console.log(req.body.email);
         }
     });
@@ -592,7 +565,7 @@ db.collection('forumvalues', function(err, collection) {
     });
   })(req, res, next);
 
-
+    
 });
 ;
 
@@ -606,15 +579,15 @@ function isLoggedIn(req, res, next) {
     // if user is authenticated, continue
     if (req.isAuthenticated())
         {
-           return next();
+           return next();  
         }
-
+       
 // otherwise redirect them to the home page
     else
-        {
-
+        { 
+   
             res.redirect('/');
-
+            
         }
-
+   
 }
