@@ -20,15 +20,12 @@ mongoose.Promise = global.Promise;
 var assert = require('assert');
 mongoose.Promise = require('bluebird');
 
-
 passport = require('passport');
 app = require('express')();
 
-//new shit
 var express = require('express');
 
 var Mailgun = require('mailgun-js');
-
 
 var app = express();
 //Your api key, from Mailgun’s Control Panel
@@ -213,6 +210,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
        
         //app.set('d', req.session);
     });
+
     function checkperson(req, res,db)
     {
   var MongoClient = require('mongodb').MongoClient
@@ -240,22 +238,30 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
        
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
-        console.log("HEH");
-        console.log(emailofuser);  
-
-        // Andrew, Ali and Ahmad, look here
        
         if(accounttypeuser == "student")
         {
-           // here, we replace the email with the values returned from the find query above. For the query, we need to select 
            res.render('surveys-students.ejs');     
         }
         else if (accounttypeuser == "teacherta")
         {
-            res.render('surveys-teachers.ejs');
-            // render prof page if account is a teacher/ta
-            // Andrew, please edit the surveys-teachers.ejs page, add your code !!!
-            
+            var MongoClient = require('mongodb').MongoClient
+            var URL = 'mongodb://localhost:27017/mydatabase'
+
+            MongoClient.connect(URL, function(err, db) {
+              if (err) return
+
+              var collection = db.collection('surveysvalues');
+
+              // Render the surveyr results page page if account is a teacher/ta
+              collection.find({}).toArray(function(err, docs){
+                    if(err) return;
+                    // Send the documents from the database collection to the client to process.
+                    res.render('survey-results.ejs', {docs: docs});
+              });
+              
+            });
+
         }
         db.close();
         });
@@ -305,6 +311,7 @@ app.post('/surveys',function(req,res){
 
 });
     
+
    //here
     app.get('/forum',checkAuthentication,haha,function(req,res)
     {
@@ -348,7 +355,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
         console.log("HEH");
-        console.log(emailofuser);  
+        console.log(emailofuser);
 
         // Andrew, Ali and Ahmad, look here
        
