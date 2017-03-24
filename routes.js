@@ -464,8 +464,13 @@ MongoClient.connect(URL, function(err, db) {
 
     app.get('/forum-submitted',checkAuthentication,function(req,res)
         {
+
         // Please display values of
        res.render('forum-results.ejs');
+
+        console.log(req.query.search);
+        // Please display values of
+      
         // display values of search in forum-results.ejs
         console.log("search result");
         console.log(req.query.mylittletextbox);
@@ -483,30 +488,64 @@ MongoClient.connect(URL, function(err, db) {
     })
   })
 
+
       var cursor = collection.find({"tags":req.query.search});
 
       // Execute the each command, triggers for each document
       cursor.each(function(err,item) {
+
+  
+  var path;
+db.collection('forumvalues', function(err, collection) {
+    collection.find({"tags":req.query.search}).toArray(function(err, results) {
+        path = results;
+        //console.log(results);
+         res.render('forum-results.ejs',{tag:req.query.search,path:results});
+    });
+})
+     
+      /*var cursor = collection.find({"tags":req.query.search});
+     
+    
+    
+    cursor.toArray(function(err, items) {
+        
+        
+          var a= cursor.each(function(err,item) {
+         
+
           if(item == null) {
 
           // Show that the cursor is closed
-          cursor.toArray(function(err, items) {
-
-            db.close();
-          });
+         
         }
           else{
+          d=item.posted;
           console.log(item.tags);
           console.log(item.posted);
 
           }
 
       });
+           
+          });*/
+        })
+   
+    
 });
+
 
     });
 
 
+
+
+        
+         
+    };
+ 
+    
+  
 
 
 	app.post('/submitted', function(req,res,next) {
@@ -555,7 +594,7 @@ MongoClient.connect(URL, function(err, db) {
 
 
 });
-};
+;
 
 
 
