@@ -115,14 +115,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         res.render('login.ejs', { message: req.flash('loginMessage')
         }); 
     });
-    function checkAuthentication(req,res,next){
-    if(req.isAuthenticated()){
-        //if user is looged in, req.isAuthenticated() will return true 
-        next();
-    } else{
-        res.redirect("/");
-    }
-}
+  
 	
      app.get('/login', function(req, res) {
 
@@ -188,22 +181,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         console.log(app.get('data'));
        
     });
-
-    app.get('/myProfile',checkAuthentication,function(req,res)
-    {
-
-		res.render('myProfile.ejs');
-
-        req.session.session = {
-            title: req.body.email
-        };
-
-        var temp = app.get('data').title;
-        console.log(app.get('data'));
-
-    });
-
-
+    
     function checkperson(req, res,db)
     {
   var MongoClient = require('mongodb').MongoClient
@@ -231,30 +209,22 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
        
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
+        console.log("HEH");
+        console.log(emailofuser);  
+
+        // Andrew, Ali and Ahmad, look here
        
         if(accounttypeuser == "student")
         {
+           // here, we replace the email with the values returned from the find query above. For the query, we need to select 
            res.render('surveys-students.ejs');     
         }
         else if (accounttypeuser == "teacherta")
         {
-            var MongoClient = require('mongodb').MongoClient
-            var URL = 'mongodb://localhost:27017/mydatabase'
-
-            MongoClient.connect(URL, function(err, db) {
-              if (err) return
-
-              var collection = db.collection('surveysvalues');
-
-              // Render the surveyr results page page if account is a teacher/ta
-              collection.find({}).toArray(function(err, docs){
-                    if(err) return;
-                    // Send the documents from the database collection to the client to process.
-                    res.render('survey-results.ejs', {docs: docs});
-              });
-              
-            });
-
+            res.render('surveys-teachers.ejs');
+            // render prof page if account is a teacher/ta
+            // Andrew, please edit the surveys-teachers.ejs page, add your code !!!
+            
         }
         db.close();
         });
@@ -263,6 +233,23 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
     
     
     }
+
+    app.get('/myProfile',checkAuthentication,function(req,res)
+    {
+
+		res.render('myProfile.ejs');
+
+        req.session.session = {
+            title: req.body.email
+        };
+
+        var temp = app.get('data').title;
+        console.log(app.get('data'));
+
+    });
+
+
+  
     
     app.post('/surveys-students',function(req,res)
            {
@@ -455,7 +442,7 @@ MongoClient.connect(URL, function(err, db) {
 
 
     
-    app.get('/forum-submitted',checkAuthentication,function(req,res)
+app.get('/forum-submitted',checkAuthentication,function(req,res)
         {
         console.log(req.query.search);
         // Please display values of
@@ -516,7 +503,7 @@ db.collection('forumvalues', function(err, collection) {
 });
         
          
-    };
+    
  
     
   
@@ -531,8 +518,8 @@ db.collection('forumvalues', function(err, collection) {
     if (!user) { return res.redirect('/signup'); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-    // Redirect if it succeeds
-    //We pass the api_key and domain to the wrapper, or it won't be able to identify + send emails
+      // Redirect if it succeeds
+        //We pass the api_key and domain to the wrapper, or it won't be able to identify + send emails
     var mailgun = new Mailgun({apiKey: api_key, domain: domain});
 
     var data = {
@@ -548,14 +535,18 @@ db.collection('forumvalues', function(err, collection) {
     }
      
 
+    //Invokes the method to send emails given the above data with the helper library
     mailgun.messages().send(data, function (err, body) {
         //If there is an error, render the error page
         if (err) {
             res.render('error', { error : err});
             console.log("got an error: ", err);
         }
+        //Else we can greet    and leave
         else {
-            // chat page rendered here
+            //Here "submitted.jade" is the view file for this landing page 
+            //We pass the variable "email" from the url parameter in an object rendered by Jade
+            //res.render('submitted', { email : req.params.username });
             res.render('chat'); 
             console.log(req.body.email);
         }
@@ -567,7 +558,8 @@ db.collection('forumvalues', function(err, collection) {
 
     
 });
-;
+};
+
 
 
 
@@ -582,9 +574,9 @@ function isLoggedIn(req, res, next) {
            return next();  
         }
        
-// otherwise redirect them to the home page
+
     else
-        { 
+        { // otherwise redirect them to the home page
    
             res.redirect('/');
             
