@@ -18,7 +18,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-	
+
 		html {
 			height: 100%;
 		}
@@ -27,7 +27,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             background-color: rgb(143,37,57);
             font: 16px Helvetica, Arial;
@@ -36,7 +36,7 @@
 	        background-repeat: no-repeat;
 	        background-size: cover;
         }
-        
+
         form {
             background: #000;
             padding: 3px;
@@ -44,56 +44,56 @@
             bottom: 45px;
             width: 100%;
         }
-        
+
         form input {
             border: 0;
             padding: 10px;
             width: 90%;
             margin-right: .5%;
         }
-        
+
         form button {
             width: 9%;
             background: rgb(130, 224, 255);
             border: none;
             padding: 10px;
         }
-        
+
         #messages {
             list-style-type: none;
             margin: 0;
             padding: 0;
         }
-        
+
         #messages li {
             padding: 5px 10px;
         }
-        
+
         #messages li:nth-child(odd) {
             background: #eee;
         }
-        
-        
+
+
         nav {
             text-align: right;
             padding: 20px;
         }
-        
+
         nav ul li {
             display: inline;
         }
-        
+
         nav ul li a:link,
         nav ul li a:visited {
             color: #555;
             text-decoration: none;
             padding: 9px;
         }
-        
+
         nav ul li a:hover {
             text-decoration: underline;
         }
-        
+
         footer {
             background: #eee;
             position: fixed;
@@ -102,34 +102,34 @@
             border: solid 1px #ddd;
             font-family: Arial, sans-serif;
         }
-        
+
         footer ul {
             padding: 13px;
         }
-        
+
         footer ul li {
             display: inline;
         }
-        
+
         footer ul li a:link,
         footer ul li a:visited {
             color: #555;
             text-decoration: none;
             padding: 9px;
         }
-        
+
         footer ul li a:hover {
             text-decoration: underline;
         }
-        
+
         footer ul.right-footer {
             float: right;
         }
-        
+
         footer ul.left-footer {
             float: left;
         }
-        
+
         #topbar{
             width:100%;
             height:150px;
@@ -145,14 +145,14 @@
             height:150px;
             z-index:1000;
         }
-        
+
         #user{
             color:white;
             float:right;
             position:relative;
             font: 16px Helvetica, Arial;
         }
-        
+
         .content{
             min-height:750px;
             height:100%;
@@ -187,9 +187,9 @@
           text-align: center;
           color:grey;
         }
-        
+
         .button {
-            background-color: rgb(143,37,57); 
+            background-color: rgb(143,37,57);
             border: none;
             color: white;
             padding: 15px 32px;
@@ -198,37 +198,37 @@
             display: inline-block;
             font-size: 16px;
         }
-        
+
         .button:hover {
             color: black;
             text-decoration: none;
             -webkit-transition-duration: 0.4s; /* Safari */
             transition-duration: 0.4s;
         }
-        
+
         /* USER TAB */
-        
+
         .dropdown button{
             color: white;
            background-color:rgb(143,37,57);
             border:none;
         }
-        
-        
+
+
         .dropdown-toggle:active, .open .dropdown-toggle {
-            background-color:rgb(143,37,57) !important; 
+            background-color:rgb(143,37,57) !important;
             border:none !important;
         }
-        
+
         .dropdown-toggle:hover, .open .caret {
-            background-color:rgb(143,37,57) !important; 
+            background-color:rgb(143,37,57) !important;
             border:none !important;
         }
-        
-        
+
+
         /***** SIDEBAR *****/
          .tab {
-            position: fixed; 
+            position: fixed;
             border: none;
             background-color: #24292E;
             width: 15%;
@@ -236,6 +236,7 @@
             top: 0;
             left:0;
             z-index:0;
+            overflow: auto;
         }
 
         /* Style the buttons inside the tab */
@@ -254,7 +255,7 @@
             transition: 0.3s;
             z-index:0;
         }
-        
+
         /* Change background color of buttons on hover */
         .tablinks:hover {
             background-color: #5F5F5F;
@@ -276,7 +277,7 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        
+
         #logout:hover{
             color: #e6ac00;
 			text-decoration: none;
@@ -287,8 +288,8 @@
 </head>
 
 <body>
-    
-     <!--- SIDE MENU -----> 
+
+     <!--- SIDE MENU ----->
 <div class="tab">
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <a href="/logout" id="logout"><span class="fa fa-user"></span>  Logout</a>
@@ -298,27 +299,32 @@
     <a class="tablinks" href="/surveys-students">Survey</a><br>
     <a class="tablinks" href="/surveys-students">Book Appointments</a>
      <a class="tablinks" href="/chat">Chat</a><br>
+     <a class="tablinks" href="/myProfile">My Profile</a><br>
 </div>
 
-    <!---- TOP BAR ------> 
+    <!---- TOP BAR ------>
 <div id="topbar">
     <img src="logo2.png" id="logo" alt="Logo">
     <div id="user">
-    
+
     <div class="dropdown">
 
       <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
-      Signed in as [username]
+
+          <script>
+              var email = <%- JSON.stringify(email)%>;
+              document.write("Signed in as "+email);
+          </script>
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
             <li><a href="#">Profile Page</a></li>
             <li class="divider"></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
 </div>
 </div>
-    
+
     <script>
         $('#user1').onclick(function() {
     $('#user1').css({
@@ -327,11 +333,11 @@
     });
 });
     </script>
-    
+
 
 
 <div class="content">
-	
+
 	<div class="info">
 
 	<h1> <b>Welcome to Connect Concordia!</b></h1>

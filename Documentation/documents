@@ -183,7 +183,7 @@ the front-end
 -Andrew's current task remains to debug the email bug from
 Claudia's code
 
-Team Meeting #8 Time 11:30pm - 1:50pm March 9
+Team Meeting #8 Time 11:30am - 1:50pm March 9
 
 • Debuging of email service (Claudia/Andrew)
 • Designing profile page (Fatin)
@@ -212,3 +212,34 @@ Team Meeting #10 Time 12:00pm - 1:10pm March 12
 					      2) Finish User Story 5 (Claudia/Ahmed/Andrew)
 					      3) Make forum with direct posts (Cynthia/Tashnim)
 					      4) Chatroom functionality (Ali)
+					      
+Meeting Hanna & Ahmad & Fatin & Tashnim Time 2:00pm - 6:00pm March 19
+
+• Discussed how to display information to the client from database for user account page (user story #6)
+• Worked on design of forum page (user story #3)
+
+Meeting Cynthia & Claudia Time 1:00pm - 2:30pm March 21
+
+• Discussed how to implement the forum with database (user story #3) 
+• Finished the design of the forum (one page for student view and one for teacher)
+• Uploaded main page design and forum pages to github
+
+Meeting Ahmad & Claudia Time 3:30pm - 5:30pm March 21
+
+• Discussed how to display information to the client from database (user story #3 and user story #5) 
+• Made survey results page display a bar graph with dummy data (user story #5)
+
+Team Meeting #11 Time 11:30am - 5:00pm March 23
+
+• Worked on design and backend functions of forum page (Cynthia/Andrew)
+• Worked on professor search function (Claudia)
+• Burndown chart and block diagram (Cynthia)
+• Worked on function to display survey results (Ahmad)
+• Implementation of chat rooms (Ali)
+• Discussed on pages to drop (profile and appointment) (everyone)
+• Worked on test cases (Hanna)
+• Displaying search results on forum from database (Andrew/Hanna/Claudia/Tashnim)
+• Worked on user profile (Fatin)
+
+• Plan for next sprint: 1) First week: Finalize all required functionlity of the website including forum and chat functionalities. 
+			2) Second week: Tweaking and fixing bugs get ready for delivary.
