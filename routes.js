@@ -221,9 +221,22 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         }
         else if (accounttypeuser == "teacherta")
         {
-            res.render('surveys-teachers.ejs');
-            // render prof page if account is a teacher/ta
-            // Andrew, please edit the surveys-teachers.ejs page, add your code !!!
+            var MongoClient = require('mongodb').MongoClient
+            var URL = 'mongodb://localhost:27017/mydatabase'
+
+            MongoClient.connect(URL, function(err, db) {
+              if (err) return
+
+              var collection = db.collection('surveysvalues');
+
+              // Render the surveyr results page page if account is a teacher/ta
+              collection.find({}).toArray(function(err, docs){
+                    if(err) return;
+                    // Send the documents from the database collection to the client to process.
+                    res.render('survey-results.ejs', {docs: docs});
+              });
+              
+            });
             
         }
         db.close();
