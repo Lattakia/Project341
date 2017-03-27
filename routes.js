@@ -49,7 +49,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     if(err) throw err;
 
     app.post('/signup',passport.authenticate('local-signup', {
-        successRedirect : '/chat', // redirect to the secure profile section
+        successRedirect : '/main', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }), function(req, res) {
@@ -414,7 +414,7 @@ var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
-  collection.insert({posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
+  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
       //console.log(docs[0])
       db.close()
@@ -471,7 +471,7 @@ var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
-  collection.insert({posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
+  collection.insert({title: req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
       db.close()
     })
@@ -486,6 +486,7 @@ db.collection('forumvalues', function(err, collection) {
     });
 })
      
+
       var cursor = collection.find({"tags":req.query.search});
      
     
@@ -535,6 +536,10 @@ db.collection('forumvalues', function(err, collection) {
         //We pass the api_key and domain to the wrapper, or it won't be able to identify + send emails
     var mailgun = new Mailgun({apiKey: api_key, domain: domain});
 
+		 req.session.session = {
+            title: req.body.email
+        };
+		console.log(req.session.session.title);
     var data = {
     //Specify email data
       from: from_who,
@@ -560,12 +565,12 @@ db.collection('forumvalues', function(err, collection) {
             //Here "submitted.jade" is the view file for this landing page 
             //We pass the variable "email" from the url parameter in an object rendered by Jade
             //res.render('submitted', { email : req.params.username });
-            res.render('chat'); 
+            res.render('main'); 
             console.log(req.body.email);
         }
     });
 
-      return res.redirect('/chat');
+      return res.redirect('/main');
     });
   })(req, res, next);
 

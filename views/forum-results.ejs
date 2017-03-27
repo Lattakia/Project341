@@ -10,29 +10,27 @@
     <!-- load fontawesome -->
 	
 	<style>
-		#topbar
-            {
+		#topbar{
                 width:100%;
                 height:150px;
 				background-color: rgb(143,37,57);
-            }
-        #logo
-            {
+        }
+		
+        #logo{
                 z-index: 1000;
                 width:700px;
                 height:150px;
-            }
+        }
 			
-		.title
-			{
+		.title{
 				width:100%;
 				text-align:center;
 				display:inline-block;
-				background:rgba(143,37,57,0.8);
-			}
+				/*background:rgba(143,37,57,0.8);*/
+				background:rgba(0,0,0,0.5);
+		}
 			
-		.questions
-			{
+		.questions{
 				width: 600px;
 				padding: 50px;
 				margin-top: 50px;
@@ -40,69 +38,212 @@
 				margin-left: auto;
 				margin-right: auto;
 				background:rgba(143,37,57,0.8);
-			}
-		
-		h1
-			{
-				font-size: 50px;
-				color:rgb(202,181,118);
-			}
-			
-		
-		searchbox
-		{
-			display: inline-block;
-			font-size: 50px;
-			padding-top: 50px; 
+				position:relative;
 		}
 		
-		ul
-			{
-				font-size: 22px;
-				
-			}
+		h1{
+				font-size: 50px;
+				color:rgb(202,181,118);
+		}
+		
+		h2{
+			font-size: 30px;
+			color:rgb(202,181,118);
+		}
 			
 		
-		body
-			{
-                background-image: url("forum.jpg");
-                background-attachment:fixed;
-                background-repeat: no-repeat;
-                background-size: cover;
-				font-family: "Lato", sans-serif;
-				color: white;
+		.searchbox{
+			width: 300px;
+			padding: 50px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+			background:rgba(143,37,57,0.8);
+			position:relative;
+		}
+		
+		#sideinfo{
+			color:grey;
+			font-style: italic;
+		}
+		
+		.col-sm-4{
+			background-color:rgba(143,37,57,0.8);
+			padding:20px;
+			width:300px;
+			border-radius: 10px;
+			position:relative;
+		}
+		
+		.col-sm-6{
+			background-color:rgba(143,37,57,0.8);
+			padding:20px;
+			border-radius:10px;
+			margin-bottom:50px;
+			margin-left:400px;
+			padding-top:30px;
+			margin:30px 0;
+			position:relative;
+			width:600px;
+		}
+		
+		.posts{
+			    display:inline-block;
+				float:none;
+				position:absolute;
+				margin-left: 200px;
+		}
+		
+		a{
+			text-decoration:none;
+			color:#e6ac00;
+		}
+		
+		a:hover{
+			color:#24292E;
+			text-decoration:none;
+		}
+		
+		ul{
+				font-size: 22px;		
+		}
+		
+		.footer {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 1rem;
+          background-color: #efefef;
+          text-align: center;
+          color:grey;
+        }
+			
+        
+		
+		body{
+			background-image: url("forum.jpg");
+			background-attachment:fixed;
+			background-repeat: no-repeat;
+			background-size: cover;
+			font-family: "Lato", sans-serif;
+			color: white;
 				
-            }
+        }
+		
+		#topic{
+			color:white;
+		}
+		
+		#tags{
+			color:rgb(202,181,118);
+		}
+		
+		#custom-search-input{
+			padding: 3px;
+			border: solid 1px #E4E4E4;
+			border-radius: 6px;
+			background-color: #fff;
+		}
+		#custom-search-input input{
+			border: 0;
+			box-shadow: none;
+			font-size: 14px;
+			height:20px;
+		}
+		#custom-search-input button{
+			margin: 2px 0 0 0;
+			background: none;
+			box-shadow: none;
+			border: 0;
+			color: #666666;
+			padding: 0 5px 0 10px;
+			border-left: solid 1px #ccc;
+		}
+		#custom-search-input button:hover{
+			border: 0;
+			box-shadow: none;
+			border-left: solid 1px #ccc;
+		}
+		#custom-search-input .glyphicon-search{
+			font-size: 14px;
+		}
 	</style>
 	
 </head>
 <body>
 
+	<!-- Topbar --> 
 	<div id="topbar">
 		<img src="logo2.png" id="logo" alt="Logo">
 	</div>
-	
 	<div class="title">
-		<h1>Results</h1>
-        <script>
-            
-              var search = <%- JSON.stringify(tag)%>;
-              var results = <%- JSON.stringify(path)%>;
-              
-              document.write("Results for  "+search+" ");
-              for(var i=0;i<results.length;i++)
-                {
-                    document.write("<br>");
-                    document.write(results[i].posted);
-    
-                }
-            
-          </script>
-       
+		<h2>Search Results for : <span id="topic">
+            <script>
+                 var tag = <%- JSON.stringify(tag)%>;
+                 document.write(tag);
+            </script></span></h2> 
 	</div>
 	
 	
+		<!-- Sidebar --> 
+		<br><br><br>
+
+		<div class="col-sm-4">
+			<h3>Want to find information on a certain topic?</h3>
+			See what your professors posted on the subject!
+			<br><br>
+			<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="form-control input-lg" placeholder="Search a post"/>
+						<span class="input-group-btn">
+							<button class="btn btn-info btn-lg" type="button">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</span>
+					</div>
+			</div>
+			<br>
+			<div id="sideinfo">Use # + the subject you're looking for.</div>
+		</div>
+
+	<div id="accordion" style="width:50%"></div>
+    
+  
+<script>
+var html = '';
+
+// first we generating our html in the loop
+var search = <%- JSON.stringify(tag)%>;
+var results = <%- JSON.stringify(path)%>;
+
+				
+
+for(var i=0 ; i<results.length ; i++) {
+
+
+if(i<2)
+{
+  html += '<div style="display:inline-block;float:none;position:absolute;margin-left: 200px;"><div class="col-sm-6"><h3>' + results[i].title + '</h3><br/>';
+  html += '<p>' + results[i].posted + '</p>'+'<hr>'+'<span id="tags">'+search+'</div></div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+}
+else
+{
+  html += '<div style="display:inline-block;float:none;position:absolute;margin-left: 500px;"><div class="col-sm-6"><h3>' + results[i].posted + '</h3><br/>';
+  html += '<p>' + results[i].posted + '</p>'+'<hr>'+'<span id="tags">'+search+'</div></div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+            
+}
+ 
+
+}
+// next we're inserting html into block with ID accordion
+document.getElementById("accordion").innerHTML = html;
+</script> 
+    
+	 
+		
+
 	
+	<div class="footer">&#169; 2017 SOEN 341</div>
 	
 </body>
 
