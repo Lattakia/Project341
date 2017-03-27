@@ -236,10 +236,42 @@ Team Meeting #11 Time 11:30am - 5:00pm March 23
 • Burndown chart and block diagram (Cynthia)
 • Worked on function to display survey results (Ahmad)
 • Implementation of chat rooms (Ali)
-• Discussed on pages to drop (profile and appointment) (everyone)
+• Discussed on pages to drop (appointment) (everyone)
 • Worked on test cases (Hanna)
 • Displaying search results on forum from database (Andrew/Hanna/Claudia/Tashnim)
 • Worked on user profile (Fatin)
 
 • Plan for next sprint: 1) First week: Finalize all required functionlity of the website including forum and chat functionalities. 
 			2) Second week: Tweaking and fixing bugs get ready for delivary.
+
+Team Meeting #12 Time 5:30am - 7:00pm March 26
+
+• Went over website to see what needs to be added and what needs to be fixed. 
+  For the major features, this is what needs to be done:
+	• Surveys: Functionality for prof/TA to create survey questions, allow student to choose question, 
+	  ensure each student can only complete each survey only once (unless professor updates survey).
+	• Forum: Fix bugs so that students and professors to see forum posts and to search for specific posts,
+	  finish it up.
+	• Chatroom: finish implementation.
+	• Appointment booking: look into it and see how feasible it is, implement it if so.
+	• Profile: finish implementation and fix any bugs.
+  For the designs:
+  	• Survey results page.
+	• Profile page.
+	• Survey choosing page.
+	• Fixes on forum pages
+	• Appointment booking pages, for student and professor, if we implement them.
+  Other fixes:
+  	• Fix the redirect link from student survey submit page.
+	• Add a main button to redirect from Chat to Main.
+	• Top-right corner main page needs to be fixed to allow user to go to profile page.
+	• Refactor route.js to look cleaner and add more comments.
+	  
+• Task split up:
+	• All page designs (Claudia/Tashnim)
+	• Survey backend (Ahmad/Andrew)
+	• Forum backend (Claudia)
+	• Implementation of chat rooms (Ali)
+	• Appointment (Fatin/Ahmad)
+	• Documentation and unit test cases* (Hanna)
+* Unit test cases will be a team effort, as it will be too much for one person to take on all at once.
