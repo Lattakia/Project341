@@ -405,7 +405,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
        res.render('forum-results-2.ejs');
         // display values of search in forum-results.ejs
         console.log("search result");
-        console.log(req.query.mylittletextbox);
+        console.log(req.query.title);
          //console.log(req.query.tags)
 
     var MongoClient = require('mongodb').MongoClient
@@ -414,12 +414,15 @@ var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
+  if(req.query.title!="")
+      {
   collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
       //console.log(docs[0])
       db.close()
     })
   })
+      }
   // Grab a cursor
   
       var cursor = collection.find({"tags":req.query.search});
