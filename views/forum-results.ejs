@@ -187,24 +187,18 @@
 	
 		<!-- Sidebar --> 
 		<br><br><br>
-
+       <form action='/forum-submitted'>
 		<div class="col-sm-4">
 			<h3>Want to find information on a certain topic?</h3>
 			See what your professors posted on the subject!
 			<br><br>
-			<div id="custom-search-input">
-					<div class="input-group col-md-12">
-						<input type="text" class="form-control input-lg" placeholder="Search a post"/>
-						<span class="input-group-btn">
-							<button class="btn btn-info btn-lg" type="button">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
-						</span>
-					</div>
-			</div>
+			<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
+		<br>
+		<input type="submit" name = "tags" class="btn btn-default" value="Search">
 			<br>
 			<div id="sideinfo">Use # + the subject you're looking for.</div>
 		</div>
+            </form>
 
 	<div id="accordion" style="width:50%"></div>
     
@@ -216,16 +210,16 @@ var html = '';
 var search = <%- JSON.stringify(tag)%>;
 var results = <%- JSON.stringify(path)%>;
 
-				
-
+		
 for(var i=0 ; i<results.length ; i++) {
-
 
 if(i<2)
 {
+   
   html += '<div style="display:inline-block;float:none;position:absolute;margin-left: 200px;"><div class="col-sm-6"><h3>' + results[i].title + '</h3><br/>';
   html += '<p>' + results[i].posted + '</p>'+'<hr>'+'<span id="tags">'+search+'</div></div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
 }
+
 else
 {
   html += '<div style="display:inline-block;float:none;position:absolute;margin-left: 500px;"><div class="col-sm-6"><h3>' + results[i].posted + '</h3><br/>';
@@ -240,7 +234,8 @@ document.getElementById("accordion").innerHTML = html;
 </script> 
     
 	 
-		
+		<p>Return to Forum Page<a href="/forum"> Forum</a></p>
+    <p>Or go to <a href="/main">Main</a>Page</p>
 
 	
 	<div class="footer">&#169; 2017 SOEN 341</div>
