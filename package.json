@@ -15,7 +15,8 @@
     "morgan": "^1.8.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "socket.io": "^1.7.2"
+    "socket.io": "^1.7.2",
+    "mongoskin": "~0.6.0"
   },
   "main": "index.js",
   "devDependencies": {},
@@ -23,3 +24,4 @@
   "author": "",
   "license": "ISC"
 }
+
