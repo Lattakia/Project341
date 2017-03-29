@@ -610,8 +610,13 @@ MongoClient.connect(URL, function(err, db) {
     console.log(arr_pos);
   var path;
 db.collection('forumvalues', function(err, collection) {
-    collection.find({"tags":{ $in : [arr_pos[0],arr_pos[1],arr_pos[2],arr_pos[3],arr_pos[4],arr_pos[5],arr_pos[6],arr_pos[7],arr_pos[8],arr_pos[9],req.query.search] }
-        }).toArray(function(err, results) {
+    var args = (function(arr, elem) {
+            var a2 = arr.map(function(e) { return e; }); // copy of arr
+            a2.push(elem);
+            return a2;
+        })(arr_pos, req.query.search);//brendan: creates new array for the query with the search param attached to arr_pos
+    collection.find({"tags":{ $in : args }
+        }).sort({"tags":1}).toArray(function(err, results) {
         path = results;
         console.log(results);
          res.render('forum-results.ejs',{tag:req.query.search,path:results});
