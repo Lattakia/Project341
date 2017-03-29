@@ -510,7 +510,64 @@ MongoClient.connect(URL, function(err, db) {
         //console.log(req.query.firstname)
     });
 
+//hh
+    app.get('/forum-submitted-3',checkAuthentication,function(req,res)
+        {
+        console.log(req.query.search);
+        // Please display values of
+        // display values of search in forum-results.ejs
+        console.log("search result");
+        //console.log(req.query.mylittletextbox);
 
+
+    var MongoClient = require('mongodb').MongoClient
+
+var URL = 'mongodb://localhost:27017/mydatabase'
+MongoClient.connect(URL, function(err, db) {
+  if (err) return
+  var collection = db.collection('forumvalues')
+  var string = req.query.search;
+ 
+
+  var path;
+db.collection('forumvalues', function(err, collection) {
+    collection.find({}).toArray(function(err, results) {
+        path = results;
+        console.log(results);
+         res.render('forum-results.ejs',{tag:"All",path:results});
+    });
+})
+     
+
+      var cursor = collection.find({"tags":req.query.search});
+     
+    
+    
+    cursor.toArray(function(err, items) {
+        
+        
+          var a= cursor.each(function(err,item) {
+         
+          if(item == null) {
+
+          // Show that the cursor is closed
+         
+        }
+          else{
+          d=item.posted;
+          console.log(item.tags);
+          console.log(item.posted);
+
+          }
+
+      });
+           
+          });
+        })
+   
+    
+});
+    //hh
 
 app.get('/forum-submitted',checkAuthentication,function(req,res)
         {
@@ -527,11 +584,34 @@ var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
-
-  
+  var string = req.query.search;
+ 
+  var pos = 0;
+  var x = 0;
+  var y = 0;
+  var num = -1;
+  var i = -1;
+  //var graf = "#hi,#hokw,#ru,#hiii,#asdf";
+  var arr_pos = [];
+  var arr_pos_2 = [];
+    
+    while (pos != -1) {
+    pos = string.indexOf(",", i + 1);
+    arr_pos[x] = string.substring(y, pos);
+    arr_pos_2[x] = pos+1;
+    x++;
+    y = pos+1;
+    //document.write(y+"<br>");
+    num += 1;
+    i = pos;
+  }
+    arr_pos[num] = string.substring(arr_pos_2[num-1], string.length);
+    
+    console.log(arr_pos);
   var path;
 db.collection('forumvalues', function(err, collection) {
-    collection.find({"tags":req.query.search}).toArray(function(err, results) {
+    collection.find({"tags":{ $in : [arr_pos[0],arr_pos[1],arr_pos[2],arr_pos[3],arr_pos[4],arr_pos[5],arr_pos[6],arr_pos[7],arr_pos[8],arr_pos[9],req.query.search] }
+        }).toArray(function(err, results) {
         path = results;
         console.log(results);
          res.render('forum-results.ejs',{tag:req.query.search,path:results});
