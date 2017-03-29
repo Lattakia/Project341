@@ -193,12 +193,19 @@
 			See what your professors posted on the subject!
 			<br><br>
 			<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
-		<br>
-		<input type="submit" name = "tags" class="btn btn-default" value="Search">
-			<br>
-			<div id="sideinfo">Use # + the subject you're looking for.</div>
+
+            <br/>
+        Enter a maximum of 10 search tags
+            <div id="sideinfo">Use # + the subject you're looking for.</div>
+            <input type="submit" name = "tags" class="btn btn-default" value="Search">
+             </form>
+            <form action="/forum-submitted-3">
+        <input type="submit" name = "tags" class="btn btn-default" value="Display All">
+             </form>
 		</div>
-            </form>
+           
+    
+    
 
 	<div id="accordion" style="width:50%"></div>
     
@@ -217,13 +224,13 @@ if(i<2)
 {
    
   html += '<div style="display:inline-block;float:none;position:absolute;margin-left: 200px;"><div class="col-sm-6"><h3>' + results[i].title + '</h3><br/>';
-  html += '<p>' + results[i].posted + '</p>'+'<hr>'+'<span id="tags">'+search+'</div></div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+  html += '<p>' + results[i].posted + '</p>'+'<hr>'+'<span id="tags">'+results[i].tags+'</div></div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
 }
 
 else
 {
   html += '<div style="display:inline-block;float:none;position:absolute;margin-left: 500px;"><div class="col-sm-6"><h3>' + results[i].posted + '</h3><br/>';
-  html += '<p>' + results[i].posted + '</p>'+'<hr>'+'<span id="tags">'+search+'</div></div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+  html += '<p>' + results[i].posted + '</p>'+'<hr>'+'<span id="tags">'+results[i].tags+'</div></div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
             
 }
  
