@@ -614,7 +614,7 @@ db.collection('forumvalues', function(err, collection) {
             var a2 = arr.map(function(e) { return e; }); // copy of arr
             a2.push(elem);
             return a2;
-        })(arr_pos, req.query.search);//brendan: creates new array for the query with the search param attached to arr_pos
+        })(arr_pos, req.query.search);
     collection.find({"tags":{ $in : args }
         }).sort({"tags":1}).toArray(function(err, results) {
         path = results;
