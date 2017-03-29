@@ -178,21 +178,27 @@
 	
 	<br><br>
 	<!-- Search bar -->
-    <form action="/forum-submitted">
+    
 	<div class="col-sm-4">
-		
+		 <form action="/forum-submitted">
         <h3>Want to find information on a certain topic?</h3>
 		See what your professors posted on the subject!
 		<br><br>
 		<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
 		<br>
+         Enter a maximum of 10 search tags
 		<input type="submit" name = "tags" class="btn btn-default" value="Search">
-
-		
-		
+        <br/>
+          
+              </form>
+         <form action="/forum-submitted-3">
+        <input type="submit" name = "tags" class="btn btn-default" value="Display All">
+             </form>
         </div>
+    		    
+  
 	</div>
-    </form>
+    
     
 	<!-- Post column -->
     <form action="/forum-submitted-2">
@@ -224,7 +230,8 @@
 	</div>
 	
 	<div class="footer">&#169; 2017 SOEN 341</div>
-        </form>
+    </form>
+    <p>Return to <a href="/main">Main</a>Page</p>
 
 </body>
 

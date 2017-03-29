@@ -1,15 +1,3 @@
-/*var MongoClient = require('mongodb').MongoClient
-
-var URL = 'mongodb://localhost:27017/mydatabase'
-MongoClient.connect(URL, function(err, db) {
-  if (err) return
-  var collection = db.collection('food')
-  collection.insert({name: "helloclau", tasty: true}, function(err, result) {
-    collection.find({name: 'taco'}).toArray(function(err, docs) {
-      db.close()
-    })
-  })
-});*/
 
 passport = require('passport');
 app = require('express')();
@@ -76,6 +64,8 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         db.close();
     });
 });
+    
+
     // Home page
     app.get('/', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
@@ -130,16 +120,53 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     });
    
  app.get('/main', checkAuthentication, function(req, res) {
-        res.render('main.ejs', { email:req.session.session.title
-            //user : req.user // get the user out of session and pass to template
-        });
+     
+     var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
+
+MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('users');
+    var person = req.session.session.title;
+
+    // Locate all the entries using find
+    collection.find().toArray(function(err, results) {
+        var resa = results;
+        console.log(resa);
+        console.log(person);
+        var saveindex = 10;
         
+        for(var i=0;i<resa.length;i++)
+        {
+            if(person == resa[i]['local']['email'])
+            {
+                    saveindex = i;
+            }
+           
+        }  
        
-        console.log(req.body);
+        //var emailofuser = resa[saveindex]['local']['email'];
+        var firstname = resa[saveindex]['local']['firstname'];
+        var lastname = resa[saveindex]['local']['lastname'];
+        console.log(firstname);
+         console.log(lastname);
+       res.render('main.ejs', {firstname:firstname,lastname:lastname}
+            //user : req.user // get the user out of session and pass to template
+        );
+        db.close();
+        });
+   
+});
+    
+        
+        
+    
         // passing data from one page to the other
         app.set('data', req.session.session);
     
     });
+   
   var session = require('express-session'); 
  app.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
@@ -153,6 +180,46 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         req.session.session = {
             title: req.body.email
         };
+        //e
+         
+  var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
+
+MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('users');
+    var person = req.session.session.title;
+
+    // Locate all the entries using find
+    collection.find().toArray(function(err, results) {
+        var resa = results;
+        console.log(resa);
+        console.log(person);
+        var saveindex = 10;
+        
+        for(var i=0;i<resa.length;i++)
+        {
+            if(person == resa[i]['local']['email'])
+            {
+                    saveindex = i;
+            }
+           
+        }  
+       
+        //var emailofuser = resa[saveindex]['local']['email'];
+        var firstname = resa[saveindex]['local']['firstname'];
+        var lastname = resa[saveindex]['local']['lastname'];
+        console.log(firstname);
+         console.log(lastname);
+       
+        db.close();
+        });
+   
+});
+    
+    
+
       return res.redirect('main');
     });
   })(req, res, next);
@@ -260,16 +327,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         console.log(app.get('data'));
 
     });
-
-
-  
-    
-    app.post('/surveys-students',function(req,res)
-           {
-        //res.redirect('ss-results.ejs')
-
-    });
-    
+      
     app.get('/surveys-s2',checkAuthentication,function(req,res)
         {
         res.render('ss-results')
@@ -345,7 +403,7 @@ app.post('/surveys',function(req,res){
         };
         
         var temp = app.get('data').title;
-        console.log(app.get('data'));
+        //console.log(app.get('data'));
        
 
     });
@@ -377,7 +435,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
        
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
-        console.log(emailofuser);
+        //console.log(emailofuser);
 
        
         if(accounttypeuser == "student")
@@ -404,8 +462,8 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         // Please display values of 
        res.render('forum-results-2.ejs');
         // display values of search in forum-results.ejs
-        console.log("search result");
-        console.log(req.query.mylittletextbox);
+      //  console.log("search result");
+    //    console.log(req.query.title);
          //console.log(req.query.tags)
 
     var MongoClient = require('mongodb').MongoClient
@@ -414,12 +472,15 @@ var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
+  if(req.query.title!="")
+      {
   collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
       //console.log(docs[0])
       db.close()
     })
   })
+      }
   // Grab a cursor
   
       var cursor = collection.find({"tags":req.query.search});
@@ -440,29 +501,23 @@ MongoClient.connect(URL, function(err, db) {
               console.log("HH");
           console.log(req.query.search);
            // display these values in forum-results-2.ejs
-           // Guys
-          console.log("HH");
+        
           }
-          //console.log(req.query.tags);
-          
-        //console.log("penguins");
-          //console.log(item.posted);
+         
       });
 });
          
         //console.log(req.query.firstname)
     });
 
-
-    
-app.get('/forum-submitted',checkAuthentication,function(req,res)
+//hh
+    app.get('/forum-submitted-3',checkAuthentication,function(req,res)
         {
         console.log(req.query.search);
         // Please display values of
-      
         // display values of search in forum-results.ejs
         console.log("search result");
-        console.log(req.query.mylittletextbox);
+        //console.log(req.query.mylittletextbox);
 
 
     var MongoClient = require('mongodb').MongoClient
@@ -471,17 +526,94 @@ var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
-  collection.insert({title: req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
-    collection.find({name: req.query.radioo}).toArray(function(err, docs) {
-      db.close()
-    })
-  })
-  
+  var string = req.query.search;
+ 
+
   var path;
 db.collection('forumvalues', function(err, collection) {
-    collection.find({"tags":req.query.search}).toArray(function(err, results) {
+    collection.find({}).toArray(function(err, results) {
         path = results;
-        //console.log(results);
+        console.log(results);
+         res.render('forum-results.ejs',{tag:"All",path:results});
+    });
+})
+     
+
+      var cursor = collection.find({"tags":req.query.search});
+     
+    
+    
+    cursor.toArray(function(err, items) {
+        
+        
+          var a= cursor.each(function(err,item) {
+         
+          if(item == null) {
+
+          // Show that the cursor is closed
+         
+        }
+          else{
+          d=item.posted;
+          console.log(item.tags);
+          console.log(item.posted);
+
+          }
+
+      });
+           
+          });
+        })
+   
+    
+});
+    //hh
+
+app.get('/forum-submitted',checkAuthentication,function(req,res)
+        {
+        console.log(req.query.search);
+        // Please display values of
+        // display values of search in forum-results.ejs
+        console.log("search result");
+        //console.log(req.query.mylittletextbox);
+
+
+    var MongoClient = require('mongodb').MongoClient
+
+var URL = 'mongodb://localhost:27017/mydatabase'
+MongoClient.connect(URL, function(err, db) {
+  if (err) return
+  var collection = db.collection('forumvalues')
+  var string = req.query.search;
+ 
+  var pos = 0;
+  var x = 0;
+  var y = 0;
+  var num = -1;
+  var i = -1;
+  //var graf = "#hi,#hokw,#ru,#hiii,#asdf";
+  var arr_pos = [];
+  var arr_pos_2 = [];
+    
+    while (pos != -1) {
+    pos = string.indexOf(",", i + 1);
+    arr_pos[x] = string.substring(y, pos);
+    arr_pos_2[x] = pos+1;
+    x++;
+    y = pos+1;
+    //document.write(y+"<br>");
+    num += 1;
+    i = pos;
+  }
+    arr_pos[num] = string.substring(arr_pos_2[num-1], string.length);
+    
+    console.log(arr_pos);
+  var path;
+db.collection('forumvalues', function(err, collection) {
+    collection.find({"tags":{ $in : [arr_pos[0],arr_pos[1],arr_pos[2],arr_pos[3],arr_pos[4],arr_pos[5],arr_pos[6],arr_pos[7],arr_pos[8],arr_pos[9],req.query.search] }
+        }).toArray(function(err, results) {
+        path = results;
+        console.log(results);
          res.render('forum-results.ejs',{tag:req.query.search,path:results});
     });
 })
@@ -518,9 +650,6 @@ db.collection('forumvalues', function(err, collection) {
         
          
     
- 
-    
-  
 
 	app.post('/submitted', function(req,res,next) {
 
@@ -577,8 +706,6 @@ db.collection('forumvalues', function(err, collection) {
     
 });
 };
-
-
 
 
 

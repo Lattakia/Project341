@@ -312,13 +312,13 @@
       <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
 
           <script>
-              var email = <%- JSON.stringify(email)%>;
-              document.write("Signed in as "+email);
+              
+              var firstname = <%- JSON.stringify(firstname)%>;
+              var lastname = <%- JSON.stringify(lastname)%>;
+              document.write("Signed in as "+firstname+" "+lastname);
           </script>
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li><a href="#">Profile Page</a></li>
-            <li class="divider"></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
@@ -362,3 +362,4 @@
 </body>
 
 </html>
+ 
