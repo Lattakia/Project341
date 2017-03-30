@@ -19,7 +19,7 @@ var app = express();
 //Your api key, from Mailgun’s Control Panel
 var api_key = 'key-e63cfbbb0bb500d1b5428053228f6360';
 
- 
+
 //Your domain, from the Mailgun Control Panel
 var domain = 'connectconcordia.tk';
 
@@ -41,12 +41,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }), function(req, res) {
-    var username = req.body.email;
-    var collection = db.collection('emails_tester');
-        
- 
+    var username = req.body.username;
+    var collection = db.collection('usernames_tester');
+
+
 });
-    
+
 });
 
 var MongoClient = require('mongodb').MongoClient
@@ -64,63 +64,63 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         db.close();
     });
 });
-    
+
 
     // Home page
     app.get('/', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
     });
 
-    
+
     app.get('/signup', function(req, res) {
 
         // render the page and pass in any flash data if it exists
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
-    
-    
+
+
     app.get('/chat', checkAuthentication, function(req, res) {
-        res.render('chat.ejs', { email:req.session.session
+        res.render('chat.ejs', { username:req.session.session
 
         });
-        
-    
-        
+
+
+
         console.log(req.session.session);
         // passing data from one page to the other
         app.set('data', req.session.session);
-    
+
     });
     function checkAuthentication(req,res,next){
     if(req.isAuthenticated()){
-        //if user is looged in, req.isAuthenticated() will return true 
+        //if user is looged in, req.isAuthenticated() will return true
         next();
     } else{
         res.redirect("/");
     }
 }
-	
+
      app.get('/login', function(req, res) {
 
         res.render('login.ejs', { message: req.flash('loginMessage')
-        }); 
+        });
     });
-  
-	
+
+
      app.get('/login', function(req, res) {
 
         res.render('login.ejs', { message: req.flash('loginMessage')
-        }); 
+        });
     });
 
 	app.get('/submitted', function(req, res) {
 
-        res.render('chat.ejs', { message: req.flash('loginMessage')}); 
-        
+        res.render('chat.ejs', { message: req.flash('loginMessage')});
+
     });
-   
+
  app.get('/main', checkAuthentication, function(req, res) {
-     
+
      var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
 
@@ -136,16 +136,16 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         console.log(resa);
         console.log(person);
         var saveindex = 10;
-        
+
         for(var i=0;i<resa.length;i++)
         {
-            if(person == resa[i]['local']['email'])
+            if(person == resa[i]['local']['username'])
             {
                     saveindex = i;
             }
-           
-        }  
-       
+
+        }
+
         //var emailofuser = resa[saveindex]['local']['email'];
         var firstname = resa[saveindex]['local']['firstname'];
         var lastname = resa[saveindex]['local']['lastname'];
@@ -156,21 +156,21 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         );
         db.close();
         });
-   
+
 });
-    
-        
-        
-    
+
+
+
+
         // passing data from one page to the other
         app.set('data', req.session.session);
-    
+
     });
-   
-  var session = require('express-session'); 
+
+  var session = require('express-session');
  app.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
-      console.log(req.body.email);
+      console.log(req.body.username);
     if (err) { return next(err); }
     // Redirect if it fails
     if (!user) { return res.redirect('/login'); }
@@ -178,10 +178,10 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
       if (err) { return next(err); }
       // Redirect if it succeeds
         req.session.session = {
-            title: req.body.email
+            title: req.body.username
         };
         //e
-         
+
   var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
 
@@ -197,58 +197,58 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         console.log(resa);
         console.log(person);
         var saveindex = 10;
-        
+
         for(var i=0;i<resa.length;i++)
         {
-            if(person == resa[i]['local']['email'])
+            if(person == resa[i]['local']['username'])
             {
                     saveindex = i;
             }
-           
-        }  
-       
+
+        }
+
         //var emailofuser = resa[saveindex]['local']['email'];
         var firstname = resa[saveindex]['local']['firstname'];
         var lastname = resa[saveindex]['local']['lastname'];
         console.log(firstname);
          console.log(lastname);
-       
+
         db.close();
         });
-   
+
 });
-    
-    
+
+
 
       return res.redirect('main');
     });
   })(req, res, next);
 });
-   
-	
+
+
 	app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
-   
+
     });
 
     app.get('/account-professor',function(req, res) {
         res.render('account-professor.ejs');
-   
+
     });
-    
+
     app.get('/surveys-students',checkAuthentication,checkperson,function(req,res)
     {
-        
+
         req.session.session = {
-            title: req.body.email
+            title: req.body.username
         };
-     
+
         var temp = app.get('data').title;
         console.log(app.get('data'));
-       
+
     });
-    
+
     function checkperson(req, res,db)
     {
   var MongoClient = require('mongodb').MongoClient
@@ -266,25 +266,25 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         var saveindex = 10;
         for(i=0;i<resa.length;i++)
         {
-            if(person == resa[i]['local']['email'])
+            if(person == resa[i]['local']['username'])
             {
                     saveindex = i;
             }
-           
+
         }
-         
-       
+
+
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
         console.log("HEH");
-        console.log(emailofuser);  
+        console.log(emailofuser);
 
         // Andrew, Ali and Ahmad, look here
-       
+
         if(accounttypeuser == "student")
         {
-           // here, we replace the email with the values returned from the find query above. For the query, we need to select 
-           res.render('surveys-students.ejs');     
+           // here, we replace the username with the values returned from the find query above. For the query, we need to select
+           res.render('surveys-students.ejs');
         }
         else if (accounttypeuser == "teacherta")
         {
@@ -302,16 +302,16 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
                     // Send the documents from the database collection to the client to process.
                     res.render('survey-results.ejs', {docs: docs});
               });
-              
+
             });
-            
+
         }
         db.close();
         });
-   
+
 });
-    
-    
+
+
     }
 
     app.get('/myProfile',checkAuthentication,function(req,res)
@@ -320,14 +320,14 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 		res.render('myProfile.ejs');
 
         req.session.session = {
-            title: req.body.email
+            title: req.body.username
         };
 
         var temp = app.get('data').title;
         console.log(app.get('data'));
 
     });
-      
+
     app.get('/surveys-s2',checkAuthentication,function(req,res)
         {
         res.render('ss-results')
@@ -349,8 +349,8 @@ MongoClient.connect(URL, function(err, db) {
   })
 });
     });
-    
-var bodyParser = require('body-parser'); 
+
+var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
@@ -393,22 +393,22 @@ app.post('/surveys',function(req,res){
 
 
 });
-    
 
-    app.get('/forum',checkAuthentication,getuseremail,function(req,res)
+
+    app.get('/forum',checkAuthentication,getuserUsername,function(req,res)
     {
-        
+
         req.session.session = {
             title: req.body.email
         };
-        
+
         var temp = app.get('data').title;
         //console.log(app.get('data'));
-       
+
 
     });
 
-    function getuseremail(req, res,db)
+    function getuserUsername(req, res,db)
     {
   var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
@@ -425,41 +425,41 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         var saveindex = 10;
         for(i=0;i<resa.length;i++)
         {
-            if(person == resa[i]['local']['email'])
+            if(person == resa[i]['local']['username'])
             {
                     saveindex = i;
             }
-           
-        }
-         
-       
-        var emailofuser = resa[saveindex]['local']['email'];
-        var accounttypeuser = resa[saveindex]['local']['accounttype'];
-        //console.log(emailofuser);
 
-       
+        }
+
+
+        var usernameofuser = resa[saveindex]['local']['username'];
+        var accounttypeuser = resa[saveindex]['local']['accounttype'];
+        //console.log(usernameofuser);
+
+
         if(accounttypeuser == "student")
         {
-           // here, we replace the email with the values returned from the find query above. For the query, we need to select 
-           res.render('forum-student.ejs');     
+           // here, we replace the username with the values returned from the find query above. For the query, we need to select
+           res.render('forum-student.ejs');
         }
         else if (accounttypeuser == "teacherta")
         {
            res.render('forum-teacher.ejs');
             // render prof page if account is a teacher/ta
-            
+
         }
         db.close();
         });
-   
+
 });
-    
-    
+
+
     }
 
     app.get('/forum-submitted-2',checkAuthentication,function(req,res)
         {
-        // Please display values of 
+        // Please display values of
        res.render('forum-results-2.ejs');
         // display values of search in forum-results.ejs
       //  console.log("search result");
@@ -482,9 +482,9 @@ MongoClient.connect(URL, function(err, db) {
   })
       }
   // Grab a cursor
-  
+
       var cursor = collection.find({"tags":req.query.search});
-      
+
       // Execute the each command, triggers for each document
       cursor.each(function(err,item) {
           if(item == null) {
@@ -501,12 +501,12 @@ MongoClient.connect(URL, function(err, db) {
               console.log("HH");
           console.log(req.query.search);
            // display these values in forum-results-2.ejs
-        
+
           }
-         
+
       });
 });
-         
+
         //console.log(req.query.firstname)
     });
 
@@ -527,7 +527,7 @@ MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
   var string = req.query.search;
- 
+
 
   var path;
 db.collection('forumvalues', function(err, collection) {
@@ -537,21 +537,21 @@ db.collection('forumvalues', function(err, collection) {
          res.render('forum-results.ejs',{tag:"All",path:results});
     });
 })
-     
+
 
       var cursor = collection.find({"tags":req.query.search});
-     
-    
-    
+
+
+
     cursor.toArray(function(err, items) {
-        
-        
+
+
           var a= cursor.each(function(err,item) {
-         
+
           if(item == null) {
 
           // Show that the cursor is closed
-         
+
         }
           else{
           d=item.posted;
@@ -561,11 +561,11 @@ db.collection('forumvalues', function(err, collection) {
           }
 
       });
-           
+
           });
         })
-   
-    
+
+
 });
     //hh
 
@@ -585,7 +585,7 @@ MongoClient.connect(URL, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
   var string = req.query.search;
- 
+
   var pos = 0;
   var x = 0;
   var y = 0;
@@ -594,7 +594,7 @@ MongoClient.connect(URL, function(err, db) {
   //var graf = "#hi,#hokw,#ru,#hiii,#asdf";
   var arr_pos = [];
   var arr_pos_2 = [];
-    
+
     while (pos != -1) {
     pos = string.indexOf(",", i + 1);
     arr_pos[x] = string.substring(y, pos);
@@ -606,7 +606,7 @@ MongoClient.connect(URL, function(err, db) {
     i = pos;
   }
     arr_pos[num] = string.substring(arr_pos_2[num-1], string.length);
-    
+
     console.log(arr_pos);
   var path;
 db.collection('forumvalues', function(err, collection) {
@@ -622,21 +622,21 @@ db.collection('forumvalues', function(err, collection) {
          res.render('forum-results.ejs',{tag:req.query.search,path:results});
     });
 })
-     
+
 
       var cursor = collection.find({"tags":req.query.search});
-     
-    
-    
+
+
+
     cursor.toArray(function(err, items) {
-        
-        
+
+
           var a= cursor.each(function(err,item) {
-         
+
           if(item == null) {
 
           // Show that the cursor is closed
-         
+
         }
           else{
           d=item.posted;
@@ -646,21 +646,21 @@ db.collection('forumvalues', function(err, collection) {
           }
 
       });
-           
+
           });
         })
-   
-    
+
+
 });
-        
-         
-    
+
+
+
 
 	app.post('/submitted', function(req,res,next) {
 
     passport.authenticate('local-signup',function(err,user,info)
-    { 
-        var a = req.body.email;
+    {
+
         if (err) { return next(err); }
     // Redirect if it fails
     if (!user) { return res.redirect('/signup'); }
@@ -671,7 +671,7 @@ db.collection('forumvalues', function(err, collection) {
     var mailgun = new Mailgun({apiKey: api_key, domain: domain});
 
 		 req.session.session = {
-            title: req.body.email
+            title: req.body.username
         };
 		console.log(req.session.session.title);
     var data = {
@@ -679,13 +679,13 @@ db.collection('forumvalues', function(err, collection) {
       from: from_who,
     //The email to contact
       to: req.body.email,
-		
-    //Subject and text data  
+
+    //Subject and text data
       subject: 'Successful Account Creation Connect Concordia',
       html: 'Hi,'+
         '<br/>This is just to confirm that you have successfully created an account with Connect Concordia. You will now be able to enjoy a state of the art service designed to faciliate communication between school faculty.'
     }
-     
+
 
     //Invokes the method to send emails given the above data with the helper library
     mailgun.messages().send(data, function (err, body) {
@@ -696,10 +696,10 @@ db.collection('forumvalues', function(err, collection) {
         }
         //Else we can greet    and leave
         else {
-            //Here "submitted.jade" is the view file for this landing page 
+            //Here "submitted.jade" is the view file for this landing page
             //We pass the variable "email" from the url parameter in an object rendered by Jade
-            //res.render('submitted', { email : req.params.username });
-            res.render('main'); 
+            //res.render('submitted', { email : req.params.email });
+            res.render('main');
             console.log(req.body.email);
         }
     });
@@ -708,7 +708,7 @@ db.collection('forumvalues', function(err, collection) {
     });
   })(req, res, next);
 
-    
+
 });
 };
 
@@ -721,15 +721,15 @@ function isLoggedIn(req, res, next) {
     // if user is authenticated, continue
     if (req.isAuthenticated())
         {
-           return next();  
+           return next();
         }
-       
+
 
     else
         { // otherwise redirect them to the home page
-   
+
             res.redirect('/');
-            
+
         }
-   
+
 }

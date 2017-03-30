@@ -9,7 +9,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function (err, db) {
     db.close();
 });
 
-//We're using the express framework and the mailgun-js wrapper		
+//We're using the express framework and the mailgun-js wrapper
 var express = require('express');
 
 var Mailgun = require('mailgun-js');
@@ -19,7 +19,7 @@ var app = express();
 //Your api key, from Mailgun’s Control Panel
 var api_key = 'key-e63cfbbb0bb500d1b5428053228f6360';
 
- 
+
 //Your domain, from the Mailgun Control Panel
 var domain = 'connectconcordia.tk';
 
@@ -113,12 +113,3 @@ io.on('connection', function (socket) {
         }
     });
 });
-
-
-
-
-
-
-
-
-
