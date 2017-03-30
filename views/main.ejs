@@ -1,10 +1,10 @@
-<!-- views/index.ejs -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>Connect Concordia</title>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="allstyles.css">
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="shortcut icon" href="cc-favicon.png">
@@ -17,6 +17,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
 
 		html {
@@ -29,12 +30,14 @@
         }
 
         body {
-            background-color: rgb(143,37,57);
+            
+            background-color: #F1F1F1;
             font: 16px Helvetica, Arial;
-			background:url('https://c1.staticflickr.com/6/5006/5279916243_96267b8e32_b.jpg');
 		    background-attachment:fixed;
 	        background-repeat: no-repeat;
+            background:url('http://fsa-arch.qc.ca/workspace/uploads/realisations/slideshows/gm3-1385583150.jpg');
 	        background-size: cover;
+            background-color:#666666;
         }
 
         form {
@@ -59,99 +62,24 @@
             padding: 10px;
         }
 
-        #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #messages li {
-            padding: 5px 10px;
-        }
-
-        #messages li:nth-child(odd) {
-            background: #eee;
-        }
-
-
-        nav {
-            text-align: right;
-            padding: 20px;
-        }
-
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a:link,
-        nav ul li a:visited {
-            color: #555;
-            text-decoration: none;
-            padding: 9px;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            background: #eee;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            border: solid 1px #ddd;
-            font-family: Arial, sans-serif;
-        }
-
-        footer ul {
-            padding: 13px;
-        }
-
-        footer ul li {
-            display: inline;
-        }
-
-        footer ul li a:link,
-        footer ul li a:visited {
-            color: #555;
-            text-decoration: none;
-            padding: 9px;
-        }
-
-        footer ul li a:hover {
-            text-decoration: underline;
-        }
-
-        footer ul.right-footer {
-            float: right;
-        }
-
-        footer ul.left-footer {
-            float: left;
-        }
-
-        #topbar{
-            width:100%;
-            height:150px;
-            background-color:rgb(143,37,57);
-            z-index:1000;
-            position:fixed;
-            font: 16px Helvetica, Arial;
-        }
-
-        #logo{
-            z-index: 1000;
-            width:700px;
-            height:150px;
-            z-index:1000;
-        }
-
         #user{
             color:white;
             float:right;
             position:relative;
             font: 16px Helvetica, Arial;
         }
+		
+
+		
+		/*.content{
+			position:relative;
+			margin: 0 auto;
+			min-height:750px;
+            height:100%;
+            color:black;
+            margin:0;
+            padding:0;
+		}*/
 
         .content{
             min-height:750px;
@@ -161,14 +89,17 @@
             padding:0;
         }
         .info{
-            width:70%;
-            height:1000px;
+			position: relative;
+			margin-left:30px;
+			margin-top: 250px;
+			width: 60%;
+            height:600px;
             margin: 0 auto;
             padding:200px;
             font-size:22px;
             text-align: justify;
-            color:white;
-            background:rgba(0,0,0,0.5);
+            color:black;
+            background:#FFFFFF;
         }
         h1{
             font-size:36px !important ;
@@ -205,105 +136,25 @@
             -webkit-transition-duration: 0.4s; /* Safari */
             transition-duration: 0.4s;
         }
+		
+		.col-sm-6{
+			background-color:#FFFFFF;
+			margin-left: 30%;
+			margin-top: 150px;
+			padding:80px;
+			border:1px;
+			border-color:#808080;
+            color:black;
+			
+	}
 
-        /* USER TAB */
-
-        .dropdown button{
-            color: white;
-           background-color:rgb(143,37,57);
-            border:none;
-        }
-
-
-        .dropdown-toggle:active, .open .dropdown-toggle {
-            background-color:rgb(143,37,57) !important;
-            border:none !important;
-        }
-
-        .dropdown-toggle:hover, .open .caret {
-            background-color:rgb(143,37,57) !important;
-            border:none !important;
-        }
-
-
-        /***** SIDEBAR *****/
-         .tab {
-            position: fixed;
-            border: none;
-            background-color: #24292E;
-            width: 15%;
-            height: 100%;
-            top: 0;
-            left:0;
-            z-index:0;
-            overflow: auto;
-        }
-
-        /* Style the buttons inside the tab */
-        .tablinks {
-            position:relative;
-            display: block;
-            background-color: inherit;
-            color: #eee;
-            font-weight:bold;
-            padding: 22px 16px;
-            width: 100%;
-            border: none;
-            outline: none;
-            text-align: left;
-            cursor: pointer;
-            transition: 0.3s;
-            z-index:0;
-        }
-
-        /* Change background color of buttons on hover */
-        .tablinks:hover {
-            background-color: #5F5F5F;
-            color:#e6ac00;
-            text-decoration:none;
-        }
-
-        #logout{
-            position:relative;
-            display: block;
-            background-color: #5F5F5F;
-            color: white;
-            font-weight:bold;
-            padding: 22px 16px;
-            width: 100%;
-            border: none;
-            outline: none;
-            text-align: left;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        #logout:hover{
-            color: #e6ac00;
-			text-decoration: none;
-			-webkit-transition-duration: 0.4s; /* Safari */
-			transition-duration: 0.4s;
-        }
     </style>
 </head>
 
 <body>
 
-     <!--- SIDE MENU ----->
-<div class="tab">
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <a href="/logout" id="logout"><span class="fa fa-user"></span>  Logout</a>
-    <br><br>
-    <a class="tablinks" href="/account-professor">Find a professor</a><br>
-    <a class="tablinks" href="/forum">Forum</a><br>
-    <a class="tablinks" href="/surveys-students">Survey</a><br>
-   
-     <a class="tablinks" href="/chat">Chat</a><br>
-     <a class="tablinks" href="/myProfile">My Profile</a><br>
-</div>
-
-    <!---- TOP BAR ------>
-<div id="topbar">
+    <!-- TOP BAR -->
+	<div id="topbar">
     <img src="logo2.png" id="logo" alt="Logo">
     <div id="user">
 
@@ -334,32 +185,114 @@
 });
     </script>
 
+<!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="/main">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
 
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="/account-professor">Professor Appointments</a></li>
+                    <li><a href="/chat">Chat with Professor/Student</a></li>
+                </ul>
+				
+				<li>
+                  <a href="/forum">
+                  <i class="fa fa-users fa-lg"></i> Forum
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/surveys-students">
+                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+                  </a>
+                </li>
 
-<div class="content">
+                 <li>
+                  <a href="/myProfile">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+				  
+				  <li>
+                  <a href="/logout">
+                  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+                  </a>
+                  </li>
+ 
+            </ul>
+     </div>
+</div>
 
-	<div class="info">
+<!--
+<div  class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="nav-side-menu">
+                        <div class="brand">Brand Logo</div>
+                        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+                        <div class="menu-list">
+                            <ul id="menu-content" class="menu-content collapse out">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                                    <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                                </li>
+                                <ul class="sub-menu collapse" id="new">
+                                    <li>New New 1</li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <h1>Welcome To Dashboard Panel :)</h1>
+                    <p>
+                        this  is test text.this  is test text.this  is test text.this  is test text.
+                        this  is test text.this  is test text.this  is test text.this  is test text.
+                        this  is test text.this  is test text.this  is test text.this  is test text.
+                        this  is test text.this  is test text.this  is test text.this  is test text.
+                        this  is test text.this  is test text.
+                    </p>
+                </div>
+            </div>
+ </div>
+-->
 
-	<h1> <b>Welcome to Connect Concordia!</b></h1>
+<div class="col-sm-6">
+		<h1> <b>Welcome to Connect Concordia!</b></h1>
 
-	<br/>
-	 <ul>
-		<li>An appointment scheduler.</li>
-		<li>An instant messaging system between students and teachers.</li>
-		<li>A feature that allows professors to request feedback from students using surveys.</li>
-		<li>A forum section, where professors can post public questions using keywords denoted with hash tags.</li>
-        </ul>
-	<br>
-	</div>
-
-
+		<br/>
+		 <ul>
+			<li>An appointment scheduler.</li>
+			<li>An instant messaging system between students and teachers.</li>
+			<li>A feature that allows professors to request feedback from students using surveys.</li>
+			<li>A forum section, where professors can post public questions using keywords denoted with hash tags.</li>
+			</ul>
+		<br>
 </div>
 
 
-<div class="footer">&#169; 2017 SOEN 341</div>
+<!--
+<div class="footer">&#169; 2017 SOEN 341</div>-->
+
+
 
 
 </body>
 
 </html>
- 
