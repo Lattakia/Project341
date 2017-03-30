@@ -3,13 +3,25 @@
 <head>
 	
 	<title>Connect Concordia</title>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="allstyles.css">
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="shortcut icon" href="cc-favicon.png">
     <!-- load fontawesome -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- load fontawesome -->
 	
 	<style>
+        
 		#topbar
             {
                 width:100%;
@@ -65,16 +77,13 @@
 			padding-top: 50px; 
 		}
 		
-		ul
-			{
-				font-size: 22px;
-				
-			}
+
 			
 		
 		body
 			{
-                background-image: url("forum.jpg");
+                /*background-image: url("forum.jpg");*/
+                background-color:#808080;
                 background-attachment:fixed;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -112,14 +121,93 @@
 		#custom-search-input .glyphicon-search{
 			font-size: 14px;
 		}
+        #logo {
+    z-index: 1000;
+    width: 480px;
+    height: 100px;
+}
+        #topbar {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(143,37,57);
+}
+        
+        .nav-side-menu {
+    overflow: auto;
+    font-family: verdana;
+    font-size: 12px;
+    font-weight: 200;
+    background-color: #24292E;
+    position: absolute;
+    top: 100px;
+    width: 300px;
+    height: 100%;
+    color: #e1ffff;
+}
 	</style>
 	
 </head>
 <body>
 
+	<!-- TOP BAR -->
 	<div id="topbar">
-		<img src="logo2.png" id="logo" alt="Logo">
-	</div>
+    <img src="logo2.png" id="logo" alt="Logo">
+    <div id="user">
+
+   
+</div>
+</div>
+    
+    <!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="/main">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="/account-professor">Professor Appointments</a></li>
+                    <li><a href="/chat">Chat with Professor/Student</a></li>
+                </ul>
+				
+				<li>
+                  <a href="/forum">
+                  <i class="fa fa-users fa-lg"></i> Forum
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/surveys-students">
+                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+                  </a>
+                </li>
+
+                 <li>
+                  <a href="/myProfile">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+				  
+				  <li>
+                  <a href="/logout">
+                  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+                  </a>
+                  </li>
+ 
+            </ul>
+     </div>
+</div>
+
 	
 	<div class="title">
 		<h1>Forum</h1>
