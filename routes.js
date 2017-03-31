@@ -77,21 +77,53 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
         // render the page and pass in any flash data if it exists
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
-
-
+    
+    
     app.get('/chat', checkAuthentication, function(req, res) {
-        res.render('chat.ejs', { username:req.session.session
+        
+        var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
 
+MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('users');
+    var person = req.session.session.title;
+
+    // Locate all the entries using find
+    collection.find().toArray(function(err, results) {
+        var resa = results;
+        console.log(resa);
+        console.log(person);
+        var saveindex = 10;
+        
+        for(var i=0;i<resa.length;i++)
+        {
+            if(person == resa[i]['local']['email'])
+            {
+                    saveindex = i;
+            }
+           
+        }  
+       
+        //var emailofuser = resa[saveindex]['local']['email'];
+        var firstname = resa[saveindex]['local']['firstname'];
+        var lastname = resa[saveindex]['local']['lastname'];
+        console.log(firstname);
+         console.log(lastname);
+       res.render('chat.ejs', {firstname:firstname,lastname:lastname}
+            //user : req.user // get the user out of session and pass to template
+        );
+        db.close();
         });
 
+        });
+        
+    console.log(req.session.session);
+    // passing data from one page to the other
+    app.set('data', req.session.session);
 
-
-        console.log(req.session.session);
-        // passing data from one page to the other
-        app.set('data', req.session.session);
-
-    });
-    function checkAuthentication(req,res,next){
+    }); function checkAuthentication(req,res,next){
     if(req.isAuthenticated()){
         //if user is looged in, req.isAuthenticated() will return true
         next();

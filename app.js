@@ -1,5 +1,5 @@
-var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
+var MongoClient = require('mongodb').MongoClient,
+    format = require('util').format;
 MongoClient.connect('mongodb://127.0.0.1:27017/test', function (err, db) {
     if (err) {
         throw err;
@@ -39,8 +39,8 @@ var flash = require('connect-flash');
 var morgan = require('morgan');
 var passportSocketIo = require('passport.socketio');
 var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var redisStore = require('connect-redis')(session);
 var sessionStore = new redisStore({
@@ -67,7 +67,7 @@ app.use(bodyParser()); // get information from html forms
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-	app.use(session({
+app.use(session({
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
@@ -78,7 +78,9 @@ app.set('view engine', 'ejs'); // set up ejs for templating
     secret: 'goodheavenslookatthetime'
 }));
 
-app.use(session({ secret: 'goodheavenslookatthetime' })); // session secret
+app.use(session({
+    secret: 'goodheavenslookatthetime'
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -88,28 +90,30 @@ require('./routes.js')(app, passport); // load our routes and pass in our app an
 
 app.use(require('express').static('views'));
 
-/*io.on('connection', function(socket){
-socket.on('chat message', function(msg){
-io.emit('chat message', msg);
-  });
-});*/
-console.log("got an error: ");
 
-
-app.use(function(req, res, next) {
-    if(req.url.match('./views/chat.ejs'))
-       passport.session()(req, res, next)
+app.use(function (req, res, next) {
+    if (req.url.match('./views/chat.ejs'))
+        passport.session()(req, res, next)
     else
         next();
 });
 
 io.on('connection', function (socket) {
-    socket.on('chat message', function (msg) {
-        io.emit('chat message', msg);
-        console.log('its working');
-        if (socket.request.user && socket.request.user.logged_in) {
-            console.log(socket.request.user);
-            console.log('its working finally!!');
-        }
+    socket.on('chatMessage', function (from, msg) {
+        io.emit('chatMessage', from, msg);
+    });
+    socket.on('notifyUser', function (user) {
+        io.emit('notifyUser', user);
     });
 });
+
+//io.on('connection', function (socket) {
+//    socket.on('chat message', function (msg) {
+//        io.emit('chat message', msg);
+//        console.log('its working');
+//        if (socket.request.user && socket.request.user.logged_in) {
+//            console.log(socket.request.user);
+//            console.log('its working finally!!');
+//        }
+//    });
+//});
