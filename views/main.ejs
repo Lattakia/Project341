@@ -30,7 +30,7 @@
         }
 
         body {
-            
+
             background-color: #F1F1F1;
             font: 16px Helvetica, Arial;
 		    background-attachment:fixed;
@@ -68,9 +68,9 @@
             position:relative;
             font: 16px Helvetica, Arial;
         }
-		
 
-		
+
+
 		/*.content{
 			position:relative;
 			margin: 0 auto;
@@ -136,7 +136,7 @@
             -webkit-transition-duration: 0.4s; /* Safari */
             transition-duration: 0.4s;
         }
-		
+
 		.col-sm-6{
 			background-color:#FFFFFF;
 			margin-left: 30%;
@@ -145,7 +145,7 @@
 			border:1px;
 			border-color:#808080;
             color:black;
-			
+
 	}
 
     </style>
@@ -163,7 +163,7 @@
       <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
 
           <script>
-              
+
               var firstname = <%- JSON.stringify(firstname)%>;
               var lastname = <%- JSON.stringify(lastname)%>;
               document.write("Signed in as "+firstname+" "+lastname);
@@ -189,9 +189,9 @@
 <div class="nav-side-menu">
     <div class="brand">Navigation</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-  
+
         <div class="menu-list">
-  
+
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
                   <a href="/main">
@@ -206,13 +206,13 @@
                     <li class="active"><a href="/account-professor">Professor Appointments</a></li>
                     <li><a href="/chat">Chat with Professor/Student</a></li>
                 </ul>
-				
+
 				<li>
                   <a href="/forum">
                   <i class="fa fa-users fa-lg"></i> Forum
                   </a>
                 </li>
-                
+
                 <li>
                   <a href="/surveys-students">
                   <i class="fa fa-bar-chart fa-lg"></i> Surveys
@@ -220,7 +220,7 @@
                 </li>
 
                  <li>
-                  <a href="/myProfile">
+                  <a href="/editProfile">
                   <i class="fa fa-user fa-lg"></i> Profile
                   </a>
                   </li>
@@ -230,7 +230,7 @@
                   <span class="fa fa-user"></span><span id ="logout"> Logout</span>
                   </a>
                   </li>
- 
+
             </ul>
      </div>
 </div>

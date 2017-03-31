@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>Edit Your Profile Information</title>
+		<link rel="stylesheet" href="styles/myProfile.css">
+		<script type="text/javascript" src="libraries/jquery-3.2.0.min.js"></script>
+		<script type="text/javascript" src="libraries/jquery.numeric.min.js"></script>
+		<script type="text/javascript" src="scripts/inputRestriction.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+
+			});
+		</script>
+        <style>
+
+        </style>
+
+	</head>
+
+	<body>
+	<div id="header">My Profile - TEACHER</div>
+
+	<form id="uploadPicForm" action="/submitProfileInfo">
+
+
+	<div id="wrapper">
+
+	<div id="profileContainer">
+		<img id="profilePic" src="profile-icon-300x300.png" alt="Profile Image" /><br/>
+        <input id="uploadPic" type='file' onchange="readURL(this);" /> <br/>
+
+
+
+
+	<div id="profileInfo">
+	<table id="tableInfo">
+		<tr>
+			<td class="titleColumn">First Name</td>
+			<td class="dataColumn"><input type="text" disabled id="fname" name="firstname" maxlength="25"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Last Name</td>
+			<td class="dataColumn"><input type="text" disabled id="lname" name="lastname" maxlength="25"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">ID Number</td>
+			<td class="dataColumn"><input class="integer" type="text" disabled id="IdNum" name="IdNum" maxlength="8"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Major</td>
+			<td class="dataColumn"><input type="text" disabled id="major" name="major"></td>
+		</tr>
+	</table>
+	</div>
+
+	</div>
+	</div>
+
+<div id="buttons">
+	<input type="submit" id="SaveButton" value="Save">
+</div>
+
+	</form>
+
+	<p id="homeLink">Return <a href="/main">Home</a></p>
+
+
+	</body>
+
+</html>

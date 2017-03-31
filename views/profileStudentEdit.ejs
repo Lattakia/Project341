@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>Edit Your Profile Information</title>
+		<link rel="stylesheet" href="styles/myProfile.css">
+		<script type="text/javascript" src="libraries/jquery-3.2.0.min.js"></script>
+		<script type="text/javascript" src="libraries/jquery.numeric.min.js"></script>
+		<script type="text/javascript" src="scripts/inputRestriction.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+
+			});
+		</script>
+        <style>
+
+        </style>
+
+	</head>
+
+	<body>
+	<div id="header">My Profile - STUDENT</div>
+
+	<form id="uploadPicForm" action="/submitProfileInfo">
+
+
+	<div id="wrapper">
+
+	<div id="profileContainer">
+		<img id="profilePic" src="profile-icon-300x300.png" alt="Profile Image" /><br/>
+        <input id="uploadPic" type='file' onchange="readURL(this);" /> <br/>
+
+
+
+
+	<div id="profileInfo">
+	<table id="tableInfo">
+		<tr>
+			<td class="titleColumn">First Name</td>
+			<td class="dataColumn"><input type="text"  id="fname" name="firstName" value="<%= userInfo.firstName %>"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Last Name</td>
+			<td class="dataColumn"><input type="text"  id="lname" name="lastName" value="<%= userInfo.lastName %>"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">ID Number</td>
+			<td class="dataColumn"><input class="integer" type="text"  id="IdNum" name="IdNum" value="<%= userInfo.idNumber %>"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Gender</td>
+			<td class="dataColumn"><input type="text"  id="gender" name="gender" value="" ></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Major</td>
+			<td class="dataColumn"><input type="text"  id="major" name="major" ></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">About Me</td>
+			<td class="dataColumn"><textarea id="aboutMe" name="aboutMe"></textarea></td>
+		</tr>
+	</table>
+	</div>
+
+	</div>
+	</div>
+
+<div id="buttons">
+	<input type="submit" id="SaveButton" value="Save">
+</div>
+
+	</form>
+
+	<p id="homeLink">Return <a href="/main">Home</a></p>
+
+
+	</body>
+
+</html>
