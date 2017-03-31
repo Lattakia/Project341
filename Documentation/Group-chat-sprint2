@@ -1,0 +1,430 @@
+Group conversation on the 12th and 13th of February
+
+Hanna: Hey guys we just finished the design of the 2 pages sign in and sign up we committed to our individual branches so you can check them out there. Claudia and Ali you should commit your changes to your individual branches as well
+
+‪Claudia‬: Yes Ali has the code so I guess he can do that?
+
+Hanna: Then on Thursday we will merge all things related into master
+
+Ali‬: I'll take a look
+
+Ahmed: I also separated the CSS from the style tags of the index to its own file.
+
+Hanna: The logo will be modified in the future so that's not the final look of the pages
+
+Cynthia‬: awesome I’ll look at it so we can start our part tonight
+
+Hanna: Cool guys let us know what you need help with
+
+Andrew‬: cool :) yo Fatin, let me know when you'll be free we have to work on our part as well
+‪
+Tashnim‬: Yeah I'm not home yet but I can work on it tonight and tomorrow anytime @Cynthia Cherrier
+
+Cynthia ‬: so... I don't really understand /how/ to work on the project lmao do i just open up the html files for the login/sign up and modify them to include MySQL & stuff and then commit my modified file to my branch ?
+
+Cynthia ‬: also can you guys tell me which task was completed on which day so I can modify the burndown chart?
+
+Cynthia ‬: I guess I need Ali's file for the login thing so I can't start tonight
+
+Ali‬: I'll get it as soon as I can
+‪
+Ali‬: everyone is probably asleep by now
+‪
+Ali: but I got some good news
+
+Ali ‬: login, logout, and signup work properly now
+
+Ali ‬: what's left to do is to make the username display in the main page
+
+Ali ‬: and to save the messages in the db.
+
+Ali ‬: I will post the files now
+
+Ali ‬: there's quite a bit of change
+
+Ali ‬: but hopefully everything makes sense
+
+Andrew ‬: Alright, me and Fatin will be meeting on Wednesday to work on the confirmation, I wish we could meet earlier 
+
+Ali ‬: confirmation is done I believe
+
+Andrew ‬: Oh really?!
+
+Ali ‬: it's part of the passport.js file
+
+Ali ‬: in the Ali branch
+
+Andrew ‬: Welp...what else is there to do left then?
+
+Ali ‬: make sure that it didn't screw up, I guess
+
+Ali ‬: I could very well have made a mistake somewhere in there
+
+Andrew ‬: Alright then
+
+Andrew ‬: We'll find something to do eventually
+
+Ali ‬: there's quite a bit of db stuff to be done
+
+Ali ‬: I'll get to that tomorrow when I get some sleep
+
+Andrew ‬: Alright, we'll talk tmr
+
+Ahmed: Awesome progress @Ali Bakkali
+
+Claudia‬: Let me know if you need anything guys I'm really willing to help out
+
+Fatin‬: I still don't understand what work I and Andrew have to do.
+
+Ali ‬: there's a bit of overlap between the tasks
+
+Ali ‬: next sprint we'll be counting on you guys
+
+Ali ‬: to make sure users are properly set up and that nothing is breaking
+
+Tashnim‬: Ohhh so if I understand this correctly account creation and confirmation is done?
+
+Ali ‬: account creation is done yes, but it's not quite where we want it to be
+
+Ali ‬: right now the accounts are only created with username and password
+
+Ali ‬: what we'd like to do is to have an email sent to confirm that the person truly owns that email address
+
+Ali ‬: that's what Claudia and I are trying to implement
+
+Ali ‬: but I don't believe it's a requirement for this sprint
+
+Cynthia ‬: ok but then there’s 2 team who have nothing to do... we should try to do a little something before the end of the sprint lmao
+
+Ali ‬: sorry about that a lot of the tasks are dependent on other tasks
+
+Ali ‬: but I think next sprint it'll be different
+
+Cynthia ‬: yeah dw I understand!!
+
+Tashnim‬: @Cynthia Cherrier  I guess if it's possible we can add like birthdate to the account and also if they are a teacher or student?
+
+Cynthia‬: hmm yeah maybe but first we need to understand how the database works lol
+
+Ali ‬: for now it just does :|
+
+Ali ‬: that's mongodb for ya
+
+Ali ‬: works well, but works in mysterious ways
+
+Tashnim‬: Ohhh I see, well that's okay! Thank you so much for handling the hard work
+
+Cynthia‬: yeah thank you! :)
+
+Ali ‬: it's about to a bit tougher, but hopefully we'll manage
+
+Claudia: Ye me and Ali are meeting at 3 to work on email stuff but don't worry u guys can add some stuff to the page
+
+Cynthia‬: I have a break from 11:30 to 6:30pm tomorrow so   @Tashnim if you're free i think we could work on the design of the home page ! Its not part of any user story but its still going to be some progress
+
+Claudia: Guys
+
+Claudia: We found a way to continuously run the website
+
+Claudia: It's currently live forever at
+
+Claudia: connectconcordia.tk:3000 check it out
+
+Cynthia‬: Niiice
+
+Claudia: Yup sign up and sign in work
+
+Claudia: It would be cool for u and Tash to check out website and work on it based on what's posted since u said u are meeting tmr
+
+Claudia: If you wanna do Some tests to edit the website u can go on chrome and right click and press inspect u can change the code that way
+
+Claudia: And guys for every meeting please don't forgot to log everything in the documentation folder
+‪
+Fatin‬: Thanks
+
+Claudia: No prob !
+
+Ali ‬: the files are all inside the Ali branch
+
+Ali ‬: once they are downloaded on the machine where you want to run it
+
+Ali ‬: you can run 'npm install' to install the necessary packages found in package.json
+
+Ali ‬: this assuming you're running on linux or macos
+
+Ali ‬: make sure mongodb is running with 'mongod' command
+
+Claudia: Awesome thanks so much !!
+
+Ali ‬: then you can run 'node app.js' to run the site
+
+Claudia: Hey guys I didn't push my stuff tommy own branch I only did the documentation and pushed it to master ... do we need to push to our own branch?
+
+Ali ‬: I believe so
+
+Claudia: As soon as I get home I'll get ur code Ali and I'll look into using mailgun
+
+Ali ‬: then merge everything
+
+Claudia: Yes
+
+Claudia: I'll push to my branch once I'm done with email
+
+Ali ‬: I'd say first commit the changes from Ali branch to yours
+
+Claudia: Yes exactly
+
+Ali ‬: so you may be able to implement email directly
+
+Claudia: U mean pull
+
+Claudia: Not commit
+
+Claudia: Commit only saves pull gets data from the branch
+
+Claudia: Okay so I work on Ali branch and then copy the info into Claudia branch?
+
+Ali ‬: ah yes, pull
+
+Claudia: Loll
+
+Claudia: But I had a question
+
+Claudia: Once I download the files to my local computer
+
+Claudia: Is there a particular directory I need to save them too?
+
+Ali ‬: no, just as long as they're all in the same directory
+
+Claudia: Okay so I'll mkdir
+
+Ali ‬: and you'll need to pull the changes into the Claudia branch
+
+Claudia: And save the files there
+
+Claudia: Yes
+
+Claudia: I will
+
+Ali ‬: and then perform the changes there
+
+Claudia: But I'll do the changes on my computer first
+
+Claudia: Or on GitHub
+
+Ali ‬: computer first to make sure it's working
+
+Ali ‬: at least that's how I do it
+
+Claudia: What if I do this: I download the project files to my local and then I test them and then I push them to my dir ?
+
+Claudia: U finished editing them so pulling from ur code will cause problems cause I'll update the code on my local?
+
+Claudia: Push them to my branch I mean sorry
+
+Ali ‬: it shouldn't cause issues
+
+Ali ‬: it was tested
+
+Claudia: Ye but if I pull
+
+Claudia: I'll pull to get he new code
+
+Claudia: The
+
+Claudia: If anything was added
+
+Claudia: As soon as I get home I'll test the app and keep u updated
+
+Claudia: Cool thanks
+
+Ali ‬: sure
+
+Claudia: Awesome
+
+Hanna: @Cynthia Cherrier @Fatin hey guys I just created a pull request with you 2 as reviewers it includes the conversation on the chat please approve it when u get the chance 
+
+Tashnim‬: @Cynthia Cherrier  yes I can meet you tomorrow morning at 11:30 !
+
+‪Cynthia‬: Ok good :) we can meet in a lab or smth bc i wont have my laptop with me !
+
+‪Cynthia ‬: And ok i'll look at the pull request tonight
+
+Tashnim ‬: Okay no problem!
+
+‪Claudia‬: Guys
+
+Claudia ‬: I made a YouTube tutorial on how to set up the environment
+
+Claudia ‬: Like get the code from github and how to set it up to work on ur computers
+
+Claudia ‬: Here's the link
+
+Claudia ‬: https://www.youtube.com/watch?v=dYShcWBAWoI
+
+Claudia ‬: I hope it helps lol
+
+Claudia ‬: Hahaha no problem ! It took me a while to do but I wanna share with everyone and in case I forget
+
+Hanna: Yeah it's a great idea
+
+Claudia ‬: Great I'm glad it's useful
+
+Claudia ‬: I did it cause I know u guys in the front end want to test the code
+
+Claudia ‬: How's the front end teams going?
+
+Tashnim ‬: I tried to follow the tutorial video, I installed node.js  and when it starts listening an error occurs and it doesn't work anymore
+
+Claudia ‬: Really what's the error
+
+Claudia ‬: Take pic
+
+Tashnim ‬: Is there anything else I should install to make it work?
+
+Tashnim ‬: Okay
+
+Claudia ‬: What did u do?
+
+Tashnim ‬: I downloaded files from Ali's branch and installed npm
+
+Claudia ‬: That's so weird it does that
+
+Claudia ‬: Did you install mongodb
+
+Claudia ‬: I think u need that too
+
+Tashnim ‬: Ohhh okay
+
+Claudia ‬: Sorry I forgot to mention that
+
+Claudia ‬: Install that
+
+Tashnim ‬: Haha ok XD was wondering if I was missing something
+
+Claudia ‬: Ye
+
+Tashnim ‬: Do I just need to install it or do I need to set up the environment for mongodb environment?
+
+
+Tashnim ‬: For now me and Cynthia were implementing styles directly on the index.ejs, signup.ejs files since we couldn't get it to work
+
+Claudia ‬: Okay cool
+
+Claudia ‬: But I think u should install mongo do
+
+Claudia ‬: Do u guys have brew installed
+
+Tashnim ‬: No 
+
+Claudia ‬: Do brew install
+
+Tashnim ‬: Okay
+
+Tashnim ‬: I integrated the dsesign from Hanna and Ahmed's CSS files and put it on the ejs file, idk if that's helpful or we going to change that
+
+Claudia ‬: Okay cool
+
+Claudia ‬: https://m.youtube.com/watch?v=_RQ4lET5ejw
+
+Claudia ‬: Check this out girls
+
+Claudia ‬: I hope this helps
+
+Cynthia ‬: I made a new design for the index page using the .ejs file like tashnim said but i cant really do anything else since im on a computer at school so i cant install stuff :s
+
+Claudia ‬: Oh okay it's okay did u preview it?
+
+Claudia ‬: U can copy the code and preview it
+
+Cynthia ‬: Yeah i can preview it on the web browser so its fine!
+
+Claudia ‬: Okay that's awesome 
+
+Claudia ‬: Take a pic I wanna see how it looks and guys as long as u can view it it's okay we can stitch everything. Together during the group meetings
+
+Cynthia ‬: and yeah exactly ali can just add the file to his thing afterwards :)
+
+Tashnim ‬: Claudia, Hanna, Andrew, and Ahmad you guys are our reviewers for the design
+
+Cynthia ‬: We also updated the documentation for our meeting
+
+Hanna: Ok then we will approve the request tonight and I will include the convo on group in the documentation
+
+Hanna: Great work guys
+
+Hanna: Can you guys tell me what's left to do before friday
+
+Ali ‬: it's on me
+
+Ali‬: gotta make the usernames display on the page
+
+Ali ‬: and private chatroome
+
+‪Ali‬: chatrooms*
+
+Hanna: Awesome guys we are doing great 
+Ali if you need any help let us know
+
+Fatin‬: Guys I don't mind doing nothing or little this sprint if there's no grade reduction. But I'm thinking the team or just me might get penalized for task distribution. If someone does nothing what happens?
+
+Ali ‬: we can mention that the roles some teams play are far more involved in the coming sprints
+
+Ali ‬: he did say he wanted to see near equal contribution from all team members
+
+Ali‬: near the end we will have to make sure there's parity there
+
+Claudia ‬: Oh Cynthia btw
+
+Claudia ‬: I love ur website
+
+Claudia ‬: But I added something to it, I added a black background with a 0.7 opacity I think I commented on the issue on github take a look and let me know what u think
+
+Andrew‬: Hey guys, me and fatin are having a meeting
+
+Andrew‬: So we're wondering what are the tasks left that we can do to help you guys out
+
+Cynthia ‬: i'm not sure but i think we still need to verify if the user enters a valid email when creating an account?
+‪
+Andrew‬: I thought Ali did the validation
+
+Fatin‬: How about we write javascript functions that formats user info fields like student id? For example the user input for id can be only numbers and 8 max
+
+Cynthia ‬: yeah thats what i was thinking like using regexp and stuff
+
+Fatin‬: Where do we find the latest sign up page? Which branch?
+
+Tashnim ‬: Uhhh I took Ali's signup.ejs and added CSS style to it, so I guess it's the one I uploaded. I think I put Andrew as reviewer
+
+Tashnim ‬: And yeah JavaScript functions should be useful!
+
+Fatin‬: Hi Tashnim. I want to download the latest sign up page. Can you help me?
+
+Fatin‬: I cant see such a page on your branch
+
+Tashnim ‬: Maybe cuz it's not approved yet, give me five min sorry I'll upload it to my branch 
+
+Fatin: Kk
+
+Andrew‬: I reviewed and merged it
+
+Andrew‬: So you edited the design inside html file?
+
+Tashnim ‬: Yeah and I think you should write the JavaScript functions on that same ejs file because it's not exactly an HTML file and it's referred to something so I didn't wanna mess it up
+
+Tashnim ‬: We couldn't make direct changes to the site because we didn't know how to set up mongodb on my computer, so hopefully Ali can copy paste our code into the actual site
+
+Andrew‬: Hey guys :)
+
+Andrew ‬: We thought of something to do
+
+Andrew: We can maybe make a profile setting page so that user can modify personal information :)
+
+Andrew ‬: How does that sound?
+
+Tashnim ‬: That sounds like a great idea
+
+Fatin‬: We just finished our meeting. We coded js functions to validate the student id as well as the minimum length of a new password.
+
+Andrew ‬: It's small features but we thought it will be good to have it
+

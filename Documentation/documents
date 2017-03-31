@@ -1,0 +1,278 @@
+﻿Meeting #1 (1:30 PM Till 2:05 PM) Friday Jan/27
+
+• Ideas: 1) Appointment booking with availability calendar.
+	 2) Easy access database about professors for students. 
+	 3) Weekly surveys of students (about the pace of the course). 
+	 4) Direct Messaging between students and teachers. 
+	 5) Online quizzes. 
+	 6) Online voting on material that needs to be cut.
+
+• Ideas 1, 3 and 4 are approved by the TA with the addition of a filtered forum
+  that would take key words from the chat to become a subject that can be discussed publicly.
+
+Meeting #2 (7:30 PM Till 10:00 PM) Sunday Jan/29
+
+• Writing 5 user stories. (Everyone) 
+• Setting up our issues and first sprint. (Claudia) 
+• Domain name decided : connectconcordia.tk. (Everyone) 
+• Made an index page and stylized using Wordpress. (Claudia, Ali)
+
+Meeting #3 (11:30 AM Till 1:00 PM) Thursday Feb/2
+
+• Writing 2 user stories. (Everyone) 
+• Discussed how to filter the forum (manual or auto). (Everyone) 
+• Installed required software on dev server. (Ali) 
+• Did final pull request. 
+• Included basic messeging capabilities. 
+• Split Teams: 1) (Fatin, Andrew). 
+	       2) (Hanna, Ahmed). 
+	       3) (Claudia, Ali). 
+	       4) (Cynthia, Tashnim).
+	       
+TA feedback: work on login for sprint 2
+
+Meeting #4 (11:30 AM Till 2:00 PM) Thursday Feb/9
+
+• Splitting user stories into tasks. (Everyone) 
+• Split tasks 1) Team A (Hanna/Ahmed) Html and css design.
+	      2) Team B (Claudia/Ali) Database and email confirmation. 
+	      3) Team C (Cynthia/Tashnim) Account creation. 
+	      4) Team D (Fatin/Andrew) Login confirmation  
+• Chart creation. (Cynthia) 
+• Website architecture. (Cynthia) 
+
+Tutorial meeting (1:30 PM Till 2 PM) Friday Feb/10
+TA feedback: merge before tutorial, refrence user story but the message of the commit 
+should include the task number, have more discussions on github, do more pullrequests and more detail in documentation folder
+	     
+• Made team and individual branches
+• Team A will meet on sunday to work on design of login and sign up pages
+• Ahmed booked a room for the next group meeting
+
+Team B (Claudia/Ali) meeting #1 Saturday Feb/11 (7:00 PM to 9:45PM)
+
+• Setting up the database for our website application. Used authentication and exploring encryption.
+• Setting up a "prototype signup and login page" that will be tested with the database we created. The other teams will work  
+  on improving the design and overall functinoality of this page.
+• Testing sign up page to ensure that the prototype signup and login page work accordingly
+
+Team A (Ahmed/Hanna) meeting #1 Sunday Feb/12 (1:00 PM to 4:40 PM)
+
+• discussing if we include sign in on index page or its own page, agreed to put on its own page
+• discussing the information we need for sign up page (First name, Last name, ID#, E-mail, password, confirmation)
+• deciding on the colors to use (university logo colors)
+• deciding on fonts sizes and positions of elements on pages
+• finished basic layout of pages
+• Added Logo
+• committed changes to individual branches
+
+Team B (Claudia/Ali) meeting #2 Monday Feb/13 (3:00 PM to 4:45 PM)
+
+• Debugging the email solution (mailgun) that we will be using for our application
+• Figured out how to keep our Node.js application website running continously.
+• Learning about Mailgun application and figuring out how to integrate code from Mailgun into our application
+• Setting up Node.js Environment on our Personal laptops.
+• Creating a prototype page of the mailgun application 
+• Testing the prototype page to see if Mailgun API actually worked and sent the emails to the indicated email address
+
+Claudia Feochari Monday Feb/13 (7:20 PM to 7:40 PM)
+
+• Created a YouTube video educating the team on how to set up and run node js files from Github locally
+• Filming Video, editing video and uploading video to Youtube.
+• Link to the video : https://www.youtube.com/watch?v=dYShcWBAWoI
+
+Team C (Cynthia/Tashnim) meeting #1 Feb/14 (11:40AM to 2:30PM)
+
+• Testing of the account creation and login features
+• Clone files from Ali's branch 
+• Installation of Node.js and mongodb on tashnim's computer
+• Cynthia: Design of the home page (index.ejs)
+• Tashnim: Incorporation of Team A's design to login (login.ejs) and sign up (signup.ejs) pages
+• Discussing changes on logo
+• Finding background images of concordia
+
+Team D (Andrew/Fatin) Meeting #1 Time 1:50pm - 5:00pm
+
+• Clone Ali's repository from github and made sure it works
+• Also looked at the branches committed from other users
+• Decided to create a page, which allow users to modify their personal information
+• Also added javascript algorithms that limits users to input error-prone information such as letters for ID number
+• We did pair programming, essentially helping each other to help familiarize programming with JQuery
+• Made sure that the user meets the minimum length size for each field
+
+
+Team Meeting #5 Time 12:00pm - 1:50pm Feb 16
+
+• Burndown chart finalization (Cynthia)
+• Reasearching validating E-mail (Claudia)
+• Final tweaks and discussion (Everyone)
+• Collected all final sprint 2 files and merged to the master
+• Plan for sprint 3: E-mail integration and validation, account profile, design of forum and profile.
+
+Tutorial Feedback Feb/17
+
+• Use travis for running environmen to test new builds
+• Use the projects tab
+• More parity in the work done by individuals 
+• Bring more comments and energy to git hub (more discussions)
+
+Team Meeting #6 Time 10:30am - 2:00pm Feb 24
+
+• Giving support to team members by helping them set up mongodb database (Claudia)
+• Debugging issues that other team members were having with backend code.(Ali/Claudia)
+• Setting up travis (Hanna)
+• working on chatrooms (Ali)
+• Rewriting tasks and reorganizing user stories (Everyone)
+• Split tasks for sprint #3 1) Team A (Hanna/Ahmed) User story #6 - Task 6 & 7 (Design of the account profile)
+	      		    2) Team B (Claudia/Ali) User Story #3 - Task 3 (Organization of the forum)
+			    			    User Story #1 - Task 2 (Private Chatrooms)
+						    User Story #6 - Task 4 (Emails)
+	      		    3) Team C (Cynthia/Tashnim) User Story #3 - Task 4 (Design of the forum)
+			    				User Story #1 - Task 1 (Design of the chatrooms)
+	      		    4) Team D (Fatin/Andrew) User Story #3 (Forum)
+			    
+Team Meeting #7 Time 11:30am - 1:30pm March 2
+
+• Point distribution for tasks to be done in this Sprint (Hanna/Claudia)
+• Updated latest code files (Ali branch merge) (Ali)
+• Research on ways to do an automatic burndown chart (Claudia/Cynthia)
+• Integration of email api service into our web application. Working copy is available for this Sprint (Claudia)
+• Plan for Front-end Team
+	•Fix design of signup
+		- Change logo
+		- Make Red bar transparent
+		- Add black semi-transparent <div> box as a background (rgba(0,0,0,0.5)) 
+		
+Tutorial Feedback March 3rd
+• Block Diagram needs to be more detailed (Box and Edges)
+• Label columns in projects tab
+		
+Team C (Cynthia/Tashnim) meeting #2 Mar/07 (11:40AM to 1:45PM)
+
+• Tashnim: Setting up the environment and design of forum page
+• Cynthia: organizing master branch (github), changes to design of signup and login:
+	- Make top bar transparent
+	- Change link color to gold and hover color to red
+	- Fix background size
+
+Team D (Fatin/Andrew) and Claudia(support) meeting Mar/09 (4:00PM to 6:00PM)
+	- Debugging mongodb set-up errors on Andrew's computer
+	- Debugging nodejs set-up on Fatin's computer
+	- Providing support to Team  with their back-end issues.
+	
+Meeting #2 Time 12:30pm - 5:00pm March 4th, 2017
+
+Team D (Andrew/Fatin)
+
+-Setup the environment for to connect with MongoDB
+-Familiarize database syntax commands to look for data
+-Attempt to insert new data
+-Test Claudia's branch to make sure it runs on our laptop
+-Tried to debug the issue where user information would not be
+inserted to database
+-Scheduled for next meeting
+
+Meeting #3 Time 4:00pm - 6:00pm March 8th, 2017
+
+Team D (Andrew/Fatin)
+
+-Attempt to further debug the program
+-Fatin put on hold the debugging task and starts helping with
+the front-end
+-Fatin's current task is essentially designing the profile page
+-Andrew's current task remains to debug the email bug from
+Claudia's code
+
+Team Meeting #8 Time 11:30am - 1:50pm March 9
+
+• Debuging of email service (Claudia/Andrew)
+• Designing profile page (Fatin)
+• Burndown chart and block diagram (Cynthia)
+• Designing the student and teacher profile pages (Hanna/Ahmed)
+• Implementation of chat rooms (Ali)
+• Split tasks for sprint #4: 1) Team A (Hanna/Ahmed) User Story #4 - Task 1 (Design of appointment pages)
+	      		     2) Team B (Claudia/Ali) User Story #1 - Task 2 (Implementation of chat rooms)
+	      		     3) Team C (Cynthia/Tashnim) User Story #5 - Task 1 (Design of survey pages)
+	      		     4) Team D (Fatin/Andrew) User Story #6 - (Account accessibility) 
+
+
+Team Meeting #9 Time 4:30pm - 8:00pm March 12
+
+• Finished debugging problems with the email service(Claudia/Ali)
+• Tackling Task #5 (The Survey Page)
+• Implemented and Finished the Survey Page Design for the Students
+• Organizing GitHub Project Columns (that is, organizing them so we have the columns "Not Started","In Progress","Done" and
+"For Review" for each User Story.
+
+Team Meeting #10 Time 12:00pm - 1:10pm March 12
+
+• Implemented some backend funcitonality for survey page.
+• Discussed features to implement: simple forum, survey results page with graphs
+• Discussed tasks to be done, re-split tasks: 1) Finish User Story 6 (Hanna/Ahmed/Fatin)
+					      2) Finish User Story 5 (Claudia/Ahmed/Andrew)
+					      3) Make forum with direct posts (Cynthia/Tashnim)
+					      4) Chatroom functionality (Ali)
+					      
+Meeting Hanna & Ahmad & Fatin & Tashnim Time 2:00pm - 6:00pm March 19
+
+• Discussed how to display information to the client from database for user account page (user story #6)
+• Worked on design of forum page (user story #3)
+
+Meeting Cynthia & Claudia Time 1:00pm - 2:30pm March 21
+
+• Discussed how to implement the forum with database (user story #3) 
+• Finished the design of the forum (one page for student view and one for teacher)
+• Uploaded main page design and forum pages to github
+
+Meeting Ahmad & Claudia Time 3:30pm - 5:30pm March 21
+
+• Discussed how to display information to the client from database (user story #3 and user story #5) 
+• Made survey results page display a bar graph with dummy data (user story #5)
+
+Team Meeting #11 Time 11:30am - 5:00pm March 23
+
+• Worked on design and backend functions of forum page (Cynthia/Andrew)
+• Worked on professor search function (Claudia)
+• Burndown chart and block diagram (Cynthia)
+• Worked on function to display survey results (Ahmad)
+• Implementation of chat rooms (Ali)
+• Discussed on pages to drop (appointment) (everyone)
+• Worked on test cases (Hanna)
+• Displaying search results on forum from database (Andrew/Hanna/Claudia/Tashnim)
+• Worked on user profile (Fatin)
+
+• Plan for next sprint: 1) First week: Finalize all required functionlity of the website including forum and chat functionalities. 
+			2) Second week: Tweaking and fixing bugs get ready for delivary.
+
+Team Meeting #12 Time 5:30pm - 7:00pm March 26
+
+• Went over website to see what needs to be added and what needs to be fixed. 
+  For the major features, this is what needs to be done:
+	• Surveys: Functionality for prof/TA to create survey questions, allow student to choose question, 
+	  ensure each student can only complete each survey only once (unless professor updates survey).
+	• Forum: Fix bugs so that students and professors to see forum posts and to search for specific posts,
+	  finish it up.
+	• Chatroom: finish implementation.
+	• Appointment booking: look into it and see how feasible it is, implement it if so.
+	• Profile: finish implementation and fix any bugs.
+  For the designs:
+  	• Survey results page.
+	• Profile page.
+	• Survey choosing page.
+	• Fixes on forum pages
+	• Appointment booking pages, for student and professor, if we implement them.
+  Other fixes:
+  	• Fix the redirect link from student survey submit page.
+	• Add a main button to redirect from Chat to Main.
+	• Top-right corner main page needs to be fixed to allow user to go to profile page.
+	• Refactor route.js to look cleaner and add more comments.
+	  
+• Task split up:
+	• All page designs (Cynthia/Tashnim)
+	• Survey backend (Ahmad/Andrew)
+	• Forum backend (Claudia)
+	• Implementation of chat rooms (Ali)
+	• Appointment (Fatin/Ahmad)
+	• Display Data on Profile Page (Fatin)
+	• Documentation and unit test cases* (Hanna)
+* Unit test cases will be a team effort, as it will be too much for one person to take on all at once.

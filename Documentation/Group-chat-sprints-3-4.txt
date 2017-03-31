@@ -1,0 +1,183 @@
+Claudia: Guys
+Claudia: I updated the code on the master branch, please use the code in the updated_website folder, do not use the app.js outside of that folder, please use the code inside that folder! Thanks
+Claudia: The main code should run now since it worked on my localhost
+Fatin: I don't get the require flash error when using updated_website on the master
+Claudia: So Ali is working on chat rooms and awesome
+Fatin: I made a profile page called myprofile.ejs in the views folder. I didn't show everyone so feel free to check it out
+Hanna: Am really sorry guys I am really sick 
+I just woke up and missed everything 
+How is everything going
+Claudia: It's okay
+Claudia: We split the tasks, ahmad has the paper with the tasks split up
+Claudia: So ahmad maybe you can transcribe it into the group chat? Thanks
+Hanna: Ok great
+Claudia: Ye
+Ahmed: Hey guys! I'll post the meeting minutes asap, but I wanted to mention that we are planning to meet this Saturday at 2:00 to work on the project
+Ahmed: Who can make it then?
+Tashnim: I'll be there on Saturday
+Hanna: Me too
+Ahmed: Hey guys! Here are the meeting minutes from Thursday:
+	We discussed what we did and what we need to do. We came to the conclusion that we need to work at a faster pace and get things done, and we may drop some features.
+Ahmed: We decided to make a forum where a professor can post questions directly for students to discuss, as well as to make surveys generic and a survey results page using bar graphs to show results.
+Ahmed: So here is the task split up:
+- Finish user story 6: Ahmad/Fatin/Hanna
+- Finish user story 5: Claudia/Andrew/Ahmad
+- Make forum with direct posts: Cynthia/Tashnim
+- Chatroom: Ali
+Hanna: Thank you so much man good work everyone 
+Hope you all did well in the quiz
+Ahmed: Anyhow, we gotta step up for the project.
+Ahmed: we got only three weeks left and we didn't link any features to the frontend
+Ahmed: Also, there's a bit of disorganization in the frontend, as we're each making views that some of us aren't aware of.
+Ahmed: I'm thinking tomorrow we can organize the project and the team a bit better.
+Fatin: We should dismiss the  appointment booking feature. We won't have the time  I believe. Let's focus on the quality of the chat, forum and surveys
+Fatin: It seems most of the teams are using a front end framework such as Bootstrap instead if coding from html and css from scratch.
+Fatin: Apparently using bootstrap is easy and it gives a professional look to the page.
+Cynthia: I did html and css from scratch
+Cynthia: But yeah bootstrap looks nice
+Fatin: It must have been difficult to code from scratch
+Fatin: Let's agree to use bootstrap. Does everyone agree
+Ahmed: yep
+Claudia: Imma come tmr
+Claudia: Update on the website : I've added database feature stuff
+Ahmed: Nice! Like what exactly though...
+Claudia: It's for the survey page
+Claudia: Like when a user enters their information then the information is entered into the database
+Ahmed: Awesome, that's great!
+Claudia: Yes :) is just gonna test it again just in case but it should work dw
+Ahmed: That means I can start the graph page, right?
+Claudia: Kinda ye
+Ahmed: Cool ??
+Claudia: I need to tweak the database a bit to add a field I hadn't figured how to do it
+Claudia: But by this weekend, it should be done ??
+Cynthia: Ooh thats great!!
+Ali B: running a bit late but not by much
+Claudia: It's okay
+Claudia: Ru guys in class yet? I'm on the 8th floor
+Hanna: On my way
+Claudia: Same meet in front of door
+Andrew: Me and ahmad we're coming
+Claudia: Guys, so me and Andrew were working on the chat and have discovered some errors. The chat page is not infinite in that at a certain point, you cannot see the messages that are sent/received . Also if you reload the page without being logged in (that is you do localhost:3000/chat) the chat should not be displayed since we supposed to restrict access to only the logged in user . Maybe some of u guys can take a look at this tmr? We are currently making progress with the survey page database authentication.
+Ali B: I'm actually looking into that as well
+Claudia: Awesome????????thank you!!! ????
+Claudia: For the chats right? Ur doing chats?
+Andrew: Cool :)
+Ali B: save for the cold part, that's all I've been doing tbh
+Claudia: Ali : update on the authentication , I fixed it
+Claudia: The authentication is blocked unless the user is logged in . I will commit my changes to GitHub
+Claudia: So there's less work to do now ????????
+Andrew: Good job Claudia :)
+Ali B: very nice!
+Claudia: Thanks guys!! The chat window still needs work
+Claudia: Tho but at least one problem is fixed
+Claudia: I will work on the surveys page now?
+Claudia: Now
+Claudia: Andrew did you push your code to GitHub? I forgot if you did
+Andrew: Nop I didnt
+Andrew: I still have to work on the database
+Claudia: Oh okay it's alright
+Fatin: The meeting is tomorrow at 2pm right?
+Tashnim: Yes!
+Cynthia: Omg i just woke up so i wont be able to be there for 2pm lmao
+Cynthia: I'll be there for 3pm
+Ahmed: Currently at school now
+Ahmed: I'm gonna try to find a place for us to work at.
+Fatin: I should be there at around 2:20
+Claudia: Hey guys i can't make it today:/ I'm so sorry , I woke up and I'm really sick, im working on my part tho it's going well, I'll commit the code to
+GitHub when I'm done (im almost done)
+Ahmed: Ok, it's all good Claudia, let us know if you need reviewers
+Claudia: Okay cool I'll let ya know asap
+Andrew: I'm also working on my part, i'll commit my part once I have the data inserted properly in the database
+Claudia: Cooo
+Claudia: Cool
+Cynthia: My bus is supposed to pass at 1:43 and its 1:55 and it's still not there... Which means im going to miss my second bus lmao
+Cynthia: If its alright with you guys i could also work on my part at home
+Ahmed: STM at its finest lol
+Claudia: Yup and especially since it's the weekend
+Ahmed: Yea it's all good, let's keep each other updated through Whatsapp then
+Cynthia: Nah its the rtcr its 1000x worse lmao
+Ahmed: What's RTCR?
+Ahmed: Also, who actually is coming now lol?
+Cynthia: Its the bus network outside of montreal
+Cynthia: In lanaudiere
+Tashnim: I'll be there around 2:45
+Tashnim: Lol
+Claudia: Hey guys
+Claudia: I just committed my stuff to the updated_website folder
+Claudia: Andrew: the thing I was working on. With the authentication of the professor/ta and students seem to work. I added a new dummy file called surveys-teachers which has a sample page, just remove that code and add ur code there ! Also look for Andrew comment in the routes.js
+Ahmed: I'm in room 806.2 for those coming to school
+Claudia: Front-end team: please add logout option to each page. Also, please fix the design of the signup page cause a random stackoverflow icon appears for the option of student and teacher/ta. Also please add options to go back on every page (to go back to the main page with forum and chat and all the pages). Also guys today please fix the pages to add cause I didn't include Fatin and hanna's profile page
+Andrew: Alright, i'll take a look into that
+Claudia: Cool
+Ahmed: For the pages, let's keep them consistent and use bootstrap
+Claudia: Ye
+Claudia: Guys
+Ahmed: Hanna and I made some pages from scratch, while some have used other techniques
+Claudia: Should I just put all my code to master and delete the other ones ?
+Claudia: Like now it's in a folder
+Ahmed: I think so ye
+Claudia: Cause I think my files are the latest ones?
+Claudia: Okay il do that now
+Claudia: And u guys can merge with my files so it's easier
+Claudia: Instead of them being stuck in a random isolated foldrer
+Fatin: I need a task asap
+Claudia: Maybe u can work on front end ?
+Claudia: @Fatin Front-end team: please add logout option to each page. Also, please fix the design of the signup page cause a random stackoverflow icon appears for the option of student and teacher/ta. Also please add options to go back on every page (to go back to the main page with forum and chat and all the pages). Also guys today please fix the pages to add cause I didn't include Fatin and hanna's profile page
+Claudia: But before starting guys
+Claudia: Let me organize the github now
+Andrew: You could also fetch user info to the profile page
+Andrew: No one has done it yet
+Claudia: Yeah guys before starting let me just fix the code
+Claudia: And I'll text u when I'm done should take like 5 mins
+Claudia: Mins
+Fatin: Kk
+Cynthia: Is the main page the one with the chat??
+Cynthia: I think we could make a new one....
+Claudia: @Cynthia yup
+Claudia: It's the chat.ejs file
+Cynthia: Ok but maybe that should be just the chat and we could make another one like "welcome to connect concordia" with links to the chat, forum, etc ?
+Ahmed: We should make a new one, doesn't really make sense that we don't
+Ahmed: Hanna and I have made temporary designs for student and prof account pages, can someone look into that and modify them to be consistent with the other designs?
+Ali B: feeling better today, but still not quite at 100%
+Ali B: I'll work on my part from home if that's cool
+Cynthia: ok thats good i'll work on a main page
+Claudia: Okay guys just wait until the files are uploaded to main
+Claudia: And then u guys can merge
+Claudia: I am like literally done just gotta verify now
+Cynthia: also guys please put comments in your code
+Cynthia: we're evaluated on the quality of our code this sprint
+Claudia: In the files?
+Claudia: Ye I put comments
+Cynthia: i think so
+Ahmed: @Claudia is the master update done?
+Claudia: Almost
+Claudia: There was a file missing just testing a bit
+Claudia: Will be done asap
+Claudia: It's down
+Claudia: Done
+Claudia: Done not down
+Claudia: U guys can download now
+Ahmed: Guys
+Ahmed: Let's make a google hangouts call
+Ahmed: That way we can update each other in real timw ??
+Ahmed: *timw
+Ahmed: **time
+Ahmed: Fatin will make the call, let us know when you'll join
+Claudia: Guys I won't be able to join:( my mom just informed me that since I'm home I gotta bring my grandma to the eye doctor :(
+Ahmed: Ok, no worries!
+Ahmed: Hanna, Fatin and I will try to finish off user story 6 today
+Ahmed: Claudia I think it would be better if we remove all of the master files and just make master the contents of the updated_website folder
+Claudia: Yes that's what I did
+Ahmed: It didn't seem to work though
+Claudia: But the updated_website folder is still there I am not sure how to delete it from master, would anyone  know how to delete it
+Claudia: Why?
+Claudia: What happened
+Ahmed: We're pretty much done for the day
+Ahmed: We had trouble displaying info from the database to the page
+Ahmed: We didn't get something working unfortunately
+Ahmed: @Cynthia what do you mean by "main page" btw?
+Ahmed: Cuz we have two account pages, one for profs and one for students
+Ahmed: If you were thinking of that, you may just modify those pages
+Ahmed: And then add them to the app
+Ahmed: If not, then Fatin will link the account page to the chat page
+Ahmed: Update on survey results page: I made a sample bar graph using html and js, but when I linked it and tried to run the app, the chart wouldn't appear.
