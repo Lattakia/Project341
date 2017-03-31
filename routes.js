@@ -314,19 +314,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
     }
 
-    app.get('/myProfile',checkAuthentication,function(req,res)
-    {
 
-		res.render('myProfile.ejs');
-
-        req.session.session = {
-            title: req.body.username
-        };
-
-        var temp = app.get('data').title;
-        console.log(app.get('data'));
-
-    });
 
     app.get('/surveys-s2',checkAuthentication,function(req,res)
         {
@@ -354,41 +342,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
-    var profileSchema = new mongoose.Schema({
-      firstName: String,
-      lastName: String,
-      idNumber: String,
-      major: String
-    });
 
-    var profileModel = mongoose.model('Profiles', profileSchema);
-
-app.get('/submitProfileInfo',checkAuthentication,function(req,res)
-    {
-      res.render('myProfile');
-      console.log(req.query.firstname);
-      console.log(req.query.lastname);
-      console.log(req.query.IdNum);
-      console.log(req.query.major);
-
-      var firstName = req.query.firstname;
-      var lastName = req.query.lastname;
-      var IdNum = req.query.IdNum;
-      var major = req.query.major;
-
-      //Saving data in Profiles collection in main (default) database
-
-      var prof = new profileModel({
-        firstName:firstName,
-        lastName:lastName,
-        idNumber:IdNum,
-        major: major
-      });
-
-       prof.save(function (err) {if (err) console.log ('Error on save!')});
-
-
-     });
 
 
 
@@ -465,7 +419,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
          //console.log(req.query.tags)
 
     var MongoClient = require('mongodb').MongoClient
-    
+
     var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth();
@@ -617,7 +571,7 @@ MongoClient.connect(URL, function(err, db) {
 
 
 
-    
+
   var path;
     var username = app.get('data').title;
 db.collection('forumvalues', function(err, collection) {
@@ -727,6 +681,124 @@ db.collection('forumvalues', function(err, collection) {
 
 
 });
+
+
+/* ====START OF FATIN'S CHANGES - MARCH 31==== */
+//I deleted all myProfile stuff from before (above)
+
+var userModel=require('./user');
+var studentProfileModel=require('./models/studentProfileModel');
+var teacherProfileModel=require('./models/teacherProfileModel');
+
+
+
+app.get('/editProfile',checkAuthentication,function(req,res)
+{
+
+// console.log("NOW DISPLAYING WHAT IS APP");
+// console.log(app);
+// console.log("END OF NOW DISPLAYING WHAT IS APP");
+var username = app.get('data').title;
+userModel.findOne({'local.username':username},function(error,user){
+
+  console.log("USER is");
+  console.log(user);
+
+  if(error){
+    res.send('AN ERROR OCCURED');
+  }
+
+  if(user){
+
+    var userObject = {
+      userName: user.local.username,
+      firstName: user.local.firstname,
+      lastName: user.local.lastname,
+      email: user.local.email,
+      idNumber:user.local.idNumber
+    };
+
+    if(user.local.accounttype=='student'){
+      //Pass data to prepopulate form
+      res.render('profileStudentEdit',{userInfo:userObject});
+    }else{
+      //Pass data to prepopulate form
+      res.render('profileTeacherEdit',{userInfo:userObject});
+    }
+  }else{
+    res.send('ERROR: YOUR EDIT PROFILE PAGE CANNOT BE FOUND');
+  }
+
+  });
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/profiles/:username',checkAuthentication,function(req,res){
+
+
+  //var profileModel =
+
+  var username = req.params.username;
+
+
+
+  userModel.findOne({'local.username':username},function(error,user){
+
+    console.log("USER is");
+    console.log(user);
+
+    if(error){
+      res.send('AN ERROR OCCURED');
+    }
+
+    if(user){
+
+      var userObject = {
+        userName: user.local.username,
+        firstName: user.local.firstname,
+        lastName: user.local.lastname,
+        email: user.local.email,
+        idNumber:user.local.idNumber
+      };
+
+      if(user.local.accounttype=='student'){
+        res.render('profileStudent',{userInfo:userObject});
+      }else{
+        res.render('profileTeacher',{userInfo:userObject});
+      }
+    }else{
+      res.send('NO SUCH PROFILE');
+    }
+
+    });
+
+
+  });
+
+
+/* ====END OF FATIN'S CHANGES - MARCH 31==== */
+
+
+
 };
 
 
