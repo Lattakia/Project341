@@ -1,0 +1,11 @@
+What the Front-end Needs to do 
+
+-	Chat page
+-	Please add Speech bubbles to the chat. Look into angular JS.
+-	Fix the problem with the chat page. When you resize the page, the chat logs move along on top of the navigation bar. PLEASE FIX THIS!!
+-	Forum Page 
+-	Please indicate a small note in the search boxes that when you are searching for tags, one space needs to be added between tags when searching for multiple tags. (for both forum-teacher.ejs and forum-stduent.ejs.
+-	(try this as a bonus) When searching stuff, a div box is created with the search tag similar to how its done when you are sending an email
+-	Survey Page
+-	Please fix the background stuff and make it grow dynamically with the amount of questions that are in the survey. (FOR STUDENT)
+-	Please fix the graph page visuals (FOR TEACHER)
