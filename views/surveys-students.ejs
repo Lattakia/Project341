@@ -264,28 +264,31 @@
 	  padding: 1rem;
 	  background-color: #efefef;
 	  text-align: center;
+
       color:grey;
-	}
-	p {
+  }
+  p {
         margin: 0;
         padding: 0;
         color: white;
     }
-	.button {
-	    background-color: rgb(143,37,57); 
-	    border: none;
-	    color: white;
-	    padding: 15px 32px;
-	    text-align: center;
-	    text-decoration: none;
-	    font-size: 16px;
-	}
-	.button:hover {
-	    color: black;
-	    text-decoration: none;
-	-webkit-transition-duration: 0.4s; /* Safari */
-   	transition-duration: 0.4s;
-	}
+  .button {
+      background-color: rgb(143,37,57); 
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+  }
+  .button:hover {
+      color: black;
+      text-decoration: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+
+
     </style>
 </head>
 
@@ -343,73 +346,74 @@
      </div>
 </div>
 <div class="content">
-		<div class="info">
-	<h1 align="center"><span class="text-center"></span> Survey Questions</h1>
+    <div class="info">
+  <h1 align="center"><span class="text-center"></span> Survey Questions: <%= survey.teacher %></h1>
 <!-- show any messages that come back with authentication -->
             
      <div id="form">
         <form action="/surveys-s2">
-		<div class="form-group">
-        
-           <h2>Question 1</h2>
-            <h4>Are the lecture notes written in a clear way?</h4>
-            
-         
+
+    <div class="form-group">
+
+<% for(var i = 1; i <= 5; ++i) { %>
+           <h2>Question <%= i %></h2>
+            <h4><%= survey['q'.concat(i)] %></h4>
             
     <div class="funkyradio">
         <div class="funkyradio-default">
-            <input type="radio" name="radioo" id="radio1" value="StronglyAgree" />
-            <label for="radio1">Strongly Agree</label>
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio1_".concat(i) %> value="StronglyAgree" />
+            <label for=<%="radio1_".concat(i) %>>Strongly Agree</label>
         </div>
         <div class="funkyradio-primary">
-            <input type="radio" name="radioo" id="radio2" 
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio2_".concat(i) %> 
             value="Agree"/>
-            <label for="radio2">Agree</label>
+            <label for=<%="radio2_".concat(i) %>>Agree</label>
         </div>
         <div class="funkyradio-success">
-            <input type="radio" name="radioo" id="radio3" 
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio3_".concat(i) %> 
             value="SomewhatAgree"/>
-            <label for="radio3">Somewhat Agree</label>
+            <label for=<%="radio3_".concat(i) %>>Somewhat Agree</label>
         </div>
         <div class="funkyradio-success">
-            <input type="radio" name="radioo" id="radio4" 
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio4_".concat(i) %> 
             value="Neither Agree or Disagree"/>
-            <label for="radio4">Neither Agree or Disagree</label>
+            <label for=<%="radio4_".concat(i) %>>Neither Agree or Disagree</label>
         </div>   
         <div class="funkyradio-success">
-            <input type="radio" name="radioo" id="radio5"
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio5_".concat(i) %>
             value="Disagree"/>
-            <label for="radio5">Disagree</label>
+            <label for=<%="radio5_".concat(i) %>>Disagree</label>
         </div>
          <div class="funkyradio-success">
-            <input type="radio" name="radioo" id="radio6" 
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio6_".concat(i) %> 
             value="Strongly Disagree"/>
-            <label for="radio6">Strongly Disagree</label>
-             <br/>
+            <label for=<%="radio6_".concat(i) %>>Strongly Disagree</label>
+
+        </div>
+    </div>
+    <% } %>
+</div>
+
              <br/>
         <h4>Please include any additional comments below</h4>
              <br/>
-        <div class="container">
+        <div class="funkyradio">
 
     <div class="form-group">
       <textarea class="form-control" rows="10" id="comment" name="mylittletextbox"></textarea>
     </div>
         </div>
-       
-</div>
-    </div>
-            
-        </div>
-		<div id="buttons">
+
+    <div id="buttons">
             <a href="/surveys-students?"><button class="button">Submit</button></a>
-		</div>	
+    </div>  
     </form>
 
 
     <hr>
 
-    <p>Return <a href="/">Home</a></p>
-	    </div>
+    <p>Return <a href="/main">Main Page</a></p>
+      </div>
         </div>
         </div>
 <div class="footer">&#169; SOEN 341</div>

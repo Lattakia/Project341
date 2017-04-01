@@ -289,14 +289,18 @@
 		<div class="info">
 	
 <!-- show any messages that come back with authentication -->
-     <form>       
-     Thank you for completing the survey!
+     <form>
+     <% if (Object.is(oldResults, insertedResults) && Object.is(oldResults, updatedResults)) {%>
+        You have already completed this survey. Results will not be modified.
+      <% } else { %>
+        Thank you for completing the survey!
+     <% } %>
     </form>
 
 
     <hr>
 
-    <p>Return <a href="/">Home</a></p>
+    <p>Return to <a href="/main">Main Page</a></p>
 	    </div>
         </div>
         </div>

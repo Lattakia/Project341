@@ -235,40 +235,89 @@
      </div>
 </div>
 
-<h1>Question 1: The Lectures are written in a clear way.</h1>
+<h1>Multiple Choice Questions.</h1>
 <h2>Number of Responses</h2>
 <br>
-<canvas id="myCanvas" width="400" height="400">Your browser does not support the canvas feature.</canvas>
+<canvas id="myCanvas" width="600" height="600">Your browser does not support the canvas feature.</canvas>
 <!-- Script to draw the graph on the canvas. -->
 <script type="text/javascript">
 	var ctx = document.getElementById("myCanvas").getContext("2d");
 
 	// Documents are retrieved from server.
-	var docs = <%- JSON.stringify(docs) %>;
+	var surveyDocs = <%- JSON.stringify(dbSurveyDocs) %>;
 
 	// Retrive number of responses for the data of the bar chart.
-	var surveyData = {
-	         stronglyAgree: 0,
-			 agree: 0,
-			 somewhatAgree: 0,
-			 neither: 0,
-			 disagree: 0,
-			 stronglyDisagree: 0
-	    };
+	var surveyData = [
+		/*question1:*/ {
+			 stronglyAgree: 0,
+ 			 agree: 0,
+ 			 somewhatAgree: 0,
+ 			 neither: 0,
+ 			 disagree: 0,
+ 			 stronglyDisagree: 0
+ 			},
+ 		 /*question2:*/ {
+			 stronglyAgree: 0,
+ 			 agree: 0,
+ 			 somewhatAgree: 0,
+ 			 neither: 0,
+ 			 disagree: 0,
+ 			 stronglyDisagree: 0
+ 			},
+ 		  /*question3:*/ {
+			 stronglyAgree: 0,
+ 			 agree: 0,
+ 			 somewhatAgree: 0,
+ 			 neither: 0,
+ 			 disagree: 0,
+ 			 stronglyDisagree: 0
+ 			},
+ 		  /*question4:*/ {
+			 stronglyAgree: 0,
+ 			 agree: 0,
+ 			 somewhatAgree: 0,
+ 			 neither: 0,
+ 			 disagree: 0,
+ 			 stronglyDisagree: 0
+ 			},
+ 		  /*question5:*/ {
+			 stronglyAgree: 0,
+ 			 agree: 0,
+ 			 somewhatAgree: 0,
+ 			 neither: 0,
+ 			 disagree: 0,
+ 			 stronglyDisagree: 0
+ 			}
+	    ];
 
-	for(var i = 0; i < docs.length; ++i){
-		if(docs[i]['question1'] == "StronglyAgree"){
-			surveyData.stronglyAgree++;
-		} else if(docs[i]['question1'] == "Agree"){
-			surveyData.agree++;
-		} else if(docs[i]['question1'] == "SomewhatAgree"){
-			surveyData.somewhatAgree++;
-		} else if(docs[i]['question1'] == "Neither Agree or Disagree"){
-			surveyData.neither++;
-		} else if(docs[i]['question1'] == "Disagree"){
-			surveyData.disagree++;
-		} else if(docs[i]['question1'] == "StronglyDisagree"){
-			surveyData.stronglyDisagree++;
+	for(var k = 0; k < surveyData.length; k++){
+		for(var i = 0; i < surveyDocs.length; ++i){
+			var questionIndex = 'question'.concat(k + 1);
+
+			if(surveyDocs[i]['surveyResponses'][questionIndex] == "StronglyAgree"){
+
+				surveyData[k].stronglyAgree++;
+
+			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Agree"){
+
+				surveyData[k].agree++;
+
+			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "SomewhatAgree"){
+
+				surveyData[k].somewhatAgree++;
+
+			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Neither Agree or Disagree"){
+
+				surveyData[k].neither++;
+
+			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Disagree"){
+
+				surveyData[k].disagree++;
+
+			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "StronglyDisagree"){
+
+				surveyData[k].stronglyDisagree++;
+			}
 		}
 	}
 
@@ -278,15 +327,34 @@
 		data: {
 			labels: ['Strongly Agree', 'Agree', 'Somewhat Agree', 'Neither Agree nor Disagree', 'Disagree', 'Strongly Disagree'],
 			datasets: [{
-				label: 'Number of Responses',
-				data: [surveyData.stronglyAgree, surveyData.agree, surveyData.somewhatAgree, surveyData.neither, surveyData.disagree, surveyData.stronglyDisagree],
-				// Dark green, a bit lighter green, light green, orange, bright red, dark red
-				backgroundColor: ['rgb(49, 214, 27)', 'rgb(61, 209, 41)', 'rgb(81, 229, 61)', 'rgb(249, 154, 0)', 'rgb(249, 65, 19)', 'rgb(237, 14, 14)']
+				label: 'Question 1',
+				data: [surveyData[0].stronglyAgree, surveyData[0].agree, surveyData[0].somewhatAgree, surveyData[0].neither, surveyData[0].disagree, surveyData[0].stronglyDisagree],
+				backgroundColor: 'red'
+			},
+			{
+				label: 'Question 2',
+				data: [surveyData[1].stronglyAgree, surveyData[1].agree, surveyData[1].somewhatAgree, surveyData[1].neither, surveyData[1].disagree, surveyData[1].stronglyDisagree],
+				backgroundColor: 'blue'
+			},
+			{
+				label: 'Question 3',
+				data: [surveyData[2].stronglyAgree, surveyData[2].agree, surveyData[2].somewhatAgree, surveyData[2].neither, surveyData[2].disagree, surveyData[2].stronglyDisagree],
+				backgroundColor: 'green'
+			},
+			{
+				label: 'Question 4',
+				data: [surveyData[3].stronglyAgree, surveyData[3].agree, surveyData[3].somewhatAgree, surveyData[3].neither, surveyData[3].disagree, surveyData[3].stronglyDisagree],
+				backgroundColor: 'yellow'
+			},
+			{
+				label: 'Question 5',
+				data: [surveyData[4].stronglyAgree, surveyData[4].agree, surveyData[4].somewhatAgree, surveyData[4].neither, surveyData[4].disagree, surveyData[4].stronglyDisagree],
+				backgroundColor: 'orange'
 			}]
 		},
 		options: {
 			legend: {
-				display: false
+				display: true
 			},
 			responsive: false,
 			scales: {
@@ -294,7 +362,7 @@
 					ticks: {
 						min: 0,
 						max: 50,
-						stepSize: 10
+						stepSize: 5
 					}
 				}]
 			}
@@ -303,8 +371,8 @@
 </script>
 <h1>Comments</h1>
 <div id="comments">
-	<% for(var i = 0; i < docs.length; ++i){%>
-		<p><%= docs[i]['comments'] %></p>
+	<% for(var i = 0; i < dbSurveyDocs.length; ++i){%>
+		<p><%= dbSurveyDocs[i]['surveyResponses']['comments'] %></p><br>
 	<% } %>
 </div>
 </body>
