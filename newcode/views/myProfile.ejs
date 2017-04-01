@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+     
+	<head>
+        <style>
+            #logo
+	{
+		z-index: 1000;
+        width: 480px;
+        height: 100px
+	}
+        </style>
+		<title>My Profile</title>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+         <link rel="stylesheet" type="text/css" href="allstyles.css">
+		<link rel="stylesheet" href="styles/myProfile.css">
+		<script type="text/javascript" src="libraries/jquery-3.2.0.min.js"></script>
+		<script type="text/javascript" src="libraries/jquery.numeric.min.js"></script>
+		<script type="text/javascript" src="scripts/inputRestriction.js"></script>
+		<script type="text/javascript" src="scripts/profileScript.js"></script>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        
+        
+        
+        
+        
+        <!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="/main">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="/account-professor">Professor Appointments</a></li>
+                    <li><a href="/chat">Chat with Professor/Student</a></li>
+                </ul>
+				
+				<li>
+                  <a href="/forum">
+                  <i class="fa fa-users fa-lg"></i> Forum
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/surveys-students">
+                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+                  </a>
+                </li>
+
+                 <li>
+                  <a href="/myProfile">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+				  
+				  <li>
+                  <a href="/logout">
+                  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+                  </a>
+                  </li>
+ 
+            </ul>
+     </div>
+</div>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+
+			});
+		</script>
+        <style>
+            
+        </style>
+
+	</head>
+
+	<body>
+        <div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div
+	<div id="header">My Profile</div>
+
+	<form id="uploadPicForm" action="/submitProfileInfo">
+
+
+	<div id="wrapper">
+
+	<div id="profileContainer">
+		<img id="profilePic" src="profile-icon-300x300.png" alt="Profile Image" /><br/>
+        <input id="uploadPic" type='file' onchange="readURL(this);" /> <br/>
+
+
+
+
+	<div id="profileInfo">
+	<table id="tableInfo">
+		<tr>
+			<td class="titleColumn">First Name</td>
+			<td class="dataColumn"><input type="text" disabled id="fname" name="firstname" maxlength="25"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Last Name</td>
+			<td class="dataColumn"><input type="text" disabled id="lname" name="lastname" maxlength="25"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">ID Number</td>
+			<td class="dataColumn"><input class="integer" type="text" disabled id="IdNum" name="IdNum" maxlength="8"></td>
+		</tr>
+		<tr>
+			<td class="titleColumn">Major</td>
+			<td class="dataColumn"><input type="text" disabled id="major" name="major"></td>
+		</tr>
+	</table>
+	</div>
+
+	</div>
+	</div>
+
+<div id="buttons">
+	<input type="submit" id="EditButton" value="Edit">
+</div>
+
+	</form>
+
+	<p id="homeLink">Return <a href="/main">Home</a></p>
+
+
+	</body>
+
+</html>

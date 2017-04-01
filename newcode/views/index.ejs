@@ -1,0 +1,119 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+
+<head>
+    <title>Connect Concordia</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="allstyles.css">
+    <!-- load bootsrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="cc-favicon.png">
+    <!-- load fontawesome -->
+    <style>
+	
+    html {
+        height: 100%;
+    }
+        
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: rgb(143,37,57);
+        font: 16px Helvetica, Arial;
+        background:url('https://c1.staticflickr.com/6/5006/5279916243_96267b8e32_b.jpg');
+        background-attachment:fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+        
+	.content{
+	    min-height:750px;
+        height:100%;
+	    color:black;
+	    margin:0;
+	    padding:0;
+	}
+	.info{
+	    width:70%;
+		height:1000px;
+        margin: 0 auto;
+	    padding:150px;
+	    font-size:22px;
+	    text-align: justify;
+	    color:white;
+		background:rgba(0,0,0,0.5);
+	}
+	h1{
+		font-size:36px !important ;
+		text-align:center;
+	}
+	.info ul{
+		list-style-type: square;
+	}
+	.footer {
+	  position: fixed;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  padding: 1rem;
+	  background-color: #efefef;
+	  text-align: center;
+      color:grey;
+	}
+	.button {
+	    background-color: rgb(143,37,57); 
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	}
+	.button:hover {
+	    color: black;
+	    text-decoration: none;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;
+	}
+    </style>
+</head>
+
+<body>
+
+<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+
+<div class="content">
+	
+	<div class="info">
+
+	<h1> <b>What is Connect Concordia?</b></h1>
+
+	<br/>
+	 <ul>
+		<li>An appointment scheduler.</li>
+		<li>An instant messaging system between students and teachers.</li>
+		<li>A feature that allows professors to request feedback from students using surveys.</li>
+		<li>A forum section, where professors can post public questions using keywords denoted with hash tags.</li>
+        </ul>
+	<br>
+	<a href="/login" class="button"><span class="fa fa-user"></span>  Login</a>
+	<a href="/signup" class="button"><span class="fa fa-user"></span>  Sign Up</a>
+	</div>
+
+
+</div>
+
+
+<footer>&#169; 2017 SOEN 341</footer>
+
+
+</body>
+
+</html>
+

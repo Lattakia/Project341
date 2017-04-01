@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Connect Concordia</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="allstyles.css">
+    <!-- load bootsrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="cc-favicon.png">
+    <!-- load fontawesome -->
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<style>
+    
+    body{
+            background-color:#666666;
+    /*background-color:#808080;*/
+    color: white !important;
+    }
+    .container{
+        margin-left:400px;
+    }
+
+    .title{
+            width:100%;
+            text-align:center;
+            display:inline-block;
+            /*background:rgba(143,37,57,0.8);*/
+            background:rgba(0,0,0,0.5);
+    }
+
+    .questions{
+            width: 600px;
+            padding: 50px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            background:rgba(143,37,57,0.8);
+            position:relative;
+    }
+
+    h1{
+            font-size: 30px;
+            color:rgb(202,181,118);
+    }
+
+
+    .searchbox{
+        /*display: inline-block;
+        padding-top: 50px; 
+        position: fixed;
+        background-color:black;
+        width: 20%;
+        top: 0;
+        left:0;
+        z-index:0;
+        */
+        width: 300px;
+        padding: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        /*margin-left: auto;
+        margin-right: auto;*/
+        background:rgba(143,37,57,0.8);
+        position:relative;
+
+    }
+
+    .col-sm-4{
+        background-color:rgba(143,37,57,0.8);
+        padding:20px;
+        width:300px;
+        margin-right:60px;
+        border-radius: 10px;S
+    }
+
+    .col-sm-8{
+        background-color:rgba(143,37,57,1);
+        padding:20px;
+        border-radius:10px;
+        margin-left:30px;
+    }
+
+    a{
+        text-decoration:none;
+        color:#e6ac00;
+    }
+
+    a:hover{
+        color:#24292E;
+        text-decoration:none;
+    }
+
+    /* SEARCH BAR */
+    #custom-search-input{
+        padding: 3px;
+        border: solid 1px #E4E4E4;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+
+    #custom-search-input input{
+        border: 0;
+        box-shadow: none;
+        font-size: 14px;
+        height:20px;
+    }
+
+    #custom-search-input submit{
+        margin: 2px 0 0 0;
+        background: none;
+        box-shadow: none;
+        border: 0;
+        color: #666666;
+        padding: 0 5px 0 10px;
+        border-left: solid 1px #ccc;
+    }
+
+    #custom-search-input button:hover{
+        border: 0;
+        box-shadow: none;
+        border-left: solid 1px #ccc;
+    }
+
+    #custom-search-input .glyphicon-search{
+        font-size: 14px;
+    }
+    
+     /* SIDEBAR */
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {
+        height: 1500px;
+        border-radius:10px;
+    }
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+	   background-color:rgb(143,37,57);
+        /*background-color: #f1f1f1;*/
+       /* height: 100%;*/
+        border-radius:10px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+    
+    
+    
+    .post-title{
+        background-color:white;
+        color:black;
+    }
+    
+    #current:hover{
+		color:rgb(143,37,57) !important;
+	}
+	
+	#current{
+		color:black !important;
+        background-color:white;
+	}
+	
+	h4{
+		color:white !important;
+	}
+	
+	small{
+		color:white !important;
+	}
+    
+    
+	</style>
+	
+</head>
+<body>
+
+	<!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div>
+	
+	<!-- Title -->
+	<div class="title">
+
+        <h2><span class="glyphicon glyphicon-ok"></span> Post suscessfully submitted!</h2>
+	</div>
+	
+<!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="/main">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a href="/account-professor"><i class="fa fa-gift fa-lg"></i> Find a professor <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="/surveys-students">Survey</a></li>
+                    <li><a href="/chat">Chat</a></li>
+                </ul>
+				
+				<li>
+                  <a href="/forum">
+                  <i class="fa fa-users fa-lg"></i> Forum
+                  </a>
+                </li>
+
+                 <li>
+                  <a href="/myProfile">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+				  
+				  <li>
+                  <a href="/logout">
+                  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+                  </a>
+                  </li>
+ 
+            </ul>
+     </div>
+</div>
+
+<!-- small sidebar --> 
+<br><br>
+<div class="container">	    
+ 
+    <div class="container-fluid">
+	  <div class="row content">
+		<div class="col-sm-3 sidenav">
+            <form action="/forum-submitted">
+		  <h3>Want to find information on a certain topic?</h3>
+			See what your professors posted on the subject!
+			<br><br>
+		  <input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
+            <div id="sideinfo">Use # + the subject you're looking for.
+            *Enter a maximum of 10 search tags!</div>
+            <br>
+		  <input type="submit" name = "tags" class="btn btn-default" value="Search">
+            <br>
+
+          <hr>
+          <!-- display all -->       
+        </form>
+         <form action="/forum-submitted-3">
+        <input type="submit" name = "tags" class="btn btn-default" value="Display All">
+        </form>
+        <br>
+		  
+		</div>
+        
+    
+    
+        <!-- Post column -->
+        <div class="col-sm-8">  
+        <form action="/forum-submitted-2">
+            <div class="form-group">
+            <h3><span class="glyphicon glyphicon-pencil"></span> Create a post</h3>
+            <label>Post Title</label>
+               <textarea class="form-control" rows="1" cols="50" name="title" placeholder="Title of Post"></textarea>
+          </div>
+        <label> Text</label>
+        <form>
+          <div class="form-group">
+
+             <textarea class="form-control" rows="7" id="comment" name="mylittletextbox" placeholder="Add Your Post Here..."></textarea>
+
+
+
+          </div>
+          <div class="form-group">
+            <label>tags:</label>
+               <textarea class="form-control" rows="1" cols="50" name="tags" name="tags" placeholder="#tags"></textarea>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+            <br/>
+            <br/>
+            <br/>
+        </form>
+        </div>
+          </div>	
+          </form>
+    </div>
+</div>
+</div>
+</div>
+
+    <!-- footer --> 
+    <footer>&#169; 2017 SOEN 341</footer>
+
+</body>
+
+</html>
