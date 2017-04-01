@@ -328,28 +328,29 @@ MongoClient.connect(URL_1, function(err, db) {
   if (err) return
   
             var collection = db.collection('survey_form')
-            var name = req.query.name;
+            var name = app.get('data').title;
             console.log(name);
             collection.find().toArray(function(err,results){
                 var res = results;
-
+                var boolean = false;
                 for(i=0;i<res.length;i++){
                     console.log(req.query.name);
                     if(name == res[i]['Name']){
-                      collection.update({
-                      Name:req.query.name,
+                      collection.update({Name:name},
+                      {Name:name,
                       Question_1:req.query.question1, 
                       Question_2:req.query.question2, 
                       Question_3:req.query.question3, 
                       Question_4:req.query.question4, 
                       Question_5:req.query.question5}, 
                       function(err, results) {
+                        boolean = true;
                         db.close()
-                        return
                       })
                     }}
-                      collection.insert({
-                      Name:req.query.name,
+                      if(boolean == false){
+                        collection.insert({
+                      Name:name,
                       Question_1:req.query.question1, 
                       Question_2:req.query.question2, 
                       Question_3:req.query.question3, 
@@ -358,6 +359,7 @@ MongoClient.connect(URL_1, function(err, db) {
                       function(err, results) {
                         db.close()
                       })
+                }
             });
         })
     });
