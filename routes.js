@@ -497,6 +497,10 @@ app.get('/submitProfileInfo',checkAuthentication,function(req,res)
 
      });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d1ebe0aa8bc75628aa46fbcf937267ef8ab5069
     app.get('/forum',checkAuthentication,getuserUsername,function(req,res)
     {
         console.log("HHHHHH");
