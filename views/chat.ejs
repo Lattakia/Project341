@@ -5,23 +5,29 @@
 <head>
     <title>Connect Concordia Chat</title>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <!-- load bootstrap css -->
+    <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="shortcut icon" href="cc-favicon.png">
     <!-- load fontawesome -->
-    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-        
-        body {
-            background-image: url("concordia2.jpg");
+        <style>body {
+            /*            background-image: url("concordia2.jpg");*/
             background-repeat: no-repeat;
             background-size: cover;
             padding-top: 10px;
         }
         
-        .container{
-             float: left;
-             position:fixed;
+        .container {
+            float: left;
+            position: fixed;
         }
         
         #top_bar {
@@ -29,7 +35,7 @@
             height: 150px;
             background-color: rgb(143, 37, 57);
             height: 150px;
-            position:fixed;
+            position: fixed;
         }
         
         #topbar a {
@@ -40,8 +46,8 @@
         
         #logo {
             z-index: 1000;
-			width:700px;
-			height:150px;
+            width: 700px;
+            height: 150px;
         }
         
         h1 {
@@ -98,31 +104,32 @@
         #other_options {
             text-align: center;
         }
-
+        
         .button {
-			background-color: rgb(143,37,57); 
-			border: none;
-			color: white;
-			padding: 30px 32px;
-			text-align: center;
-			text-decoration: none;
-			font-size: 16px;
-		}
-		.button:hover {
-			color: black;
-			text-decoration: none;
-			-webkit-transition-duration: 0.4s; /* Safari */
-			transition-duration: 0.4s;
-		}
+            background-color: rgb(143, 37, 57);
+            border: none;
+            color: white;
+            padding: 30px 32px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .button:hover {
+            color: black;
+            text-decoration: none;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
+        }
         
         #messages {
-            
             list-style-type: none;
             margin: 0;
             padding: 0;
-            background:rgba(0,0,0,0.5);
-            width:80%;
-            bottom:0;
+            background: rgba(0, 0, 0, 0.5);
+            width: 80%;
+            bottom: 0;
         }
         
         #messages li {
@@ -131,7 +138,7 @@
         }
         
         #messages li:nth-child(odd) {
-            background: rgb(143,37,57);
+            background: rgb(143, 37, 57);
         }
         
         form {
@@ -152,19 +159,20 @@
         
         form button {
             width: 9%;
-            background-color: rgb(143,37,57);
+            background-color: rgb(143, 37, 57);
             border: none;
             padding: 10px;
-            font-weight:bold;
+            font-weight: bold;
             border-radius: 10px;
         }
         
-        form button:hover{
-            background-color:#F1F1F1;
-            color:black;
-            font-weight:bold;
-            -webkit-transition-duration: 0.4s; /* Safari */
-			transition-duration: 0.4s;
+        form button:hover {
+            background-color: #F1F1F1;
+            color: black;
+            font-weight: bold;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
         }
         
         footer {
@@ -178,28 +186,28 @@
             color: grey;
         }
         
-        #info{
-            background:rgba(0,0,0,0.5);
-            height:1000px;
+        #info {
+            background: rgba(0, 0, 0, 0.5);
+            height: 1000px;
         }
         
         .tab {
-            position: fixed; 
+            position: fixed;
             border: none;
-            background-color: rgb(143,37,57);
+            background-color: rgb(143, 37, 57);
             width: 15%;
             height: 100%;
             top: 0;
-            right:0;
+            right: 0;
         }
-
         /* Style the buttons inside the tab */
+        
         .tablinks {
-            position:relative;
+            position: relative;
             display: block;
             background-color: inherit;
             color: white;
-            font-weight:bold;
+            font-weight: bold;
             padding: 22px 16px;
             width: 100%;
             border: none;
@@ -208,21 +216,20 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        
         /* Change background color of buttons on hover */
+        
         .tablinks:hover {
             background-color: #F1F1F1;
-            color:black;
-            text-decoration:none;
+            color: black;
+            text-decoration: none;
         }
-
         
-        #logout{
-            position:relative;
+        #logout {
+            position: relative;
             display: block;
             background-color: #5F5F5F;
             color: white;
-            font-weight:bold;
+            font-weight: bold;
             padding: 22px 16px;
             width: 100%;
             border: none;
@@ -232,30 +239,109 @@
             transition: 0.3s;
         }
         
-        #logout:hover{
+        #logout:hover {
             color: #e6ac00;
-			text-decoration: none;
-			-webkit-transition-duration: 0.4s; /* Safari */
-			transition-duration: 0.4s;
+            text-decoration: none;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
         }
         
-        #title{
-            position:fixed;
-            background-color:#5F5F5F;
-            width:85%;
-            left:0;
-            top:-1%;
-            z-index:0px;
-            color:white;
+        #title {
+            position: fixed;
+            background-color: #5F5F5F;
+            width: 85%;
+            left: 0;
+            top: -1%;
+            z-index: 0px;
+            color: white;
+        }
+        
+        #login-screen,
+        #main-chat-screen {
+            padding-top: 10px;
+        }
+        
+        .main {
+            padding-top: 10px;
+            text-align: left;
+        }
+        
+        #conversation {
+            font-size: 18px;
+            margin: 0px;
+            height: 300px;
+            overflow: scroll;
+        }
+        
+        .final {
+            color: #000;
+        }
+        
+        .interim {
+            color: #f00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font: 13px Helvetica, Arial;
+        }
+        
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+        
+        form #button {
+            color: #FFF;
+            background: #2D9F0B;
+            border: none;
+            padding: 10px;
+            width: 9%;
+        }
+        
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #messages li {
+            padding: 5px 10px;
+        }
+        
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+        
+        #notifyUser {
+            position: fixed;
+            bottom: 42px;
+            width: 100%;
         }
 
     </style>
 </head>
 
 <body>
-    
-   
-    <! --- SIDE MENU -----> 
+
+
+    <! --- SIDE MENU ----->
     <div class="tab">
         <br><br>
         <a href="/logout" id="logout"><span class="fa fa-user"></span>  Logout</a>
@@ -265,47 +351,92 @@
         <a class="tablinks" href="/surveys-students">Surveys</a><br>
     </div>
 
-    <! --- TOP BAR -----> 
+    <! --- TOP BAR ----->
     <div id="topbar">
         <img src="logo2.png" id="logo" alt="Logo">
     </div>
-    
-    
-   <! --- MESSAGES -----> 
+
+
+    <! --- MESSAGES ----->
+<!--
     <div class="container">
         <div class="col-sm-6 col-sm-offset-3">
             <span id="title"><h3><b>Welcome</b></h3></span>
 
         </div>
     </div>
+-->
 
+    <!--
     <div id="info">
         <ul id="messages"></ul>
         <form action="">
             <input id="m" autocomplete="off" /><button>Send</button>
         </form>
-        
+
     </div>
-    
+-->
+    <ul id="messages"></ul>
+    <span id="notifyUser"></span>
+    <form id="form" action="" onsubmit="return submitfunction();">
+        <input type="hidden" id="user" value="" /><input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." /><input type="submit" id="button" value="Send" />
+    </form>
+
+    <! --- FOOTER ----->
+<!--    <footer>&#169; 2017 SOEN 341</footer>-->
 
 
-    <! --- FOOTER -----> 
-    <footer>&#169; 2017 SOEN 341</footer>
-    
-    
-    <! --- SCRIPTS -----> 
+    <! --- SCRIPTS ----->
     <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
         var socket = io();
-        $('form').submit(function() {
-            socket.emit('chat message', $('#m').val());
-            $('#m').val('');
+
+        function submitfunction() {
+            var from = $('#user').val();
+            var message = $('#m').val();
+            if (message != '') {
+                socket.emit('chatMessage', from, message);
+            }
+            $('#m').val('').focus();
             return false;
+        }
+
+        function notifyTyping() {
+            var user = $('#user').val();
+            socket.emit('notifyUser', user);
+        }
+
+        socket.on('chatMessage', function(from, msg) {
+            var me = $('#user').val();
+            var color = (from == me) ? 'green' : '#009afd';
+            var from = (from == me) ? 'Me' : from;
+            $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
         });
-        socket.on('chat message', function(msg) {
-            $('#messages').append($('<li>').text(msg));
+
+        socket.on('notifyUser', function(user) {
+            var me = $('#user').val();
+            if (user != me) {
+                $('#notifyUser').text(user + ' is typing ...');
+            }
+            setTimeout(function() {
+                $('#notifyUser').text('');
+            }, 10000);;
         });
+
+        $(document).ready(function() {
+            var name = id();
+            $('#user').val(name);
+            socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
+        });
+
+        function id() {
+            var firstname = <%- JSON.stringify(firstname)%>;
+            var lastname = <%- JSON.stringify(lastname)%>;
+            return firstname + " " + lastname;
+
+        }
+
     </script>
 
 </body>

@@ -104,12 +104,22 @@ app.use(function(req, res, next) {
 });
 
 io.on('connection', function (socket) {
-    socket.on('chat message', function (msg) {
-        io.emit('chat message', msg);
-        console.log('its working');
-        if (socket.request.user && socket.request.user.logged_in) {
-            console.log(socket.request.user);
-            console.log('its working finally!!');
-        }
+    socket.on('chatMessage', function (from, msg) {
+        io.emit('chatMessage', from, msg);
+    });
+    socket.on('notifyUser', function (user) {
+        io.emit('notifyUser', user);
     });
 });
+
+
+//io.on('connection', function (socket) {
+//    socket.on('chat message', function (msg) {
+//        io.emit('chat message', msg);
+//        console.log('its working');
+//        if (socket.request.user && socket.request.user.logged_in) {
+//            console.log(socket.request.user);
+//            console.log('its working finally!!');
+//        }
+//    });
+//});
