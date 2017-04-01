@@ -80,10 +80,43 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 
 
     app.get('/chat', checkAuthentication, function(req, res) {
-        res.render('chat.ejs', { username:req.session.session
+        var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
 
+MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('users');
+    var person = req.session.session.title;
+
+    // Locate all the entries using find
+    collection.find().toArray(function(err, results) {
+        var resa = results;
+        console.log(resa);
+        console.log(person);
+        var saveindex = 10;
+
+        for(var i=0;i<resa.length;i++)
+        {
+            if(person == resa[i]['local']['username'])
+            {
+                    saveindex = i;
+            }
+
+        }
+
+        //var emailofuser = resa[saveindex]['local']['email'];
+        var firstname = resa[saveindex]['local']['firstname'];
+        var lastname = resa[saveindex]['local']['lastname'];
+        console.log(firstname);
+         console.log(lastname);
+       res.render('chat.ejs', {firstname:firstname,lastname:lastname}
+            //user : req.user // get the user out of session and pass to template
+        );
+        db.close();
         });
 
+});
 
 
         console.log(req.session.session);
@@ -276,7 +309,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
-        console.log("HEH");
+        //console.log("HEH");
         console.log(emailofuser);
 
         // Andrew, Ali and Ahmad, look here
@@ -389,21 +422,19 @@ app.get('/submitProfileInfo',checkAuthentication,function(req,res)
 
 
      });
-app.post('/surveys',function(req,res){
 
-
-});
 
 
     app.get('/forum',checkAuthentication,getuserUsername,function(req,res)
     {
+        console.log("HHHHHH");
 
         req.session.session = {
             title: req.body.email
         };
 
         var temp = app.get('data').title;
-        //console.log(app.get('data'));
+        //console.log(temp);
 
 
     });
@@ -467,6 +498,13 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
          //console.log(req.query.tags)
 
     var MongoClient = require('mongodb').MongoClient
+    
+    var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth();
+var year = today.getFullYear();
+var months = ['January','February','March','April'];
+var thedate = months[mm]+" "+dd+" , "+year;
 
 var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
@@ -474,7 +512,7 @@ MongoClient.connect(URL, function(err, db) {
   var collection = db.collection('forumvalues')
   if(req.query.title!="")
       {
-  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
+  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags,username: app.get('data').title,date:thedate}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
       //console.log(docs[0])
       db.close()
@@ -571,10 +609,13 @@ db.collection('forumvalues', function(err, collection) {
 
 app.get('/forum-submitted',checkAuthentication,function(req,res)
         {
-        console.log(req.query.search);
+       console.log("search result");
+        var username = app.get('data').title;
+        //console.log(username);
+        //console.log(req.query.search);
         // Please display values of
         // display values of search in forum-results.ejs
-        console.log("search result");
+        //console.log("search result");
         //console.log(req.query.mylittletextbox);
 
 
@@ -607,8 +648,11 @@ MongoClient.connect(URL, function(err, db) {
   }
     arr_pos[num] = string.substring(arr_pos_2[num-1], string.length);
 
-    console.log(arr_pos);
+
+
+    
   var path;
+    var username = app.get('data').title;
 db.collection('forumvalues', function(err, collection) {
     var args = (function(arr, elem) {
             var a2 = arr.map(function(e) { return e; }); // copy of arr
@@ -619,9 +663,11 @@ db.collection('forumvalues', function(err, collection) {
         }).sort({"tags":1}).toArray(function(err, results) {
         path = results;
         console.log(results);
-         res.render('forum-results.ejs',{tag:req.query.search,path:results});
+         res.render('forum-results.ejs',{tag:req.query.search,path:results,username:username});
     });
 })
+
+
 
 
       var cursor = collection.find({"tags":req.query.search});
@@ -649,6 +695,10 @@ db.collection('forumvalues', function(err, collection) {
 
           });
         })
+
+//here
+
+//here
 
 
 });

@@ -4,11 +4,236 @@
 	<title>Connect Concordia</title>
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
 	   <!--load bootsrap css-->
+     <link rel="stylesheet" type="text/css" href="allstyles.css">
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    
+     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="allstyles.css">
+    <!-- load bootsrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="cc-favicon.png">
+    <!-- load fontawesome -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    
+    <style>
+
+		html {
+			height: 100%;
+		}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            
+            background-color: #F1F1F1;
+            font: 16px Helvetica, Arial;
+		    background-attachment:fixed;
+	        background-repeat: no-repeat;
+	        background-size: cover;
+            background-color:#FFDAB9;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 45px;
+            width: 100%;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+
+        #user{
+            color:white;
+            float:right;
+            position:relative;
+            font: 16px Helvetica, Arial;
+        }
+		
+
+		
+		/*.content{
+			position:relative;
+			margin: 0 auto;
+			min-height:750px;
+            height:100%;
+            color:black;
+            margin:0;
+            padding:0;
+		}*/
+
+        .content{
+            min-height:750px;
+            height:100%;
+            color:black;
+            margin:0;
+            padding:0;
+        }
+        .info{
+			position: relative;
+			margin-left:30px;
+			margin-top: 250px;
+			width: 60%;
+            height:600px;
+            margin: 0 auto;
+            padding:200px;
+            font-size:22px;
+            text-align: justify;
+            color:black;
+            background:#FFFFFF;
+        }
+        h1{
+            position: relative;
+            margin-left:300px;
+            font-size:36px !important ;
+            text-align:center;
+        }
+        h2{
+            position: relative;
+            margin-left:300px;
+            text-align:center;
+            
+        }
+        .info ul{
+            list-style-type: square;
+        }
+        .footer {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 1rem;
+          background-color: #efefef;
+          text-align: center;
+          color:grey;
+        }
+
+        .button {
+            background-color: rgb(143,37,57);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            color: black;
+            text-decoration: none;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+		
+		.col-sm-6{
+			background-color:#FFFFFF;
+			margin-left: 30%;
+			margin-top: 150px;
+			padding:80px;
+			border:1px;
+			border-color:#808080;
+            color:black;
+			
+	}
+        #myCanvas
+        {
+            margin-left: 30%;
+            margin-bottom:10%;
+        }
+        
+        #comments
+        {
+            margin-left:30%;
+        }
+    
+
+    </style>
 </head>
 
 <body>
+     <!-- TOP BAR -->
+	<div id="topbar">
+    <img src="logo2.png" id="logo" alt="Logo">
+    <div id="user">
+
+    
+</div>
+</div>
+    <!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="/main">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="/account-professor">Professor Appointments</a></li>
+                    <li><a href="/chat">Chat with Professor/Student</a></li>
+                </ul>
+				
+				<li>
+                  <a href="/forum">
+                  <i class="fa fa-users fa-lg"></i> Forum
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/surveys-students">
+                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+                  </a>
+                </li>
+
+                 <li>
+                  <a href="/myProfile">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+				  
+				  <li>
+                  <a href="/logout">
+                  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+                  </a>
+                  </li>
+ 
+            </ul>
+     </div>
+</div>
 
 <h1>Question 1: The Lectures are written in a clear way.</h1>
 <h2>Number of Responses</h2>
@@ -76,13 +301,12 @@
 		}
 	});
 </script>
-
 <h1>Comments</h1>
 <div id="comments">
 	<% for(var i = 0; i < docs.length; ++i){%>
-		<p><%= docs[i]['comments'] %></p><br>
+		<p><%= docs[i]['comments'] %></p>
 	<% } %>
 </div>
-
 </body>
 </html>
+
