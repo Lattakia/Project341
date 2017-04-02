@@ -421,6 +421,47 @@ MongoClient.connect(URL_1, function(err, db) {
 
     });
 
+    app.get('/survey_selection',checkAuthentication,function(req,res)
+    {
+      var MongoClient = require('mongodb').MongoClient
+      var URL_1 = 'mongodb://localhost:27017/main'
+      var dataArray = new Array();
+      MongoClient.connect(URL_1, function(err, db){
+      if(err) return
+      
+      function renderThisShit(data){
+        console.log("huehue "+dataArray.length);
+        res.render('survey_selection.ejs', {data : dataArray});
+      }
+
+      var collection = db.collection('users');
+      collection.find().toArray(function(err,results){
+        if(err) return;
+        
+        var res = results;
+        for(var i = 0; i<res.length; i++){
+        if(res[i]['local']['accounttype'] == "teacherta"){
+            var tmp = {
+              fname: res[i]['local']['firstname'],
+              lname: res[i]['local']['lastname']
+            };
+
+            dataArray.push(tmp);
+            console.log("Info is "+JSON.stringify(dataArray));
+            }
+          }
+            renderThisShit(dataArray);
+        });
+
+            req.session.session = {
+              title: req.body.username
+            };
+
+            var temp = app.get('data').title;
+            console.log(app.get('data'));
+      });
+    });
+
     app.get('/surveys-s2',checkAuthentication,function(req,res)
         {
         res.render('ss-results')
