@@ -306,7 +306,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
         }
 
-
+        var userName = resa[saveindex]['local']['firstname']+" "+resa[saveindex]['local']['lastname'];
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
         //console.log("HEH");
@@ -321,7 +321,19 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         }
         else if (accounttypeuser == "teacherta")
         {
-            var MongoClient = require('mongodb').MongoClient
+            // displays survey page that teacher can use to create questions
+            res.render('survey_teacher.ejs', {teacherName: userName})
+        }
+        db.close();
+        });
+
+});
+
+
+    }
+
+    app.get('/survey_result', function(req,res){
+      var MongoClient = require('mongodb').MongoClient
             var URL = 'mongodb://localhost:27017/mydatabase'
 
             MongoClient.connect(URL, function(err, db) {
@@ -337,15 +349,63 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
               });
 
             });
+    });
 
-        }
-        db.close();
-        });
+    app.get('/teacher_submitted', function(req,res){
+    
+    res.render('teacher_submitted.ejs')
+  var MongoClient = require('mongodb').MongoClient
+  
+var URL_1 = 'mongodb://localhost:27017/surveydatabase'
+MongoClient.connect(URL_1, function(err, db) {
+  if (err) return
+  
+            var collection = db.collection('survey_form')
+            var name = app.get('data').title;
+            console.log(name);
 
-});
+            //Work around to change boolean because there's no pass by reference in js
+            function switchBoolean(state){
+              state.bool = true;
+            }
 
+            collection.find().toArray(function(err,results){
+                var res = results;
+                var boolean = {bool: false};
+                for(i=0;i<res.length;i++){
+                    if(name == res[i]['Name']){
+                      switchBoolean(boolean);
+                      console.log("true: "+boolean.bool);
 
-    }
+                      //Updates the database with new questions
+                      collection.update({Name:name},
+                      {Name:name,
+                      Question_1:req.query.question1, 
+                      Question_2:req.query.question2, 
+                      Question_3:req.query.question3, 
+                      Question_4:req.query.question4, 
+                      Question_5:req.query.question5}, 
+                      function(err, results) {
+                        db.close()
+                      })
+                    }}
+                      
+                      //Only insert if database doesn't contain the doc with the specific email
+                      if(boolean.bool == false){
+                        collection.insert({
+                      Name:name,
+                      Question_1:req.query.question1, 
+                      Question_2:req.query.question2, 
+                      Question_3:req.query.question3, 
+                      Question_4:req.query.question4, 
+                      Question_5:req.query.question5}, 
+                      function(err, results) {
+                        db.close()
+                      })
+                }
+            });
+        })
+    });
 
     app.get('/myProfile',checkAuthentication,function(req,res)
     {
