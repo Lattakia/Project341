@@ -208,13 +208,16 @@
         <form action="/student_selection" method="get">
     <% for(var i = 0; i<data.length; i++) { %>
       <div>
-          <button type="button" class="btn btn-primary btn-md">Teacher: <%= data[i].fname %> <%= data[i].lname %></button>
+          <button type="button" class="btn btn-primary btn-lg btn-block">Teacher: <%= data[i].fname %> <%= data[i].lname %></button>
       </div>
+      <br>
     <% } %>
 
     </form>
 
     <hr>
+
+    <p> To return home, click <a href="/main">here</a></p>
 
       </div>
         </div>
