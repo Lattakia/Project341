@@ -8,8 +8,8 @@
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="shortcut icon" href="cc-favicon.png">
-    <!-- load fontawesome -->			
-	
+    <!-- load fontawesome -->     
+  
     <style>
         * {
             margin: 0;
@@ -105,92 +105,92 @@
         footer ul.left-footer {
             float: left;
         }
-	#topbar
+  #topbar
         {
-		width:100%;
-		height:150px;
-		background-color:rgb(143,37,57);
-	}
+    width:100%;
+    height:150px;
+    background-color:rgb(143,37,57);
+  }
             
-	#logo
-	{
-		z-index: 1000;
-		width:700px;
-		height:150px;
-	}
-	.content{
-	    min-height:750px;
+  #logo
+  {
+    z-index: 1000;
+    width:700px;
+    height:150px;
+  }
+  .content{
+      min-height:750px;
         height:100%;
         background-image: url("teacher_survey.jpg");
-	    margin:0;
-	    padding:0;
-	    background-attachment:fixed;
-	    background-repeat: no-repeat;
-	    background-size: cover;
-	}
-	.info{
-	    width:70%;
-		height:100%;
+      margin:0;
+      padding:0;
+      background-attachment:fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  .info{
+      width:70%;
+    height:100%;
         margin: 0 auto;
-	    padding:150px;
-	    font-size:22px;
-	    text-align: justify;
-	    color:white;
-		background:rgba(0,0,0,0.5);
-	}
-	h1{
-		font-size:36px !important ;
-	}
-	.footer {
-	  position: fixed;
-	  right: 0;
-	  bottom: 0;
-	  left: 0;
-	  padding: 1rem;
-	  background-color: #efefef;
-	  text-align: center;
+      padding:150px;
+      font-size:22px;
+      text-align: justify;
+      color:white;
+    background:rgba(0,0,0,0.5);
+  }
+  h1{
+    font-size:36px !important ;
+  }
+  .footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
       color:grey;
-	}
-	p {
+  }
+  p {
         margin: 0;
         padding: 0;
         color: white;
     }
-	.button1 {
-		right: 50%;
-		width:30%;
-	    background-color: rgb(143,37,57); 
-	    border: none;
-	    color: white;
-	    padding: 15px 32px;
-	    text-align: center;
-	    text-decoration: none;
-	    font-size: 16px;
-	}
-	.button2 {
-		right: 50%;
-		width:30%;
-	    background-color: rgb(143,37,57); 
-	    border: none;
-	    color: white;
-	    padding: 15px 32px;
-	    text-align: center;
-	    text-decoration: none;
-	    font-size: 16px;
-	}
-	.button:hover {
-	    color: black;
-	    text-decoration: none;
-		-webkit-transition-duration: 0.4s; /* Safari */
-		transition-duration: 0.4s;
-	}
-	.buttons
-	{
-		left: 17.5%;
-		position:relative;
-	
-	}
-	
+  .button1 {
+    right: 50%;
+    width:30%;
+      background-color: rgb(143,37,57); 
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+  }
+  .button2 {
+    right: 50%;
+    width:30%;
+      background-color: rgb(143,37,57); 
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+  }
+  .button:hover {
+      color: black;
+      text-decoration: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+  .buttons
+  {
+    left: 17.5%;
+    position:relative;
+  
+  }
+  
     </style>
 </head>
 
@@ -198,52 +198,28 @@
 
 <div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
 
-<div id="form">
-    <form action="/survey_result" method="get">
-        <button type="submit" class="button3">Survey Result</button>
-    </form>
-</div>
-
 <div class="content">
-		<div class="info">
-	<h1><span></span> Create Survey</h1> 
-    <h2><u>Teacher: <%= teacherName %></u></h2>
-<!-- show message when the survey is updated -->
+    <div class="info">
+  <h1><span></span>Survey Selection Menu</h1> 
+<!-- show available surveys -->
 
-                        <!-- Teacher Survey FORM -->
+                        <!-- Student Survey FORM -->
      <div id="form">
-        <form action="/teacher_submitted" method="get">
-		<div class="form-group">
-            <label>Question 1</label>
-            <input type="text" class="form-control" name="question1">
-        </div>
-		<div class="form-group">
-            <label>Question 2</label>
-            <input type="text" class="form-control" name="question2">
-        </div>
-		<div class="form-group">
-            <label>Question 3</label>
-            <input type="text" class="form-control" name="question3">
-        </div>
-		<div class="form-group">
-            <label>Question 4</label>
-            <input type="text" class="form-control" name="question4">
-        </div>
-		<div class="form-group">
-            <label>Question 5</label>
-            <input type="text" class="form-control" name="question5">
-        </div>
-		<div class="buttons">
-			<button type="submit" class="button1">Update</button>
-			<button type="reset" class="button2">Reset</button>
-		</div>	
+        <form action="/student_selection" method="get">
+    <% for(var i = 0; i<data.length; i++) { %>
+      <div>
+          <button type="button" class="btn btn-primary btn-lg btn-block">Teacher: <%= data[i].fname %> <%= data[i].lname %></button>
+      </div>
+      <br>
+    <% } %>
+
     </form>
 
     <hr>
 
     <p> To return home, click <a href="/main">here</a></p>
 
-	    </div>
+      </div>
         </div>
         </div>
 <div class="footer">&#169; SOEN 341</div>
