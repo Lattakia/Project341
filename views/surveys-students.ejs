@@ -347,7 +347,7 @@
 </div>
 <div class="content">
     <div class="info">
-  <h1 align="center"><span class="text-center"></span> Survey Questions: <%= survey.teacher %></h1>
+  <h1 align="center"><span class="text-center"></span> Survey Questions: <%= survey.Name %></h1>
 <!-- show any messages that come back with authentication -->
             
      <div id="form">
@@ -355,38 +355,43 @@
 
     <div class="form-group">
 
-<% for(var i = 1; i <= 5; ++i) { %>
-           <h2>Question <%= i %></h2>
-            <h4><%= survey['q'.concat(i)] %></h4>
+<% for(var i = 1, qCount = 1; i <= 5; ++i) { %>
+      <% if(survey['Question_'.concat(i)] == "") {%>
+          <% continue; %>
+      <% }%>
+
+           <h2>Question <%= qCount %></h2>
+           <% qCount++;%>
+            <h4><%= survey['Question_'.concat(i)] %></h4>
             
     <div class="funkyradio">
         <div class="funkyradio-default">
-            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio1_".concat(i) %> value="StronglyAgree" />
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio1_".concat(i) %> value="StronglyAgree" required/>
             <label for=<%="radio1_".concat(i) %>>Strongly Agree</label>
         </div>
         <div class="funkyradio-primary">
             <input type="radio" name=<%="radio".concat(i) %> id=<%="radio2_".concat(i) %> 
-            value="Agree"/>
+            value="Agree" required/>
             <label for=<%="radio2_".concat(i) %>>Agree</label>
         </div>
         <div class="funkyradio-success">
             <input type="radio" name=<%="radio".concat(i) %> id=<%="radio3_".concat(i) %> 
-            value="SomewhatAgree"/>
+            value="SomewhatAgree" required/>
             <label for=<%="radio3_".concat(i) %>>Somewhat Agree</label>
         </div>
         <div class="funkyradio-success">
             <input type="radio" name=<%="radio".concat(i) %> id=<%="radio4_".concat(i) %> 
-            value="Neither Agree or Disagree"/>
+            value="Neither Agree or Disagree" required/>
             <label for=<%="radio4_".concat(i) %>>Neither Agree or Disagree</label>
         </div>   
         <div class="funkyradio-success">
             <input type="radio" name=<%="radio".concat(i) %> id=<%="radio5_".concat(i) %>
-            value="Disagree"/>
+            value="Disagree" required/>
             <label for=<%="radio5_".concat(i) %>>Disagree</label>
         </div>
          <div class="funkyradio-success">
             <input type="radio" name=<%="radio".concat(i) %> id=<%="radio6_".concat(i) %> 
-            value="Strongly Disagree"/>
+            value="Strongly Disagree" required/>
             <label for=<%="radio6_".concat(i) %>>Strongly Disagree</label>
 
         </div>

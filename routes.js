@@ -315,15 +315,15 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         if(accounttypeuser == "student")
         {
             var MongoClient = require('mongodb').MongoClient
-            var URL = 'mongodb://localhost:27017/mydatabase' // to change to survey database
+            var URL = 'mongodb://localhost:27017/surveydatabase' // to change to survey database
 
             MongoClient.connect(URL, function(err, db) {
               if (err) return
 
-              var collection = db.collection('surveyquestions'); // to change to survey collection
+              var collection = db.collection('survey_form'); // to change to survey collection
 
               // Render the teacher's survey (note: have to get any teacher's survey here, put code to find teacher's name).
-              collection.find({teacher: "Yan Liu"}).toArray(function(err, docs){
+              collection.find({Name: "ccProf"}).toArray(function(err, docs){
                     if(err) return;
                     // Send the documents from the database collection to the client to process.
                     res.render('surveys-students.ejs', {survey: docs[0]});

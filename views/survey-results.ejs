@@ -294,7 +294,10 @@
 		for(var i = 0; i < surveyDocs.length; ++i){
 			var questionIndex = 'question'.concat(k + 1);
 
-			if(surveyDocs[i]['surveyResponses'][questionIndex] == "StronglyAgree"){
+            if(surveyDocs[i]['surveyResponses'][questionIndex] == null){
+                continue;
+            }
+			else if(surveyDocs[i]['surveyResponses'][questionIndex] == "StronglyAgree"){
 
 				surveyData[k].stronglyAgree++;
 
