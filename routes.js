@@ -429,7 +429,7 @@ MongoClient.connect(URL_1, function(err, db) {
       MongoClient.connect(URL_1, function(err, db){
       if(err) return
       
-      function renderThisShit(data){
+      function renderThis(data){
         console.log("huehue "+dataArray.length);
         res.render('survey_selection.ejs', {data : dataArray});
       }
@@ -450,7 +450,7 @@ MongoClient.connect(URL_1, function(err, db) {
             console.log("Info is "+JSON.stringify(dataArray));
             }
           }
-            renderThisShit(dataArray);
+            renderThis(dataArray);
         });
 
             req.session.session = {
