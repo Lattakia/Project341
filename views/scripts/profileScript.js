@@ -1,14 +1,5 @@
 $(document).ready(function(){
 
-$("#EditButton").click(function(){
-	$("#profileInfo input").prop('disabled', false);
-	$("#uploadPic").show();
-	
-	var saveButtonHtml='<input type="submit" id="SaveButton" value="Save">';
-	
-	$("#buttons").empty().append(saveButtonHtml);
-});
-
 
 });
 
@@ -22,4 +13,12 @@ function readURL(input) {
 
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function selectGender(gender){
+	if(gender=="Male"){
+		$("#genderDropDown").val("Male");
+	}else if(gender=="Female"){
+		$("#genderDropDown").val("Female");
+	}
 }
