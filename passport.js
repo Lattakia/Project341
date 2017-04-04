@@ -60,6 +60,7 @@ module.exports = function(passport) {
         var lastname = req.body.lastname;
         var accounttype = req.body.accounttype;
         var email = req.body.email;
+        var idNumber = req.body.id;
         process.nextTick(function() {
 
 
@@ -83,6 +84,7 @@ module.exports = function(passport) {
                 newUser.local.email    = email;
                 newUser.local.username = username;
                 newUser.local.accounttype = accounttype;
+                newUser.local.idNumber = idNumber;
                 newUser.local.password = newUser.generateHash(password);
 
                 // save the user
