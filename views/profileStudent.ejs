@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>Profile</title>
+	<link rel="stylesheet" href="/styles/profile.css">
+</head>
+<body>
+
+<div id="name"><%= userInfo.firstName %> <%= userInfo.lastName %></div>
+<div class="header">STUDENT</div>
+
+<img id="profilePic" src="/<%= profileInfo.picturePath %>" alt="No Profile Image" /><br/>
+
+<%= profileInfo.gender %><br>
+<%= profileInfo.major %><br>
+<div class="header">Contact</div>
+<%= userInfo.email %><br>
+<div class="header">About me</div>
+<%= profileInfo.aboutMe %><br>
+
+<p>Return <a href="/main">Home</a></p>
+
+</body>
+</html>
