@@ -199,12 +199,18 @@
                   </a>
                 </li>
 
-                 <li>
-                  <a href="/myProfile">
-                  <i class="fa fa-user fa-lg"></i> Profile
-                  </a>
-                  </li>
-				  
+								<li>
+								 <a href="/editProfile">
+								 <i class="fa fa-user fa-lg"></i> My Profile
+								 </a>
+								 </li>
+
+								<li>
+								 <a href="#">
+								 <i class="fa fa-user fa-lg"></i> Search Users
+								 </a>
+								 </li>
+
 				  <li>
                   <a href="/logout">
                   <span class="fa fa-user"></span><span id ="logout"> Logout</span>
@@ -278,7 +284,7 @@
         
         
         for(var i=0 ; i< results.length ; i++) {
-            html += "<div class='post'><h2>" + results[i].title + "</h2><h5><span class='glyphicon glyphicon-time'></span> Posted by "+results[i].username+" "+results[i].date+ " </h5><h5><span class='label label-danger'>" + results[i].tags + "</span></h5><p>" + results[i].posted + "</p></div><hr>"
+            html += "<div class='post'><h2>" + results[i].title + "</h2><h5><span class='glyphicon glyphicon-time'></span> Posted by <a href='/profiles/" + results[i].username + "'>" +  results[i].username + "</a> "+results[i].date+ " </h5><h5><span class='label label-danger'>" + results[i].tags + "</span></h5><p>" + results[i].posted + "</p></div><hr>"
         }
         // next we're inserting html into block with ID accordion
         document.getElementById("post-container").innerHTML = html;
