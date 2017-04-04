@@ -83,6 +83,11 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
+//Create profilePictures folder
+var mkdirp = require('mkdirp');
+var mkdirp = require('mkdirp');
+mkdirp(__dirname + '/views/ProfilePictures');
+
 // routes ======================================================================
 require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
