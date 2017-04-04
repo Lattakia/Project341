@@ -9,3 +9,15 @@ What the Front-end Needs to do
 -	Survey Page
 -	Please fix the background stuff and make it grow dynamically with the amount of questions that are in the survey. (FOR STUDENT)
 -	Please fix the graph page visuals (FOR TEACHER)
+- Design the profile pages
+
+		Modify the following files:
+		- profileStudent.ejs
+		- profileTeacher.ejs
+		- profileStudentEdit.ejs
+		- profileTeacherEdit.ejs
+		- /styles/profile.css
+		
+		The following files are no longer used. They can be deleted.
+		- myProfile.ejs
+		- myProfile.css
