@@ -9,7 +9,7 @@ What the Front-end Needs to do
 -	Survey Page
 -	Please fix the background stuff and make it grow dynamically with the amount of questions that are in the survey. (FOR STUDENT)
 -	Please fix the graph page visuals (FOR TEACHER)
-- Design the profile pages
+- 	Design the profile pages
 
 		Modify the following files:
 		- profileStudent.ejs
