@@ -566,42 +566,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
-    var profileSchema = new mongoose.Schema({
-      firstName: String,
-      lastName: String,
-      idNumber: String,
-      major: String
-    });
-
-    var profileModel = mongoose.model('Profiles', profileSchema);
-
-app.get('/submitProfileInfo',checkAuthentication,function(req,res)
-    {
-      res.render('myProfile');
-      console.log(req.query.firstname);
-      console.log(req.query.lastname);
-      console.log(req.query.IdNum);
-      console.log(req.query.major);
-
-      var firstName = req.query.firstname;
-      var lastName = req.query.lastname;
-      var IdNum = req.query.IdNum;
-      var major = req.query.major;
-
-      //Saving data in Profiles collection in main (default) database
-
-      var prof = new profileModel({
-        firstName:firstName,
-        lastName:lastName,
-        idNumber:IdNum,
-        major: major
-      });
-
-       prof.save(function (err) {if (err) console.log ('Error on save!')});
-
-
-     });
-
     app.get('/forum',checkAuthentication,getuserUsername,function(req,res)
     {
         console.log("HHHHHH");
@@ -939,6 +903,326 @@ db.collection('forumvalues', function(err, collection) {
 
 
 });
+
+
+/* ================START OF PROFILE==================== */
+
+var userModel=require('./user');
+var studentProfileModel=require('./models/studentProfileModel');
+var teacherProfileModel=require('./models/teacherProfileModel');
+var fs = require('fs');
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
+
+
+  app.post('/profile',function(req,res){
+
+    var username = app.get('data').title;
+    var profilePicsDir= __dirname + '/views/profilePictures';
+    var profilePicsDirName = 'profilePictures';
+    var defaultPic = 'profile-icon-300x300.png';
+    var picturePath = defaultPic;
+
+    if(req.files){
+
+      var profilePic = req.files.profilePic;
+
+      if(profilePic!=null){
+      picturePath =  profilePicsDirName + '/' + username+'.jpg';
+      profilePic.mv(profilePicsDir+'/'+ username + '.jpg', function(err) {
+          if (err){
+            return res.status(500).send(err);
+          }
+
+        });
+      }else if(fs.existsSync(profilePicsDir+'/'+ username + '.jpg')){
+		  picturePath =  profilePicsDirName + '/' + username+'.jpg';
+	  }
+	  
+	  
+      }
+
+
+    console.log("(-----------)");
+    console.log(__dirname);
+
+
+
+
+    var username = app.get('data').title;
+    var users = require('./user');
+
+    var accounttype;
+
+
+    users.findOne({ 'local.username': username }, function (err, doc){
+      if(doc){
+        accounttype = doc.local.accounttype;
+        console.log(accounttype);
+        doc.local.firstname = req.body.firstName;
+        doc.local.lastname = req.body.lastName;
+        doc.local.idNumber = req.body.IdNum;
+        doc.local.email = req.body.email;
+        doc.save();
+        //res.redirect('/profiles/'+username);
+
+        //Store profile information based on accounttype
+
+        if(accounttype=='student'){
+
+          studentProfileModel.findOne({ 'username': username }, function (err, doc){
+
+            if(doc){
+              //profile exists in database
+              doc.gender = req.body.gender;
+              doc.major = req.body.major;
+              doc.aboutMe = req.body.aboutMe;
+              doc.picturePath = picturePath;
+              doc.save();
+            }else{
+              //create profile in database
+              var studentProfile = new studentProfileModel({
+                username:username,
+                gender:req.body.gender,
+                major:req.body.major,
+                aboutMe:req.body.aboutMe,
+                picturePath:picturePath
+              });
+              studentProfile.save(function (err) {
+                if (err) console.log ('Error when saving studentProfile!')
+              });
+            }
+
+          });
+
+
+        }else{
+          teacherProfileModel.findOne({ 'username': username }, function (err, doc){
+
+            if(doc){
+              //profile exists in database
+              doc.gender = req.body.gender;
+              doc.department = req.body.department;
+              doc.office = req.body.office;
+              doc.officeHours = req.body.officeHours;
+              doc.aboutMe = req.body.aboutMe;
+              doc.picturePath = picturePath;
+              doc.save();
+            }else{
+              //create profile in database
+              var teacherProfile = new teacherProfileModel({
+                username:username,
+                gender:req.body.gender,
+                department:req.body.department,
+                office:req.body.office,
+                officeHours:req.body.officeHours,
+                aboutMe:req.body.aboutMe,
+                picturePath:picturePath
+              });
+              teacherProfile.save(function (err) {
+                if (err) console.log ('Error when saving teacherProfile!')
+              });
+            }
+
+          });
+
+        }
+
+
+
+        res.redirect('/profiles/'+username);
+
+
+
+      }else{
+        //Cannot find username. May have been deleted or altered during the session.
+        res.redirect('/main');
+      }
+    });
+
+    console.log("The accounttype is " + accounttype);
+
+
+
+
+
+
+
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+app.get('/editProfile',checkAuthentication,function(req,res){
+
+  var username = app.get('data').title;
+  userModel.findOne({'local.username':username},function(error,user){
+
+  console.log("USER is");
+  console.log(user);
+
+  if(error) throw error;
+
+  if(user){
+
+    var userObject = {
+      userName: user.local.username,
+      firstName: user.local.firstname,
+      lastName: user.local.lastname,
+      email: user.local.email,
+      idNumber:user.local.idNumber
+    };
+
+    if(user.local.accounttype=='student'){
+
+      var sProfileObject={};
+      studentProfileModel.findOne({ 'username': username }, function (err, doc){
+
+        if (doc) {
+          sProfileObject={
+            gender:doc.gender,
+            major:doc.major,
+            aboutMe:doc.aboutMe,
+            picturePath:doc.picturePath
+          };
+        }
+
+        //Pass data to prepopulate form
+        res.render('profileStudentEdit',{userInfo:userObject, profileInfo:sProfileObject});
+
+      });
+
+
+
+    }else{
+
+      var tProfileObject={};
+      teacherProfileModel.findOne({ 'username': username }, function (err, doc){
+
+        if(doc){
+          tProfileObject={
+            gender:doc.gender,
+            department:doc.department,
+            office:doc.office,
+            officeHours:doc.officeHours,
+            aboutMe:doc.aboutMe,
+            picturePath:doc.picturePath
+          };
+        }
+
+        //Pass data to prepopulate form
+        res.render('profileTeacherEdit',{userInfo:userObject, profileInfo:tProfileObject});
+      });
+    }
+
+  }else{
+    res.send('ERROR: YOUR EDIT PROFILE PAGE CANNOT BE FOUND');
+  }
+
+
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+app.get('/profiles/:username',checkAuthentication,function(req,res){
+
+
+  //var profileModel =
+
+  var username = req.params.username;
+
+
+
+  userModel.findOne({'local.username':username},function(error,user){
+
+    console.log("USER is");
+    console.log(user);
+
+    if(error){
+      res.send('AN ERROR OCCURED');
+    }
+
+    if(user){
+
+      var userObject = {
+        userName: user.local.username,
+        firstName: user.local.firstname,
+        lastName: user.local.lastname,
+        email: user.local.email,
+        idNumber:user.local.idNumber
+      };
+
+      if(user.local.accounttype=='student'){
+
+        var sProfileObject={};
+        studentProfileModel.findOne({ 'username': username }, function (err, doc){
+
+          if (doc) {
+            sProfileObject={
+              gender:doc.gender,
+              major:doc.major,
+              aboutMe:doc.aboutMe,
+              picturePath:doc.picturePath
+            };
+          }
+
+        res.render('profileStudent',{userInfo:userObject, profileInfo:sProfileObject});
+        });
+    }else{
+
+        var tProfileObject={};
+            teacherProfileModel.findOne({ 'username': username }, function (err, doc){
+
+              if(doc){
+                tProfileObject={
+                  gender:doc.gender,
+                  department:doc.department,
+                  office:doc.office,
+                  officeHours:doc.officeHours,
+                  aboutMe:doc.aboutMe,
+                  picturePath:doc.picturePath
+                };
+              }
+
+              res.render('profileTeacher',{userInfo:userObject,profileInfo:tProfileObject});
+            });
+    }
+  }else{
+      res.send('NO SUCH PROFILE');
+    }
+
+    });
+
+
+  });
+
+
+
+
+/* ================END OF PROFILE==================== */
+
+
+
+
 };
 
 
