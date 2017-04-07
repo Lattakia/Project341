@@ -280,6 +280,16 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
     });
 
+    // app.get('/surveys',checkAuthentication, function(req, res){
+    //    displayStudentSurvey(req, res);
+
+    // });
+
+    // function displayStudentSurvey(req, res)
+    // {
+      
+    // }
+
     function checkperson(req, res,db)
     {
   var MongoClient = require('mongodb').MongoClient
@@ -310,27 +320,38 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
         console.log(emailofuser);
 
-        // Andrew, Ali and Ahmad, look here
-
         if(accounttypeuser == "student")
         {
             var MongoClient = require('mongodb').MongoClient
-            var URL = 'mongodb://localhost:27017/surveydatabase' // to change to survey database
+            var URLMain = 'mongodb://localhost:27017/main';
+            var URLSurvey = 'mongodb://localhost:27017/surveydatabase'
 
-            MongoClient.connect(URL, function(err, db) {
+            MongoClient.connect(URLMain, function(err, db) {
               if (err) return
 
-              var collection = db.collection('survey_form'); // to change to survey collection
+              var collectionMain = db.collection('users');
 
-              // Render the teacher's survey (note: have to get any teacher's survey here, put code to find teacher's name).
-              collection.find({Name: "ccProf"}).toArray(function(err, docs){
+
+              var profName = req.query.teacher;
+              var profNameArr = (profName).split(" ");
+              var profFirstName = profNameArr[0];
+              var profLastName = profNameArr[1];
+              collectionMain.find({'local.firstname': profFirstName, 'local.lastname': profLastName}).toArray(function(err, docs){
                     if(err) return;
-                    // Send the documents from the database collection to the client to process.
-                    res.render('surveys-students.ejs', {survey: docs[0]});
+                    surveyMaker = docs[0];
+                    MongoClient.connect(URLSurvey, function(err, db) {
+                        if (err) return
+                        var collectionSurvey = db.collection('survey_form');
+                        // Render the teacher's survey (note: have to get any teacher's survey here, put code to find teacher's name).
+                        collectionSurvey.find({Name: surveyMaker.local.username}).toArray(function(err, docs){
+                              if(err) return;
+                              // Send the documents from the database collection to the client to process.
+                              res.render('surveys-students.ejs', {surveyMakerName: profName, survey: docs[0]});
+                        });
+                  });
               });
 
             });
-
         }
         else if (accounttypeuser == "teacherta")
         {
@@ -347,12 +368,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
     app.get('/survey_result', function(req,res){
       var MongoClient = require('mongodb').MongoClient
-            var URL = 'mongodb://localhost:27017/mydatabase'
+            var URL = 'mongodb://localhost:27017/surveydatabase'
 
             MongoClient.connect(URL, function(err, db) {
               if (err) return
 
-              var collection = db.collection('surveysvalues');
+              var collection = db.collection('survey_values');
 
               // Render the surveyr results page page if account is a teacher/ta
               collection.find({}).toArray(function(err, docs){
@@ -442,8 +463,7 @@ MongoClient.connect(URL_1, function(err, db) {
       MongoClient.connect(URL_1, function(err, db){
       if(err) return
       
-      function renderThis(data){
-        console.log("huehue "+dataArray.length);
+      function renderThis(dataArray){
         res.render('survey_selection.ejs', {data : dataArray});
       }
 
@@ -460,7 +480,6 @@ MongoClient.connect(URL_1, function(err, db) {
             };
 
             dataArray.push(tmp);
-            console.log("Info is "+JSON.stringify(dataArray));
             }
           }
             renderThis(dataArray);
@@ -477,14 +496,13 @@ MongoClient.connect(URL_1, function(err, db) {
 
     app.get('/surveys-s2',checkAuthentication,function(req,res)
         {
-        res.render('ss-results')
         console.log(req.query.radioo)
          console.log(req.query.mylittletextbox)
           console.log(req.query.fname)
     var MongoClient = require('mongodb').MongoClient
 
     var URLMain = 'mongodb://localhost:27017/main';
-    var URLMyDataBase = 'mongodb://localhost:27017/mydatabase';
+    var URLMyDataBase = 'mongodb://localhost:27017/surveydatabase';
 
     var studentUserNameVal = '';
     // Find currently logged in student
@@ -514,7 +532,7 @@ MongoClient.connect(URL_1, function(err, db) {
       MongoClient.connect(URLMyDataBase, function(err, db) {
         if (err) return
 
-        var collection = db.collection('surveysvalues');
+        var collection = db.collection('survey_values');
         var surveyResponsesVal = {
           question1: req.query.radio1,
           question2: req.query.radio2, 
@@ -544,7 +562,6 @@ MongoClient.connect(URL_1, function(err, db) {
         // Get inserted document
         collection.find({studentUserName: studentUserNameVal}).toArray(function(err, results){
           newSurveyResultsInserted = results[0];
-          console.log(newSurveyResultsInserted);
         });
 
         // Otherwise, if a response for a student exists but the survey has been updated, update the values and set the update flag to false.
@@ -568,7 +585,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bo
 
     app.get('/forum',checkAuthentication,getuserUsername,function(req,res)
     {
-        console.log("HHHHHH");
 
         req.session.session = {
             title: req.body.email
