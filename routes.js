@@ -80,10 +80,43 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 
 
     app.get('/chat', checkAuthentication, function(req, res) {
-        res.render('chat.ejs', { username:req.session.session
+        var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
 
+MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('users');
+    var person = req.session.session.title;
+
+    // Locate all the entries using find
+    collection.find().toArray(function(err, results) {
+        var resa = results;
+        console.log(resa);
+        console.log(person);
+        var saveindex = 10;
+
+        for(var i=0;i<resa.length;i++)
+        {
+            if(person == resa[i]['local']['username'])
+            {
+                    saveindex = i;
+            }
+
+        }
+
+        //var emailofuser = resa[saveindex]['local']['email'];
+        var firstname = resa[saveindex]['local']['firstname'];
+        var lastname = resa[saveindex]['local']['lastname'];
+        console.log(firstname);
+         console.log(lastname);
+       res.render('chat.ejs', {firstname:firstname,lastname:lastname}
+            //user : req.user // get the user out of session and pass to template
+        );
+        db.close();
         });
 
+});
 
 
         console.log(req.session.session);
@@ -273,10 +306,10 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
         }
 
-
+        var userName = resa[saveindex]['local']['firstname']+" "+resa[saveindex]['local']['lastname'];
         var emailofuser = resa[saveindex]['local']['email'];
         var accounttypeuser = resa[saveindex]['local']['accounttype'];
-        console.log("HEH");
+        //console.log("HEH");
         console.log(emailofuser);
 
         // Andrew, Ali and Ahmad, look here
@@ -288,7 +321,19 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         }
         else if (accounttypeuser == "teacherta")
         {
-            var MongoClient = require('mongodb').MongoClient
+            // displays survey page that teacher can use to create questions
+            res.render('survey_teacher.ejs', {teacherName: userName})
+        }
+        db.close();
+        });
+
+});
+
+
+    }
+
+    app.get('/survey_result', function(req,res){
+      var MongoClient = require('mongodb').MongoClient
             var URL = 'mongodb://localhost:27017/mydatabase'
 
             MongoClient.connect(URL, function(err, db) {
@@ -304,15 +349,63 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
               });
 
             });
+    });
 
-        }
-        db.close();
-        });
+    app.get('/teacher_submitted', function(req,res){
+    
+    res.render('teacher_submitted.ejs')
+  var MongoClient = require('mongodb').MongoClient
+  
+var URL_1 = 'mongodb://localhost:27017/surveydatabase'
+MongoClient.connect(URL_1, function(err, db) {
+  if (err) return
+  
+            var collection = db.collection('survey_form')
+            var name = app.get('data').title;
+            console.log(name);
 
-});
+            //Work around to change boolean because there's no pass by reference in js
+            function switchBoolean(state){
+              state.bool = true;
+            }
 
+            collection.find().toArray(function(err,results){
+                var res = results;
+                var boolean = {bool: false};
+                for(i=0;i<res.length;i++){
+                    if(name == res[i]['Name']){
+                      switchBoolean(boolean);
+                      console.log("true: "+boolean.bool);
 
-    }
+                      //Updates the database with new questions
+                      collection.update({Name:name},
+                      {Name:name,
+                      Question_1:req.query.question1, 
+                      Question_2:req.query.question2, 
+                      Question_3:req.query.question3, 
+                      Question_4:req.query.question4, 
+                      Question_5:req.query.question5}, 
+                      function(err, results) {
+                        db.close()
+                      })
+                    }}
+                      
+                      //Only insert if database doesn't contain the doc with the specific email
+                      if(boolean.bool == false){
+                        collection.insert({
+                      Name:name,
+                      Question_1:req.query.question1, 
+                      Question_2:req.query.question2, 
+                      Question_3:req.query.question3, 
+                      Question_4:req.query.question4, 
+                      Question_5:req.query.question5}, 
+                      function(err, results) {
+                        db.close()
+                      })
+                }
+            });
+        })
+    });
 
     app.get('/myProfile',checkAuthentication,function(req,res)
     {
@@ -326,6 +419,47 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         var temp = app.get('data').title;
         console.log(app.get('data'));
 
+    });
+
+    app.get('/survey_selection',checkAuthentication,function(req,res)
+    {
+      var MongoClient = require('mongodb').MongoClient
+      var URL_1 = 'mongodb://localhost:27017/main'
+      var dataArray = new Array();
+      MongoClient.connect(URL_1, function(err, db){
+      if(err) return
+      
+      function renderThis(data){
+        console.log("huehue "+dataArray.length);
+        res.render('survey_selection.ejs', {data : dataArray});
+      }
+
+      var collection = db.collection('users');
+      collection.find().toArray(function(err,results){
+        if(err) return;
+        
+        var res = results;
+        for(var i = 0; i<res.length; i++){
+        if(res[i]['local']['accounttype'] == "teacherta"){
+            var tmp = {
+              fname: res[i]['local']['firstname'],
+              lname: res[i]['local']['lastname']
+            };
+
+            dataArray.push(tmp);
+            console.log("Info is "+JSON.stringify(dataArray));
+            }
+          }
+            renderThis(dataArray);
+        });
+
+            req.session.session = {
+              title: req.body.username
+            };
+
+            var temp = app.get('data').title;
+            console.log(app.get('data'));
+      });
     });
 
     app.get('/surveys-s2',checkAuthentication,function(req,res)
@@ -354,56 +488,18 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
-    var profileSchema = new mongoose.Schema({
-      firstName: String,
-      lastName: String,
-      idNumber: String,
-      major: String
-    });
-
-    var profileModel = mongoose.model('Profiles', profileSchema);
-
-app.get('/submitProfileInfo',checkAuthentication,function(req,res)
-    {
-      res.render('myProfile');
-      console.log(req.query.firstname);
-      console.log(req.query.lastname);
-      console.log(req.query.IdNum);
-      console.log(req.query.major);
-
-      var firstName = req.query.firstname;
-      var lastName = req.query.lastname;
-      var IdNum = req.query.IdNum;
-      var major = req.query.major;
-
-      //Saving data in Profiles collection in main (default) database
-
-      var prof = new profileModel({
-        firstName:firstName,
-        lastName:lastName,
-        idNumber:IdNum,
-        major: major
-      });
-
-       prof.save(function (err) {if (err) console.log ('Error on save!')});
-
-
-     });
-app.post('/surveys',function(req,res){
-
-
-});
 
 
     app.get('/forum',checkAuthentication,getuserUsername,function(req,res)
     {
+        console.log("HHHHHH");
 
         req.session.session = {
             title: req.body.email
         };
 
         var temp = app.get('data').title;
-        //console.log(app.get('data'));
+        //console.log(temp);
 
 
     });
@@ -467,6 +563,13 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
          //console.log(req.query.tags)
 
     var MongoClient = require('mongodb').MongoClient
+    
+    var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth();
+var year = today.getFullYear();
+var months = ['January','February','March','April'];
+var thedate = months[mm]+" "+dd+" , "+year;
 
 var URL = 'mongodb://localhost:27017/mydatabase'
 MongoClient.connect(URL, function(err, db) {
@@ -474,7 +577,7 @@ MongoClient.connect(URL, function(err, db) {
   var collection = db.collection('forumvalues')
   if(req.query.title!="")
       {
-  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags}, function(err, result) {
+  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags,username: app.get('data').title,date:thedate}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
       //console.log(docs[0])
       db.close()
@@ -571,10 +674,13 @@ db.collection('forumvalues', function(err, collection) {
 
 app.get('/forum-submitted',checkAuthentication,function(req,res)
         {
-        console.log(req.query.search);
+       console.log("search result");
+        var username = app.get('data').title;
+        //console.log(username);
+        //console.log(req.query.search);
         // Please display values of
         // display values of search in forum-results.ejs
-        console.log("search result");
+        //console.log("search result");
         //console.log(req.query.mylittletextbox);
 
 
@@ -607,8 +713,11 @@ MongoClient.connect(URL, function(err, db) {
   }
     arr_pos[num] = string.substring(arr_pos_2[num-1], string.length);
 
-    console.log(arr_pos);
+
+
+    
   var path;
+    var username = app.get('data').title;
 db.collection('forumvalues', function(err, collection) {
     var args = (function(arr, elem) {
             var a2 = arr.map(function(e) { return e; }); // copy of arr
@@ -619,9 +728,11 @@ db.collection('forumvalues', function(err, collection) {
         }).sort({"tags":1}).toArray(function(err, results) {
         path = results;
         console.log(results);
-         res.render('forum-results.ejs',{tag:req.query.search,path:results});
+         res.render('forum-results.ejs',{tag:req.query.search,path:results,username:username});
     });
 })
+
+
 
 
       var cursor = collection.find({"tags":req.query.search});
@@ -649,6 +760,10 @@ db.collection('forumvalues', function(err, collection) {
 
           });
         })
+
+//here
+
+//here
 
 
 });
@@ -710,6 +825,326 @@ db.collection('forumvalues', function(err, collection) {
 
 
 });
+
+
+/* ================START OF PROFILE==================== */
+
+var userModel=require('./user');
+var studentProfileModel=require('./models/studentProfileModel');
+var teacherProfileModel=require('./models/teacherProfileModel');
+var fs = require('fs');
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
+
+
+  app.post('/profile',function(req,res){
+
+    var username = app.get('data').title;
+    var profilePicsDir= __dirname + '/views/profilePictures';
+    var profilePicsDirName = 'profilePictures';
+    var defaultPic = 'profile-icon-300x300.png';
+    var picturePath = defaultPic;
+
+    if(req.files){
+
+      var profilePic = req.files.profilePic;
+
+      if(profilePic!=null){
+      picturePath =  profilePicsDirName + '/' + username+'.jpg';
+      profilePic.mv(profilePicsDir+'/'+ username + '.jpg', function(err) {
+          if (err){
+            return res.status(500).send(err);
+          }
+
+        });
+      }else if(fs.existsSync(profilePicsDir+'/'+ username + '.jpg')){
+		  picturePath =  profilePicsDirName + '/' + username+'.jpg';
+	  }
+	  
+	  
+      }
+
+
+    console.log("(-----------)");
+    console.log(__dirname);
+
+
+
+
+    var username = app.get('data').title;
+    var users = require('./user');
+
+    var accounttype;
+
+
+    users.findOne({ 'local.username': username }, function (err, doc){
+      if(doc){
+        accounttype = doc.local.accounttype;
+        console.log(accounttype);
+        doc.local.firstname = req.body.firstName;
+        doc.local.lastname = req.body.lastName;
+        doc.local.idNumber = req.body.IdNum;
+        doc.local.email = req.body.email;
+        doc.save();
+        //res.redirect('/profiles/'+username);
+
+        //Store profile information based on accounttype
+
+        if(accounttype=='student'){
+
+          studentProfileModel.findOne({ 'username': username }, function (err, doc){
+
+            if(doc){
+              //profile exists in database
+              doc.gender = req.body.gender;
+              doc.major = req.body.major;
+              doc.aboutMe = req.body.aboutMe;
+              doc.picturePath = picturePath;
+              doc.save();
+            }else{
+              //create profile in database
+              var studentProfile = new studentProfileModel({
+                username:username,
+                gender:req.body.gender,
+                major:req.body.major,
+                aboutMe:req.body.aboutMe,
+                picturePath:picturePath
+              });
+              studentProfile.save(function (err) {
+                if (err) console.log ('Error when saving studentProfile!')
+              });
+            }
+
+          });
+
+
+        }else{
+          teacherProfileModel.findOne({ 'username': username }, function (err, doc){
+
+            if(doc){
+              //profile exists in database
+              doc.gender = req.body.gender;
+              doc.department = req.body.department;
+              doc.office = req.body.office;
+              doc.officeHours = req.body.officeHours;
+              doc.aboutMe = req.body.aboutMe;
+              doc.picturePath = picturePath;
+              doc.save();
+            }else{
+              //create profile in database
+              var teacherProfile = new teacherProfileModel({
+                username:username,
+                gender:req.body.gender,
+                department:req.body.department,
+                office:req.body.office,
+                officeHours:req.body.officeHours,
+                aboutMe:req.body.aboutMe,
+                picturePath:picturePath
+              });
+              teacherProfile.save(function (err) {
+                if (err) console.log ('Error when saving teacherProfile!')
+              });
+            }
+
+          });
+
+        }
+
+
+
+        res.redirect('/profiles/'+username);
+
+
+
+      }else{
+        //Cannot find username. May have been deleted or altered during the session.
+        res.redirect('/main');
+      }
+    });
+
+    console.log("The accounttype is " + accounttype);
+
+
+
+
+
+
+
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+app.get('/editProfile',checkAuthentication,function(req,res){
+
+  var username = app.get('data').title;
+  userModel.findOne({'local.username':username},function(error,user){
+
+  console.log("USER is");
+  console.log(user);
+
+  if(error) throw error;
+
+  if(user){
+
+    var userObject = {
+      userName: user.local.username,
+      firstName: user.local.firstname,
+      lastName: user.local.lastname,
+      email: user.local.email,
+      idNumber:user.local.idNumber
+    };
+
+    if(user.local.accounttype=='student'){
+
+      var sProfileObject={};
+      studentProfileModel.findOne({ 'username': username }, function (err, doc){
+
+        if (doc) {
+          sProfileObject={
+            gender:doc.gender,
+            major:doc.major,
+            aboutMe:doc.aboutMe,
+            picturePath:doc.picturePath
+          };
+        }
+
+        //Pass data to prepopulate form
+        res.render('profileStudentEdit',{userInfo:userObject, profileInfo:sProfileObject});
+
+      });
+
+
+
+    }else{
+
+      var tProfileObject={};
+      teacherProfileModel.findOne({ 'username': username }, function (err, doc){
+
+        if(doc){
+          tProfileObject={
+            gender:doc.gender,
+            department:doc.department,
+            office:doc.office,
+            officeHours:doc.officeHours,
+            aboutMe:doc.aboutMe,
+            picturePath:doc.picturePath
+          };
+        }
+
+        //Pass data to prepopulate form
+        res.render('profileTeacherEdit',{userInfo:userObject, profileInfo:tProfileObject});
+      });
+    }
+
+  }else{
+    res.send('ERROR: YOUR EDIT PROFILE PAGE CANNOT BE FOUND');
+  }
+
+
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+app.get('/profiles/:username',checkAuthentication,function(req,res){
+
+
+  //var profileModel =
+
+  var username = req.params.username;
+
+
+
+  userModel.findOne({'local.username':username},function(error,user){
+
+    console.log("USER is");
+    console.log(user);
+
+    if(error){
+      res.send('AN ERROR OCCURED');
+    }
+
+    if(user){
+
+      var userObject = {
+        userName: user.local.username,
+        firstName: user.local.firstname,
+        lastName: user.local.lastname,
+        email: user.local.email,
+        idNumber:user.local.idNumber
+      };
+
+      if(user.local.accounttype=='student'){
+
+        var sProfileObject={};
+        studentProfileModel.findOne({ 'username': username }, function (err, doc){
+
+          if (doc) {
+            sProfileObject={
+              gender:doc.gender,
+              major:doc.major,
+              aboutMe:doc.aboutMe,
+              picturePath:doc.picturePath
+            };
+          }
+
+        res.render('profileStudent',{userInfo:userObject, profileInfo:sProfileObject});
+        });
+    }else{
+
+        var tProfileObject={};
+            teacherProfileModel.findOne({ 'username': username }, function (err, doc){
+
+              if(doc){
+                tProfileObject={
+                  gender:doc.gender,
+                  department:doc.department,
+                  office:doc.office,
+                  officeHours:doc.officeHours,
+                  aboutMe:doc.aboutMe,
+                  picturePath:doc.picturePath
+                };
+              }
+
+              res.render('profileTeacher',{userInfo:userObject,profileInfo:tProfileObject});
+            });
+    }
+  }else{
+      res.send('NO SUCH PROFILE');
+    }
+
+    });
+
+
+  });
+
+
+
+
+/* ================END OF PROFILE==================== */
+
+
+
+
 };
 
 

@@ -314,6 +314,7 @@
             background: #eee;
         }
         
+
         #notifyUser {
             position: fixed;
             bottom: 42px;
@@ -335,147 +336,147 @@
 </head>
 
 <body>
-<! --- TOP BAR ----->
+
+<!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="/main">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="/account-professor">Professor Appointments</a></li>
+                    <li><a href="/chat">Chat with Professor/Student</a></li>
+                </ul>
+				
+				<li>
+                  <a href="/forum">
+                  <i class="fa fa-users fa-lg"></i> Forum
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/surveys-students">
+                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+                  </a>
+                </li>
+
+                 <li>
+                  <a href="/myProfile">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+				  
+				  <li>
+                  <a href="/logout">
+                  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+                  </a>
+                  </li>
+ 
+            </ul>
+     </div>
+</div>
+
+    
+
+    <! --- TOP BAR ----->
     <div id="topbar">
         <img src="logo2.png" id="logo" alt="Logo">
 		
     </div>
-	
-	<div id="wrapper">
-
-		<div id="sidebar">
-			<!-- SIDEMENU -->
-			<div class="nav-side-menu">
-				<div class="brand">Navigation</div>
-				<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-			  
-					<div class="menu-list">
-			  
-						<ul id="menu-content" class="menu-content collapse out">
-							<li>
-							  <a href="/main">
-							  <i class="fa fa-dashboard fa-lg"></i> Dashboard
-							  </a>
-							</li>
-
-							<li  data-toggle="collapse" data-target="#products" class="collapsed active">
-							  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
-							</li>
-							<ul class="sub-menu collapse" id="products">
-								<li class="active"><a href="/account-professor">Professor Appointments</a></li>
-								<li><a href="/chat">Chat with Professor/Student</a></li>
-							</ul>
-							
-							<li>
-							  <a href="/forum">
-							  <i class="fa fa-users fa-lg"></i> Forum
-							  </a>
-							</li>
-							
-							<li>
-							  <a href="/surveys-students">
-							  <i class="fa fa-bar-chart fa-lg"></i> Surveys
-							  </a>
-							</li>
-
-							 <li>
-								<a href="/editProfile">
-								<i class="fa fa-user fa-lg"></i> My Profile
-								</a>
-							</li>
-
-							  
-							  <li>
-							  <a href="/logout">
-							  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
-							  </a>
-							  </li>
-			 
-						</ul>
-				 </div>
-			</div>
-		</div>
-
-		<div id="main">
-			<! --- MESSAGES ----->
-			<!--
-				<div class="container">
-					<div class="col-sm-6 col-sm-offset-3">
-						<span id="title"><h3><b>Welcome</b></h3></span>
-
-					</div>
-				</div>
-			-->
-
-			<!--
-			<div id="info">
-				<ul id="messages"></ul>
-				<form action="">
-					<input id="m" autocomplete="off" /><button>Send</button>
-				</form>
-
-			</div>
-			-->
-			<ul id="messages"></ul>
-			<span id="notifyUser"></span>
-			<form id="form" action="" onsubmit="return submitfunction();">
-				<input type="hidden" id="user" value="" /><input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." /><input type="submit" id="button" value="Send" />
-			</form>
-
-			<! --- FOOTER ----->
-			<!--    <footer>&#169; 2017 SOEN 341</footer>-->
 
 
-			<! --- SCRIPTS ----->
-			<script src="/socket.io/socket.io.js"></script>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-			<script type="text/javascript">
-				var socket = io();
+    <! --- MESSAGES ----->
+<!--
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <span id="title"><h3><b>Welcome</b></h3></span>
 
-				function submitfunction() {
-					var from = $('#user').val();
-					var message = $('#m').val();
-					if (message != '') {
-						socket.emit('chatMessage', from, message);
-					}
-					$('#m').val('').focus();
-					return false;
-				}
+        </div>
+    </div>
+-->
 
-				function notifyTyping() {
-					var user = $('#user').val();
-					socket.emit('notifyUser', user);
-				}
+    <!--
+    <div id="info">
+        <ul id="messages"></ul>
+        <form action="">
+            <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
 
-				socket.on('chatMessage', function(from, msg) {
-					var me = $('#user').val();
-					var color = (from == me) ? 'green' : '#009afd';
-					var from = (from == me) ? 'Me' : from;
-					$('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
-				});
+    </div>
+-->
+    <ul id="messages"></ul>
+    <span id="notifyUser"></span>
+    <form id="form" action="" onsubmit="return submitfunction();">
+        <input type="hidden" id="user" value="" /><input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." /><input type="submit" id="button" value="Send" />
+    </form>
 
-				socket.on('notifyUser', function(user) {
-					var me = $('#user').val();
-					if (user != me) {
-						$('#notifyUser').text(user + ' is typing ...');
-					}
-					setTimeout(function() {
-						$('#notifyUser').text('');
-					}, 10000);;
-				});
+    <! --- FOOTER ----->
+<!--    <footer>&#169; 2017 SOEN 341</footer>-->
 
-				$(document).ready(function() {
-					var name = id();
-					$('#user').val(name);
-					socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
-				});
 
-				function id() {
-					var firstname = <%- JSON.stringify(firstname)%>;
-					var lastname = <%- JSON.stringify(lastname)%>;
-					return firstname + " " + lastname;
+    <! --- SCRIPTS ----->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        var socket = io();
 
-				}
+        function submitfunction() {
+            var from = $('#user').val();
+            var message = $('#m').val();
+            if (message != '') {
+                socket.emit('chatMessage', from, message);
+            }
+            $('#m').val('').focus();
+            return false;
+        }
+
+        function notifyTyping() {
+            var user = $('#user').val();
+            socket.emit('notifyUser', user);
+        }
+
+        socket.on('chatMessage', function(from, msg) {
+            var me = $('#user').val();
+            var color = (from == me) ? 'green' : '#009afd';
+            var from = (from == me) ? 'Me' : from;
+            $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
+        });
+
+        socket.on('notifyUser', function(user) {
+            var me = $('#user').val();
+            if (user != me) {
+                $('#notifyUser').text(user + ' is typing ...');
+            }
+            setTimeout(function() {
+                $('#notifyUser').text('');
+            }, 10000);;
+        });
+
+        $(document).ready(function() {
+            var name = id();
+            $('#user').val(name);
+            socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
+        });
+
+        function id() {
+            var firstname = <%- JSON.stringify(firstname)%>;
+            var lastname = <%- JSON.stringify(lastname)%>;
+            return firstname + " " + lastname;
+
+        }
+
+    </script>
 
 			</script>
 		</div>
