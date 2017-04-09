@@ -300,33 +300,33 @@
 		for(var i = 0; i < surveyDocs.length; ++i){
 			var questionIndex = 'question'.concat(k + 1);
 
-            if(surveyDocs[i]['surveyResponses'][questionIndex] == null){
-                continue;
+            if(surveyDocs[i]['surveyResponses'][questionIndex] != null){
+
+    			if(surveyDocs[i]['surveyResponses'][questionIndex] == "StronglyAgree"){
+
+    				surveyData[k].stronglyAgree++;
+
+    			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Agree"){
+
+    				surveyData[k].agree++;
+
+    			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "SomewhatAgree"){
+
+    				surveyData[k].somewhatAgree++;
+
+    			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Neither Agree or Disagree"){
+
+    				surveyData[k].neither++;
+
+    			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Disagree"){
+
+    				surveyData[k].disagree++;
+
+    			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Strongly Disagree"){
+
+    				surveyData[k].stronglyDisagree++;
+    			}
             }
-			else if(surveyDocs[i]['surveyResponses'][questionIndex] == "StronglyAgree"){
-
-				surveyData[k].stronglyAgree++;
-
-			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Agree"){
-
-				surveyData[k].agree++;
-
-			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "SomewhatAgree"){
-
-				surveyData[k].somewhatAgree++;
-
-			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Neither Agree or Disagree"){
-
-				surveyData[k].neither++;
-
-			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "Disagree"){
-
-				surveyData[k].disagree++;
-
-			} else if(surveyDocs[i]['surveyResponses'][questionIndex] == "StronglyDisagree"){
-
-				surveyData[k].stronglyDisagree++;
-			}
 		}
 	}
 

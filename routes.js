@@ -396,14 +396,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
                     renderThis(dataArray);
                       
                   });
-
-                    // // To remove?
-                    //   req.session.session = {
-                    //     title: req.body.username
-                    //   };
-
-                    //   var temp = app.get('data').title;
-                    //   console.log(app.get('data'));
         }
         // If the user is a teacher/TA, direct him/her to the survey creation page
         else if (accounttypeuser == "teacherta")
@@ -420,20 +412,37 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
     app.get('/survey_result', function(req,res){
       var MongoClient = require('mongodb').MongoClient
-            var URL = 'mongodb://localhost:27017/surveydatabase'
+            var URLMain = 'mongodb://localhost:27017/main'
+            var URLSurvey = 'mongodb://localhost:27017/surveydatabase'
 
-            MongoClient.connect(URL, function(err, db) {
-              if (err) return
+            var profSurveyMaker = '';
+            MongoClient.connect(URLMain, function(err, db){
+                  if(err) return;
 
-              var collection = db.collection('survey_values');
+                  var collection = db.collection('users');
+                  var profSurveyMaker = req.session.session.title;
 
-              // Render the surveyr results page page if account is a teacher/ta
-              collection.find({}).toArray(function(err, docs){
+                  collection.find({'local.username': profSurveyMaker}).toArray(function(err, docs){
                     if(err) return;
-                    // Send the documents from the database collection to the client to process.
-                    res.render('survey-results.ejs', {dbSurveyDocs: docs});
-              });
 
+                      var profSurveyMakerName = docs[0]['local']['firstname'] + " " + docs[0]['local']['lastname'];
+                      MongoClient.connect(URLSurvey, function(err, db) {
+                        if (err) return
+
+                        var collectionSurvey = db.collection('survey_values');
+
+                        collectionSurvey.find({surveyMakerName : profSurveyMakerName}).toArray(function(err, docs){
+                              if(err) return;
+                              // Send the documents from the database collection to the client to process.
+                              res.render('survey-results.ejs', {dbSurveyDocs: docs});
+                              db.close();
+                        });
+
+                      });
+
+                  });
+
+                db.close();
             });
     });
 
@@ -512,7 +521,6 @@ MongoClient.connect(URL_1, function(err, db) {
         console.log(req.query.radioo)
          console.log(req.query.mylittletextbox)
           console.log(req.query.fname)
-          //console.log(req.query.surveyMaker)
     var MongoClient = require('mongodb').MongoClient
 
     var URLMain = 'mongodb://localhost:27017/main';
@@ -545,7 +553,7 @@ MongoClient.connect(URL_1, function(err, db) {
 
       MongoClient.connect(URLSurvey, function(err, db) {
         if (err) return
-        //var surveyMaker = req.query.surveyMaker;
+        var surveyMaker = req.query.surveyMaker;
         var collection = db.collection('survey_values');
         var surveyResponsesVal = {
           question1: req.query.radio1,
@@ -556,7 +564,7 @@ MongoClient.connect(URL_1, function(err, db) {
           comments: req.query.mylittletextbox};
         var surveyResponsesObj = {
           studentUserName: studentUserNameVal,
-          //surveyMakerName : surveyMaker,
+          surveyMakerName : surveyMaker,
           updated: false,
           surveyResponses: surveyResponsesVal
         };
@@ -567,23 +575,23 @@ MongoClient.connect(URL_1, function(err, db) {
         var newSurveyResultsUpdated = null; // Survey results after second findAndModify
 
         // Get unmodified document
-        collection.find({studentUserName: studentUserNameVal/*, surveyMakerName: surveyMaker*/}).toArray(function(err, results){
+        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
           oldSurveyResults = results[0];
         });
 
           // If a response entry for a student does not exist at all, insert it.
-        collection.update({studentUserName: studentUserNameVal/*, surveyMakerName: surveyMaker*/}, {$setOnInsert: {updated: false, surveyResponses: surveyResponsesVal}}, {upsert: true});
+        collection.update({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}, {$setOnInsert: {updated: false, surveyResponses: surveyResponsesVal}}, {upsert: true});
 
         // Get inserted document
-        collection.find({studentUserName: studentUserNameVal/*, surveyMakerName: surveyMaker*/}).toArray(function(err, results){
+        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
           newSurveyResultsInserted = results[0];
         });
 
         // Otherwise, if a response for a student exists but the survey has been updated, update the values and set the update flag to false.
-        collection.update({studentUserName: studentUserNameVal, /*, surveyMakerName: surveyMaker*/ updated: true}, {$set: {updated: false, surveyResponses: surveyResponsesVal}});
+        collection.update({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker, updated: true}, {$set: {updated: false, surveyResponses: surveyResponsesVal}});
 
         // Get updated document
-        collection.find({studentUserName: studentUserNameVal/*, surveyMakerName: surveyMaker*/}).toArray(function(err, results){
+        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
           newSurveyResultsUpdated = results[0];
           res.render('ss-results', {oldResults: JSON.stringify(oldSurveyResults), insertedResults: JSON.stringify(newSurveyResultsUpdated), updatedResults: JSON.stringify(newSurveyResultsUpdated)});
         });
