@@ -4,100 +4,194 @@
 	
 	<title>Connect Concordia</title>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="allstyles.css">
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="shortcut icon" href="cc-favicon.png">
     <!-- load fontawesome -->
 	
-	<style>
-		#topbar
-            {
-                width:100%;
-                height:150px;
-				background-color: rgb(143,37,57);
-            }
-        #logo
-            {
-                z-index: 1000;
-                width:700px;
-                height:150px;
-            }
-			
-		.title
-			{
-				width:100%;
-				text-align:center;
-				display:inline-block;
-				background:rgba(143,37,57,0.8);
-			}
-			
-		.questions
-			{
-				width: 600px;
-				padding: 50px;
-				margin-top: 50px;
-				margin-bottom: 50px;
-				margin-left: auto;
-				margin-right: auto;
-				background:rgba(143,37,57,0.8);
-			}
-        .submission
-        {
-            text-align:center;
-            font-size:36pt;
-        }
-		
-		h1
-			{
-				font-size: 50px;
-				color:rgb(202,181,118);
-			}
-			
-		
-		searchbox
-		{
-			display: inline-block;
-			font-size: 50px;
-			padding-top: 50px; 
-		}
-		
-		ul
-			{
-				font-size: 22px;
-				
-			}
-			
-		
-		body
-			{
-                background-image: url("forum.jpg");
-                background-attachment:fixed;
-                background-repeat: no-repeat;
-                background-size: cover;
-				font-family: "Lato", sans-serif;
-				color: white;
-				
-            }
-	</style>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
+<style>
+    
+    body{
+		background-image: url("http://www.concordia.ca/alumni-friends/giving-to-concordia/_jcr_content/content-main/image_556643419.img.jpg/1469125227741.jpg");
+		background-color:#808080;
+		background-attachment:fixed;
+		background-repeat: no-repeat;
+		background-size: cover;
+		font-family: "Lato", sans-serif;
+		color: white;
+    }
+	
+    .container{
+		margin-top: 20px;
+		width: 95%;
+    }
+	
+
+    h1{
+        font-size: 50px;
+        color:rgb(202,181,118);
+    }
+
+    .col-sm-6{
+        background-color:rgba(143,37,57,0.8);
+        padding:20px;
+        border-radius:10px;
+        margin-left:30px;
+    }
+
+    
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+	   background-color:rgba(143,37,57,0.8);
+        border-radius:10px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+		
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+    
+	</style>
 </head>
+
 <body>
 
-	<div id="topbar">
-		<img src="logo2.png" id="logo" alt="Logo">
-	</div>
+	<!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div>
 	
+	<!-- Title -->
 	<div class="title">
-		<h1>Results of Forum Post</h1>
-        
-       
+        <h1><span class="glyphicon glyphicon-ok"></span> Post suscessfully submitted!</h1>
 	</div>
 	
-    <p class="submission">Form successfully submitted</p>
-	 <p>Return to Forum Page<a href="/forum"> Forum</a></p>
-    <p>Or go to <a href="/main">Main</a>Page</p>
+	<div id="wrapper">
 	
-	
+		<div id="sidebar">
+			<!-- SIDEMENU -->
+			<div class="nav-side-menu">
+				<div class="brand">Navigation</div>
+				<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+			  
+					<div class="menu-list">
+			  
+						<ul id="menu-content" class="menu-content collapse out">
+							<li>
+							  <a href="/main">
+							  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+							  </a>
+							</li>
+
+							<li  data-toggle="collapse" data-target="#products" class="collapsed active">
+							  <a href="/account-professor"><i class="fa fa-gift fa-lg"></i> Find a professor <span class="arrow"></span></a>
+							</li>
+							<ul class="sub-menu collapse" id="products">
+								<li class="active"><a href="/surveys-students">Survey</a></li>
+								<li><a href="/chat">Chat</a></li>
+							</ul>
+							
+							<li>
+							  <a href="/forum">
+							  <i class="fa fa-users fa-lg"></i> Forum
+							  </a>
+							</li>
+							
+							<li>
+							  <a href="/surveys-students">
+							  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+							  </a>
+							</li>
+
+							<li>
+							 <a href="/editProfile">
+							 <i class="fa fa-user fa-lg"></i> My Profile
+							 </a>
+							</li>
+							
+							<li>
+								<a href="/logout">
+								<span class="fa fa-user"></span><span id ="logout"> Logout</span>
+								</a>
+							</li>
+			 
+						</ul>
+				 </div>
+			</div>
+		</div>
+		<div id="main">
+			<div class="container">	    
+		 
+			<div class="container-fluid">
+				<div class="row content">
+					<div class="col-sm-3 sidenav">
+						<form action="/forum-submitted">
+							<h3>Want to find information on a certain topic?</h3>
+							See what your professors posted on the subject!
+							<br><br>
+							<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
+							<div id="sideinfo">Use # + the subject you're looking for.
+							*Enter a maximum of 10 search tags!</div>
+							<br>
+							<input type="submit" name = "tags" class="btn btn-default" value="Search">
+							<br>
+							<hr>
+							<!-- display all -->       
+						</form>
+						<form action="/forum-submitted-3">
+							<input type="submit" name = "tags" class="btn btn-default" value="Display All">
+						</form>
+						<br>
+				  
+					</div>
+					<!-- Post column -->
+					<div class="col-sm-6">  
+						<form action="/forum-submitted-2">
+							<div class="form-group">
+								<h3><span class="glyphicon glyphicon-pencil"></span> Create a post</h3>
+								<label>Post Title</label>
+								<textarea class="form-control" rows="1" cols="50" name="title" placeholder="Title of Post"></textarea>
+							</div>
+							<label> Text</label>
+							<form>
+								<div class="form-group">
+									<textarea class="form-control" rows="7" id="comment" name="mylittletextbox" placeholder="Add Your Post Here..."></textarea>
+								</div>
+								<div class="form-group">
+									<label>tags:</label>
+									<textarea class="form-control" rows="1" cols="50" name="tags" name="tags" placeholder="#tags"></textarea>
+								</div>
+								<button type="submit" class="btn btn-default">Submit</button>
+								<br/><br/><br/>
+							</form>
+						</form>
+					</div>
+				</div>	
+					
+			</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- footer --> 
+    <footer>&#169; 2017 SOEN 341</footer>
+
 </body>
 
 </html>
