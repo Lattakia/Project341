@@ -451,11 +451,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
     res.render('teacher_submitted.ejs')
   var MongoClient = require('mongodb').MongoClient
   
-var URL_1 = 'mongodb://localhost:27017/surveydatabase'
-MongoClient.connect(URL_1, function(err, db) {
+var URLSurvey = 'mongodb://localhost:27017/surveydatabase'
+var URLMain = 'mongodb://localhost:27017/main'
+MongoClient.connect(URLSurvey, function(err, db) {
   if (err) return
   
-            var collection = db.collection('survey_form')
+            var collectionForm = db.collection('survey_form')
             var name = app.get('data').title;
             console.log(name);
 
@@ -464,16 +465,15 @@ MongoClient.connect(URL_1, function(err, db) {
               state.bool = true;
             }
 
-            collection.find().toArray(function(err,results){
+            collectionForm.find().toArray(function(err,results){
                 var res = results;
                 var boolean = {bool: false};
                 for(i=0;i<res.length;i++){
                     if(name == res[i]['Name']){
                       switchBoolean(boolean);
-                      console.log("true: "+boolean.bool);
 
                       //Updates the database with new questions
-                      collection.update({Name:name},
+                      collectionForm.update({Name:name},
                       {Name:name,
                       Question_1:req.query.question1, 
                       Question_2:req.query.question2, 
@@ -487,7 +487,7 @@ MongoClient.connect(URL_1, function(err, db) {
                       
                       //Only insert if database doesn't contain the doc with the specific email
                       if(boolean.bool == false){
-                        collection.insert({
+                        collectionForm.insert({
                       Name:name,
                       Question_1:req.query.question1, 
                       Question_2:req.query.question2, 
@@ -497,6 +497,41 @@ MongoClient.connect(URL_1, function(err, db) {
                       function(err, results) {
                         db.close()
                       })
+                }
+                else{
+                    // Upon updating the survey form for the professor/TA, also update the 'updated' flag
+                    // in the survey responses for this professor's/TA's survey to true so that students
+                    // may answer it again.
+                    MongoClient.connect(URLMain, function(err, db) {
+                         if (err) return
+                          console.log('Connecting to main in survey update')
+                         var collectionUsers = db.collection('users');
+                         collectionUsers.find({'local.username': name}).toArray(function(err, docs){
+
+                          console.log('finding name')
+                            var surveyMaker = docs[0]['local']['firstname'] + " " + docs[0]['local']['lastname'];
+                            console.log(surveyMaker)
+
+                            MongoClient.connect(URLSurvey, function(err, db) { 
+                              if (err) return 
+                                var collectionValues = db.collection('survey_values')
+                              collectionValues.find({surveyMakerName: surveyMaker}).toArray(function(err, docs){
+                                console.log('Finding docs')
+                                console.log(docs);
+                                })
+
+                                collectionValues.update({surveyMakerName: surveyMaker}, {$set: {updated : true}}, function(err, results){
+                                  console.log('Updating docs')
+                                })
+
+                              db.close()
+                            })
+
+                         })
+                          db.close()
+
+                       })
+                     db.close()
                 }
             });
         })
