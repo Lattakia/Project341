@@ -145,7 +145,15 @@
       background-color: #555;
       color: white;
       padding: 15px;
-    }    
+    }
+        
+    #sideinfo{
+        color:rgb(202,181,118);
+        margin-top:5px;
+    }
+        
+        
+        
 	</style>
 	
 </head>
@@ -220,9 +228,11 @@
             </ul>
      </div>
 </div>
-      <br><br>
+    
+<!-- small sidebar --> 
+<br><br>
 <div class="container">	    
-    <!-- sidebar --> 
+ 
     <div class="container-fluid">
 	  <div class="row content">
 		<div class="col-sm-3 sidenav">
@@ -231,13 +241,17 @@
 			See what your professors posted on the subject!
 			<br><br>
 		  <input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
-            <div id="sideinfo">Use # + the subject you're looking for.
+            <div id="sideinfo">
+            - Use # + the subject you're looking for.<br>
+            - Separate each tag by a space<br>
+            - Enter a maximum of 10 search tags!
             </div>
             <br>
 		  <input type="submit" name = "tags" class="btn btn-default" value="Search">
             <br>
 
           <hr>
+          <!-- display all -->       
         </form>
          <form action="/forum-submitted-3">
         <input type="submit" name = "tags" class="btn btn-default" value="Display All">

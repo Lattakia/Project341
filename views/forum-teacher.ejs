@@ -22,8 +22,8 @@
     
     body{
             background-color:#666666;
-    /*background-color:#808080;*/
-    color: white !important;
+            /*background-color:#808080;*/
+            color: white !important;
     }
     .container{
         margin-left:300px;
@@ -80,7 +80,7 @@
         padding:20px;
         width:300px;
         margin-right:60px;
-        border-radius: 10px;S
+        border-radius: 10px;
     }
 
     .col-sm-8{
@@ -141,7 +141,7 @@
     
     /* Set gray background color and 100% height */
     .sidenav {
-	   background-color:rgb(143,37,57);
+	   /*background-color:rgb(143,37,57);*/
         /*background-color: #f1f1f1;*/
        /* height: 100%;*/
         border-radius:10px;
@@ -155,8 +155,6 @@
       }
       .row.content {height: auto;} 
     }
-    
-    
     
     .post-title{
         background-color:white;
@@ -179,6 +177,14 @@
 	small{
 		color:white !important;
 	}
+    
+    #sideinfo{
+            color:rgb(202,181,118);
+    }
+        
+    .form-control{
+            margin-bottom:10px;
+    }
     
     
 	</style>
@@ -265,8 +271,11 @@
 			See what your professors posted on the subject!
 			<br><br>
 		  <input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
-            <div id="sideinfo">Use # + the subject you're looking for.
-            *Enter a maximum of 10 search tags!</div>
+            <div id="sideinfo">
+            - Use # + the subject you're looking for.<br>
+            - Separate each tag by a space<br>
+            - Enter a maximum of 10 search tags!
+            </div>
             <br>
 		  <input type="submit" name = "tags" class="btn btn-default" value="Search">
             <br>
@@ -318,7 +327,7 @@
 </div>
 
     <!-- footer --> 
-    <footer>&#169; 2017 SOEN 341</footer>
+   <!-- <footer>&#169; 2017 SOEN 341</footer>-->
 
 </body>
 
