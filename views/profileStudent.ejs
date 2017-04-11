@@ -2,22 +2,56 @@
 <head>
 	<title>Profile</title>
 	<link rel="stylesheet" href="/styles/profile.css">
+	
+	<style>
+		
+		body{
+			background-image: url("https://i.ytimg.com/vi/K_K1EK1AZBM/maxresdefault.jpg");
+			background-attachment:fixed;
+			background-repeat: no-repeat;
+			background-size: cover;
+			font-family: "Lato", sans-serif;
+			color: white;
+		}
+		
+		#profileContainer{
+			display: inline-block;
+			height: 500px;
+			width: 700px;
+			background:rgba(143,37,57,0.8);
+			margin-top: 50px;
+			margin-left: 300px;
+			text-align: center;
+		}
+		
+		
+	</style>
+	
 </head>
+
+
 <body>
+		
+	<div id="profileContainer">
+	
+		<div class="content">
+			<div id="name"><%= userInfo.firstName %> <%= userInfo.lastName %></div>
+			
+			<div class="header">Student</div>
 
-<div id="name"><%= userInfo.firstName %> <%= userInfo.lastName %></div>
-<div class="header">STUDENT</div>
+			<img id="profilePic" src="/<%= profileInfo.picturePath %>" alt="No Profile Image" /><br/>
 
-<img id="profilePic" src="/<%= profileInfo.picturePath %>" alt="No Profile Image" /><br/>
-
-<%= profileInfo.gender %><br>
-<%= profileInfo.major %><br>
-<div class="header">Contact</div>
-<%= userInfo.email %><br>
-<div class="header">About me</div>
-<%= profileInfo.aboutMe %><br>
-
-<p>Return <a href="/main">Home</a></p>
+			<%= profileInfo.gender %><br>
+			<%= profileInfo.major %><br>
+			<div class="header">Contact</div>
+			<%= userInfo.email %><br>
+			<div class="header">About me</div>
+			<%= profileInfo.aboutMe %><br>
+			<hr>
+			<p>Return <a href="/main">Home</a></p>
+		</div>
+	</div>
+		
 
 </body>
 </html>

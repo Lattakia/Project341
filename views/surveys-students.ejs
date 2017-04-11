@@ -3,8 +3,9 @@
 <html>
 
 <head>
-    <title>Connect Concordia</title>
-   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+	<title>Connect Concordia</title>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="allstyles.css">
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -16,404 +17,371 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- load fontawesome -->
     <!-- load fontawesome -->
+	
+	
     <style>
-        .funkyradio div {
-  clear: both;
-  overflow: hidden;
-}
+	
+		.funkyradio div {
+			clear: both;
+			overflow: hidden;
+		}
 
     
-.funkyradio label {
-  width: 100%;
-  border-radius: 3px;
-  border: 1px solid #D1D3D4;
-  font-weight: normal;
-}
+		.funkyradio label {
+			width: 100%;
+			border-radius: 3px;
+			border: 1px solid #D1D3D4;
+			font-weight: normal;
+		}
 
-.funkyradio input[type="radio"]:empty,
-.funkyradio input[type="checkbox"]:empty {
-  display: none;
-}
+		.funkyradio input[type="radio"]:empty,
+		.funkyradio input[type="checkbox"]:empty {
+			display: none;
+		}
 
-.funkyradio input[type="radio"]:empty ~ label,
-.funkyradio input[type="checkbox"]:empty ~ label {
-  position: relative;
-  line-height: 2.5em;
-  text-indent: 3.25em;
-  margin-top: 0em;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
+		.funkyradio input[type="radio"]:empty ~ label,
+		.funkyradio input[type="checkbox"]:empty ~ label {
+			position: relative;
+			line-height: 2.5em;
+			text-indent: 3.25em;
+			  margin-top: 0em;
+			  cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
 
-.funkyradio input[type="radio"]:empty ~ label:before,
-.funkyradio input[type="checkbox"]:empty ~ label:before {
-  position: absolute;
-  display: block;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  content: '';
-  width: 2.5em;
-  background: #8f2539;
-  border-radius: 3px 0 0 3px;
-}
+		.funkyradio input[type="radio"]:empty ~ label:before,
+		.funkyradio input[type="checkbox"]:empty ~ label:before {
+			  position: absolute;
+			  display: block;
+			  top: 0;
+			  bottom: 0;
+			  left: 0;
+			  content: '';
+			  width: 2.5em;
+			  background: #8f2539;
+			  border-radius: 3px 0 0 3px;
+		}
 
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
-  color: #888;
-}
+		.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+		.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+			color: #888;
+		}
 
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #C2C2C2;
-}
+		.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+		.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+			  content: '\2714';
+			  text-indent: .9em;
+			  color: #C2C2C2;
+		}
 
-.funkyradio input[type="radio"]:checked ~ label,
-.funkyradio input[type="checkbox"]:checked ~ label {
-  color: #FFFFFF;
-}
+		.funkyradio input[type="radio"]:checked ~ label,
+		.funkyradio input[type="checkbox"]:checked ~ label {
+			color: #FFFFFF;
+		}
 
-.funkyradio input[type="radio"]:checked ~ label:before,
-.funkyradio input[type="checkbox"]:checked ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #333;
-  background-color: #FFFFFF;
-}
+		.funkyradio input[type="radio"]:checked ~ label:before,
+		.funkyradio input[type="checkbox"]:checked ~ label:before {
+			  content: '\2714';
+			  text-indent: .9em;
+			  color: #333;
+			  background-color: #FFFFFF;
+		}
 
-.funkyradio input[type="radio"]:focus ~ label:before,
-.funkyradio input[type="checkbox"]:focus ~ label:before {
-  box-shadow: 0 0 0 3px #999;
-}
+		.funkyradio input[type="radio"]:focus ~ label:before,
+		.funkyradio input[type="checkbox"]:focus ~ label:before {
+			box-shadow: 0 0 0 3px #999;
+		}
 
-.funkyradio-default input[type="radio"]:checked ~ label:before,
-.funkyradio-default input[type="checkbox"]:checked ~ label:before {
-  color: #333;
-  background-color: #FFFFFF;
-}
+		.funkyradio-default input[type="radio"]:checked ~ label:before,
+		.funkyradio-default input[type="checkbox"]:checked ~ label:before {
+			  color: #333;
+			  background-color: #FFFFFF;
+		}
 
-.funkyradio-primary input[type="radio"]:checked ~ label:before,
-.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
-  color: #333;
-  background-color: #FFFFFF;
-}
+		.funkyradio-primary input[type="radio"]:checked ~ label:before,
+		.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+			  color: #333;
+			  background-color: #FFFFFF;
+		}
 
-.funkyradio-success input[type="radio"]:checked ~ label:before,
-.funkyradio-success input[type="checkbox"]:checked ~ label:before {
-  color: #333;
-  background-color: #FFFFFF;
-}
-
-.funkyradio-danger input[type="radio"]:checked ~ label:before,
-.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #d9534f;
-}
-
-.funkyradio-warning input[type="radio"]:checked ~ label:before,
-.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #f0ad4e;
-}
-
-.funkyradio-info input[type="radio"]:checked ~ label:before,
-.funkyradio-info input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #5bc0de;
-}
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        form {
-            padding: 3px;
-            width: 100%;
-            font-size:20px;
-        }
-        
-        form input {
-            border: 0;
-            padding: 10px;
-            width: 90%;
-            margin-right: .5%;
-        }
-        
-        
-        #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        #messages li {
-            padding: 5px 10px;
-        }
-        
-        #messages li:nth-child(odd) {
-            background: #eee;
-        }
-        
-        body {
-            background-color: rgb(143,37,57);
-            font: 16px Helvetica, Arial;
-        }
-        
-        nav {
-            text-align: right;
-            padding: 20px;
-        }
-        
-        nav ul li {
-            display: inline;
-        }
-        
-        nav ul li a:link,
-        nav ul li a:visited {
-            color: #555;
-            text-decoration: none;
-            padding: 9px;
-        }
-        
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-        
-        footer {
-            background: #eee;
-            position: fixed;
-            bottom: 0; 
-            width: 100%;
-            border: solid 1px #ddd;
-            font-family: Arial, sans-serif;
-        }
-        
-        footer ul {
-            padding: 13px;
-        }
-        
-        footer ul li {
-            display: inline;
-        }
-        
-        footer ul li a:link,
-        footer ul li a:visited {
-            color: #555;
-            text-decoration: none;
-            padding: 9px;
-        }
-        
-        footer ul li a:hover {
-            text-decoration: underline;
-        }
-        
-        footer ul.right-footer {
-            float: right;
-        }
-        
-        footer ul.left-footer {
-            float: left;
-        }
-            
-	#logo
-	{
-		z-index: 1000;
-        width: 480px;
-        height: 100px
-	}
-	.content{
-	    min-height:750px;
-        height:100%;
-	    margin:0;
-	    padding:0;
-	    background-attachment:fixed;
-	    background-repeat: no-repeat;
-	    background-size: cover;
-	}
-	.info{
-        position:absolute;
-        right:3.5%;
-	    width:70%;
-		height:160%;
-        margin:  auto;
-	    padding:80px;
-	    font-size:22px;
-	    text-align: justify;
-	    color:white;
-		background:rgba(0,0,0,0.5);
-	}
-	h1{
-		font-size:36px !important ;
-	}
-	.footer {
-	  position: fixed;
-	  right: 0;
-	  bottom: 0;
-	  left: 0;
-	  padding: 1rem;
-	  background-color: #efefef;
-	  text-align: center;
-      color:grey;
-	}
-	p {
-        margin: 0;
-        padding: 0;
-        color: white;
-    }
-	.button {
-	    background-color: rgb(143,37,57); 
-	    border: none;
-	    color: white;
-	    padding: 15px 32px;
-	    text-align: center;
-	    text-decoration: none;
-	    font-size: 16px;
-	}
-	.button:hover {
-	    color: black;
-	    text-decoration: none;
-	-webkit-transition-duration: 0.4s; /* Safari */
-   	transition-duration: 0.4s;
-	}
+		.funkyradio-success input[type="radio"]:checked ~ label:before,
+		.funkyradio-success input[type="checkbox"]:checked ~ label:before {
+			  color: #333;
+			  background-color: #FFFFFF;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+				
+		form {
+			padding: 3px;
+			width: 100%;
+			font-size:20px;
+		}
+				
+		form input {
+			border: 0;
+			padding: 10px;
+			width: 90%;
+			margin-right: .5%;
+		}
+				
+		#messages {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+				
+		#messages li {
+			padding: 5px 10px;
+		}
+				
+		#messages li:nth-child(odd) {
+			background: #eee;
+		}
+				
+		body {
+				background-image: url("background-students.jpg");
+                background-color:#808080;
+                background-attachment:fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+				font-family: "Lato", sans-serif;
+				color: white;
+		}
+				
+		
+		footer {
+			background: #eee;
+			position: fixed;
+			bottom: 0; 
+			width: 100%;
+			border: solid 1px #ddd;
+			font-family: Arial, sans-serif;
+		}
+				
+		footer ul {
+			padding: 13px;
+		}
+				
+		footer ul li {
+			display: inline;
+		}
+				
+		footer ul li a:link,
+		footer ul li a:visited {
+			color: #555;
+			text-decoration: none;
+			padding: 9px;
+		}
+				
+		footer ul li a:hover {
+			text-decoration: underline;
+		}
+				
+		footer ul.right-footer {
+			float: right;
+		}
+				
+		footer ul.left-footer {
+			float: left;
+		}
+		
+		
+		
+		.info{
+			margin-top: 30px;
+			position:absolute;
+			right:3.5%;
+			width:70%;
+			padding:80px;
+			font-size:22px;
+			text-align: justify;
+			color:white;
+			background:rgba(143,37,57,0.8);
+		}
+		
+		
+		
+		.footer {
+		  position: fixed;
+		  right: 0;
+		  bottom: 0;
+		  left: 0;
+		  padding: 1rem;
+		  /*background-color: #efefef;*/
+		  text-align: center;
+		  color:grey;
+		}
+		
+		h1{
+			font-size: 50px;
+			color:rgb(202,181,118);
+		}
+		
+		p{
+			margin: 0;
+			padding: 0;
+			color: white;
+		}
+		
+		.button {
+			background-color: rgb(202,181,118); 
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 16px;
+		}
+		
+		.button:hover {
+			color: black;
+			text-decoration: none;
+			-webkit-transition-duration: 0.4s; /* Safari */
+			transition-duration: 0.4s;
+		}
+	
     </style>
 </head>
 
 <body>
 
-<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
 
-    <!-- SIDEMENU -->
-<div class="nav-side-menu">
-    <div class="brand">Navigation</div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-  
-        <div class="menu-list">
-  
-            <ul id="menu-content" class="menu-content collapse out">
-                <li>
-                  <a href="/main">
-                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                  </a>
-                </li>
+	<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+	<div id="wrapper">
+		<div id="sidebar">
+		<!-- SIDEMENU -->
+			<div class="nav-side-menu">
+				<div class="brand">Navigation</div>
+				<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+			  
+				<div class="menu-list">
+			  
+						<ul id="menu-content" class="menu-content collapse out">
+							<li>
+							  <a href="/main">
+							  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+							  </a>
+							</li>
+							<li  data-toggle="collapse" data-target="#products" class="collapsed active">
+							  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+							</li>
+							<ul class="sub-menu collapse" id="products">
+								<li class="active"><a href="/account-professor">Professor Appointments</a></li>
+								<li><a href="/chat">Chat with Professor/Student</a></li>
+							</ul>
+							
+							<li>
+							  <a href="/forum">
+							  <i class="fa fa-users fa-lg"></i> Forum
+							  </a>
+							</li>
+							
+							<li>
+							  <a href="/surveys-students">
+							  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+							  </a>
+							</li>
 
-                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-                  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="products">
-                    <li class="active"><a href="/account-professor">Professor Appointments</a></li>
-                    <li><a href="/chat">Chat with Professor/Student</a></li>
-                </ul>
+							<li>
+								<a href="/editProfile">
+								<i class="fa fa-user fa-lg"></i> My Profile
+								</a>
+							</li>
+							  
+							<li>
+							  <a href="/logout">
+							  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+							  </a>
+							</li>
+			 
+						</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="main">
+			<!-- Title -->
+			<div class="title">
+				<h1>Survey Questions</h1>
+			</div>
+			<div class="info">
 				
-				<li>
-                  <a href="/forum">
-                  <i class="fa fa-users fa-lg"></i> Forum
-                  </a>
-                </li>
-                
-                <li>
-                  <a href="/surveys-students">
-                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
-                  </a>
-                </li>
+				<!-- show any messages that come back with authentication -->
+				
+				<div id="form">
+					<form action="/surveys-s2">
+					<div class="form-group">
+			
+						<h2>Question 1</h2>
+						<h4>Are the lecture notes written in a clear way?</h4>
+				
+			 
+				
+						<div class="funkyradio">
+							<div class="funkyradio-default">
+								<input type="radio" name="radioo" id="radio1" value="StronglyAgree" />
+								<label for="radio1">Strongly Agree</label>
+							</div>
+							<div class="funkyradio-primary">
+								<input type="radio" name="radioo" id="radio2" value="Agree"/>
+								<label for="radio2">Agree</label>
+							</div>
+							<div class="funkyradio-success">
+								<input type="radio" name="radioo" id="radio3" ="SomewhatAgree"/>
+								<label for="radio3">Somewhat Agree</label>
+							</div>
+							<div class="funkyradio-success">
+								<input type="radio" name="radioo" id="radio4" value="Neither Agree or Disagree"/>
+								<label for="radio4">Neither Agree or Disagree</label>
+							</div>   
+							<div class="funkyradio-success">
+								<input type="radio" name="radioo" id="radio5" value="Disagree"/>
+								<label for="radio5">Disagree</label>
+							</div>
+							 <div class="funkyradio-success">
+								<input type="radio" name="radioo" id="radio6" value="Strongly Disagree"/>
+								<label for="radio6">Strongly Disagree</label>
+								 <br/>
+								 <br/>
+								<h4>Please include any additional comments below</h4>
+								<br/>
+								<div class="container">
+									<div class="form-group">
+										<textarea class="form-control" rows="10" id="comment" name="mylittletextbox"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+				
+					</div>
+					<div id="buttons">
+						<a href="/surveys-students?"><button class="button">Submit</button></a>
+					</div>	
+					</form>
+					<hr>
 
-                 <li>
-                  <a href="/myProfile">
-                  <i class="fa fa-user fa-lg"></i> Profile
-                  </a>
-                  </li>
-				  
-				  <li>
-                  <a href="/logout">
-                  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
-                  </a>
-                  </li>
- 
-            </ul>
-     </div>
-</div>
-<div class="content">
-		<div class="info">
-	<h1 align="center"><span class="text-center"></span> Survey Questions</h1>
-<!-- show any messages that come back with authentication -->
-            
-     <div id="form">
-        <form action="/surveys-s2">
-		<div class="form-group">
-        
-           <h2>Question 1</h2>
-            <h4>Are the lecture notes written in a clear way?</h4>
-            
-         
-            
-    <div class="funkyradio">
-        <div class="funkyradio-default">
-            <input type="radio" name="radioo" id="radio1" value="StronglyAgree" />
-            <label for="radio1">Strongly Agree</label>
-        </div>
-        <div class="funkyradio-primary">
-            <input type="radio" name="radioo" id="radio2" 
-            value="Agree"/>
-            <label for="radio2">Agree</label>
-        </div>
-        <div class="funkyradio-success">
-            <input type="radio" name="radioo" id="radio3" 
-            value="SomewhatAgree"/>
-            <label for="radio3">Somewhat Agree</label>
-        </div>
-        <div class="funkyradio-success">
-            <input type="radio" name="radioo" id="radio4" 
-            value="Neither Agree or Disagree"/>
-            <label for="radio4">Neither Agree or Disagree</label>
-        </div>   
-        <div class="funkyradio-success">
-            <input type="radio" name="radioo" id="radio5"
-            value="Disagree"/>
-            <label for="radio5">Disagree</label>
-        </div>
-         <div class="funkyradio-success">
-            <input type="radio" name="radioo" id="radio6" 
-            value="Strongly Disagree"/>
-            <label for="radio6">Strongly Disagree</label>
-             <br/>
-             <br/>
-        <h4>Please include any additional comments below</h4>
-             <br/>
-        <div class="container">
-
-    <div class="form-group">
-      <textarea class="form-control" rows="10" id="comment" name="mylittletextbox"></textarea>
-    </div>
-        </div>
-       
-</div>
-    </div>
-            
-        </div>
-		<div id="buttons">
-            <a href="/surveys-students?"><button class="button">Submit</button></a>
-		</div>	
-    </form>
-
-
-    <hr>
-
-    <p>Return <a href="/">Home</a></p>
-	    </div>
-        </div>
-        </div>
-<div class="footer">&#169; SOEN 341</div>
-
+					<p>Return <a href="/main">Home</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- footer --> 
+    <footer>&#169; 2017 SOEN 341</footer>
 </body>
 
 </html>
