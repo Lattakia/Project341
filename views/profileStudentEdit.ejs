@@ -2,11 +2,67 @@
 
 	<head>
 		<title>Edit Your Profile Information</title>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="allstyles.css">
+		<!-- load bootsrap css -->
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		<link rel="shortcut icon" href="cc-favicon.png">
+		<!-- load fontawesome -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		
+
 		<script type="text/javascript" src="libraries/jquery-3.2.0.min.js"></script>
 		<script type="text/javascript" src="libraries/jquery.numeric.min.js"></script>
 		<script type="text/javascript" src="scripts/inputRestriction.js"></script>
 		<script type="text/javascript" src="scripts/profileScript.js"></script>
+		
+		<style>
+		
+			body{
+				background-image: url("https://i.ytimg.com/vi/K_K1EK1AZBM/maxresdefault.jpg");
+				background-attachment:fixed;
+				background-repeat: no-repeat;
+				background-size: cover;
+				font-family: "Lato", sans-serif;
+				color: white;
+			}
 
+			h1{
+				font-size: 50px;
+				color:rgb(202,181,118);
+			}
+			
+			.content{
+				text-align: center;
+				color: black;
+				width: 600px;
+				padding: 50px;
+				margin-top: 50px;
+				margin-bottom: 50px;
+				margin-left: auto;
+				margin-right: auto;
+				background:rgba(143,37,57,0.8);
+			}
+			
+			label{
+				color: white;
+			}
+			
+			
+			.footer {
+			  position: fixed;
+			  right: 0;
+			  bottom: 0;
+			  left: 0;
+			  padding: 1rem;
+			  background-color: #efefef;
+			  text-align: center;
+			  color:grey;
+			}
+			
+		</style>
+		
 		<script type="text/javascript">
 
 			$(document).ready(function(){
@@ -16,46 +72,111 @@
 			});
 
 		</script>
-
+		
 	</head>
 
 	<body>
+	
+	<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+	<div id="wrapper">
+		<div id="sidebar">
+		<!-- SIDEMENU -->
+			<div class="nav-side-menu">
+				<div class="brand">Navigation</div>
+				<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+			  
+					<div class="menu-list">
+			  
+						<ul id="menu-content" class="menu-content collapse out">
+							<li>
+							  <a href="/main">
+							  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+							  </a>
+							</li>
 
-	<h1>Edit Your Profile Information - STUDENT</h1>
+							<li  data-toggle="collapse" data-target="#products" class="collapsed active">
+							  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+							</li>
+							<ul class="sub-menu collapse" id="products">
+								<li class="active"><a href="/account-professor">Professor Appointments</a></li>
+								<li><a href="/chat">Chat with Professor/Student</a></li>
+							</ul>
+							
+							<li>
+							  <a href="/forum">
+							  <i class="fa fa-users fa-lg"></i> Forum
+							  </a>
+							</li>
+							
+							<li>
+							  <a href="/surveys-students">
+							  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+							  </a>
+							</li>
 
-		Profile Picture:<br/>
-		<img id="profilePic" style="width:120px; height:120px; margin:10px" src="/<%= profileInfo.picturePath %>" alt="Profile Image" /><br/>
+							 <li>
+								<a href="/editProfile">
+								<i class="fa fa-user fa-lg"></i> My Profile
+								</a>
+							</li>
 
-	<form method="POST" action="/profile" enctype="multipart/form-data">
+							<li>
+							  <a href="/logout">
+							  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+							  </a>
+							</li>
+			 
+						</ul>
+				 </div>
+			</div>
+		</div>
+		
+		<div id="main">
+			<!-- Title -->
+			<div class="title">
+				<h1>Edit Your Profile Information - STUDENT</h1>
+			</div>
+			<div class="content">
+				<strong>Profile Picture:</strong><br/>
+				<img id="profilePic" style="width:120px; height:120px; margin:10px" src="/<%= profileInfo.picturePath %>" alt="Profile Image" /><br/>
 
-		<input id="uploadPic" name='profilePic' type='file' accept="image/*" onchange="readURL(this);" /> <br/>
+				<form method="POST" action="/profile" enctype="multipart/form-data">
 
-		<label for="firstName">First Name</label><br>
-		<input required type="text" name="firstName" value="<%= userInfo.firstName %>"/><br>
-		<label for="lastName">Last Name</label><br>
-		<input required type="text" name="lastName" value="<%= userInfo.lastName %>"/><br>
-		<label for="IdNum">ID Number</label><br>
-		<input required class="integer" type="text" name="IdNum" value="<%= userInfo.idNumber %>"/><br>
-		<label for="email">Email</label><br>
-		<input required type="email" name="email" value="<%= userInfo.email %>"/><br>
-		<label for="gender">Gender</label><br>
-		<select name="gender" id="genderDropDown">
-    	<option value="Male">Male</option>
-    	<option value="Female">Female</option>
-  	</select> <br>
-		<label for="major">Major</label><br>
-		<input type="text" name="major" value="<%= profileInfo.major %>"/><br>
-		<label for="aboutMe">About me</label><br>
-		<textarea name="aboutMe"><%= profileInfo.aboutMe %></textarea><br><br>
+					<input id="uploadPic" name='profilePic' type='file' accept="image/*" onchange="readURL(this);" /> <br/>
 
+					<label for="firstName">First Name</label><br>
+					<input required type="text" name="firstName" value="<%= userInfo.firstName %>"/><br>
+					<label for="lastName">Last Name</label><br>
+					<input required type="text" name="lastName" value="<%= userInfo.lastName %>"/><br>
+					<label for="IdNum">ID Number</label><br>
+					<input required class="integer" type="text" name="IdNum" value="<%= userInfo.idNumber %>"/><br>
+					<label for="email">Email</label><br>
+					<input required type="email" name="email" value="<%= userInfo.email %>"/><br>
+					<label for="gender">Gender</label><br>
+					<select name="gender" id="genderDropDown">
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+					</select> <br>
+					<label for="major">Major</label><br>
+					<input type="text" name="major" value="<%= profileInfo.major %>"/><br>
+					<label for="aboutMe">About me</label><br>
+					<textarea name="aboutMe"><%= profileInfo.aboutMe %></textarea><br><br>
 
-		<input type="submit" id="SaveButton" value="Save">
+					<div id="buttons">
+						<input type="submit" id="SaveButton" value="Save">
+					</div>
 
-
-	</form>
-
-	<p>Return <a href="/main">Home</a></p>
-
+				</form>
+				
+				<hr>
+				<p>Return <a href="/main">Home</a></p>
+				
+			</div>
+		</div>
+	</div>
+	
+	<div class="footer">&#169; SOEN 341</div>
+	
 
 	</body>
 
