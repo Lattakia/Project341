@@ -31,6 +31,7 @@
 		
 	}
 	
+
     .container{
         margin-left:5px;
 		width: 95%;
@@ -41,6 +42,7 @@
         font-size: 50px;
         color:rgb(202,181,118);
     }
+
 
 
     .col-sm-8{
@@ -57,6 +59,7 @@
 		margin-left: 10px;
 	   background-color:rgba(143,37,57, 0.8);
        border-radius:10px;
+
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
@@ -68,6 +71,11 @@
       .row.content {height: auto;} 
     }
     
+    #sideinfo{
+            color:rgb(202,181,118);
+            font-style: italic;
+    }
+       
 	</style>
 	
 </head>
@@ -140,6 +148,7 @@
 		<div id="main">
 			<!-- small sidebar --> 
 			<br><br>
+
 			<div class="container">	    
 				<div class="container-fluid">
 					<div class="row content">
@@ -149,8 +158,11 @@
 								See what your professors posted on the subject!
 								<br><br>
 							  <input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
-								<div id="sideinfo">Use # + the subject you're looking for.
-								*Enter a maximum of 10 search tags!</div>
+								<div id="sideinfo">
+                  - Use # + the subject you're looking for.<br>
+                  - Separate each tag by a space<br>
+                  - Enter a maximum of 10 search tags!
+                </div>
 								<br>
 							  <input type="submit" name = "tags" class="btn btn-default" value="Search">
 								<br>
@@ -186,15 +198,13 @@
 								</form>
 							</form>
 						</div>
-					</div>	
-							
+					</div>			
 				</div>
 			</div>
-		</div>
-	</div>
+  </div>
+ </div>
+	
 
-
-    <!-- footer --> 
     <footer>&#169; 2017 SOEN 341</footer>
 
 </body>

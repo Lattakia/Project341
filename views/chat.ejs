@@ -23,11 +23,14 @@
 
    
     <style>
-        body {
-            /*background-image: url("concordia2.jpg");*/
-            background-repeat: no-repeat;
-            background-size: cover;
-            padding-top: 10px;
+        
+		body{
+                background-color:#808080;
+                background-attachment:fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+				font-family: "Lato", sans-serif;
+				
         }
         
         .container {
@@ -173,7 +176,7 @@
             transition-duration: 0.4s;
         }
         
-        footer {
+        /*footer {
             position: fixed;
             right: 0;
             bottom: 0;
@@ -182,7 +185,7 @@
             background-color: #efefef;
             text-align: center;
             color: grey;
-        }
+        }*/
         
         #info {
             background: rgba(0, 0, 0, 0.5);
@@ -320,22 +323,164 @@
             bottom: 42px;
             width: 100%;
         }
+        
         #logo {
-    z-index: 1000;
-    width: 480px;
-    height: 100px;
-}
+            z-index: 1000;
+            width: 480px;
+            height: 100px;
+        }
         #topbar {
-    width: 100%;
-    height: 100px;
-    background-color: rgb(143,37,57);
-}
+            width: 100%;
+            height: 100px;
+            background-color: rgb(143,37,57);
+            z-index:1000;
+        }
+        
+        .nav-side-menu{
+            height:100%;
+        }
+        
+        .title{
+            width:100%;
+            text-align:center;
+            display:inline-block;
+            /*background:rgba(143,37,57,0.8);*/
+            background:rgba(0,0,0,0.5);
+           /* margin-left:100px;*/
+        }
+        
+        h1{
+            font-size: 30px;
+            color:rgb(202,181,118);
+        }
+        
+        
+        .box{
+				width: 1500px;
+                height:600px;
+				padding: 50px;
+				margin-top: 0px;
+				margin-bottom: 50px;
+				/*background:rgba(143,37,57,0.8);*/
+               /* overflow-y: scroll;*/
+            
+            /* messages at bottom */
+          /*  overflow:   auto;
+        position:   relative;
+        width:      100%;
+        height:     400px;*/
+            
+
+        }
+        
+        #messages{
+            background: inherit;
+            max-width: 500px;
+            
+            /* messages at bottom */
+        /*position:   absolute;
+        bottom:     0;
+        max-height: 500px;*/
+            
+           
+        }
+        #messages li{
+           /*font-size: 0.8rem;*/
+            margin: 0 0 0.2rem 0;
+            color: #777;
+            padding: 20px;
+            border-radius: 2px;
+            box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+        }
+        
+        #messages li:before{
+            content: ' ';
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: -40px;
+            right: auto;
+            top: 10px;
+            bottom: auto;
+            border: 20px solid;
+            color:#EEEEEE;
+            border-color: #666 #666 transparent transparent;
+        }
+        
+        #messages li:after{
+            content: ' ';
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: -24px;
+            right: auto;
+            top: 10px;
+            bottom: auto;
+            border: 12px solid;
+            color:#EEEEEE;
+            border-color: #EEEEEE #EEEEEE transparent transparent;
+        }
+        
+        
+        
+        /* T Y P E */
+
+        #m{
+            position: fixed;
+            bottom: 0px;
+            left: 300px;
+            right: 0px;
+            width: 100%;
+            height: 50px;
+            z-index: 99;
+            background: #fafafa;
+            border: none;
+            outline: none;
+            padding-left: 55px;
+            padding-right: 55px;
+            color: #666;
+            font-weight: 400;
+        }
         
 
     </style>
 </head>
 
 <body>
+
+    
+    <!-- TOP BAR -->
+<div id="topbar">
+    <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    <div id="user">
+
+    <div class="dropdown">
+
+      <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
+
+          <script>
+              
+              var firstname = <%- JSON.stringify(firstname)%>;
+              var lastname = <%- JSON.stringify(lastname)%>;
+              document.write("Signed in as "+firstname+" "+lastname);
+          </script>
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+</div>
+</div>
+
+    <script>
+        $('#user1').onclick(function() {
+    $('#user1').css({
+        'background-color':'rgb(143,37,57)',
+        'border':'none',
+    });
+});
+    </script>   
+    
 
 <!-- SIDEMENU -->
 <div class="nav-side-menu">
@@ -389,43 +534,34 @@
 
     
 
-    <! --- TOP BAR ----->
-    <div id="topbar">
-        <img src="logo2.png" id="logo" alt="Logo">
-		
+	<!-- Title -->
+	<div class="title">
+		<h1>[Name of teacher]</h1>
+	</div>
+
+
+
+
+    <!--- MESSAGES ---->
+    
+    <div class="box">
+        <ul id="messages" class="talk-bubble tri-right left-in"></ul>
+        <span id="notifyUser"></span>
     </div>
-
-
-    <! --- MESSAGES ----->
-<!--
-    <div class="container">
-        <div class="col-sm-6 col-sm-offset-3">
-            <span id="title"><h3><b>Welcome</b></h3></span>
-
-        </div>
-    </div>
--->
-
-    <!--
-    <div id="info">
-        <ul id="messages"></ul>
-        <form action="">
-            <input id="m" autocomplete="off" /><button>Send</button>
+    
+    <div id="typebox">   
+        <form id="form" action="" onsubmit="return submitfunction();">
+            <input type="hidden" id="user" value="" />
+            <input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." />
+            <!--<input type="submit" id="button" value="Send" />-->
         </form>
+     </div>  
 
-    </div>
--->
-    <ul id="messages"></ul>
-    <span id="notifyUser"></span>
-    <form id="form" action="" onsubmit="return submitfunction();">
-        <input type="hidden" id="user" value="" /><input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." /><input type="submit" id="button" value="Send" />
-    </form>
-
-    <! --- FOOTER ----->
-<!--    <footer>&#169; 2017 SOEN 341</footer>-->
+    <!-- FOOTER --->
+    <!--    <footer>&#169; 2017 SOEN 341</footer>-->
 
 
-    <! --- SCRIPTS ----->
+    <!--- SCRIPTS ----->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -448,7 +584,7 @@
 
         socket.on('chatMessage', function(from, msg) {
             var me = $('#user').val();
-            var color = (from == me) ? 'green' : '#009afd';
+            var color = (from == me) ? '#D8BD4B' : '#8F2539';
             var from = (from == me) ? 'Me' : from;
             $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
         });
