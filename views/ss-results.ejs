@@ -95,11 +95,15 @@
 
 	<div class="content">
 		<div class="info">
-		
-			<!-- show any messages that come back with authentication -->
-			 <form>       
-			 Thank you for completing the survey!
-			</form>
+	
+<!-- show any messages that come back with authentication -->
+     <form>
+     <% if(Object.is(oldResults, insertedResults) && Object.is(oldResults, updatedResults)) {%>
+        You have already completed this survey. Results will not be modified.
+      <% } else { %>
+        Thank you for completing the survey!
+     <% } %>
+    </form>
 
 
 			<hr>
