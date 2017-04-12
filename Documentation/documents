@@ -298,3 +298,9 @@ Team Meeting #12 Time 5:30pm - 7:00pm March 26
 	• Tashnim experienced errors with the survey feature when testing the pull request.
 	• We met to discuss and debug the error.
 	• Debugged error: issue was that Tashnim's local database was not updated to the one with usernames.
+	
+• Team meeting Apr/12/2017 10:30am - 1: - Everyone
+	• We were discussing how unit testing would need to be implemented.
+	• We were fixing the errors associated with the forum pages.
+	• Planning what errors need to be fixed before the final demo
+
