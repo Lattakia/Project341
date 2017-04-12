@@ -325,7 +325,11 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
                         collectionSurvey.find({Name: surveyMaker['local']['username']}).toArray(function(err, docs){
                               if(err) return;
                               // Send the documents from the database collection to the client to process.
-                              res.render('surveys-students.ejs', {surveyMakerName: profName, survey: docs[0]});
+                              if(docs.length == 0){
+                              	res.render('no-survey.ejs', {surveyMakerName: profName});
+                              } else {
+                                res.render('surveys-students.ejs', {surveyMakerName: profName, survey: docs[0]});
+                          	  }
                               
                         });
                         db.close();
