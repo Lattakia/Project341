@@ -508,22 +508,15 @@ MongoClient.connect(URLSurvey, function(err, db) {
                     // may answer it again.
                     MongoClient.connect(URLMain, function(err, db) {
                          if (err) return
-                          console.log('Connecting to main in survey update')
                          var collectionUsers = db.collection('users');
                          collectionUsers.find({'local.username': name}).toArray(function(err, docs){
 
-                          console.log('finding name')
                             var surveyMaker = docs[0]['local']['firstname'] + " " + docs[0]['local']['lastname'];
                             console.log(surveyMaker)
 
                             MongoClient.connect(URLSurvey, function(err, db) { 
                               if (err) return 
                                 var collectionValues = db.collection('survey_values')
-                              collectionValues.find({surveyMakerName: surveyMaker}).toArray(function(err, docs){
-                                console.log('Finding docs')
-                                console.log(docs);
-                                })
-
                                 collectionValues.update({surveyMakerName: surveyMaker}, {$set: {updated : true}}, function(err, results){
                                   console.log('Updating docs')
                                 })
