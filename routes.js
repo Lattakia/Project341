@@ -325,7 +325,11 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
                         collectionSurvey.find({Name: surveyMaker['local']['username']}).toArray(function(err, docs){
                               if(err) return;
                               // Send the documents from the database collection to the client to process.
-                              res.render('surveys-students.ejs', {surveyMakerName: profName, survey: docs[0]});
+                              if(docs.length == 0){
+                              	res.render('no-survey.ejs', {surveyMakerName: profName});
+                              } else {
+                                res.render('surveys-students.ejs', {surveyMakerName: profName, survey: docs[0]});
+                          	  }
                               
                         });
                         db.close();
@@ -504,22 +508,15 @@ MongoClient.connect(URLSurvey, function(err, db) {
                     // may answer it again.
                     MongoClient.connect(URLMain, function(err, db) {
                          if (err) return
-                          console.log('Connecting to main in survey update')
                          var collectionUsers = db.collection('users');
                          collectionUsers.find({'local.username': name}).toArray(function(err, docs){
 
-                          console.log('finding name')
                             var surveyMaker = docs[0]['local']['firstname'] + " " + docs[0]['local']['lastname'];
                             console.log(surveyMaker)
 
                             MongoClient.connect(URLSurvey, function(err, db) { 
                               if (err) return 
                                 var collectionValues = db.collection('survey_values')
-                              collectionValues.find({surveyMakerName: surveyMaker}).toArray(function(err, docs){
-                                console.log('Finding docs')
-                                console.log(docs);
-                                })
-
                                 collectionValues.update({surveyMakerName: surveyMaker}, {$set: {updated : true}}, function(err, results){
                                   console.log('Updating docs')
                                 })
