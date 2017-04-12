@@ -22,12 +22,26 @@ describe('Test', function() {
 		},
 			response = {
 				redirect : function(path) { console.log(path);}
-			},
+		},
 			next = function(err) {
 				console.log('hi')
-			};
+		};
 
-		routes.checkAuthentication(request, response, next);
+		expect(routes.checkAuthentication(request, response, next)).to.equal(console.log('hi'));
+	});
+
+	it('should call next() if the authentication succeeds', function(){
+		var request = {
+			isAuthenticated : function() {return false;}
+		},
+			response = {
+				redirect : function(path) { console.log(path);}
+		},
+			next = function(err) {
+				console.log('hi')
+		};
+
+		expect(routes.checkAuthentication(request, response, next)).to.equal(console.log("/"));
 	});
 });
 
