@@ -38,23 +38,31 @@
 
         body {
             
-            background-color: #F1F1F1;
-			background-image: url("teacher_survey.jpg");
+             background-color:#666666;
+			/*background-image: url("teacher_survey.jpg");*/
             font: 16px Helvetica, Arial;
 		    background-attachment:fixed;
 	        background-repeat: no-repeat;
 	        background-size: cover;
         }
+        
+        .title{
+				width:100%;
+				text-align:center;
+				display:inline-block;
+				background:rgba(0,0,0,0.5);
+                font-size: 30px;
+                color:rgb(202,181,118);
+        }
 
-        h1{
+       /* h1{
             position: relative;
             font-size:36px !important ;
             text-align:center;
-        }
+        }*/
         h2{
             position: relative;
-            text-align:center;
-            
+            text-align:center; 
         }
         
         .footer {
@@ -69,36 +77,46 @@
         }
 
         
-        #myCanvas
-        {
-            margin-left: 15%;
-            margin-bottom:10%;
-			padding: 50px 20px;
-			background: rgba(202,181,118,0.8); 
+        #myCanvas{
+            /*margin-left: 15%;
+            margin-bottom:10%;*/
+            margin:auto;
+			padding: 30px;
+            padding-right:40px;
+            padding-left:40px;
+            padding-bottom:10px;
+			background: white; 
         }
         
-        #comments
-        {
+        #comments{
             font-size: 22px;
 			text-align: center;
+            color:black;
         }
 		
-		#main{
-			margin-left:320px;
-			padding-bottom: 25px;
-			width: 900px;
-			background:rgba(143,37,57,0.8);
-		}
+        
+        .box{
+				width: 900px;
+				padding: 30px;
+				margin-top: 50px;
+				margin-bottom: 50px;
+				margin-left: auto;
+				margin-right: auto;
+				background:rgba(143,37,57,0.8);
+        }
+        .nav-side-menu{
+            height:1100px;
+        }
     
     </style>
 	
 </head>
 
 <body>
-     <!-- TOP BAR -->
-	<div id="topbar">
-    <img src="logo2.png" id="logo" alt="Logo">
-	</div>
+	<!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div>
 	
 	<div id="wrapper">
 		<div id="sidebar">
@@ -151,8 +169,14 @@
 			</div>
 		</div>
 		<div id="main">
-			<h1>Multiple Choice Questions.</h1>
-			<h2>Number of Responses</h2>
+            
+    <!-- Title -->
+	<div class="title">
+		<h1>Survey Results</h1>
+	</div>
+            
+        <div class="box">
+			<h2>Multiple Choice Questions - Number of Responses</h2>
 			<br>
 			<canvas id="myCanvas" width="600" height="600">Your browser does not support the canvas feature.</canvas>
 			<!-- Script to draw the graph on the canvas. -->
@@ -288,14 +312,16 @@
 					}
 				});
 			</script>
-			<h1>Comments</h1>
+			<h2>Comments</h2>
 			<div id="comments">
 				<% for(var i = 0; i < dbSurveyDocs.length; ++i){%>
 					<p><%= dbSurveyDocs[i]['surveyResponses']['comments'] %></p><br>
 				<% } %>
+                
 			</div>
 		</div>
 	</div>
+    </div>
 
 </body>
 </html>

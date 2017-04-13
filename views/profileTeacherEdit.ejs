@@ -4,7 +4,7 @@
 		<title>Edit Your Profile Information</title>
 
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="allstyles.css">
+		
 		<!-- load bootsrap css -->
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 		<link rel="shortcut icon" href="cc-favicon.png">
@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="libraries/jquery.numeric.min.js"></script>
 		<script type="text/javascript" src="scripts/inputRestriction.js"></script>
 		<script type="text/javascript" src="scripts/profileScript.js"></script>
-		
+		<link rel="stylesheet" type="text/css" href="allstyles.css">
 		<style>
 		
 			body{
@@ -48,7 +48,18 @@
 			label{
 				color: white;
 			}
-			
+			 .nav-side-menu{
+            height:1100px;
+        }
+            
+            a{
+                color:gold;
+                text-decoration:none;
+            }
+            a:hover{
+                color:white;
+                text-decoration:none;
+            }
 			
 		</style>
 
@@ -66,7 +77,12 @@
 	</head>
 
 	<body>
-	<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+        
+        <!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div> 
+        
 	<div id="wrapper">
 		<div id="sidebar">
 		<!-- SIDEMENU -->
@@ -121,7 +137,7 @@
 		<div id="main">
 			<!-- Title -->
 			<div class="title">
-				<h1>Edit Your Profile Information - TEACHER</h1>
+				<h1>Edit Your Profile Information</h1>
 			</div>
 			<div class="content">
 				<strong>Profile Picture:</strong><br/>

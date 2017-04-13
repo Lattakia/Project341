@@ -6,7 +6,7 @@
 
 	<title>Connect Concordia</title>
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="allstyles.css">
+    
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="shortcut icon" href="cc-favicon.png">
@@ -23,7 +23,7 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- load fontawesome -->
     <!-- load fontawesome -->
-	
+	<link rel="stylesheet" type="text/css" href="allstyles.css">
 	
     <style>
 	
@@ -138,23 +138,10 @@
 			margin-right: .5%;
 		}
 				
-		#messages {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-		}
-				
-		#messages li {
-			padding: 5px 10px;
-		}
-				
-		#messages li:nth-child(odd) {
-			background: #eee;
-		}
 				
 		body {
-				background-image: url("background-students.jpg");
-                background-color:#808080;
+				/*background-image: url("background-students.jpg");*/
+                background-color:#666666;
                 background-attachment:fixed;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -169,7 +156,7 @@
 			right:3.5%;
 			width:70%;
 			padding:80px;
-			font-size:22px;
+			font-size:18px;
 			text-align: justify;
 			color:white;
 			background:rgba(143,37,57,0.8);
@@ -189,7 +176,7 @@
 		}
 		
 		h1{
-			font-size: 50px;
+			font-size: 30px;
 			color:rgb(202,181,118);
 		}
 		
@@ -215,6 +202,22 @@
 			-webkit-transition-duration: 0.4s; /* Safari */
 			transition-duration: 0.4s;
 		}
+        
+        a{
+                color:gold;
+                text-decoration:none;
+        }
+        a:hover{
+                color:white;
+                text-decoration:none;
+        }
+        label{
+            font-size:16px;
+        }
+        .nav-side-menu{
+            height:2800px;
+        }
+
 	
     </style>
 </head>
@@ -222,7 +225,12 @@
 <body>
 
 
-	<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+		<!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div>
+    
+    
 	<div id="wrapper">
 		<div id="sidebar">
 		<!-- SIDEMENU -->

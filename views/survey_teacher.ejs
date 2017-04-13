@@ -23,6 +23,12 @@
             padding: 3px;
             width: 100%;
             font-size:20px;
+            
+        }
+        
+        #displayall{
+           left: 9%;
+		position:relative;
         }
         
         form input {
@@ -113,12 +119,27 @@
 		position:relative;
 	
 	}
+        a{
+            color:gold;
+            text-decoration:none;
+        }
+        a:hover{
+            color:white;
+            text-decoration:none;
+        }
+        
+        .nav-side-menu{
+            height:1050px;
+        }
 	
     </style>
 </head>
 
 <body>
-	<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+		<!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div>
 
 	<div id="wrapper">
 		<div id="sidebar">
@@ -178,15 +199,17 @@
 				<div class="info">
 				
 					<div id="form">
+                        <div id="displayall">
 						<form action="/survey_result" method="get">
-							<button type="submit" class="button3">Survey Result</button>
+							<button type="submit" class="button3">Display survey results</button>
+                    </div>
 						</form>
 					</div>
 					
 					<hr>
 					
-					<h1><span></span> Create Survey</h1> 
-					<h2><u>Teacher: <%= teacherName %></u></h2>
+					<h1><span class="glyphicon glyphicon-pencil"></span> Create Survey</h1> 
+					<h3><u>Teacher: <%= teacherName %></u></h3>
 					
 					<!-- show message when the survey is updated -->
 
