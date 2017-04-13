@@ -16,15 +16,31 @@ describe('Test', function() {
 		expect(value).to.equal(0);
 	});
 
-	it('should call next() if the authentication succeeds', function(){
+	it('expects rendering same teacher name based on username', function(){
 		var request = {
 			session : {session : {title : "Chasiwpaw"}}
 		},
 			response = {
-				render : function(path, obj) {console.log(obj)}
+				render : function(path, obj) {console.log(obj);}
+		},
+			testObj = {
+				teacherName: 'Andrew Feng'
 		};
 
-		expect(routes.checkPerson(request, response)).to.equal(console.log({teacherName: "Andrew Feng"}));
+		expect(routes.checkPerson(request, response)).to.equal(console.log(testObj));
+	});
+
+	it('expects reponse to be called', function(){
+		var request = {
+			session : {session : {title : "LapYok"}}
+		},
+			response = {
+				render : function(path, obj) {console.log(obj);}
+		};
+
+		routes.checkPerson(request, response);
+		expect(response).to.exist;
+		expect(response).to.be.not.empty;
 	});
 
 });
