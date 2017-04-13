@@ -19,9 +19,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-	
-		
+
+		html {
+			height: 100%;
+		}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            
             background-color: #F1F1F1;
             font: 16px Helvetica, Arial;
 		    background-attachment:fixed;
@@ -31,26 +40,113 @@
             background-color:#666666;
         }
 
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 45px;
+            width: 100%;
+        }
 
-		h1{
-			font-size: 40px;
-			color:rgb(202,181,118);
-		}
-    
-   
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+
+        #user{
+            color:white;
+            float:right;
+            position:relative;
+            font: 16px Helvetica, Arial;
+        }
+		
+
+		
+		/*.content{
+			position:relative;
+			margin: 0 auto;
+			min-height:750px;
+            height:100%;
+            color:black;
+            margin:0;
+            padding:0;
+		}*/
+
+        .content{
+            min-height:750px;
+            height:100%;
+            color:black;
+            margin:0;
+            padding:0;
+        }
+        .info{
+			position: relative;
+			margin-left:30px;
+			margin-top: 250px;
+			width: 60%;
+            height:600px;
+            margin: 0 auto;
+            padding:200px;
+            font-size:22px;
+            text-align: justify;
+            color:black;
+            background:#FFFFFF;
+        }
+        h1{
+            font-size:36px !important ;
+            text-align:center;
+        }
+        .info ul{
+            list-style-type: square;
+        }
+        .footer {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 1rem;
+          background-color: #efefef;
+          text-align: center;
+          color:grey;
+        }
+
+        .button {
+            background-color: rgb(143,37,57);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            color: black;
+            text-decoration: none;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
 		
 		.col-sm-6{
-			background:rgba(143,37,57,0.8);
-			width: 650px;
-			margin-left: 25%;
-			margin-top: 50px;
-			padding:10px 40px 10px 40px;
+			background-color:#FFFFFF;
+			margin-left: 30%;
+			margin-top: 150px;
+			padding:80px;
 			border:1px;
-			color:white;
-			font-size: 20px;
+			border-color:#808080;
+            color:black;
 			
-		}
-	
+	}
 
     </style>
 </head>
@@ -58,106 +154,154 @@
 <body>
 
     <!-- TOP BAR -->
-		<!-- topbar -->
-    <div id="topbar">
-        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
-        
-		<div id="user">
-			<div class="dropdown">
-				<button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
-				<script>
-				  var firstname = <%- JSON.stringify(firstname)%>;
-				  var lastname = <%- JSON.stringify(lastname)%>;
-				  document.write("Signed in as "+firstname+" "+lastname);
-				</script>
-				<span class="caret"></span></button>
-				<ul class="dropdown-menu">
-					<li><a href="/logout">Logout</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<div id="topbar">
+    <img src="logo2.png" id="logo" alt="Logo">
+    <div id="user">
 
+    <div class="dropdown">
+
+      <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
+
+          <script>
+              
+              var firstname = <%- JSON.stringify(firstname)%>;
+              var lastname = <%- JSON.stringify(lastname)%>;
+              document.write("Signed in as "+firstname+" "+lastname);
+          </script>
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+</div>
+</div>
 
     <script>
         $('#user1').onclick(function() {
-			$('#user1').css({
-			'background-color':'rgb(143,37,57)',
-			'border':'none',
-			});
-		});
+    $('#user1').css({
+        'background-color':'rgb(143,37,57)',
+        'border':'none',
+    });
+});
     </script>
-    
-	<div id="wrapper">
-		<div id="sidebar">
-		<!-- SIDEMENU -->
-			<div class="nav-side-menu">
-			<div class="brand">Navigation</div>
-			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-		  
-				<div class="menu-list">
-		  
-					<ul id="menu-content" class="menu-content collapse out">
-						<li>
-						  <a href="/main">
-						  <i class="fa fa-dashboard fa-lg"></i> Dashboard
-						  </a>
-						</li>
 
-						<li>
-						  <a href="/chat">
-						  <i class="fa fa-users fa-lg"></i> Chat with Professor/Student
-						  </a>
-						</li>
-						
-						<li>
-						  <a href="/forum">
-						  <i class="fa fa-users fa-lg"></i> Forum
-						  </a>
-						</li>
-						
-						<li>
-		                  <a href="/surveys">
-		                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
-		                  </a>
-		                </li>
+<!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="/main">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
 
-						<li>
-							<a href="/editProfile">
-							<i class="fa fa-user fa-lg"></i> My Profile
-							</a>
-						</li>
-						  
-						<li>
-						  <a href="/logout">
-						  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
-						  </a>
-						</li>
-		 
-					</ul>
-				</div>
-			</div>
-		</div>
-        
-        
-		<div id="main">
-			<div class="title">
-				<h1>Welcome to Connect Concordia!</h1>
-			</div>
-			<div class="col-sm-6">
-					<!--<h1> <b>Welcome to Connect Concordia!</b></h1>-->
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="/account-professor">Professor Appointments</a></li>
+                    <li><a href="/chat">Chat with Professor/Student</a></li>
+                    <li><a href="/private-chat">Private Chat</a></li>
+                </ul>
+				
+				<li>
+                  <a href="/forum">
+                  <i class="fa fa-users fa-lg"></i> Forum
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/surveys-students">
+                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+                  </a>
+                </li>
 
-					<br/>
-					 <ul>
-						<li>An appointment scheduler.</li><br/>
-						<li>An instant messaging system between students and teachers.</li><br/>
-						<li>A feature that allows professors to request feedback from students using surveys.</li><br/>
-						<li>A forum section, where professors can post public questions using keywords denoted with hash tags.</li>
-						</ul>
-					<br>
-			</div>
-		</div>
-	</div>
+                 <li>
+                  <a href="/editProfile">
+                  <i class="fa fa-user fa-lg"></i> My Profile
+                  </a>
+                  </li>
+				  
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-user fa-lg"></i> Search Users
+                  </a>
+                  </li>
+				  
+				  <li>
+                  <a href="/logout">
+                  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+                  </a>
+                  </li>
+
+                  <li>
+                  <a href="/survey_selection">
+                  <span class="fa fa-user"></span><span id ="surveyselect"> Survey Selection</span>
+                  </a>
+                  </li>
+ 
+            </ul>
+     </div>
+</div>
+
+<!--
+<div  class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="nav-side-menu">
+                        <div class="brand">Brand Logo</div>
+                        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+                        <div class="menu-list">
+                            <ul id="menu-content" class="menu-content collapse out">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                                    <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                                </li>
+                                <ul class="sub-menu collapse" id="new">
+                                    <li>New New 1</li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <h1>Welcome To Dashboard Panel :)</h1>
+                    <p>
+                        this  is test text.this  is test text.this  is test text.this  is test text.
+                        this  is test text.this  is test text.this  is test text.this  is test text.
+                        this  is test text.this  is test text.this  is test text.this  is test text.
+                        this  is test text.this  is test text.this  is test text.this  is test text.
+                        this  is test text.this  is test text.
+                    </p>
+                </div>
+            </div>
+ </div>
+-->
+
+<div class="col-sm-6">
+		<h1> <b>Welcome to Connect Concordia!</b></h1>
+
+		<br/>
+		 <ul>
+			<li>An appointment scheduler.</li>
+			<li>An instant messaging system between students and teachers.</li>
+			<li>A feature that allows professors to request feedback from students using surveys.</li>
+			<li>A forum section, where professors can post public questions using keywords denoted with hash tags.</li>
+			</ul>
+		<br>
+</div>
+
+
+<!--
+<div class="footer">&#169; 2017 SOEN 341</div>-->
 
 
 
