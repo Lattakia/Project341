@@ -1,20 +1,12 @@
 /* Dependencies */
 var chai = require('chai');
-var sinon = require('sinon');
 var routes = require('../routes.js');
 
 /* Assertion Styles */
-var assert = chai.assert;
 var expect = chai.expect;
 
-/* Specifying function variable */
-
 /* Tests */
-describe('Test', function() {
-	it('should be successful', function(){
-		var value = 0;
-		expect(value).to.equal(0);
-	});
+describe('Test checkPerson', function() {
 
 	it('expects rendering same teacher name based on username', function(){
 		var request = {
