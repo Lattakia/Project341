@@ -282,3 +282,25 @@ Team Meeting #12 Time 5:30pm - 7:00pm March 26
 	• User name seperated from E-mail
 	• meeting for backend members saturday 10 AM (refactoring and testing code)
 	• New main page design (Cynthia)
+
+• Team meeting Apr/1/2017 12:00 am - 3:00 pm - Ahmad, Claudia, Ali, Fatin, Andrew, Tashnim
+	• Meeting for backend team to refactor code - refactored routes.js
+	• Couldn't split routes.js into multiple files, so decided to keep all code in one file but split with comments.
+	• Tashnim worked on page designs.
+	
+• Team meeting Apr/9/2017 3:00pm - 5:00 - Hanna, Ahmad, Claudia, Tashnim, Andrew
+	• Discussed what needs to be done for the project: unit testing, static analysis, GitHub clean-up, report and presentation, acceptance tests.
+	• Disucessed what needs to be done for the code: finish up survey features, designs and fix design issues, code clean-up, and other small bugs and issues.
+	• Decided to drop appointments, based on our progress and velocity.
+	• Need to prepare demo for the website.
+	
+• Team meeting Apr/11/2017 1:30pm - 2:30 - Ahmad and Tashnim
+	• Tashnim experienced errors with the survey feature when testing the pull request.
+	• We met to discuss and debug the error.
+	• Debugged error: issue was that Tashnim's local database was not updated to the one with usernames.
+	
+• Team meeting Apr/12/2017 10:30am - 1: - Everyone
+	• We were discussing how unit testing would need to be implemented.
+	• We were fixing the errors associated with the forum pages.
+	• Planning what errors need to be fixed before the final demo
+
