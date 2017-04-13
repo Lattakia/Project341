@@ -21,10 +21,10 @@ describe('Test', function() {
 			session : {session : {title : "Chasiwpaw"}}
 		},
 			response = {
-				redirect : function(path) { console.log(path);}
+				render : function(path, obj) {console.log(obj)}
 		};
 
-		routes.checkPerson(request, response);
+		expect(routes.checkPerson(request, response)).to.equal(console.log({teacherName: "Andrew Feng"}));
 	});
 
 });
