@@ -67,7 +67,7 @@ app.use(bodyParser()); // get information from html forms
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-	app.use(session({
+    app.use(session({
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
@@ -89,7 +89,7 @@ var mkdirp = require('mkdirp');
 mkdirp(__dirname + '/views/ProfilePictures');
 
 // routes ======================================================================
-require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./routes.js').runApp(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.use(require('express').static('views'));
 
@@ -128,3 +128,5 @@ io.on('connection', function (socket) {
 //        }
 //    });
 //});
+
+module.exports = http;
