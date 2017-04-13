@@ -686,7 +686,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bo
     {
 
         req.session.session = {
-            title: req.body.email
+            title: req.body.username
         };
 
         //var temp = app.get('data').title;
