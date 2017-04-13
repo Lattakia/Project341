@@ -1,6 +1,8 @@
 module.exports = {
 
-	'url' : 'mongodb://localhost/main'
+	'url' : 'mongodb://localhost/main',
+    
+    'chat': 'mongodb://localhost/chat'
 
 };
 
