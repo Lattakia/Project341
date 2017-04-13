@@ -111,6 +111,43 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
     },
 
+    displaySurveyResults: function(req,res){
+
+      var MongoClient = require('mongodb').MongoClient
+            var URLMain = 'mongodb://localhost:27017/main'
+            var URLSurvey = 'mongodb://localhost:27017/surveydatabase'
+
+            var profSurveyMaker = '';
+            MongoClient.connect(URLMain, function(err, db){
+                  if(err) return;
+
+                  var collection = db.collection('users');
+                  var profSurveyMaker = req.session.session.title;
+
+                  collection.find({'local.username': profSurveyMaker}).toArray(function(err, docs){
+                    if(err) return;
+
+                      var profSurveyMakerName = docs[0]['local']['firstname'] + " " + docs[0]['local']['lastname'];
+                      MongoClient.connect(URLSurvey, function(err, db) {
+                        if (err) return
+
+                        var collectionSurvey = db.collection('survey_values');
+
+                        collectionSurvey.find({surveyMakerName : profSurveyMakerName}).toArray(function(err, docs){
+                              if(err) return;
+                              // Send the documents from the database collection to the client to process.
+                              res.render('survey-results.ejs', {dbSurveyDocs: docs});
+                              db.close();
+                        });
+
+                      });
+
+                  });
+
+                db.close();
+            });
+    },
+
   runApp : function(app, passport) {
 
     var MongoClient = require('mongodb').MongoClient
@@ -213,13 +250,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
         res.render('login.ejs', { message: req.flash('loginMessage')
         });
     });
-
-
-    //  app.get('/login', function(req, res) {
-
-    //     res.render('login.ejs', { message: req.flash('loginMessage')
-    //     });
-    // });
 
   app.get('/submitted', function(req, res) {
 
@@ -343,13 +373,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
     app.get('/surveys',appObj.checkAuthentication,appObj.checkPerson,function(req,res) {
 
-        // req.session.session = {
-        //     title: req.body.username
-        // };
-
-        // var temp = app.get('data').title;
-        // console.log(app.get('data'));
-
     });
 
     app.get('/surveys-students',appObj.checkAuthentication, function(req, res){
@@ -416,41 +439,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
     });
 });
 
-    app.get('/survey_result', function(req,res){
-      var MongoClient = require('mongodb').MongoClient
-            var URLMain = 'mongodb://localhost:27017/main'
-            var URLSurvey = 'mongodb://localhost:27017/surveydatabase'
-
-            var profSurveyMaker = '';
-            MongoClient.connect(URLMain, function(err, db){
-                  if(err) return;
-
-                  var collection = db.collection('users');
-                  var profSurveyMaker = req.session.session.title;
-
-                  collection.find({'local.username': profSurveyMaker}).toArray(function(err, docs){
-                    if(err) return;
-
-                      var profSurveyMakerName = docs[0]['local']['firstname'] + " " + docs[0]['local']['lastname'];
-                      MongoClient.connect(URLSurvey, function(err, db) {
-                        if (err) return
-
-                        var collectionSurvey = db.collection('survey_values');
-
-                        collectionSurvey.find({surveyMakerName : profSurveyMakerName}).toArray(function(err, docs){
-                              if(err) return;
-                              // Send the documents from the database collection to the client to process.
-                              res.render('survey-results.ejs', {dbSurveyDocs: docs});
-                              db.close();
-                        });
-
-                      });
-
-                  });
-
-                db.close();
-            });
-    });
+    app.get('/survey_result', appObj.checkAuthentication, appObj.displaySurveyResults);
 
     app.get('/teacher_submitted', function(req,res){
     
