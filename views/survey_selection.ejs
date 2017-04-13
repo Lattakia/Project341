@@ -70,13 +70,25 @@
     }
 
   }
+        #buttons{
+            background-color:rgb(143,37,57) !important;
+        }
 
-  .button:hover {
-      color: black;
-      text-decoration: none;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-  }
+      .button:hover {
+          color: black;
+          text-decoration: none;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+      }
+    
+        a{
+                color:gold;
+                text-decoration:none;
+        }
+        a:hover{
+                color:white;
+                text-decoration:none;
+        }
 
   
     </style>
@@ -84,7 +96,11 @@
 
 <body>
 
-<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+	<!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div> 
+    
 <div id="wrapper">
 	<div id="sidebar">
 	<!-- SIDEMENU -->
@@ -147,7 +163,7 @@
 				<form action="/student_selection" method="get">
 			<% for(var i = 0; i<data.length; i++) { %>
 			  <div>
-				  <button type="submit" formmethod="get" formaction="/surveys-students" name="teacher" value="<%= data[i].fname %> <%= data[i].lname %>" class="btn btn-primary btn-lg btn-block">Teacher: <%= data[i].fname %> <%= data[i].lname %></button>
+				  <button type="submit" formmethod="get" formaction="/surveys-students" name="teacher" value="<%= data[i].fname %> <%= data[i].lname %>" class="btn btn-primary btn-lg btn-block" id="buttons">Teacher: <%= data[i].fname %> <%= data[i].lname %></button>
 			  </div>
 			  <br>
 			<% } %>

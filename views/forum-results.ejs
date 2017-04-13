@@ -3,8 +3,7 @@
 <head>
 	
 	<title>Connect Concordia</title>
-
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="allstyles.css">
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -24,22 +23,38 @@
 	
 	<style>
     body{
-		background-image: url("http://www.concordia.ca/alumni-friends/giving-to-concordia/_jcr_content/content-main/image_556643419.img.jpg/1469125227741.jpg");
-        background-color:#808080;
-        background-attachment:fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
-		font-family: "Lato", sans-serif;
-		color: white;
+			/*background-color:#666666;*/
+			background-color:#808080;
+			color: white !important;
     }
       
+    #topbar{
+		width:100%;
+		height:100px;
+		background-color:rgb(143,37,57);
+	}
     .container{
         margin-left:400px;
-    }   
+    }
+            
+	#logo{
+		z-index: 1000;
+		width:480px;
+		height:100px;
+	}
+			
+	.title{
+			width:100%;
+			/*text-align:center;*/
+			display:inline-block;
+			/*background:rgba(143,37,57,0.8);*/
+			background:rgba(0,0,0,0.5);
+        text-align: center;
+	}
 	
 	h1{
-		font-size: 50px;
-		color:rgb(202,181,118);
+				font-size: 30px;
+				color:rgb(202,181,118);
     }
 		
 	h2{
@@ -48,18 +63,24 @@
 	}
 	
 	#sideinfo{
-		color:rgb(202,181,118);
+		color:black;
 		font-style: italic;
 	}
+	  
+    #user{
+        color:white;
+        float:right;
+        position:relative;
+        font: 16px Helvetica, Arial;
+    }
         
-   .col-sm-3{
+   /* .col-sm-3{
         background-color:rgba(143,37,57,0.8);
         padding:20px;
         width:300px;
         margin-right:60px;
         border-radius: 10px;
-    }
-
+    }*/
 
 	
     .label{
@@ -90,10 +111,6 @@
 		color:white !important;
 	}
 	
-	a:hover{
-		color:rgb(143,37,57) !important;
-	}
-	
 	.red{
 		background-color:rgb(143,37,57);
 		border-radius:5px;
@@ -118,17 +135,25 @@
     .topic{
          color:white;   
     }    
-
-
-	
-	.container-fluid{
-		display: inline-block;
-		position: relative;
-		margin-left: 50px;
-	}
-	
-	
-
+        
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+        
+    #sideinfo{
+        color:rgb(202,181,118);
+        margin-top:5px;
+    }
+        
+            
+    .nav-side-menu{
+            height:2000px;
+    }
+        
+        
 	</style>
 	
 </head>
@@ -138,12 +163,12 @@
 	<div id="topbar">
 		<img src="logo2.png" id="logo" alt="Logo">
 	</div>
-	
-    <div id="wrapper">
-		<div id="sidebar">
-		<!-- SIDEMENU -->
-			<div class="nav-side-menu">
-			<div class="brand">Navigation</div>
+    
+    <div class="wrapper">
+    
+<!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
 			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 		  
 				<div class="menu-list">
@@ -186,83 +211,98 @@
 						</li>
 		 
 					</ul>
-				</div>
-			</div>
-		</div>
-		<div id="content">
-			<div id="main">	
-				<div class="title">  
-					<h2>Search Results for : <span class="topic">
-						<script>
-							 var tag = <%- JSON.stringify(tag)%>;
-							 document.write(tag);
-						</script></span></h2> 
-				</div>
-			<!-- sidebar --> 
-			<br><br>
-				<div class="container-fluid">
-					<div class="row content">
-						<div class="col-sm-3 sidenav">
-							<form action="/forum-submitted">
-								<h3>Want to find information on a certain topic?</h3>
-								See what your professors posted on the subject!
-								<br><br>
-								<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
-								<div id="sideinfo">
-                  - Use # + the subject you're looking for.<br>
-                  - Separate each tag by a space<br>
-                  - Enter a maximum of 10 search tags!
-                </div>
-								<br>
-								<input type="submit" name = "tags" class="btn btn-default" value="Search">
-								<br>
-								<hr>
-							</form>
-							<form action="/forum-submitted-3">
-								<input type="submit" name = "tags" class="btn btn-default" value="Display All">
-							</form>
-							<br> 
-						</div>
-
-						<!-- Top black bar -->
-					 
-						
-						<div class="col-sm-3">      
-							<div id="post-container">
-							  <!--<div class="post">
-							  <h2>I Love Food</h2>
-							  <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
-							  <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-							  <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-							  </div>
-								<hr>-->
-							</div> 
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-
-			
-		   <!-- POST RESULTS -->
-			<script>
-				var html = '';
-
-				// first we generating our html in the loop
-				var search = <%- JSON.stringify(tag)%>;
-				var results = <%- JSON.stringify(path)%>;
-				
-				
-				for(var i=0 ; i< results.length ; i++) {
-					html += "<div class='post'><h2>" + results[i].title + "</h2><h5><span class='glyphicon glyphicon-time'></span> Posted by <a href='/profiles/" + results[i].username + "'>" +  results[i].username + "</a> "+results[i].date+ " </h5><h5><span class='label label-danger'>" + results[i].tags + "</span></h5><p>" + results[i].posted + "</p></div><hr>"
-				}
-				// next we're inserting html into block with ID accordion
-				document.getElementById("post-container").innerHTML = html;
-			</script> 
-		
-		</div>
+    </div>
+</div>
+    
+<!-- small sidebar --> 
+    <div id="main">
+        
+        <!-- title -->
+	<div class="title">  
+		<h1>Search Results for : <span class="topic">
+            <script>
+                 var tag = <%- JSON.stringify(tag)%>;
+                 document.write(tag);
+            </script></span></h1> 
 	</div>
+    
+    
+<br><br>
+   
+ 
+    <div class="container-fluid">
+	  <div class="row content">
+		<div class="col-sm-3 sidenav">
+            <form action="/forum-submitted">
+		  <h3>Want to find information on a certain topic?</h3>
+			See what your professors posted on the subject!
+			<br><br>
+		  <input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
+            <div id="sideinfo">
+            - Use # + the subject you're looking for.<br>
+            - Separate each tag by a space<br>
+            - Enter a maximum of 10 search tags!
+            </div>
+            <br>
+		  <input type="submit" name = "tags" class="btn btn-default" value="Search">
+            <br>
+
+          <hr>
+          <!-- display all -->       
+        </form>
+         <form action="/forum-submitted-3">
+        <input type="submit" name = "tags" class="btn btn-default" value="Display All">
+        </form>
+        <br>
+		  
+		</div>
+
+    <!-- Top black bar --> 
+      <h4><small>SEARCH RESULTS FOR:<span id="topic2">
+			<script>
+			var search = <%- JSON.stringify(tag)%>;
+			document.write(search);
+			</script>
+		</span></small></h4>
+      <hr>
+         
+	        
+      <div class="col-sm-9">      
+          <div id="post-container">
+          <!--<div class="post">
+          <h2>I Love Food</h2>
+          <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
+          <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
+          <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+            <hr>-->
+          </div> 
+    </div>
+        </div>
+    </div>
+    </div>
+
+
+        
+   <!-- POST RESULTS -->
+    <script>
+        var html = '';
+
+        // first we generating our html in the loop
+        var search = <%- JSON.stringify(tag)%>;
+        var results = <%- JSON.stringify(path)%>;
+        
+        
+        for(var i=0 ; i< results.length ; i++) {
+            html += "<div class='post'><h2>" + results[i].title + "</h2><h5><span class='glyphicon glyphicon-time'></span> Posted by "+results[i].username+" "+results[i].date+ " </h5><h5><span class='label label-danger'>" + results[i].tags + "</span></h5><p>" + results[i].posted + "</p></div><hr>"
+        }
+        // next we're inserting html into block with ID accordion
+        document.getElementById("post-container").innerHTML = html;
+    </script> 
+	
+</div>
+    </div>
+	
 </body>
 
 </html>

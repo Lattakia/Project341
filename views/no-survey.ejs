@@ -4,6 +4,7 @@
 <head>
     <title>Connect Concordia</title>
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="allstyles.css">
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="shortcut icon" href="cc-favicon.png">
@@ -11,7 +12,7 @@
     <style>
         
         body {
-			background-image: url("background-students.jpg");
+			background-image: url("teacher_survey.jpg");
 			background-attachment:fixed;
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -42,13 +43,77 @@
 			padding: 0;
 			color: white;
 		}
+        a{
+                color:gold;
+                text-decoration:none;
+        }
+        a:hover{
+                color:white;
+                text-decoration:none;
+        }
 		
     </style>
 </head>
 
 <body>
 
-	<div id="topbar"><img src="logo2.png" id="logo" alt="Logo"></div>
+	<!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div>
+    
+    
+	<div id="wrapper">
+		<div id="sidebar">
+		<!-- SIDEMENU -->
+			<div class="nav-side-menu">
+			<div class="brand">Navigation</div>
+			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+		  
+				<div class="menu-list">
+					<ul id="menu-content" class="menu-content collapse out">
+						<li>
+						  <a href="/main">
+						  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+						  </a>
+						</li>
+
+						<li>
+						  <a href="/chat">
+						  <i class="fa fa-users fa-lg"></i> Chat with Professor/Student
+						  </a>
+						</li>
+						
+						<li>
+						  <a href="/forum">
+						  <i class="fa fa-users fa-lg"></i> Forum
+						  </a>
+						</li>
+						
+						<li>
+		                  <a href="/surveys">
+		                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+		                  </a>
+		                </li>
+
+						<li>
+							<a href="/editProfile">
+							<i class="fa fa-user fa-lg"></i> My Profile
+							</a>
+						</li>
+						  
+						<li>
+						  <a href="/logout">
+						  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+						  </a>
+						</li>
+		 
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="main">
 
 	<div class="content">
 		<div class="info">
