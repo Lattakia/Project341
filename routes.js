@@ -256,6 +256,138 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
     });
 },
 
+ getUserUsername : function (req, res,db) {
+  var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
+
+MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('users');
+    var person = req.session.session.title;//app.get('data').title;
+
+    // Locate all the entries using find
+    collection.find().toArray(function(err, results) {
+        var resa = results;
+        var saveindex = 10;
+        for(i=0;i<resa.length;i++)
+        {
+            if(person == resa[i]['local']['username'])
+            {
+                    saveindex = i;
+            }
+
+        }
+
+
+        var usernameofuser = resa[saveindex]['local']['username'];
+        var accounttypeuser = resa[saveindex]['local']['accounttype'];
+        //console.log(usernameofuser);
+
+
+        if(accounttypeuser == "student")
+        {
+           // here, we replace the username with the values returned from the find query above. For the query, we need to select
+           res.render('forum-student.ejs');
+        }
+        else if (accounttypeuser == "teacherta")
+        {
+           res.render('forum-teacher.ejs');
+            // render prof page if account is a teacher/ta
+
+        }
+        db.close();
+        });
+
+});
+
+
+    },
+
+    displaySurveySubmissionResult : function(req,res) {
+        console.log(req.query.radioo)
+         console.log(req.query.mylittletextbox)
+          console.log(req.query.fname)
+    var MongoClient = require('mongodb').MongoClient
+
+    var URLMain = 'mongodb://localhost:27017/main';
+    var URLSurvey = 'mongodb://localhost:27017/surveydatabase';
+
+    var studentUserNameVal = '';
+    // Find currently logged in student
+    MongoClient.connect(URLMain, function(err, db){
+        if(err) return;
+
+        var collection = db.collection('users');
+        var person = req.session.session.title;
+
+        // Locate all the entries using find
+        collection.find().toArray(function(err, results) {
+            var resa = results;
+            var saveindex = 0;
+            
+            for(var i=0;i<resa.length;i++)
+            {
+                if(person == resa[i]['local']['email'])
+                {
+                        saveindex = i;
+                }
+               
+            }
+            studentUserNameVal = resa[saveindex]['local']['username'];
+            db.close();
+    });
+
+      MongoClient.connect(URLSurvey, function(err, db) {
+        if (err) return
+        var surveyMaker = req.query.surveyMaker;
+        var collection = db.collection('survey_values');
+        var surveyResponsesVal = {
+          question1: req.query.radio1,
+          question2: req.query.radio2, 
+          question3: req.query.radio3, 
+          question4: req.query.radio4, 
+          question5: req.query.radio5, 
+          comments: req.query.mylittletextbox};
+        var surveyResponsesObj = {
+          studentUserName: studentUserNameVal,
+          surveyMakerName : surveyMaker,
+          updated: false,
+          surveyResponses: surveyResponsesVal
+        };
+
+        // Will be compared with each other to see if the student has answered the survey or not
+        var oldSurveyResults = null; // Survey results before any operation
+        var newSurveyResultsInserted = null; // Survey results after first findAndModify
+        var newSurveyResultsUpdated = null; // Survey results after second findAndModify
+
+        // Get unmodified document
+        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
+          oldSurveyResults = results[0];
+        });
+
+          // If a response entry for a student does not exist at all, insert it.
+        collection.update({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}, {$setOnInsert: {updated: false, surveyResponses: surveyResponsesVal}}, {upsert: true});
+
+        // Get inserted document
+        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
+          newSurveyResultsInserted = results[0];
+        });
+
+        // Otherwise, if a response for a student exists but the survey has been updated, update the values and set the update flag to false.
+        collection.update({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker, updated: true}, {$set: {updated: false, surveyResponses: surveyResponsesVal}});
+
+        // Get updated document
+        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
+          newSurveyResultsUpdated = results[0];
+          res.render('ss-results', {oldResults: JSON.stringify(oldSurveyResults), insertedResults: JSON.stringify(newSurveyResultsUpdated), updatedResults: JSON.stringify(newSurveyResultsUpdated)});
+        });
+
+        db.close();
+      });
+    });
+},
+
   runApp : function(app, passport) {
 
     var MongoClient = require('mongodb').MongoClient
@@ -543,97 +675,14 @@ MongoClient.connect(URLSurvey, function(err, db) {
 
     });
 
-    app.get('/surveys-s2',appObj.checkAuthentication,function(req,res)
-        {
-        console.log(req.query.radioo)
-         console.log(req.query.mylittletextbox)
-          console.log(req.query.fname)
-    var MongoClient = require('mongodb').MongoClient
-
-    var URLMain = 'mongodb://localhost:27017/main';
-    var URLSurvey = 'mongodb://localhost:27017/surveydatabase';
-
-    var studentUserNameVal = '';
-    // Find currently logged in student
-    MongoClient.connect(URLMain, function(err, db){
-        if(err) return;
-
-        var collection = db.collection('users');
-        var person = req.session.session.title;
-
-        // Locate all the entries using find
-        collection.find().toArray(function(err, results) {
-            var resa = results;
-            var saveindex = 0;
-            
-            for(var i=0;i<resa.length;i++)
-            {
-                if(person == resa[i]['local']['email'])
-                {
-                        saveindex = i;
-                }
-               
-            }
-            studentUserNameVal = resa[saveindex]['local']['username'];
-            db.close();
-    });
-
-      MongoClient.connect(URLSurvey, function(err, db) {
-        if (err) return
-        var surveyMaker = req.query.surveyMaker;
-        var collection = db.collection('survey_values');
-        var surveyResponsesVal = {
-          question1: req.query.radio1,
-          question2: req.query.radio2, 
-          question3: req.query.radio3, 
-          question4: req.query.radio4, 
-          question5: req.query.radio5, 
-          comments: req.query.mylittletextbox};
-        var surveyResponsesObj = {
-          studentUserName: studentUserNameVal,
-          surveyMakerName : surveyMaker,
-          updated: false,
-          surveyResponses: surveyResponsesVal
-        };
-
-        // Will be compared with each other to see if the student has answered the survey or not
-        var oldSurveyResults = null; // Survey results before any operation
-        var newSurveyResultsInserted = null; // Survey results after first findAndModify
-        var newSurveyResultsUpdated = null; // Survey results after second findAndModify
-
-        // Get unmodified document
-        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
-          oldSurveyResults = results[0];
-        });
-
-          // If a response entry for a student does not exist at all, insert it.
-        collection.update({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}, {$setOnInsert: {updated: false, surveyResponses: surveyResponsesVal}}, {upsert: true});
-
-        // Get inserted document
-        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
-          newSurveyResultsInserted = results[0];
-        });
-
-        // Otherwise, if a response for a student exists but the survey has been updated, update the values and set the update flag to false.
-        collection.update({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker, updated: true}, {$set: {updated: false, surveyResponses: surveyResponsesVal}});
-
-        // Get updated document
-        collection.find({studentUserName: studentUserNameVal, surveyMakerName: surveyMaker}).toArray(function(err, results){
-          newSurveyResultsUpdated = results[0];
-          res.render('ss-results', {oldResults: JSON.stringify(oldSurveyResults), insertedResults: JSON.stringify(newSurveyResultsUpdated), updatedResults: JSON.stringify(newSurveyResultsUpdated)});
-        });
-
-        db.close();
-      });
-    });
-});
+    app.get('/surveys-s2',appObj.checkAuthentication, appObj.displaySurveySubmissionResult);
 
     
 var bodyParser = require('body-parser'); 
 app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
-    app.get('/forum',appObj.checkAuthentication,getuserUsername,function(req,res)
+    app.get('/forum',appObj.checkAuthentication,appObj.getUserUsername,function(req,res)
     {
 
         req.session.session = {
@@ -645,55 +694,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bo
 
 
     });
-
-    function getuserUsername(req, res,db)
-    {
-  var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
-
-MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
-    if(err) throw err;
-
-    var collection = db.collection('users');
-    var person = req.session.session.title;//app.get('data').title;
-
-    // Locate all the entries using find
-    collection.find().toArray(function(err, results) {
-        var resa = results;
-        var saveindex = 10;
-        for(i=0;i<resa.length;i++)
-        {
-            if(person == resa[i]['local']['username'])
-            {
-                    saveindex = i;
-            }
-
-        }
-
-
-        var usernameofuser = resa[saveindex]['local']['username'];
-        var accounttypeuser = resa[saveindex]['local']['accounttype'];
-        //console.log(usernameofuser);
-
-
-        if(accounttypeuser == "student")
-        {
-           // here, we replace the username with the values returned from the find query above. For the query, we need to select
-           res.render('forum-student.ejs');
-        }
-        else if (accounttypeuser == "teacherta")
-        {
-           res.render('forum-teacher.ejs');
-            // render prof page if account is a teacher/ta
-
-        }
-        db.close();
-        });
-
-});
-
-
-    }
 
     app.get('/forum-submitted-2',appObj.checkAuthentication,function(req,res)
         {
@@ -720,7 +720,7 @@ MongoClient.connect(URL, function(err, db) {
   if(req.query.title!="")
       {
 
-  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags,username: app.get('data').title,date:thedate}, function(err, result) {
+  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags,username: req.session.session.title/*app.get('data').title*/,date:thedate}, function(err, result) {
     collection.find({name: req.query.radioo}).toArray(function(err, docs) {
 
       //console.log(docs[0])
@@ -819,7 +819,7 @@ db.collection('forumvalues', function(err, collection) {
 app.get('/forum-submitted',appObj.checkAuthentication,function(req,res)
         {
        console.log("search result");
-        var username = app.get('data').title;
+        var username = req.session.session.title;//app.get('data').title;
         //console.log(username);
         //console.log(req.query.search);
         // Please display values of
@@ -861,7 +861,8 @@ MongoClient.connect(URL, function(err, db) {
 
     
   var path;
-    var username = app.get('data').title;
+    var username = req.session.session.title;//app.get('data').title;
+
 db.collection('forumvalues', function(err, collection) {
     var args = (function(arr, elem) {
             var a2 = arr.map(function(e) { return e; }); // copy of arr
@@ -1016,7 +1017,7 @@ app.use(fileUpload());
 
 
 
-    var username = app.get('data').title;
+    var username = req.session.session.title; // app.get('data').title;
     var users = require('./user');
 
     var accounttype;
