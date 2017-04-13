@@ -3,8 +3,7 @@
 <head>
 	
 	<title>Connect Concordia</title>
-
-	  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="allstyles.css">
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -23,7 +22,7 @@
 	
 	<style>
 			
-		.box
+		.questions
 			{
 				width: 600px;
 				padding: 50px;
@@ -56,24 +55,24 @@
 			font-size: 50px;
 			padding-top: 50px; 
 		}	
-
-
 		
 		body
 			{
-        background-image: url("http://www.concordia.ca/alumni-friends/giving-to-concordia/_jcr_content/content-main/image_556643419.img.jpg/1469125227741.jpg");
-        background-color:#808080;
-        background-attachment:fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
+                background-image: url("http://www.concordia.ca/alumni-friends/giving-to-concordia/_jcr_content/content-main/image_556643419.img.jpg/1469125227741.jpg");
+                background-color:#808080;
+                background-attachment:fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
 				font-family: "Lato", sans-serif;
 				color: white;
+				
         }
-        
-        #sideinfo{
+		
+		#sideinfo{
             color:rgb(202,181,118);
             font-style: italic;
         }
+        
 
 	</style>
 	
@@ -85,6 +84,7 @@
 	<div id="topbar">
     <img src="logo2.png" id="logo" alt="Logo">
     <div id="user">
+	</div>
 	</div>
 	
 	<div id="wrapper">
@@ -103,13 +103,11 @@
 						  </a>
 						</li>
 
-						<li  data-toggle="collapse" data-target="#products" class="collapsed active">
-						  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+						<li>
+						  <a href="/chat">
+						  <i class="fa fa-users fa-lg"></i> Chat with Professor/Student
+						  </a>
 						</li>
-						<ul class="sub-menu collapse" id="products">
-							<li class="active"><a href="/account-professor">Professor Appointments</a></li>
-							<li><a href="/chat">Chat with Professor/Student</a></li>
-						</ul>
 						
 						<li>
 						  <a href="/forum">
@@ -118,10 +116,10 @@
 						</li>
 						
 						<li>
-						  <a href="/surveys-students">
-						  <i class="fa fa-bar-chart fa-lg"></i> Surveys
-						  </a>
-						</li>
+		                  <a href="/surveys">
+		                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+		                  </a>
+		                </li>
 
 						<li>
 							<a href="/editProfile">
@@ -150,11 +148,11 @@
 				<br>
 				<form action="/forum-submitted">
 				<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
-        <div id="sideinfo">
-            - Use # + the subject you're looking for.<br>
-            - Separate each tag by a space<br>
-            - Enter a maximum of 10 search tags!
-        </div>
+				<div id="sideinfo">
+					- Use # + the subject you're looking for.<br>
+					- Separate each tag by a space<br>
+					- Enter a maximum of 10 search tags!
+				</div>
 				<br>
 				<input type="submit" name = "tags" class="btn btn-default" value="Search">
 				</form>
@@ -165,10 +163,9 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- footer --> 
-    <footer>&#169; 2017 SOEN 341</footer>
+	
 
 </body>
 
 </html>
+

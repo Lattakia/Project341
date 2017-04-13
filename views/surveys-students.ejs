@@ -163,44 +163,6 @@
 		}
 				
 		
-		footer {
-			background: #eee;
-			position: fixed;
-			bottom: 0; 
-			width: 100%;
-			border: solid 1px #ddd;
-			font-family: Arial, sans-serif;
-		}
-				
-		footer ul {
-			padding: 13px;
-		}
-				
-		footer ul li {
-			display: inline;
-		}
-				
-		footer ul li a:link,
-		footer ul li a:visited {
-			color: #555;
-			text-decoration: none;
-			padding: 9px;
-		}
-				
-		footer ul li a:hover {
-			text-decoration: underline;
-		}
-				
-		footer ul.right-footer {
-			float: right;
-		}
-				
-		footer ul.left-footer {
-			float: left;
-		}
-		
-		
-		
 		.info{
 			margin-top: 30px;
 			position:absolute;
@@ -265,50 +227,49 @@
 		<div id="sidebar">
 		<!-- SIDEMENU -->
 			<div class="nav-side-menu">
-				<div class="brand">Navigation</div>
-				<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-			  
+			<div class="brand">Navigation</div>
+			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+		  
 				<div class="menu-list">
-			  
-						<ul id="menu-content" class="menu-content collapse out">
-							<li>
-							  <a href="/main">
-							  <i class="fa fa-dashboard fa-lg"></i> Dashboard
-							  </a>
-							</li>
-							<li  data-toggle="collapse" data-target="#products" class="collapsed active">
-							  <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
-							</li>
-							<ul class="sub-menu collapse" id="products">
-								<li class="active"><a href="/account-professor">Professor Appointments</a></li>
-								<li><a href="/chat">Chat with Professor/Student</a></li>
-							</ul>
-							
-							<li>
-							  <a href="/forum">
-							  <i class="fa fa-users fa-lg"></i> Forum
-							  </a>
-							</li>
-							
-							<li>
-							  <a href="/surveys-students">
-							  <i class="fa fa-bar-chart fa-lg"></i> Surveys
-							  </a>
-							</li>
+		  
+					<ul id="menu-content" class="menu-content collapse out">
+						<li>
+						  <a href="/main">
+						  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+						  </a>
+						</li>
 
-							<li>
-								<a href="/editProfile">
-								<i class="fa fa-user fa-lg"></i> My Profile
-								</a>
-							</li>
-							  
-							<li>
-							  <a href="/logout">
-							  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
-							  </a>
-							</li>
-			 
-						</ul>
+						<li>
+						  <a href="/chat">
+						  <i class="fa fa-users fa-lg"></i> Chat with Professor/Student
+						  </a>
+						</li>
+						
+						<li>
+						  <a href="/forum">
+						  <i class="fa fa-users fa-lg"></i> Forum
+						  </a>
+						</li>
+						
+						<li>
+		                  <a href="/surveys">
+		                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+		                  </a>
+		                </li>
+
+						<li>
+							<a href="/editProfile">
+							<i class="fa fa-user fa-lg"></i> My Profile
+							</a>
+						</li>
+						  
+						<li>
+						  <a href="/logout">
+						  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+						  </a>
+						</li>
+		 
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -318,70 +279,83 @@
 			<div class="title">
 				<h1>Survey Questions</h1>
 			</div>
-			<div class="info">
-				
-				<!-- show any messages that come back with authentication -->
-				
-				<div id="form">
-					<form action="/surveys-s2">
-					<div class="form-group">
 			
-						<h2>Question 1</h2>
-						<h4>Are the lecture notes written in a clear way?</h4>
-				
-			 
-				
-						<div class="funkyradio">
-							<div class="funkyradio-default">
-								<input type="radio" name="radioo" id="radio1" value="StronglyAgree" />
-								<label for="radio1">Strongly Agree</label>
-							</div>
-							<div class="funkyradio-primary">
-								<input type="radio" name="radioo" id="radio2" value="Agree"/>
-								<label for="radio2">Agree</label>
-							</div>
-							<div class="funkyradio-success">
-								<input type="radio" name="radioo" id="radio3" ="SomewhatAgree"/>
-								<label for="radio3">Somewhat Agree</label>
-							</div>
-							<div class="funkyradio-success">
-								<input type="radio" name="radioo" id="radio4" value="Neither Agree or Disagree"/>
-								<label for="radio4">Neither Agree or Disagree</label>
-							</div>   
-							<div class="funkyradio-success">
-								<input type="radio" name="radioo" id="radio5" value="Disagree"/>
-								<label for="radio5">Disagree</label>
-							</div>
-							 <div class="funkyradio-success">
-								<input type="radio" name="radioo" id="radio6" value="Strongly Disagree"/>
-								<label for="radio6">Strongly Disagree</label>
-								 <br/>
-								 <br/>
-								<h4>Please include any additional comments below</h4>
-								<br/>
-								<div class="container">
-									<div class="form-group">
-										<textarea class="form-control" rows="10" id="comment" name="mylittletextbox"></textarea>
-									</div>
-								</div>
-							</div>
-						</div>
-				
-					</div>
-					<div id="buttons">
-						<a href="/surveys-students?"><button class="button">Submit</button></a>
-					</div>	
-					</form>
-					<hr>
+<div class="content">
+    <div class="info">
+  <h1 align="center"><span class="text-center"></span> Survey Questions: <%= surveyMakerName %></h1>
+<!-- show any messages that come back with authentication -->
+            
+     <div id="form">
+        <form action="/surveys-s2">
 
+    <div class="form-group">
+
+<% for(var i = 1, qCount = 1; i <= 5; ++i) { %>
+      <% if(survey['Question_'.concat(i)] == "") {%>
+          <% continue; %>
+      <% }%>
+
+           <h2>Question <%= qCount %></h2>
+           <% qCount++;%>
+            <h4><%= survey['Question_'.concat(i)] %></h4>
+            
+    <div class="funkyradio">
+        <div class="funkyradio-default">
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio1_".concat(i) %> value="StronglyAgree" required/>
+            <label for=<%="radio1_".concat(i) %>>Strongly Agree</label>
+        </div>
+        <div class="funkyradio-primary">
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio2_".concat(i) %> 
+            value="Agree" required/>
+            <label for=<%="radio2_".concat(i) %>>Agree</label>
+        </div>
+        <div class="funkyradio-success">
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio3_".concat(i) %> 
+            value="SomewhatAgree" required/>
+            <label for=<%="radio3_".concat(i) %>>Somewhat Agree</label>
+        </div>
+        <div class="funkyradio-success">
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio4_".concat(i) %> 
+            value="Neither Agree or Disagree" required/>
+            <label for=<%="radio4_".concat(i) %>>Neither Agree or Disagree</label>
+        </div>   
+        <div class="funkyradio-success">
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio5_".concat(i) %>
+            value="Disagree" required/>
+            <label for=<%="radio5_".concat(i) %>>Disagree</label>
+        </div>
+         <div class="funkyradio-success">
+            <input type="radio" name=<%="radio".concat(i) %> id=<%="radio6_".concat(i) %> 
+            value="Strongly Disagree" required/>
+            <label for=<%="radio6_".concat(i) %>>Strongly Disagree</label>
+
+        </div>
+    </div>
+    <% } %>
+</div>
+
+             <br/>
+        <h4>Please include any additional comments below</h4>
+             <br/>
+        <div class="funkyradio">
+
+    <div class="form-group">
+      <textarea class="form-control" rows="10" id="comment" name="mylittletextbox"></textarea>
+    </div>
+        </div>
+
+    <div id="buttons">
+            <button name="surveyMaker" value="<%= surveyMakerName %>"class="button">Submit</button>
+    </div>  
+    </form>
+
+					<hr>
 					<p>Return <a href="/main">Home</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-	<!-- footer --> 
-    <footer>&#169; 2017 SOEN 341</footer>
 </body>
 
 </html>
