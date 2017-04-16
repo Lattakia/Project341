@@ -2,6 +2,14 @@
 <head>
 	<title>Profile</title>
 	<link rel="stylesheet" href="/styles/profile.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/allstyles.css">
+	<!-- load bootsrap css -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="/cc-favicon.png">
+	<!-- load fontawesome -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	
 	<style>
 		
@@ -31,27 +39,86 @@
 
 
 <body>
-		
-	<div id="profileContainer">
 	
-		<div class="content">
-			<div id="name"><%= userInfo.firstName %> <%= userInfo.lastName %></div>
-			
-			<div class="header">Student</div>
-
-			<img id="profilePic" src="/<%= profileInfo.picturePath %>" alt="No Profile Image" /><br/>
-
-			<%= profileInfo.gender %><br>
-			<%= profileInfo.major %><br>
-			<div class="header">Contact</div>
-			<%= userInfo.email %><br>
-			<div class="header">About me</div>
-			<%= profileInfo.aboutMe %><br>
-			<hr>
-			<p>Return <a href="/main">Home</a></p>
-		</div>
-	</div>
+	<div id="topbar"><img src="/logo2.png" id="logo" alt="Logo"></div>
+	<div id="wrapper">
 		
+		<div id="sidebar">
+		<!-- SIDEMENU -->
+			<div class="nav-side-menu">
+			<div class="brand">Navigation</div>
+			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+		  
+				<div class="menu-list">
+		  
+					<ul id="menu-content" class="menu-content collapse out">
+						<li>
+						  <a href="/main">
+						  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+						  </a>
+						</li>
 
+						<li>
+						  <a href="/chat">
+						  <i class="fa fa-users fa-lg"></i> Chat with Professor/Student
+						  </a>
+						</li>
+						
+						<li>
+						  <a href="/forum">
+						  <i class="fa fa-users fa-lg"></i> Forum
+						  </a>
+						</li>
+						
+						<li>
+		                  <a href="/surveys">
+		                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+		                  </a>
+		                </li>
+
+						<li>
+							<a href="/editProfile">
+							<i class="fa fa-user fa-lg"></i> My Profile
+							</a>
+						</li>
+						  
+						<li>
+						  <a href="/logout">
+						  <span class="fa fa-user"></span><span id ="logout"> Logout</span>
+						  </a>
+						</li>
+		 
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="main">
+			<div class="content">
+
+	
+				<div id="profileContainer">
+				
+					<div class="content">
+						<div id="name"><%= userInfo.firstName %> <%= userInfo.lastName %></div>
+						
+						<div class="header">Student</div>
+			
+						<img id="profilePic" src="/<%= profileInfo.picturePath %>" alt="No Profile Image" /><br/>
+			
+						<%= profileInfo.gender %><br>
+						<%= profileInfo.major %><br>
+						<div class="header">Contact</div>
+						<%= userInfo.email %><br>
+						<div class="header">About me</div>
+						<%= profileInfo.aboutMe %><br>
+						<hr>
+						<p>Return <a href="/main">Home</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
 </body>
 </html>
