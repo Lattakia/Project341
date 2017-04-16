@@ -1,0 +1,910 @@
+<!-- views/chat.ejs -->
+<!doctype html>
+<html>
+
+<head>
+    <title>Connect Concordia Chat</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="allstyles.css">
+    <!-- load bootsrap css -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="cc-favicon.png">
+    <!-- load fontawesome -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- load fontawesome -->
+
+
+    <style>
+        body {
+            background: #FAFAFA;
+            font-size: 14px;
+            font-family: "Segoe UI", "Segoe UI Light";
+            margin: 0px;
+            padding: 0px;
+            color: #696969;
+        }
+        
+        a {
+            color: #4F81BD;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        a:hover {
+            color: #515151;
+            text-decoration: underline;
+        }
+        
+        p {
+            margin-bottom: 10px;
+            line-height: 1.6em;
+        }
+        
+        .clear {
+            clear: both;
+        }
+        
+        .visible {
+            display: block;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        /* HEADINGS   
+         ----------------------------------------------------------*/
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: segoe ui;
+            color: #3E3E3E;
+            text-transform: none;
+            margin: 0;
+        }
+        
+        h1 {
+            font-family: "segoe ui light", "segoe ui";
+            font-size: 30px;
+            font-weight: lighter;
+            padding-bottom: 0px;
+        }
+        
+        h2 {
+            font-family: "segoe ui light", "segoe ui";
+            font-size: 22px;
+            font-weight: lighter;
+        }
+        
+        h3 {
+            font-family: "segoe ui light", "segoe ui";
+            font-size: 20px;
+            font-weight: lighter;
+        }
+        
+        h4 {
+            font-size: 1.1em;
+        }
+        
+        h5,
+        h6 {
+            font-size: 1em;
+        }
+        
+        .main {
+            margin: 10px;
+        }
+        
+        #title {
+            float: left;
+            height: 55px;
+        }
+        
+        #LogoutSection {
+            float: right;
+            height: 55px;
+            font-weight: bold;
+        }
+        
+        #subtitle {
+            float: left;
+            font-size: 15px;
+            font-weight: normal;
+            margin-left: 12px;
+            margin-top: 16px;
+        }
+        
+        .message {
+            width: 234px;
+			color:black;
+        }
+        
+        .sendmsg {
+            width: 60px;
+        }
+        
+        #InfoBar {
+            float: right;
+            margin-top: 10px;
+            color: #EEEEEE;
+        }
+        
+        .chat {
+            height: 79%;
+            overflow-y: auto;
+            padding: 5px;
+        }
+        
+        #btnLogout {
+            color: #EEEEEE;
+            margin-left: 5px;
+        }
+        
+        #btnLogout:hover {
+            color: #FFFFFF;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            border: 1px solid #CCCCCC;
+            border-radius: 5px 5px 5px 5px;
+            color: #555555;
+            font-size: 13px;
+            padding: 5px;
+        }
+        
+        #content {
+            margin: 10px;
+        }
+        
+        .category {
+            height: 220px;
+        }
+        
+        .header {
+            border-bottom: 1px solid #a0a0a0;
+            font-size: 20px;
+            height: 30px;
+            line-height: 28px;
+            padding-left: 10px;
+        }
+        
+        .receive {
+            width: 100%;
+            float: left;
+            color: rgb(70, 70, 145);
+        }
+        
+        .send {
+            width: 100%;
+            float: left;
+            color: rgb(182, 69, 69);
+        }
+        
+        .mainbox {
+            border: 1px black solid;
+            float: left;
+            margin: 5px;
+            height: 130px;
+            width: 180px;
+            text-align: center;
+            overflow: hidden;
+            cursor: auto;
+        }
+        
+        .tilebox {}
+        
+        .tilebox a {
+            color: #FFFFFF;
+        }
+        
+        .tileWrapper {
+            float: left;
+            margin: 5px;
+        }
+        
+        .tile {
+            transition: background-color 0.5s ease;
+            transition: all .2s ease-in-out;
+            float: left;
+            margin: 5px;
+            height: 130px;
+            width: 180px;
+        }
+        
+        .tileCenteredSlide {
+            text-align: center;
+        }
+        
+        .selected {
+            border: 4px yellow solid;
+        }
+        
+        .tile span {
+            padding: 5px;
+            position: absolute;
+        }
+        
+        .tile>.container2 {
+            display: table;
+            width: 98%;
+            height: 100%;
+            transition: left 0.3s, top 0.3s, right 0.3s, bottom 0.3s;
+            -webkit-transition: left 0.3s, top 0.3s, right 0.3s, bottom 0.3s;
+            -o-transition: left 0.3s, top 0.3s, right 0.3s, bottom 0.3s;
+            -moz-transition: left 0.3s, top 0.3s, right 0.3s, bottom 0.3s;
+        }
+        
+        .tile>.container2>h5 {
+            color: #FFF;
+            position: relative;
+            vertical-align: middle;
+            font-weight: 300;
+            font-size: 18px;
+            padding: 0 0 8px 0;
+            margin: 3px;
+            transition: color 200ms !important;
+        }
+        
+        .tile:hover {
+            outline: 1px solid #FFF;
+            -moz-box-shadow: 0 0 15px #CCC;
+            -webkit-box-shadow: 0 0 15px #CCC;
+            box-shadow: 0 0 15px #CCC;
+            text-decoration: none;
+            color: #FFF;
+            cursor: pointer;
+        }
+        
+        .tilebox.blue .tile {
+            background-color: #0551A7;
+        }
+        
+        .blue .mainbox {
+            background-color: #0551A7;
+        }
+        
+        .tilebox.blue .tile:hover {
+            transform: scale(1.06);
+            background-color: #065FC4;
+        }
+        
+        .tilebox.red .tile {
+            background-color: #e3a21a;
+        }
+        
+        .red .mainbox {
+            background-color: #e3a21a;
+        }
+        
+        .tilebox.red .tile:hover {
+            transform: scale(1.06);
+            background-color: #ffc40d;
+        }
+        
+        .tilebox.green .tile {
+            background-color: #1e7145;
+        }
+        
+        .green .mainbox {
+            background-color: #1e7145;
+        }
+        
+        .tilebox.green .tile:hover {
+            transform: scale(1.06);
+            background-color: #00a300;
+        }
+        
+        .tilebox.teal .tile {
+            background-color: #059595;
+        }
+        
+        .teal .mainbox {
+            background-color: #059595;
+        }
+        
+        .tilebox.teal .tile:hover {
+            transform: scale(1.06);
+            background-color: #05A7A7;
+        }
+        
+        .tilebox.brown .tile {
+            background-color: #8A4904;
+        }
+        
+        .brown .mainbox {
+            background-color: #8A4904;
+        }
+        
+        .tilebox.brown .tile:hover {
+            transform: scale(1.06);
+            background-color: #A35300;
+        }
+        
+        .tilebox.gray .tile {
+            background-color: #942240;
+        }
+        
+        .gray .mainbox {
+            background-color: #942240;
+        }
+        
+        .tilebox.gray .tile:hover {
+            transform: scale(1.06);
+            background-color: #b91d47;
+        }
+        
+        #nicknamebox {
+            color: white;
+            font-size: 20px;
+        }
+        
+        #contentWrap {
+            width: 80% !important;
+            display: none;
+        }
+        
+        #users {
+            padding-left: 10px;
+            font-size: large;
+            font-weight: bold;
+            color: rgb(8, 8, 136);
+        }
+        
+        #nickError {
+            color: red;
+        }
+        
+        #contentchatWrap {
+            display: none;
+        }
+        
+        #chatWrap {
+            float: left;
+            border: 1px #000 solid;
+        }
+        
+        .clear {
+            clear: both;
+        }
+        
+        @media only screen and (max-width: 540px) {
+            .chat-sidebar {
+                display: none !important;
+            }
+            .chat-popup {
+                display: none !important;
+            }
+        }
+        
+        body {
+            background-color: #e9eaed;
+        }
+        
+        .chat-sidebar {
+            display: none;
+            width: 20% !important;
+            position: fixed;
+            height: 100%;
+            right: 0px;
+            top: 0px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border: 1px solid rgba(29, 49, 91, .3);
+        }
+        
+        .sidebar-name {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        
+        .sidebar-name span {
+            padding-left: 5px;
+        }
+        
+        .sidebar-name a {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .sidebar-name:hover {
+            background-color: #e1e2e5;
+        }
+        
+        .sidebar-name img {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+        }
+        
+        .popup-box {
+            display: none;
+            position: fixed;
+            bottom: 0px;
+            right: 220px;
+            height: 285px;
+            background-color: rgb(237, 239, 244);
+            width: 300px;
+            border: 1px solid rgba(29, 49, 91, .3);
+        }
+        
+        .popup-box .popup-head {
+            background-color: #6d84b4;
+            padding: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            clear: both;
+        }
+        
+        .popup-box .popup-head .popup-head-left {
+            float: left;
+        }
+        
+        .popup-box .popup-head .popup-head-right {
+            float: right;
+            opacity: 0.5;
+        }
+        
+        .popup-box .popup-head .popup-head-right a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .popup-box .popup-messages {
+            height: 100%;
+        }
+        
+        #currentuser {
+            color: blue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+        <div id="user">
+
+            <div class="dropdown">
+
+                <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
+
+          <script>
+              
+              var firstname = <%- JSON.stringify(firstname)%>;
+              var lastname = <%- JSON.stringify(lastname)%>;
+              document.write("Signed in as "+firstname+" "+lastname);
+          </script>
+        <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#user1').onclick(function() {
+            $('#user1').css({
+                'background-color': 'rgb(143,37,57)',
+                'border': 'none',
+            });
+        });
+
+    </script>
+
+
+    <!-- SIDEMENU -->
+
+    <!--
+    <div class="nav-side-menu">
+        <div class="brand">Navigation</div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <a href="/main">
+                        <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                    </a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                    <a><i class="fa fa-gift fa-lg"></i> General Information <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="/account-professor">Professor Appointments</a></li>
+                    <li><a href="/chat">Chat with Professor/Student</a></li>
+                    <li><a href="/private-chat">Private Chat</a></li>
+                </ul>
+
+                <li>
+                    <a href="/forum">
+                        <i class="fa fa-users fa-lg"></i> Forum
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/surveys-students">
+                        <i class="fa fa-bar-chart fa-lg"></i> Surveys
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/myProfile">
+                        <i class="fa fa-user fa-lg"></i> Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                        <span class="fa fa-user"></span><span id="logout"> Logout</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+-->
+
+    <!-- CHAT-SIDEBAR -->
+
+    <div class="chat-sidebar">
+        <div class="header">
+            <h5>Connected Users</h5>
+        </div>
+        <div class="header">
+            <h5 id="currentuser"></h5>
+        </div>
+        <div id="userslist"></div>
+    </div>
+
+    <div id="content">
+        <div id="title">
+        </div>
+        <div class="clear">
+        </div>
+        <div id="nickWrap">
+            <p>Do you wish to go online?</p>
+            <p id="nickError"></p>
+            <form id="setNick">
+<!--                <input size="35" id="nickname"></input>-->
+                <input type="submit"></input>
+            </form>
+        </div>
+        <div id="contentWrap">
+            <div class="category">
+                <div class="header">
+                    <h5>Pick color</h5>
+                </div>
+                <div class="tilebox green">
+                    <a color="green" class="tile tileCenteredSlide left group0 ">
+                        <div class="container2">
+                            <h5>Green</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="tilebox brown">
+                    <a color="brown" class="tile tileCenteredSlide left group0 ">
+                        <div class="container2">
+                            <h5>Brown</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="tilebox teal">
+                    <a color="teal" class="tile tileCenteredSlide left group0 ">
+                        <div class="container2">
+                            <h5>Teal</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="tilebox red">
+                    <a color="red" class="tile tileCenteredSlide left group0 ">
+                        <div class="container2">
+                            <h5>Red</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="tilebox gray">
+                    <a color="gray" class="tile tileCenteredSlide left group0 ">
+                        <div class="container2">
+                            <h5>Gray</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="tilebox blue">
+                    <a color="blue" class="tile tileCenteredSlide left group0 ">
+                        <div class="container2">
+                            <h5>Blue</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+            <div>
+                <div class="header">
+                    <h5>Picked color</h5>
+                </div>
+                <div id="mainBox">
+                    <a class="mainbox left">
+                        <div class="container2">
+                            <h5 id="nicknamebox"></h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!--- SCRIPTS ----->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var $currentUserId;
+        var socket = io();
+        var $nickform = $('#setNick');
+        var $nickError = $('#nickError');
+        var $nickBox = $('#nickname');
+        var $users = $('#userslist');
+        var $colorForm = $('#pick-color');
+        var $mainBox = $('#mainBox');
+        var $picBox;
+        var $colorBoxes = $('.category');
+        var $nicknameBox = $('#nicknamebox');
+        var oldDocs;
+
+        $(document).on('click', "input.sendmsg", function() {
+            var $messageBox = $(this).parent().children('.message');
+            var $receiver = $(this).attr('chatboxid');
+            socket.emit('send message', {
+                msg: $messageBox.val(),
+                sender: $currentUserId,
+                receiver: $receiver
+            });
+            $messageBox.val('');
+        });
+
+        $(document).on("keypress", 'input.message', function(event) {
+            if (event.which == 13 && !event.shiftKey) {
+                event.preventDefault();
+                var $messageBox = $(this);
+                var $receiver = $(this).attr('chatboxid');
+                socket.emit('send message', {
+                    msg: $messageBox.val(),
+                    sender: $currentUserId,
+                    receiver: $receiver
+                });
+                $messageBox.val('');
+            }
+        });
+
+        socket.on('load old msgs', function(docs) {
+            oldDocs = docs;
+        });
+
+        socket.on('new message', function(data) {
+            AppendNewMsg(data);
+        });
+
+        function AppendNewMsg(data) {
+            if ($currentUserId == data.receiver) {
+                register_popup(data.nickname, data.nickname);
+            }
+            $.each($('.chat'), function(index, datax) {
+                if ($(datax).attr('chatboxid') == data.receiver || $(datax).attr('chatboxid') == data.sender) {
+                    if ($currentUserId == data.receiver) {
+                        $(datax).append("</br><div class='receive'><b>" + data.nickname + ": </b>" + data.msg + "</div>");
+                        $(datax).animate({
+                            scrollTop: $(datax)[0].scrollHeight
+                        }, 2000);
+                    } else if ($currentUserId == data.sender) {
+                        $(datax).append("</br><div class='send'><b>" + data.nickname + ": </b>" + data.msg + "</div>");
+                        $(datax).animate({
+                            scrollTop: $(datax)[0].scrollHeight
+                        }, 2000);
+                    }
+                }
+            });
+        }
+
+        $nickform.submit(function(e) {
+            e.preventDefault();
+            $currentUserId = id();
+            $('#currentuser').html($currentUserId);
+            socket.emit('new user', id(), function(data) {
+                    $('#nickWrap').hide();
+                    $('#contentWrap').show();
+                    $('.chat-sidebar').show();
+                    $.each(oldDocs, function(index, data) {
+                        AppendNewMsg(data);
+                    });
+            });
+        });
+
+        socket.on('usernames', function(data) {
+            var html = '';
+            $.each(data, function(index, dataB) {
+                if (dataB != $currentUserId) {
+                    html += "<div class=\"sidebar-name\"><a href=\"javascript:register_popup('" + dataB + "', '" + dataB + "');\"><img width=\"14\" height=\"14\" src=\"http://skypolatory.cyberplant.net/img/green-dot.png\" /><span>" + dataB + "</span></a></div>";
+                }
+            });
+            $users.html(html);
+            calculate_popups();
+        });
+
+        $colorBoxes.on("click", "a", function(event) {
+            event.preventDefault();
+            var thisObj = $(this);
+            $.each($('.tileCenteredSlide'), function(index, data) {
+                if ($(data).attr('color') == thisObj.attr('color')) {
+                    thisObj.children().addClass('selected');
+                } else {
+                    $(data).children().removeClass('selected');
+                }
+            });
+
+            $picBox = $(this);
+            socket.emit('picked color', $picBox.attr('color'));
+            console.log('pick-color-send');
+        });
+
+
+
+        socket.on('new color', function(data) {
+            console.log(data);
+            $mainBox.attr('class', data.color);
+            $nicknameBox.html(data.nickname + " updated!");
+            $.each($('.tileCenteredSlide'), function(index, datax) {
+                if ($(datax).attr('color') == data.color) {
+                    $(datax).children().addClass('selected');
+                } else {
+                    $(datax).children().removeClass('selected');
+                }
+            });
+        });
+
+
+
+
+        Array.remove = function(array, from, to) {
+            var rest = array.slice((to || from) + 1 || array.length);
+            array.length = from < 0 ? array.length + from : from;
+            return array.push.apply(array, rest);
+        };
+
+
+        var total_popups = 0;
+
+
+        var popups = [];
+
+
+        function close_popup(id) {
+            for (var iii = 0; iii < popups.length; iii++) {
+                if (id == popups[iii]) {
+                    Array.remove(popups, iii);
+
+                    document.getElementById(id).style.display = "none";
+
+                    calculate_popups();
+
+                    return;
+                }
+            }
+        }
+
+        function display_popups() {
+            var right = 220;
+
+            var iii = 0;
+            for (iii; iii < total_popups; iii++) {
+                if (popups[iii] != undefined) {
+                    var element = document.getElementById(popups[iii]);
+                    if (element != null && element != undefined) {
+                        element.style.right = right + "px";
+                        right = right + 320;
+                        element.style.display = "block";
+                    }
+                }
+            }
+
+            for (var jjj = iii; jjj < popups.length; jjj++) {
+                var element = document.getElementById(popups[jjj]);
+                if (element != null && element != undefined) {
+                    element.style.display = "none";
+                }
+            }
+        }
+
+        function register_popup(id, name) {
+
+            for (var iii = 0; iii < popups.length; iii++) {
+
+                if (id == popups[iii]) {
+                    Array.remove(popups, iii);
+
+                    popups.unshift(id);
+
+                    calculate_popups();
+
+
+                    return;
+                }
+            }
+            if (!(document.getElementById(id) != null && document.getElementById(id) != undefined)) {
+
+                var element = '<div class="popup-box chat-popup" id="' + id + '">';
+                element = element + '<div class="popup-head">';
+                element = element + '<div class="popup-head-left">' + name + '</div>';
+                element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\'' + id + '\');">✕</a></div>';
+                element = element + '<div style="clear: both"></div></div><div class="popup-messages"><div chatboxid="' + id + '"  class="chat"></div><input size="35" chatboxid="' + id + '" class="message" id="message_' + id + '"></input><input chatboxid="' + id + '" class="sendmsg" value="submit" type="submit"></input></div></div>';
+
+                $('body').append(element);
+            }
+
+            popups.unshift(id);
+
+            calculate_popups();
+            $('#message_' + id).focus();
+        }
+
+        function calculate_popups() {
+            var width = window.innerWidth;
+            if (width < 540) {
+                total_popups = 0;
+            } else {
+                width = width - 200;
+                total_popups = parseInt(width / 320);
+            }
+
+            display_popups();
+
+        }
+
+
+        function id() {
+            var firstname = <%- JSON.stringify(firstname)%>;
+            var lastname = <%- JSON.stringify(lastname)%>;
+            return firstname + " " + lastname;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

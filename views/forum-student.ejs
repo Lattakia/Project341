@@ -3,8 +3,8 @@
 <head>
 	
 	<title>Connect Concordia</title>
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="allstyles.css">
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+   
     <!-- load bootsrap css -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="shortcut icon" href="cc-favicon.png">
@@ -19,25 +19,43 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- load fontawesome -->
-	
+	 <link rel="stylesheet" type="text/css" href="allstyles.css">
 	<style>
+        
+		#topbar{
+                width:100%;
+                height:150px;
+				background-color: rgb(143,37,57);
+        }
+        #logo{
+                z-index: 1000;
+                width:700px;
+                height:150px;
+        }
 			
-		.questions
-			{
-				width: 600px;
+		.title{
+				width:100%;
+				text-align:center;
+				display:inline-block;
+				background:rgba(0,0,0,0.5);
+		}
+			
+		.box{
+				width: 700px;
 				padding: 50px;
+               /* padding-right:60px;
+                padding-left:40px;*/
 				margin-top: 50px;
 				margin-bottom: 50px;
 				margin-left: auto;
 				margin-right: auto;
 				background:rgba(143,37,57,0.8);
-			}
+        }
 		
-		h1
-			{
-				font-size: 50px;
+		h1{
+				font-size: 30px;
 				color:rgb(202,181,118);
-			}
+        }
 			
 		a{
 			text-decoration:none;
@@ -49,16 +67,13 @@
 			text-decoration:none;
 		}
 		
-		searchbox
-		{
-			display: inline-block;
-			font-size: 50px;
-			padding-top: 50px; 
-		}	
+		.form-control{
+            margin-bottom:10px;
+		}
 		
-		body
-			{
-                background-image: url("http://www.concordia.ca/alumni-friends/giving-to-concordia/_jcr_content/content-main/image_556643419.img.jpg/1469125227741.jpg");
+		
+		body{
+                /*background-image: url("http://www.concordia.ca/alumni-friends/giving-to-concordia/_jcr_content/content-main/image_556643419.img.jpg/1469125227741.jpg");*/
                 background-color:#808080;
                 background-attachment:fixed;
                 background-repeat: no-repeat;
@@ -67,31 +82,78 @@
 				color: white;
 				
         }
-		
-		#sideinfo{
-            color:rgb(202,181,118);
-            font-style: italic;
+			
+        #custom-search-input{
+			padding: 3px;
+			border: solid 1px #E4E4E4;
+			border-radius: 6px;
+			background-color: #fff;
+		}
+		#custom-search-input input{
+			border: 0;
+			box-shadow: none;
+			font-size: 14px;
+			height:20px;
+		}
+		#custom-search-input button{
+			margin: 2px 0 0 0;
+			background: none;
+			box-shadow: none;
+			border: 0;
+			color: #666666;
+			padding: 0 5px 0 10px;
+			border-left: solid 1px #ccc;
+		}
+		#custom-search-input button:hover{
+			border: 0;
+			box-shadow: none;
+			border-left: solid 1px #ccc;
+		}
+		#custom-search-input .glyphicon-search{
+			font-size: 14px;
+		}
+        #logo {
+            z-index: 1000;
+            width: 480px;
+            height: 100px;
         }
-        
+        #topbar {
+            width: 100%;
+            height: 100px;
+            background-color: rgb(143,37,57);
+        }
 
+        .nav-side-menu {
+            overflow: auto;
+            font-family: verdana;
+            font-size: 12px;
+            font-weight: 200;
+            background-color: #24292E;
+            position: absolute;
+            top: 100px;
+            width: 300px;
+            height: 100%;
+            color: #e1ffff;
+        }
+        #sideinfo{
+            color:rgb(202,181,118);
+        }
 	</style>
 	
 </head>
-
 <body>
 
-	<!-- TOP BAR -->
-	<div id="topbar">
-    <img src="logo2.png" id="logo" alt="Logo">
-    <div id="user">
-	</div>
-	</div>
-	
-	<div id="wrapper">
-		<div id="sidebar">
-		<!-- SIDEMENU -->
-			<div class="nav-side-menu">
-			<div class="brand">Navigation</div>
+	<!-- topbar -->
+    <div id="topbar">
+        <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
+    </div>
+    
+    <div class="wrapper">
+
+    
+    <!-- SIDEMENU -->
+<div class="nav-side-menu">
+    <div class="brand">Navigation</div>
 			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 		  
 				<div class="menu-list">
@@ -134,37 +196,40 @@
 						</li>
 		 
 					</ul>
-				</div>
-			</div>
-		</div>
-		
-		<div id="main">
-			<div class="title">
-				<h1>Forum</h1>
-			</div>
-			<div class="questions">
-				<h2>Want to find information on a certain topic?</h2>
-				<h4>See what your professors posted on the subject!</h4>
-				<br>
-				<form action="/forum-submitted">
-				<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
-				<div id="sideinfo">
-					- Use # + the subject you're looking for.<br>
-					- Separate each tag by a space<br>
-					- Enter a maximum of 10 search tags!
-				</div>
-				<br>
-				<input type="submit" name = "tags" class="btn btn-default" value="Search">
-				</form>
-					<form action="/forum-submitted-3">
-					<input type="submit" name = "tags" class="btn btn-default" value="Display All">
-				</form>
-				<br>
-			</div>
-		</div>
+    </div>
+</div>
+
+	<div id="main">
+	<div class="title">
+		<h1>Forum</h1>
 	</div>
 	
+    <!-- main container --> 
+	<div class="box">
+	<h2>Want to find information on a certain topic?</h2>
+		<h4>See what your professors posted on the subject!</h4>
+		<br>
+        <form action="/forum-submitted">
+		<input type="text" name="search" class="form-control" placeholder="Search for a post..." size="30" name="searchplacer">
+        <div id="sideinfo">
+            - Use # + the subject you're looking for.<br>
+            - Separate each tag by a space<br>
+            - Enter a maximum of 10 search tags!
+        </div>
+		<br>
+		<input type="submit" name = "tags" class="btn btn-default" value="Search">
+        </form>
+        
+        <hr>
+          <!-- display all -->  
+         <form action="/forum-submitted-3">
+        <input type="submit" name = "tags" class="btn btn-default" value="Display All Posts">
+             </form>
+        
+	<br>
+	</div>
+	</div>
+    </div>
 </body>
 
 </html>
-
