@@ -2,21 +2,21 @@
 
 	<head>
 		<title>Edit Your Profile Information</title>
+
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="allstyles.css">
+		
 		<!-- load bootsrap css -->
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 		<link rel="shortcut icon" href="cc-favicon.png">
 		<!-- load fontawesome -->
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		
 
 		<script type="text/javascript" src="libraries/jquery-3.2.0.min.js"></script>
 		<script type="text/javascript" src="libraries/jquery.numeric.min.js"></script>
 		<script type="text/javascript" src="scripts/inputRestriction.js"></script>
 		<script type="text/javascript" src="scripts/profileScript.js"></script>
-		
+		<link rel="stylesheet" type="text/css" href="allstyles.css">
 		<style>
 		
 			body{
@@ -29,7 +29,7 @@
 			}
 
 			h1{
-				font-size: 50px;
+				font-size: 30px;
 				color:rgb(202,181,118);
 			}
 			
@@ -48,10 +48,10 @@
 			label{
 				color: white;
 			}
+			 .nav-side-menu{
+            height:1100px;
+        }
             
-            .nav-side-menu{
-                height:1300px;
-            }
             a{
                 color:gold;
                 text-decoration:none;
@@ -61,9 +61,14 @@
                 text-decoration:none;
             }
 			
+			#uploadPic{
+				margin-left: 160px;
+				padding-top: 10px;
+			}
 			
 		</style>
-		
+
+
 		<script type="text/javascript">
 
 			$(document).ready(function(){
@@ -73,15 +78,15 @@
 			});
 
 		</script>
-		
+
 	</head>
 
 	<body>
-	
-		<!-- topbar -->
+        
+        <!-- topbar -->
     <div id="topbar">
         <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
-    </div>  
+    </div> 
         
 	<div id="wrapper">
 		<div id="sidebar">
@@ -119,7 +124,7 @@
 						
 						<li>
 		                  <a href="/surveys">
-		                  <i class="fa fa-bar-chart fa-lg"></i> Surveys
+		                  <i class="fa fa-check-square fa-lg"></i> Surveys
 		                  </a>
 		                </li>
 
@@ -163,28 +168,28 @@
 					<input required type="email" name="email" value="<%= userInfo.email %>"/><br>
 					<label for="gender">Gender</label><br>
 					<select name="gender" id="genderDropDown">
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
 					</select> <br>
-					<label for="major">Major</label><br>
-					<input type="text" name="major" value="<%= profileInfo.major %>"/><br>
+					<label for="department">Department</label><br>
+					<input type="text" name="department" value="<%= profileInfo.department %>" /><br>
+					<label for="office">Office</label><br>
+					<input type="text" name="office" value="<%= profileInfo.office %>"/><br>
+					<label for="officeHours">Office Hours</label><br>
+					<input type="text" name="officeHours" value="<%= profileInfo.officeHours %>"/><br>
 					<label for="aboutMe">About me</label><br>
 					<textarea name="aboutMe"><%= profileInfo.aboutMe %></textarea><br><br>
 
-					<div id="buttons">
-						<input type="submit" id="SaveButton" value="Save">
-					</div>
+					<input type="submit" id="SaveButton" value="Save">
+
 
 				</form>
-				
 				<hr>
 				<p>Return <a href="/main">Home</a></p>
-				
 			</div>
 		</div>
 	</div>
-	
-	
+
 
 	</body>
 
