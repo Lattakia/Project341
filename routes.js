@@ -180,13 +180,12 @@ MongoClient.connect(URLMain, function(err, db) {
     if(err) throw err;
 
     var collection = db.collection('users');
-    var person = req.session.session.title;//app.get('data').title;
+    var person = req.session.session.title;
 
     collection.find({'local.username' : person}).toArray(function(err, results) {
         var currLoggedInUser = results[0];
 
         var userName = currLoggedInUser['local']['firstname'] + " " + currLoggedInUser['local']['lastname'];
-        var emailofuser = currLoggedInUser['local']['email'];
         var accounttypeuser = currLoggedInUser['local']['accounttype'];
 
         if(accounttypeuser == "student")
@@ -231,7 +230,7 @@ MongoClient.connect(URLSurveyDataBase, function(err, db) {
   if (err) return
   
             var collectionForm = db.collection('survey_form')
-            var name = req.session.session.title;//app.get('data').title;
+            var name = req.session.session.title;
 
             //Work around to change boolean because there's no pass by reference in js
             function switchBoolean(state){
@@ -285,8 +284,7 @@ MongoClient.connect(URLSurveyDataBase, function(err, db) {
                             MongoClient.connect(URLSurveyDataBase, function(err, db) { 
                               if (err) return 
                                 var collectionValues = db.collection('survey_values')
-                                collectionValues.update({surveyMakerName: surveyMaker}, {$set: {updated : true}}, function(err, results){
-                                })
+                                collectionValues.update({surveyMakerName: surveyMaker}, {$set: {updated : true, surveyResponses : {} }}, {multi: true});
 
                               db.close()
                             })
@@ -311,9 +309,11 @@ MongoClient.connect(URLSurveyDataBase, function(err, db) {
         var studentUserNameVal = req.session.session.title;
 
       MongoClient.connect(URLSurveyDataBase, function(err, db) {
-        if (err) return
+        if (err) return;
+
         var surveyMaker = req.query.surveyMaker;
         var collection = db.collection('survey_values');
+
         var surveyResponsesVal = {
           question1: req.query.radio1,
           question2: req.query.radio2, 
@@ -321,6 +321,7 @@ MongoClient.connect(URLSurveyDataBase, function(err, db) {
           question4: req.query.radio4, 
           question5: req.query.radio5, 
           comments: req.query.mylittletextbox};
+
         var surveyResponsesObj = {
           studentUserName: studentUserNameVal,
           surveyMakerName : surveyMaker,
@@ -366,7 +367,7 @@ MongoClient.connect(URLSurveyDataBase, function(err, db) {
             if(err) throw err;
 
             var collection = db.collection('users');
-            var person = req.session.session.title;//app.get('data').title;
+            var person = req.session.session.title;
 
             collection.find({'local.username' : person}).toArray(function(err, results) {
                 var currLoggedInUser = results[0];
@@ -436,7 +437,7 @@ db.collection('forumvalues', function(err, collection) {
 
     displayForumSubmitted : function(req,res) {
        console.log("search result");
-        var username = req.session.session.title;//app.get('data').title;
+        var username = req.session.session.title;
 
         MongoClient.connect(URLMyDataBase, function(err, db) {
           if (err) return
@@ -463,7 +464,7 @@ db.collection('forumvalues', function(err, collection) {
             arr_pos[num] = string.substring(arr_pos_2[num-1], string.length);
 
           var path;
-            var username = req.session.session.title;//app.get('data').title;
+            var username = req.session.session.title;
         db.collection('forumvalues', function(err, collection) {
             var args = (function(arr, elem) {
                     var a2 = arr.map(function(e) { return e; }); // copy of arr
@@ -720,7 +721,7 @@ app.use(fileUpload());
 
   app.post('/profile',function(req,res){
 
-    var username = req.session.session.title;//app.get('data').title;
+    var username = req.session.session.title;
     var profilePicsDir= __dirname + '/views/profilePictures';
     var profilePicsDirName = 'profilePictures';
     var defaultPic = 'profile-icon-300x300.png';
@@ -750,7 +751,7 @@ app.use(fileUpload());
     console.log(__dirname);
 
 
-    var username = req.session.session.title;//app.get('data').title;
+    var username = req.session.session.title;
     var users = require('./user');
 
     var accounttype;
@@ -843,7 +844,7 @@ app.use(fileUpload());
 
 app.get('/editProfile',appObj.checkAuthentication,function(req,res){
 
-  var username = req.session.session.title;//app.get('data').title;
+  var username = req.session.session.title;
   userModel.findOne({'local.username':username},function(error,user){
 
   console.log("USER is");
