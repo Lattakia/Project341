@@ -1,5 +1,5 @@
-var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
+var MongoClient = require('mongodb').MongoClient,
+    format = require('util').format;
 MongoClient.connect('mongodb://127.0.0.1:27017/test', function (err, db) {
     if (err) {
         throw err;
@@ -26,8 +26,6 @@ var domain = 'connectconcordia.tk';
 //Your sending email address
 var from_who = 'encs@connectconcordia.tk';
 
-var app = require('express')();
-
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
@@ -37,10 +35,9 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 var morgan = require('morgan');
-//var passportSocketIo = require('passport.socketio');
 var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var redisStore = require('connect-redis')(session);
 var sessionStore = new redisStore({
@@ -49,9 +46,7 @@ var sessionStore = new redisStore({
     client: require('redis').createClient(),
     ttl: 300
 });
-//app.get('/', function(req, res){
-//  res.sendfile('index.html');
-//});
+
 http.listen(3000, function () {
     console.log('listening on *:3000');
 });
@@ -67,18 +62,20 @@ app.use(bodyParser()); // get information from html forms
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-    app.use(session({
+app.use(session({
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: process.env.ENVIRONMENT !== 'development' && process.env.ENVIRONMENT !== 'test',
+        //        secure: process.env.ENVIRONMENT !== 'development' && process.env.ENVIRONMENT !== 'test',
         maxAge: 2419200000
     },
     secret: 'goodheavenslookatthetime'
 }));
 
-app.use(session({ secret: 'goodheavenslookatthetime' })); // session secret
+app.use(session({
+    secret: 'goodheavenslookatthetime'
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -89,25 +86,19 @@ var mkdirp = require('mkdirp');
 mkdirp(__dirname + '/views/ProfilePictures');
 
 // routes ======================================================================
-require('./routes.js').runApp(app, passport); // load our routes and pass in our app and fully configured passport
+require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.use(require('express').static('views'));
 
-/*io.on('connection', function(socket){
-socket.on('chat message', function(msg){
-io.emit('chat message', msg);
-  });
-});*/
 console.log("got an error: ");
 
 
-app.use(function(req, res, next) {
-    if(req.url.match('./views/chat.ejs'))
-       passport.session()(req, res, next)
+app.use(function (req, res, next) {
+    if (req.url.match('./views/chat.ejs'))
+        passport.session()(req, res, next)
     else
         next();
 });
-
 
 var users = {};
 var chatDB = mongoose.createConnection(db.chat);
@@ -180,10 +171,6 @@ io.on('connection', function (socket) {
             updateNicknames();
         }
     });
-    
-    socket.on('picked color',function(data){
-			io.emit('new color',{color:data,nickname: socket.nickname});
-		});
 
     socket.on('disconnect', function (data) {
         if (!socket.nickname) return;
@@ -198,17 +185,3 @@ io.on('connection', function (socket) {
 
 
 });
-
-
-//io.on('connection', function (socket) {
-//    socket.on('chat message', function (msg) {
-//        io.emit('chat message', msg);
-//        console.log('its working');
-//        if (socket.request.user && socket.request.user.logged_in) {
-//            console.log(socket.request.user);
-//            console.log('its working finally!!');
-//        }
-//    });
-//});
-
-module.exports = http;
