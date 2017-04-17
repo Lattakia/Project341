@@ -167,11 +167,17 @@
 								<!-- Student Survey FORM -->
 			 <div id="form">
 				<form action="/student_selection" method="get">
+				<% if(data.length > 0){ %>
 			<% for(var i = 0; i<data.length; i++) { %>
 			  <div>
 				  <button type="submit" formmethod="get" formaction="/surveys-students" name="teacher" value="<%= data[i].fname %> <%= data[i].lname %>" class="btn btn-primary btn-lg btn-block" id="buttons">Teacher: <%= data[i].fname %> <%= data[i].lname %></button>
 			  </div>
 			  <br>
+			<% } %>
+			<% } else {%>
+				<div>
+					<p>There are currently no professors or teaching assistants available on the network.</p>
+				</div>
 			<% } %>
 			</form>
 
