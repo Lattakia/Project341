@@ -34,6 +34,13 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
+// Used to connect to a database.
+var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
+var URLMain = 'mongodb://127.0.0.1:27017/main';
+var URLMyDataBase = 'mongodb://127.0.0.1:27017/mydatabase';
+var URLSurveyDataBase = 'mongodb://127.0.0.1:27017/surveydatabase';
+
 var appObj = {
 
   checkAuthentication : function (req,res,next){
@@ -46,36 +53,27 @@ var appObj = {
 },
 
     // Made for the survey page, checks the type of user and directs him/her to the appropriate survey page.    
-  checkPerson: function(req, res){
+  displayAppropriateSurveyPage: function(req, res){
 
-  var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
+  
 var dataArray = new Array();
-MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+MongoClient.connect(URLMain, function(err, db) {
     if(err) throw err;
 
     var collection = db.collection('users');
     var person = req.session.session.title;
 
     // Locate all the entries using find
-    collection.find().toArray(function(err, results) {
-        var resa = results;
-        var saveindex = 10;
-        for(i=0;i<resa.length;i++)
-        {
-            if(person == resa[i]['local']['username'])
-            {
-                    saveindex = i;
-            }
+    collection.find({'local.username' : person}).toArray(function(err, results) {
+        var currLoggedInUser = results[0];
 
-        }
+        var firstname = currLoggedInUser['local']['firstname'];
+        var lastname = currLoggedInUser['local']['lastname'];
 
-        var userName = resa[saveindex]['local']['firstname']+" "+resa[saveindex]['local']['lastname'];
-        var emailofuser = resa[saveindex]['local']['email'];
-        var accounttypeuser = resa[saveindex]['local']['accounttype'];
+        var userName = firstname + " " + lastname;
+        var accounttypeuser = currLoggedInUser['local']['accounttype'];
 
-        console.log(emailofuser);
-        var dataArray = new Array();
+        var arrayOfProfessorNames = new Array();
         // If the user is a student, direct him/her to the survey selection page
         if(accounttypeuser == "student")
         {
@@ -83,7 +81,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
                   res.render('survey_selection.ejs', {data : dataArray});
                 }
 
-                var collection = db.collection('users');
                 collection.find().toArray(function(err,results){
                   if(err) return;
                   
@@ -95,11 +92,11 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
                         lname: res[i]['local']['lastname']
                       };
 
-                      dataArray.push(tmp);
+                      arrayOfProfessorNames.push(tmp);
                       }
                     }
                     db.close();
-                    renderThis(dataArray);
+                    renderThis(arrayOfProfessorNames);
                       
                   });
         }
@@ -118,10 +115,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
     displaySurveyResults: function(req,res){
 
-      var MongoClient = require('mongodb').MongoClient
-            var URLMain = 'mongodb://localhost:27017/main'
-            var URLSurvey = 'mongodb://localhost:27017/surveydatabase'
-
             var profSurveyMaker = '';
             MongoClient.connect(URLMain, function(err, db){
                   if(err) return;
@@ -133,7 +126,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
                     if(err) return;
 
                       var profSurveyMakerName = docs[0]['local']['firstname'] + " " + docs[0]['local']['lastname'];
-                      MongoClient.connect(URLSurvey, function(err, db) {
+                      MongoClient.connect(URLSurveyDataBase, function(err, db) {
                         if (err) return
 
                         var collectionSurvey = db.collection('survey_values');
@@ -155,37 +148,20 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 
     displayMainPage: function(req, res) {
 
-     var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
-
-MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+MongoClient.connect(URLMain, function(err, db) {
     if(err) throw err;
 
     var collection = db.collection('users');
     var person = req.session.session.title;
 
-    // Locate all the entries using find
-    collection.find().toArray(function(err, results) {
-        var resa = results;
-        // console.log(resa);
-        // console.log(person);
-        var saveindex = 10;
+    collection.find({'local.username' : person}).toArray(function(err, results) {
+        var currLoggedInUser = results[0];
 
-        for(var i=0;i<resa.length;i++)
-        {
-            if(person == resa[i]['local']['username'])
-            {
-                    saveindex = i;
-            }
+        var firstname = currLoggedInUser['local']['firstname'];
+        var lastname = currLoggedInUser['local']['lastname'];
 
-        }
-        //var emailofuser = resa[saveindex]['local']['email'];
-        var firstname = resa[saveindex]['local']['firstname'];
-        var lastname = resa[saveindex]['local']['lastname'];
-        console.log(firstname);
-         console.log(lastname);
        res.render('main.ejs', {firstname:firstname,lastname:lastname}
-            //user : req.user // get the user out of session and pass to template
+
         );
         db.close();
         });
@@ -198,45 +174,31 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
     },
 
     displaySurveysStudents : function(req, res){
-       var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
+       
 
-MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+MongoClient.connect(URLMain, function(err, db) {
     if(err) throw err;
 
     var collection = db.collection('users');
     var person = req.session.session.title;//app.get('data').title;
 
-    // Locate all the entries using find
-    collection.find().toArray(function(err, results) {
-        var resa = results;
-        var saveindex = 10;
-        for(i=0;i<resa.length;i++)
-        {
-            if(person == resa[i]['local']['username'])
-            {
-                    saveindex = i;
-            }
+    collection.find({'local.username' : person}).toArray(function(err, results) {
+        var currLoggedInUser = results[0];
 
-        }
-
-        var userName = resa[saveindex]['local']['firstname']+" "+resa[saveindex]['local']['lastname'];
-        var emailofuser = resa[saveindex]['local']['email'];
-        var accounttypeuser = resa[saveindex]['local']['accounttype'];
-
-        console.log(emailofuser);
+        var userName = currLoggedInUser['local']['firstname'] + " " + currLoggedInUser['local']['lastname'];
+        var emailofuser = currLoggedInUser['local']['email'];
+        var accounttypeuser = currLoggedInUser['local']['accounttype'];
 
         if(accounttypeuser == "student")
         {
               var profName = req.query.teacher;
-              var profNameArr = (profName).split(" ");
+              var profNameArr = profName.split(" ");
               var profFirstName = profNameArr[0];
               var profLastName = profNameArr[1];
               collection.find({'local.firstname': profFirstName, 'local.lastname': profLastName}).toArray(function(err, docs){
                     if(err) return;
-                    var URLSurvey = 'mongodb://localhost:27017/surveydatabase';
                     surveyMaker = docs[0];
-                    MongoClient.connect(URLSurvey, function(err, db) {
+                    MongoClient.connect(URLSurveyDataBase, function(err, db) {
                         if (err) return
                         var collectionSurvey = db.collection('survey_form');
                         // Render the teacher's survey (note: have to get any teacher's survey here, put code to find teacher's name).
@@ -264,16 +226,12 @@ MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
 displayTeacherSubmitted : function(req,res){
     
     res.render('teacher_submitted.ejs')
-  var MongoClient = require('mongodb').MongoClient
   
-var URLSurvey = 'mongodb://localhost:27017/surveydatabase'
-var URLMain = 'mongodb://localhost:27017/main'
-MongoClient.connect(URLSurvey, function(err, db) {
+MongoClient.connect(URLSurveyDataBase, function(err, db) {
   if (err) return
   
             var collectionForm = db.collection('survey_form')
             var name = req.session.session.title;//app.get('data').title;
-            console.log(name);
 
             //Work around to change boolean because there's no pass by reference in js
             function switchBoolean(state){
@@ -323,13 +281,11 @@ MongoClient.connect(URLSurvey, function(err, db) {
                          collectionUsers.find({'local.username': name}).toArray(function(err, docs){
 
                             var surveyMaker = docs[0]['local']['firstname'] + " " + docs[0]['local']['lastname'];
-                            console.log(surveyMaker)
 
-                            MongoClient.connect(URLSurvey, function(err, db) { 
+                            MongoClient.connect(URLSurveyDataBase, function(err, db) { 
                               if (err) return 
                                 var collectionValues = db.collection('survey_values')
                                 collectionValues.update({surveyMakerName: surveyMaker}, {$set: {updated : true}}, function(err, results){
-                                  console.log('Updating docs')
                                 })
 
                               db.close()
@@ -346,40 +302,15 @@ MongoClient.connect(URLSurvey, function(err, db) {
     },
 
     displaySurveyStudentSubmitted : function(req,res){
-        console.log(req.query.radioo)
-         console.log(req.query.mylittletextbox)
-          console.log(req.query.fname)
-    var MongoClient = require('mongodb').MongoClient
 
-    var URLMain = 'mongodb://localhost:27017/main';
-    var URLSurvey = 'mongodb://localhost:27017/surveydatabase';
-
-    var studentUserNameVal = '';
     // Find currently logged in student
     MongoClient.connect(URLMain, function(err, db){
         if(err) return;
 
         var collection = db.collection('users');
-        var person = req.session.session.title;
+        var studentUserNameVal = req.session.session.title;
 
-        // Locate all the entries using find
-        collection.find().toArray(function(err, results) {
-            var resa = results;
-            var saveindex = 0;
-            
-            for(var i=0;i<resa.length;i++)
-            {
-                if(person == resa[i]['local']['email'])
-                {
-                        saveindex = i;
-                }
-               
-            }
-            studentUserNameVal = resa[saveindex]['local']['username'];
-            db.close();
-    });
-
-      MongoClient.connect(URLSurvey, function(err, db) {
+      MongoClient.connect(URLSurveyDataBase, function(err, db) {
         if (err) return
         var surveyMaker = req.query.surveyMaker;
         var collection = db.collection('survey_values');
@@ -429,34 +360,18 @@ MongoClient.connect(URLSurvey, function(err, db) {
     });
 },
 
- getUserUsername: function (req, res,db) {
-          var MongoClient = require('mongodb').MongoClient
-            , format = require('util').format;
+ displayAppropriateForumPage: function (req, res,db) {
 
-        MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+        MongoClient.connect(URLMain, function(err, db) {
             if(err) throw err;
 
             var collection = db.collection('users');
             var person = req.session.session.title;//app.get('data').title;
 
-            // Locate all the entries using find
-            collection.find().toArray(function(err, results) {
-                var resa = results;
-                var saveindex = 10;
-                for(i=0;i<resa.length;i++)
-                {
-                    if(person == resa[i]['local']['username'])
-                    {
-                            saveindex = i;
-                    }
+            collection.find({'local.username' : person}).toArray(function(err, results) {
+                var currLoggedInUser = results[0];
 
-                }
-
-
-                var usernameofuser = resa[saveindex]['local']['username'];
-                var accounttypeuser = resa[saveindex]['local']['accounttype'];
-                //console.log(usernameofuser);
-
+                var accounttypeuser = currLoggedInUser['local']['accounttype'];
 
                 if(accounttypeuser == "student")
                 {
@@ -471,143 +386,59 @@ MongoClient.connect(URLSurvey, function(err, db) {
                 }
                 db.close();
                 });
-
         });
-
-
     },
 
     displayForumSubmitted_2 : function(req,res) {
-        // Please display values of
-       res.render('forum-results-2.ejs');
-        // display values of search in forum-results.ejs
-      //  console.log("search result");
-    //    console.log(req.query.title);
-         //console.log(req.query.tags)
 
-    var MongoClient = require('mongodb').MongoClient
+       res.render('forum-results-2.ejs');
     
     var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth();
-var year = today.getFullYear();
-var months = ['January','February','March','April'];
-var thedate = months[mm]+" "+dd+" , "+year;
+    var dd = today.getDate();
+    var mm = today.getMonth();
+    var year = today.getFullYear();
+    var months = ['January','February','March','April'];
+    var thedate = months[mm]+" "+dd+" , "+year;
 
-var URL = 'mongodb://localhost:27017/mydatabase'
-MongoClient.connect(URL, function(err, db) {
+MongoClient.connect(URLMyDataBase, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
-  if(req.query.title!="")
-      {
+  if(req.query.title!="") {
 
-  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags,username: req.session.session.title/*app.get('data').title*/,date:thedate}, function(err, result) {
-    collection.find({name: req.query.radioo}).toArray(function(err, docs) {
+  collection.insert({title:req.query.title, posted:req.query.mylittletextbox, tags: req.query.tags,username: req.session.session.title,date:thedate}, function(err, result) {
+    db.close();
+  });
+    }
 
-      //console.log(docs[0])
-      db.close()
-    })
-  })
-      }
-  // Grab a cursor
-
-      var cursor = collection.find({"tags":req.query.search});
-
-      // Execute the each command, triggers for each document
-      cursor.each(function(err,item) {
-          if(item == null) {
-
-          // Show that the cursor is closed
-          cursor.toArray(function(err, items) {
-
-
-            // Let's close the db
-            db.close();
-          });
-        }
-          else{
-          console.log(req.query.search);
-           // display these values in forum-results-2.ejs
-
-          }
-
-      });
+  db.close();
 });
 
-        //console.log(req.query.firstname)
     },
 
     displayForumSubmitted_3 : function(req,res) {
-        console.log(req.query.search);
-        // Please display values of
-        // display values of search in forum-results.ejs
-        console.log("search result");
-        //console.log(req.query.mylittletextbox);
 
-
-    var MongoClient = require('mongodb').MongoClient
-
-var URL = 'mongodb://localhost:27017/mydatabase'
-MongoClient.connect(URL, function(err, db) {
+MongoClient.connect(URLMyDataBase, function(err, db) {
   if (err) return
   var collection = db.collection('forumvalues')
   var string = req.query.search;
-
 
   var path;
 db.collection('forumvalues', function(err, collection) {
     collection.find({}).toArray(function(err, results) {
         path = results;
-        console.log(results);
+
          res.render('forum-results.ejs',{tag:"All",path:results});
     });
-})
+});
 
-
-      var cursor = collection.find({"tags":req.query.search});
-
-
-
-    cursor.toArray(function(err, items) {
-
-
-          var a= cursor.each(function(err,item) {
-
-          if(item == null) {
-
-          // Show that the cursor is closed
-
-        }
-          else{
-          d=item.posted;
-          console.log(item.tags);
-          console.log(item.posted);
-
-          }
-
-      });
-
-          });
-        })
-
-
+    });
 },
 
     displayForumSubmitted : function(req,res) {
        console.log("search result");
         var username = req.session.session.title;//app.get('data').title;
-        //console.log(username);
-        //console.log(req.query.search);
-        // Please display values of
-        // display values of search in forum-results.ejs
-        //console.log("search result");
-        //console.log(req.query.mylittletextbox);
 
-
-    var MongoClient = require('mongodb').MongoClient
-
-        var URL = 'mongodb://localhost:27017/mydatabase'
-        MongoClient.connect(URL, function(err, db) {
+        MongoClient.connect(URLMyDataBase, function(err, db) {
           if (err) return
           var collection = db.collection('forumvalues')
           var string = req.query.search;
@@ -617,7 +448,6 @@ db.collection('forumvalues', function(err, collection) {
           var y = 0;
           var num = -1;
           var i = -1;
-          //var graf = "#hi,#hokw,#ru,#hiii,#asdf";
           var arr_pos = [];
           var arr_pos_2 = [];
 
@@ -627,15 +457,11 @@ db.collection('forumvalues', function(err, collection) {
             arr_pos_2[x] = pos+1;
             x++;
             y = pos+1;
-            //document.write(y+"<br>");
             num += 1;
             i = pos;
           }
             arr_pos[num] = string.substring(arr_pos_2[num-1], string.length);
 
-
-
-            
           var path;
             var username = req.session.session.title;//app.get('data').title;
         db.collection('forumvalues', function(err, collection) {
@@ -647,32 +473,10 @@ db.collection('forumvalues', function(err, collection) {
             collection.find({"tags":{ $in : args }
                 }).sort({"tags":1}).toArray(function(err, results) {
                 path = results;
-                console.log(results);
                  res.render('forum-results.ejs',{tag:req.query.search,path:results,username:username});
             });
         })
 
-      var cursor = collection.find({"tags":req.query.search});
-    cursor.toArray(function(err, items) {
-
-
-          var a= cursor.each(function(err,item) {
-
-          if(item == null) {
-
-          // Show that the cursor is closed
-
-        }
-          else{
-          d = item.posted;
-          console.log(item.tags);
-          console.log(item.posted);
-
-          }
-
-      });
-
-          });
         });
 
 },
@@ -694,7 +498,7 @@ db.collection('forumvalues', function(err, collection) {
      req.session.session = {
             title: req.body.username
         };
-    console.log(req.session.session.title);
+
     var data = {
     //Specify email data
       from: from_who,
@@ -735,7 +539,7 @@ db.collection('forumvalues', function(err, collection) {
     login : function(req, res, next) {
 
   passport.authenticate('local-login', function(err, user, info) {
-      console.log(req.body.username);
+
     if (err) { return next(err); }
     // Redirect if it fails
     if (!user) { return res.redirect('/login'); }
@@ -746,34 +550,20 @@ db.collection('forumvalues', function(err, collection) {
             title: req.body.username
         };
 
-  var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
+  
 
-    MongoClient.connect('mongodb://127.0.0.1:27017/main', function(err, db) {
+    MongoClient.connect(URLMain, function(err, db) {
         if(err) throw err;
 
         var collection = db.collection('users');
         var person = req.session.session.title;
 
-        // Locate all the entries using find
-        collection.find().toArray(function(err, results) {
-            var resa = results;
-            console.log(resa);
-            console.log(person);
-            var saveindex = 10;
+        collection.find({'local.username' : person}).toArray(function(err, results) {
+            var currLoggedInUser = results[0];
 
-            for(var i=0;i<resa.length;i++)
-            {
-                if(person == resa[i]['local']['username'])
-                {
-                        saveindex = i;
-                }
+        var firstname = currLoggedInUser['local']['firstname'];
+        var lastname = currLoggedInUser['local']['lastname'];
 
-            }
-
-            //var emailofuser = resa[saveindex]['local']['email'];
-            var firstname = resa[saveindex]['local']['firstname'];
-            var lastname = resa[saveindex]['local']['lastname'];
             console.log(firstname);
              console.log(lastname);
 
@@ -791,54 +581,38 @@ db.collection('forumvalues', function(err, collection) {
         var MongoClient = require('mongodb').MongoClient,
             format = require('util').format;
 
-        MongoClient.connect('mongodb://127.0.0.1:27017/main', function (err, db) {
+        MongoClient.connect(URLMain, function (err, db) {
             if (err) throw err;
 
             var collection = db.collection('users');
             var person = req.session.session.title;
 
             // Locate all the entries using find
-            collection.find().toArray(function (err, results) {
-                var resa = results;
-                console.log(resa);
-                console.log(person);
-                var saveindex = 10;
+            collection.find({'local.username' : person}).toArray(function (err, results) {
+                var currLoggedInUser = results[0];
 
-                for (var i = 0; i < resa.length; i++) {
-                    if (person == resa[i]['local']['username']) {
-                        saveindex = i;
-                    }
+                var firstname = currLoggedInUser['local']['firstname'];
+                var lastname = currLoggedInUser['local']['lastname'];
 
-                }
-
-                //var emailofuser = resa[saveindex]['local']['email'];
-                var firstname = resa[saveindex]['local']['firstname'];
-                var lastname = resa[saveindex]['local']['lastname'];
-                console.log(firstname);
-                console.log(lastname);
                 res.render('chat.ejs', {
                         firstname: firstname,
                         lastname: lastname
                     }
-                    //user : req.user // get the user out of session and pass to template
+
                 );
                 db.close();
             });
 
         });
 
-
-        console.log(req.session.session);
         // passing data from one page to the other
         app.set('data', req.session.session);
 
     },
 
     displayPrivateChat : function (req, res) {
-        var MongoClient = require('mongodb').MongoClient,
-            format = require('util').format;
 
-        MongoClient.connect('mongodb://127.0.0.1:27017/main', function (err, db) {
+        MongoClient.connect(URLMain, function (err, db) {
             if (err) throw err;
 
             var collection = db.collection('users');
@@ -846,78 +620,27 @@ db.collection('forumvalues', function(err, collection) {
 
             // Locate all the entries using find
             collection.find().toArray(function (err, results) {
-                var resa = results;
-                console.log(resa);
-                console.log(person);
-                var saveindex = 10;
+                var currLoggedInUser = results[0];
 
-                for (var i = 0; i < resa.length; i++) {
-                    if (person == resa[i]['local']['username']) {
-                        saveindex = i;
-                    }
+                var firstname = currLoggedInUser['local']['firstname'];
+                var lastname = currLoggedInUser['local']['lastname'];
 
-                }
-
-                //var emailofuser = resa[saveindex]['local']['email'];
-                var firstname = resa[saveindex]['local']['firstname'];
-                var lastname = resa[saveindex]['local']['lastname'];
-                console.log(firstname);
-                console.log(lastname);
                 res.render('private-chat.ejs', {
                         firstname: firstname,
                         lastname: lastname
                     }
-                    //user : req.user // get the user out of session and pass to template
                 );
                 db.close();
             });
 
         });
 
-
-        console.log(req.session.session);
         // passing data from one page to the other
         app.set('data', req.session.session);
 
     },
 
   runApp : function(app, passport) {
-
-    var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
-
-MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
-    if(err) throw err;
-
-    app.post('/signup',passport.authenticate('local-signup', {
-        successRedirect : '/main', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }), function(req, res) {
-    var username = req.body.username;
-    var collection = db.collection('usernames_tester');
-
-
-});
-
-});
-
-var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
-
-MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
-    if(err) throw err;
-
-    var collection = db.collection('test_insert1');
-
-    // Locate all the entries using find
-    collection.find().toArray(function(err, results) {
-        console.dir(results);
-        // Let's close the db
-        db.close();
-    });
-});
-
 
     // Home page
     app.get('/', function(req, res) {
@@ -965,7 +688,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 
     });
 
-    app.get('/surveys',appObj.checkAuthentication,appObj.checkPerson);
+    app.get('/surveys',appObj.checkAuthentication,appObj.displayAppropriateSurveyPage);
 
     app.get('/surveys-students',appObj.checkAuthentication, appObj.displaySurveysStudents);
 
@@ -975,7 +698,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 
     app.get('/surveys-s2',appObj.checkAuthentication, appObj.displaySurveyStudentSubmitted);
 
-    app.get('/forum',appObj.checkAuthentication,appObj.getUserUsername);
+    app.get('/forum',appObj.checkAuthentication,appObj.displayAppropriateForumPage);
 
     app.get('/forum-submitted',appObj.checkAuthentication, appObj.displayForumSubmitted);
 
@@ -1027,8 +750,6 @@ app.use(fileUpload());
     console.log(__dirname);
 
 
-
-
     var username = req.session.session.title;//app.get('data').title;
     var users = require('./user');
 
@@ -1044,7 +765,6 @@ app.use(fileUpload());
         doc.local.idNumber = req.body.IdNum;
         doc.local.email = req.body.email;
         doc.save();
-        //res.redirect('/profiles/'+username);
 
         //Store profile information based on accounttype
 
@@ -1108,11 +828,7 @@ app.use(fileUpload());
 
         }
 
-
-
         res.redirect('/profiles/'+username);
-
-
 
       }else{
         //Cannot find username. May have been deleted or altered during the session.
@@ -1145,13 +861,13 @@ app.get('/editProfile',appObj.checkAuthentication,function(req,res){
       idNumber:user.local.idNumber
     };
 
-    if(user.local.accounttype=='student'){
+    if(user.local.accounttype =='student'){
 
-      var sProfileObject={};
+      var sProfileObject = {};
       studentProfileModel.findOne({ 'username': username }, function (err, doc){
 
         if (doc) {
-          sProfileObject={
+          sProfileObject = {
             gender:doc.gender,
             major:doc.major,
             aboutMe:doc.aboutMe,
@@ -1168,11 +884,11 @@ app.get('/editProfile',appObj.checkAuthentication,function(req,res){
 
     }else{
 
-      var tProfileObject={};
+      var tProfileObject = {};
       teacherProfileModel.findOne({ 'username': username }, function (err, doc){
 
         if(doc){
-          tProfileObject={
+          tProfileObject = {
             gender:doc.gender,
             department:doc.department,
             office:doc.office,
@@ -1201,9 +917,6 @@ app.get('/profiles/:username',appObj.checkAuthentication,function(req,res){
 
   userModel.findOne({'local.username':username},function(error,user){
 
-    console.log("USER is");
-    console.log(user);
-
     if(error){
       res.send('AN ERROR OCCURED');
     }
@@ -1218,13 +931,13 @@ app.get('/profiles/:username',appObj.checkAuthentication,function(req,res){
         idNumber:user.local.idNumber
       };
 
-      if(user.local.accounttype=='student'){
+      if(user.local.accounttype =='student'){
 
-        var sProfileObject={};
+        var sProfileObject = {};
         studentProfileModel.findOne({ 'username': username }, function (err, doc){
 
           if (doc) {
-            sProfileObject={
+            sProfileObject = {
               gender:doc.gender,
               major:doc.major,
               aboutMe:doc.aboutMe,
