@@ -397,7 +397,6 @@
         }
         
         .chat-sidebar {
-            display: none;
             width: 20% !important;
             position: fixed;
             height: 100%;
@@ -481,6 +480,7 @@
 		
 		#nickWrap{
 			color: black;
+            
 		}
 		
 
@@ -586,77 +586,9 @@
             <p>Do you wish to go online?</p>
             <p id="nickError"></p>
             <form id="setNick">
-<!--                <input size="35" id="nickname"></input>-->
                 <input type="submit"></input>
             </form>
         </div>
-        <div id="contentWrap">
-            <div class="category">
-                <div class="header">
-                    <h5>Pick color</h5>
-                </div>
-                <div class="tilebox green">
-                    <a color="green" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Green</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox brown">
-                    <a color="brown" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Brown</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox teal">
-                    <a color="teal" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Teal</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox red">
-                    <a color="red" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Orange</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox gray">
-                    <a color="gray" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Magenta</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox blue">
-                    <a color="blue" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Blue</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="clear">
-            </div>
-            <div>
-                <div class="header">
-                    <h5>Picked color</h5>
-                </div>
-                <div id="mainBox">
-                    <a class="mainbox left">
-                        <div class="container2">
-                            <h5 id="nicknamebox"></h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="clear">
-            </div>
-
-        </div>
-
 
     </div>
 
@@ -757,38 +689,6 @@
             $users.html(html);
             calculate_popups();
         });
-
-        $colorBoxes.on("click", "a", function(event) {
-            event.preventDefault();
-            var thisObj = $(this);
-            $.each($('.tileCenteredSlide'), function(index, data) {
-                if ($(data).attr('color') == thisObj.attr('color')) {
-                    thisObj.children().addClass('selected');
-                } else {
-                    $(data).children().removeClass('selected');
-                }
-            });
-
-            $picBox = $(this);
-            socket.emit('picked color', $picBox.attr('color'));
-            console.log('pick-color-send');
-        });
-
-
-
-        socket.on('new color', function(data) {
-            console.log(data);
-            $mainBox.attr('class', data.color);
-            $nicknameBox.html(data.nickname + " updated!");
-            $.each($('.tileCenteredSlide'), function(index, datax) {
-                if ($(datax).attr('color') == data.color) {
-                    $(datax).children().addClass('selected');
-                } else {
-                    $(datax).children().removeClass('selected');
-                }
-            });
-        });
-
 
 
 
