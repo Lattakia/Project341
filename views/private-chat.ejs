@@ -43,6 +43,7 @@
         p {
             margin-bottom: 10px;
             line-height: 1.6em;
+            font: 16px Helvetica, Arial;
         }
         
         .clear {
@@ -101,7 +102,7 @@
         
         h5,
         h6 {
-            font-size: 1em;
+            font: 16px Helvetica, Arial;
         }
         
         .main {
@@ -129,12 +130,12 @@
         
         .message {
             width: 234px;
-			color:black;
+            color: black;
         }
         
         .sendmsg {
             width: 60px;
-			color: black;
+            color: black;
         }
         
         #InfoBar {
@@ -397,7 +398,6 @@
         }
         
         .chat-sidebar {
-            display: none;
             width: 20% !important;
             position: fixed;
             height: 100%;
@@ -475,14 +475,16 @@
         }
         
         #currentuser {
-            color:rgb(202,181,118);
+            color: rgb(202, 181, 118);
         }
-		
-		
-		#nickWrap{
-			color: black;
-		}
-		
+        
+        #nickWrap {
+            color: black;
+        }
+        
+        #setNick {
+            font: 16px Helvetica, Arial;
+        }
 
     </style>
 </head>
@@ -492,412 +494,333 @@
     <!-- TOP BAR -->
     <div id="topbar">
         <a href="/main"><img src="logo2.png" id="logo" alt="Logo"></a>
-    </div>
-	<div id="wrapper">
-	<div id="sidebar">
-	<!-- SIDEMENU -->
 
-		<div class="nav-side-menu">
-			<div class="brand">Navigation</div>
-			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div id="user">
 
-			<div class="menu-list">
+            <div class="dropdown">
 
-				<ul id="menu-content" class="menu-content collapse out">
-					<li>
-						<a href="/main">
-							<i class="fa fa-dashboard fa-lg"></i> Dashboard
-						</a>
-					</li>
+                <button class="btn btn-primary dropdown-toggle" id="user1" type="button" data-toggle="dropdown"><span class="fa fa-user"></span>
 
-					<li>
-					  <a href="/chat">
-					  <i class="fa fa-users fa-lg"></i> Public Chatroom
-					  </a>
-					</li>
-					
-					<li>
-					  <a href="/private-chat">
-					  <i class="fa fa-comments fa-lg"></i> Private Chat
-					  </a>
-					</li>
-					
-					<li>
-					  <a href="/forum">
-					  <i class="fa fa-edit fa-lg"></i> Forum
-					  </a>
-					</li>
-
-					<li>
-						<a href="/surveys">
-							<i class="fa fa-check-square fa-lg"></i> Surveys
-						</a>
-					</li>
-
-					<li>
-						<a href="/editProfile">
-							<i class="fa fa-user fa-lg"></i> My Profile
-						</a>
-					</li>
-
-					<li>
-						<a href="/logout">
-							<span class="fa fa-user"></span><span id="logout"> Logout</span>
-						</a>
-					</li>
-
-				</ul>
-			</div>
-
-		</div>
-	</div>
-
-    <script>
-        $('#user1').onclick(function() {
-            $('#user1').css({
-                'background-color': 'rgb(143,37,57)',
-                'border': 'none',
-            });
-        });
-
-    </script>
-
-
-    <div id="main">
-
-    <!-- CHAT-SIDEBAR -->
-
-    <div class="chat-sidebar">
-        <div class="header">
-            <h5>Connected Users</h5>
-        </div>
-        <div class="header">
-            <h5 id="currentuser"></h5>
-        </div>
-        <div id="userslist"></div>
-    </div>
-
-    <div id="content">
-        <div id="title">
-        </div>
-        <div class="clear">
-        </div>
-        <div id="nickWrap">
-            <p>Do you wish to go online?</p>
-            <p id="nickError"></p>
-            <form id="setNick">
-<!--                <input size="35" id="nickname"></input>-->
-                <input type="submit"></input>
-            </form>
-        </div>
-        <div id="contentWrap">
-            <div class="category">
-                <div class="header">
-                    <h5>Pick color</h5>
-                </div>
-                <div class="tilebox green">
-                    <a color="green" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Green</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox brown">
-                    <a color="brown" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Brown</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox teal">
-                    <a color="teal" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Teal</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox red">
-                    <a color="red" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Orange</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox gray">
-                    <a color="gray" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Magenta</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="tilebox blue">
-                    <a color="blue" class="tile tileCenteredSlide left group0 ">
-                        <div class="container2">
-                            <h5>Blue</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="clear">
-            </div>
-            <div>
-                <div class="header">
-                    <h5>Picked color</h5>
-                </div>
-                <div id="mainBox">
-                    <a class="mainbox left">
-                        <div class="container2">
-                            <h5 id="nicknamebox"></h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="clear">
+          <script>
+              
+              var firstname = <%- JSON.stringify(firstname)%>;
+              var lastname = <%- JSON.stringify(lastname)%>;
+              document.write("Signed in as "+firstname+" "+lastname);
+          </script>
+        <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
             </div>
 
         </div>
+        <div id="wrapper">
+            <div id="sidebar">
+                <!-- SIDEMENU -->
 
 
-    </div>
+                <div class="nav-side-menu">
+                    <div class="brand">Navigation</div>
+                    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
+                    <div class="menu-list">
 
+                        <ul id="menu-content" class="menu-content collapse out">
+                            <li>
+                                <a href="/main">
+                                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                                </a>
+                            </li>
 
-    <!--- SCRIPTS ----->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var $currentUserId;
-        var socket = io();
-        var $nickform = $('#setNick');
-        var $nickError = $('#nickError');
-        var $nickBox = $('#nickname');
-        var $users = $('#userslist');
-        var $colorForm = $('#pick-color');
-        var $mainBox = $('#mainBox');
-        var $picBox;
-        var $colorBoxes = $('.category');
-        var $nicknameBox = $('#nicknamebox');
-        var oldDocs;
+                            <li>
+                                <a href="/chat">
+                                    <i class="fa fa-users fa-lg"></i> Public Chatroom
+                                </a>
+                            </li>
 
-        $(document).on('click', "input.sendmsg", function() {
-            var $messageBox = $(this).parent().children('.message');
-            var $receiver = $(this).attr('chatboxid');
-            socket.emit('send message', {
-                msg: $messageBox.val(),
-                sender: $currentUserId,
-                receiver: $receiver
-            });
-            $messageBox.val('');
-        });
+                            <li>
+                                <a href="/private-chat">
+                                    <i class="fa fa-comments fa-lg"></i> Private Chat
+                                </a>
+                            </li>
 
-        $(document).on("keypress", 'input.message', function(event) {
-            if (event.which == 13 && !event.shiftKey) {
-                event.preventDefault();
-                var $messageBox = $(this);
-                var $receiver = $(this).attr('chatboxid');
-                socket.emit('send message', {
-                    msg: $messageBox.val(),
-                    sender: $currentUserId,
-                    receiver: $receiver
+                            <li>
+                                <a href="/forum">
+                                    <i class="fa fa-edit fa-lg"></i> Forum
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/surveys">
+                                    <i class="fa fa-check-square fa-lg"></i> Surveys
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/editProfile">
+                                    <i class="fa fa-user fa-lg"></i> My Profile
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/logout">
+                                    <span class="fa fa-user"></span><span id="logout"> Logout</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <script>
+                $('#user1').onclick(function() {
+                    $('#user1').css({
+                        'background-color': 'rgb(143,37,57)',
+                        'border': 'none',
+                    });
                 });
-                $messageBox.val('');
-            }
-        });
 
-        socket.on('load old msgs', function(docs) {
-            oldDocs = docs;
-        });
+            </script>
 
-        socket.on('new message', function(data) {
-            AppendNewMsg(data);
-        });
 
-        function AppendNewMsg(data) {
-            if ($currentUserId == data.receiver) {
-                register_popup(data.nickname, data.nickname);
-            }
-            $.each($('.chat'), function(index, datax) {
-                if ($(datax).attr('chatboxid') == data.receiver || $(datax).attr('chatboxid') == data.sender) {
-                    if ($currentUserId == data.receiver) {
-                        $(datax).append("</br><div class='receive'><b>" + data.nickname + ": </b>" + data.msg + "</div>");
-                        $(datax).animate({
-                            scrollTop: $(datax)[0].scrollHeight
-                        }, 2000);
-                    } else if ($currentUserId == data.sender) {
-                        $(datax).append("</br><div class='send'><b>" + data.nickname + ": </b>" + data.msg + "</div>");
-                        $(datax).animate({
-                            scrollTop: $(datax)[0].scrollHeight
-                        }, 2000);
-                    }
-                }
-            });
-        }
+            <div id="main">
 
-        $nickform.submit(function(e) {
-            e.preventDefault();
-            $currentUserId = id();
-            $('#currentuser').html($currentUserId);
-            socket.emit('new user', id(), function(data) {
-                    $('#nickWrap').hide();
-                    $('#contentWrap').show();
-                    $('.chat-sidebar').show();
-                    $.each(oldDocs, function(index, data) {
+                <!-- CHAT-SIDEBAR -->
+
+                <div class="chat-sidebar">
+                    <div class="header">
+                        <h5>Connected Users</h5>
+                    </div>
+                    <div class="header">
+                        <h5 id="currentuser"></h5>
+                    </div>
+                    <div id="userslist"></div>
+                </div>
+
+                <div id="content">
+                    <div id="title">
+                    </div>
+                    <div class="clear">
+                    </div>
+                    <div id="nickWrap">
+                        <p>Do you wish to go online?</p>
+                        <p id="nickError"></p>
+                        <form id="setNick">
+                            <input type="submit" value="OK"></input>
+                        </form>
+                    </div>
+
+                </div>
+
+
+
+                <!--- SCRIPTS ----->
+                <script src="/socket.io/socket.io.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+                <script type="text/javascript">
+                    var $currentUserId;
+                    var socket = io();
+                    var $nickform = $('#setNick');
+                    var $nickError = $('#nickError');
+                    var $nickBox = $('#nickname');
+                    var $users = $('#userslist');
+                    var $colorForm = $('#pick-color');
+                    var $mainBox = $('#mainBox');
+                    var $picBox;
+                    var $colorBoxes = $('.category');
+                    var $nicknameBox = $('#nicknamebox');
+                    var oldDocs;
+
+                    $(document).on('click', "input.sendmsg", function() {
+                        var $messageBox = $(this).parent().children('.message');
+                        var $receiver = $(this).attr('chatboxid');
+                        socket.emit('send message', {
+                            msg: $messageBox.val(),
+                            sender: $currentUserId,
+                            receiver: $receiver
+                        });
+                        $messageBox.val('');
+                    });
+
+                    $(document).on("keypress", 'input.message', function(event) {
+                        if (event.which == 13 && !event.shiftKey) {
+                            event.preventDefault();
+                            var $messageBox = $(this);
+                            var $receiver = $(this).attr('chatboxid');
+                            socket.emit('send message', {
+                                msg: $messageBox.val(),
+                                sender: $currentUserId,
+                                receiver: $receiver
+                            });
+                            $messageBox.val('');
+                        }
+                    });
+
+                    socket.on('load old msgs', function(docs) {
+                        oldDocs = docs;
+                    });
+
+                    socket.on('new message', function(data) {
                         AppendNewMsg(data);
                     });
-            });
-        });
 
-        socket.on('usernames', function(data) {
-            var html = '';
-            $.each(data, function(index, dataB) {
-                if (dataB != $currentUserId) {
-                    html += "<div class=\"sidebar-name\"><a href=\"javascript:register_popup('" + dataB + "', '" + dataB + "');\"><img width=\"14\" height=\"14\" src=\"http://skypolatory.cyberplant.net/img/green-dot.png\" /><span>" + dataB + "</span></a></div>";
-                }
-            });
-            $users.html(html);
-            calculate_popups();
-        });
-
-        $colorBoxes.on("click", "a", function(event) {
-            event.preventDefault();
-            var thisObj = $(this);
-            $.each($('.tileCenteredSlide'), function(index, data) {
-                if ($(data).attr('color') == thisObj.attr('color')) {
-                    thisObj.children().addClass('selected');
-                } else {
-                    $(data).children().removeClass('selected');
-                }
-            });
-
-            $picBox = $(this);
-            socket.emit('picked color', $picBox.attr('color'));
-            console.log('pick-color-send');
-        });
-
-
-
-        socket.on('new color', function(data) {
-            console.log(data);
-            $mainBox.attr('class', data.color);
-            $nicknameBox.html(data.nickname + " updated!");
-            $.each($('.tileCenteredSlide'), function(index, datax) {
-                if ($(datax).attr('color') == data.color) {
-                    $(datax).children().addClass('selected');
-                } else {
-                    $(datax).children().removeClass('selected');
-                }
-            });
-        });
-
-
-
-
-        Array.remove = function(array, from, to) {
-            var rest = array.slice((to || from) + 1 || array.length);
-            array.length = from < 0 ? array.length + from : from;
-            return array.push.apply(array, rest);
-        };
-
-
-        var total_popups = 0;
-
-
-        var popups = [];
-
-
-        function close_popup(id) {
-            for (var iii = 0; iii < popups.length; iii++) {
-                if (id == popups[iii]) {
-                    Array.remove(popups, iii);
-
-                    document.getElementById(id).style.display = "none";
-
-                    calculate_popups();
-
-                    return;
-                }
-            }
-        }
-
-        function display_popups() {
-            var right = 220;
-
-            var iii = 0;
-            for (iii; iii < total_popups; iii++) {
-                if (popups[iii] != undefined) {
-                    var element = document.getElementById(popups[iii]);
-                    if (element != null && element != undefined) {
-                        element.style.right = right + "px";
-                        right = right + 320;
-                        element.style.display = "block";
+                    function AppendNewMsg(data) {
+                        if ($currentUserId == data.receiver) {
+                            register_popup(data.nickname, data.nickname);
+                        }
+                        $.each($('.chat'), function(index, datax) {
+                            if ($(datax).attr('chatboxid') == data.receiver || $(datax).attr('chatboxid') == data.sender) {
+                                if ($currentUserId == data.receiver) {
+                                    $(datax).append("</br><div class='receive'><b>" + data.nickname + ": </b>" + data.msg + "</div>");
+                                    $(datax).animate({
+                                        scrollTop: $(datax)[0].scrollHeight
+                                    }, 2000);
+                                } else if ($currentUserId == data.sender) {
+                                    $(datax).append("</br><div class='send'><b>" + data.nickname + ": </b>" + data.msg + "</div>");
+                                    $(datax).animate({
+                                        scrollTop: $(datax)[0].scrollHeight
+                                    }, 2000);
+                                }
+                            }
+                        });
                     }
-                }
-            }
 
-            for (var jjj = iii; jjj < popups.length; jjj++) {
-                var element = document.getElementById(popups[jjj]);
-                if (element != null && element != undefined) {
-                    element.style.display = "none";
-                }
-            }
-        }
+                    $nickform.submit(function(e) {
+                        e.preventDefault();
+                        $currentUserId = id();
+                        $('#currentuser').html($currentUserId);
+                        socket.emit('new user', id(), function(data) {
+                            $('#nickWrap').hide();
+                            $('#contentWrap').show();
+                            $('.chat-sidebar').show();
+                            $.each(oldDocs, function(index, data) {
+                                AppendNewMsg(data);
+                            });
+                        });
+                        id();
+                    });
 
-        function register_popup(id, name) {
-
-            for (var iii = 0; iii < popups.length; iii++) {
-
-                if (id == popups[iii]) {
-                    Array.remove(popups, iii);
-
-                    popups.unshift(id);
-
-                    calculate_popups();
-
-
-                    return;
-                }
-            }
-            if (!(document.getElementById(id) != null && document.getElementById(id) != undefined)) {
-
-                var element = '<div class="popup-box chat-popup" id="' + id + '">';
-                element = element + '<div class="popup-head">';
-                element = element + '<div class="popup-head-left">' + name + '</div>';
-                element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\'' + id + '\');">✕</a></div>';
-                element = element + '<div style="clear: both"></div></div><div class="popup-messages"><div chatboxid="' + id + '"  class="chat"></div><input size="35" chatboxid="' + id + '" class="message" id="message_' + id + '"></input><input chatboxid="' + id + '" class="sendmsg" value="submit" type="submit"></input></div></div>';
-
-                $('body').append(element);
-            }
-
-            popups.unshift(id);
-
-            calculate_popups();
-            $('#message_' + id).focus();
-        }
-
-        function calculate_popups() {
-            var width = window.innerWidth;
-            if (width < 540) {
-                total_popups = 0;
-            } else {
-                width = width - 200;
-                total_popups = parseInt(width / 320);
-            }
-
-            display_popups();
-
-        }
+                    socket.on('usernames', function(data) {
+                        var html = '';
+                        $.each(data, function(index, dataB) {
+                            if (dataB != $currentUserId) {
+                                html += "<div class=\"sidebar-name\"><a href=\"javascript:register_popup('" + dataB + "', '" + dataB + "');\"><img width=\"14\" height=\"14\" src=\"http://skypolatory.cyberplant.net/img/green-dot.png\" /><span>" + dataB + "</span></a></div>";
+                            }
+                        });
+                        $users.html(html);
+                        calculate_popups();
+                    });
 
 
-        function id() {
-            var firstname = <%- JSON.stringify(firstname)%>;
-            var lastname = <%- JSON.stringify(lastname)%>;
-            return firstname + " " + lastname;
 
-        }
+                    Array.remove = function(array, from, to) {
+                        var rest = array.slice((to || from) + 1 || array.length);
+                        array.length = from < 0 ? array.length + from : from;
+                        return array.push.apply(array, rest);
+                    };
 
-    </script>
-	</div>
-	</div>
+
+                    var total_popups = 0;
+
+
+                    var popups = [];
+
+
+                    function close_popup(id) {
+                        for (var iii = 0; iii < popups.length; iii++) {
+                            if (id == popups[iii]) {
+                                Array.remove(popups, iii);
+
+                                document.getElementById(id).style.display = "none";
+
+                                calculate_popups();
+
+                                return;
+                            }
+                        }
+                    }
+
+                    function display_popups() {
+                        var right = 220;
+
+                        var iii = 0;
+                        for (iii; iii < total_popups; iii++) {
+                            if (popups[iii] != undefined) {
+                                var element = document.getElementById(popups[iii]);
+                                if (element != null && element != undefined) {
+                                    element.style.right = right + "px";
+                                    right = right + 320;
+                                    element.style.display = "block";
+                                }
+                            }
+                        }
+
+                        for (var jjj = iii; jjj < popups.length; jjj++) {
+                            var element = document.getElementById(popups[jjj]);
+                            if (element != null && element != undefined) {
+                                element.style.display = "none";
+                            }
+                        }
+                    }
+
+                    function register_popup(id, name) {
+
+                        for (var iii = 0; iii < popups.length; iii++) {
+
+                            if (id == popups[iii]) {
+                                Array.remove(popups, iii);
+
+                                popups.unshift(id);
+
+                                calculate_popups();
+
+
+                                return;
+                            }
+                        }
+                        if (!(document.getElementById(id) != null && document.getElementById(id) != undefined)) {
+
+                            var element = '<div class="popup-box chat-popup" id="' + id + '">';
+                            element = element + '<div class="popup-head">';
+                            element = element + '<div class="popup-head-left">' + name + '</div>';
+                            element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\'' + id + '\');">✕</a></div>';
+                            element = element + '<div style="clear: both"></div></div><div class="popup-messages"><div chatboxid="' + id + '"  class="chat"></div><input size="35" chatboxid="' + id + '" class="message" id="message_' + id + '"></input><input chatboxid="' + id + '" class="sendmsg" value="submit" type="submit"></input></div></div>';
+
+                            $('body').append(element);
+                        }
+
+                        popups.unshift(id);
+
+                        calculate_popups();
+                        $('#message_' + id).focus();
+                    }
+
+                    function calculate_popups() {
+                        var width = window.innerWidth;
+                        if (width < 540) {
+                            total_popups = 0;
+                        } else {
+                            width = width - 200;
+                            total_popups = parseInt(width / 320);
+                        }
+
+                        display_popups();
+
+                    }
+
+
+                    function id() {
+                        var firstname = <%- JSON.stringify(firstname)%>;
+                        var lastname = <%- JSON.stringify(lastname)%>;
+                        return firstname + " " + lastname;
+
+                    }
+
+                </script>
+            </div>
+        </div>
 </body>
 
 </html>

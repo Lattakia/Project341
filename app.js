@@ -26,8 +26,6 @@ var domain = 'connectconcordia.tk';
 //Your sending email address
 var from_who = 'encs@connectconcordia.tk';
 
-var app = require('express')();
-
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
@@ -58,7 +56,7 @@ http.listen(3000, function () {
 
 mongoose.connect(db.url);
 
-require('./passport')(passport)
+require('./passport')(passport);
 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -72,7 +70,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: process.env.ENVIRONMENT !== 'development' && process.env.ENVIRONMENT !== 'test',
+//        secure: process.env.ENVIRONMENT !== 'development' && process.env.ENVIRONMENT !== 'test',
         maxAge: 2419200000
     },
     secret: 'goodheavenslookatthetime'
@@ -92,14 +90,6 @@ mkdirp(__dirname + '/views/ProfilePictures');
 require('./routes.js').runApp(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.use(require('express').static('views'));
-
-/*io.on('connection', function(socket){
-socket.on('chat message', function(msg){
-io.emit('chat message', msg);
-  });
-});*/
-console.log("got an error: ");
-
 
 app.use(function(req, res, next) {
     if(req.url.match('./views/chat.ejs'))
@@ -181,10 +171,6 @@ io.on('connection', function (socket) {
         }
     });
     
-    socket.on('picked color',function(data){
-			io.emit('new color',{color:data,nickname: socket.nickname});
-		});
-
     socket.on('disconnect', function (data) {
         if (!socket.nickname) return;
         delete users[socket.nickname];
@@ -195,20 +181,6 @@ io.on('connection', function (socket) {
         io.emit('usernames', Object.keys(users));
     }
 
-
-
 });
-
-
-//io.on('connection', function (socket) {
-//    socket.on('chat message', function (msg) {
-//        io.emit('chat message', msg);
-//        console.log('its working');
-//        if (socket.request.user && socket.request.user.logged_in) {
-//            console.log(socket.request.user);
-//            console.log('its working finally!!');
-//        }
-//    });
-//});
 
 module.exports = http;
